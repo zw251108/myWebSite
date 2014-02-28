@@ -1,0 +1,108 @@
+@charset "utf-8";
+
+@import "../lib/color.less";
+@import "../lib/grid.less";
+@import "../lib/z-index.less";
+
+//---------- Popup 弹窗 ----------
+body{
+	// 目前弹窗插件 样式
+	.d-main{
+		line-height: 0;
+	}
+	.d-content{
+		overflow: hidden;
+		padding: 0 !important;
+	}
+}
+
+.module-popup{
+	margin: 0;
+    padding: 0;
+    font-size: 16px;
+
+	.tips{
+		top: 0;
+		left: 0;
+
+		min-height: 30px;
+		min-width: 100px;
+
+		padding: 0 @padding-lr;
+
+		text-align: center;
+	}
+
+    .tagsArea{
+        float: none;
+        max-height: 200px;
+        padding: 10px 0 0;
+        background: @popup-tagsArea-bg;
+
+	    .input{
+		    float: left;
+		    height: 28px;
+		    width: auto;
+		    border: 1px solid @border-color;
+		    border-radius: @border-radius;
+		    margin: 0 10px 10px 0;
+		    text-indent: 1em;
+	    }
+
+    }
+    .tag{
+        margin: 0 @tag-margin @tag-margin;
+    }
+    .tag:after{
+        background: @popup-tagsArea-bg;
+    }
+
+    .list{
+        overflow: auto;
+
+	    height: 320px;
+	    width: 50%;
+
+	    border: 5px solid #c0c0c0;
+
+	    margin: 10px 0;
+
+	    background: #fff;
+
+	    color: #000;
+    }
+
+
+	.list-left{
+		float: left;
+
+		margin-left: -25px;
+
+		& > li{
+			text-indent: 2em;
+
+			& > a{
+				text-indent: 0;
+			}
+		}
+	}
+	.list-right{
+		float: right;
+
+		margin-right: -25px;
+	}
+}
+.popup-succ{
+    border-color: @popup-border-success;
+}
+//.popup-warming{
+//    border-color: @popup-border-warming;
+//}
+.popup-error{
+    border-color: @popup-border-error;
+}
+.popup-warm{
+
+}
+.popup-login{
+}

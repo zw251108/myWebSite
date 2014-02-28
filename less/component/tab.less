@@ -1,0 +1,68 @@
+@charset "utf-8";
+
+@import "../lib/color.less";
+@import "../lib/function.less";
+@import "../lib/grid.less";
+@import "../lib/z-index.less";
+
+//----- tab 选项卡 -----
+/*  example:
+    <div class="tabs">
+        <div class="tab">
+            <div class="tab_head tab_head-current">head 1</div>
+            <div class="tab_content">content 1</div>
+        </div>
+        <div class="tab">
+            <div class="tab_head">head 2</div>
+            <div class="tab_content">content 2</div>
+        </div>
+        <div class="tab">
+            <div class="tab_head">head 3</div>
+            <div class="tab_content">content 3</div>
+        </div>
+        <div class="tab">
+            <div class="tab_head">head 4</div>
+            <div class="tab_content">content 4</div>
+        </div>
+    </div>
+ */
+.tabs{
+    position: relative;
+    height: 100%;
+}
+.tab_head{
+    float: left;
+    height: @tab-head-height;
+    min-width: @tab-head-min-width;
+    border: @tab-border-width solid @tab-border;
+    border-bottom: 0;
+    border-radius: @border-radius @border-radius 0 0;
+    margin-right: @tab-head-margin-right;
+    background: @tab-bg;
+}
+.tab_head-current,
+.tab_head:hover{
+    position: relative;
+    z-index: @z-tab_head-current;
+//    border-bottom: @tab-border-width solid @tab-bg;
+    background: @tab-bg-current;
+}
+.tab_head-current + .tab_content,
+.tab_head:hover + .tab_content{
+    z-index: @z-tab_head-current;
+
+    .transparent(100);
+}
+.tab_content{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: @tab-head-height;
+    border: @tab-border-width solid @tab-border;
+    background: @tab-bg-current;
+
+    .transparent(0);
+
+    .transition(opacity 0.5s ease-in 0.218s);
+}

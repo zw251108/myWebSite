@@ -1,0 +1,112 @@
+@charset "utf-8";
+
+@import "../lib/color.less";
+@import "../lib/function.less";
+@import "../lib/grid.less";
+@import "../lib/text-indent";
+@import "../lib/z-index.less";
+
+//---------- Document 文档 ---------
+.module-document{
+//    .metroBgSprite(1);
+	background-image: url("../image/metro/Document.png");
+
+    .module_title{
+        background-image:url("../image/default/document.png");
+    }
+
+    .module_content{
+        margin-bottom: -@space;
+    }
+
+    .icon-CSS{
+        position:absolute;
+        top: 5px;
+        right: @space;
+
+	    height: @module-main-title-height - 10px *2;
+        width: @module-main-title-height - 10px *2;
+    }
+
+    dl{
+        display:block;
+        overflow:hidden;
+        height:auto;
+
+        margin: 0 0 @space;
+
+        background: @document_dl-bg;
+
+        text-indent: @text-indent;
+    }
+    dt{
+        .marginSpace();
+
+        background-color: @document_dt-bg;
+
+        cursor: pointer;
+
+        font-size: 20px;
+        line-height: @grid-unit;
+
+//	    &:before{
+//		    height: 0;
+//		    width: 0;
+//
+//		    border: 10px solid transparent;
+//
+//		    content: "";
+//	    }
+    }
+	.icon{
+		padding: 0;
+		background-position: 10px 10px;
+	}
+    dd{
+        display: none;
+
+        border-left: @space solid @document_dt-bg;
+        margin-left: @space;
+        padding: 0 @space;
+
+        color: @document_dd-color;
+    }
+    p{
+        margin:0;
+    }
+
+    table{
+        width: 100%;
+    }
+    th,
+    td{
+//	    min-width: 100px;
+        border: 1px solid @border-color;
+	    padding: 0 5px;
+
+        text-align: center;
+		text-indent: 0;
+    }
+
+    .syntaxhighlighter{
+        width: auto !important;
+
+        border: 1px solid @border-color;
+        margin: 0 !important;
+        padding: @space;
+
+        text-indent:0;
+    }
+}
+
+.document_section{
+    margin-bottom: @space;
+    padding: 0 0 0 @space;
+    background: @document_section-bg;
+
+//	font-family: "Consolas", Monaco, Andale, monospace;
+
+	.section_title{
+		padding-right: 70px;
+	}
+}

@@ -1,0 +1,72 @@
+@charset "utf-8";
+
+@import "color.less";
+
+//----- Function 公用函数 -----
+
+//----- metro 模块背景图 sprite 函数 -----
+.metroBgImg(){
+    background-image:url("../image/default/metro.png");
+}
+.metroBgSprite(@num){
+    background-position:center @num *(-130px)+20px;
+}
+
+.textIndent(@text-indent:2em){
+    text-indent: @text-indent;
+}
+
+//----- 内容块 -----
+.container(@bdColor, @bgColor:#fff){
+    border: solid @bdColor;
+    border-width: 10px 0 0 10px;
+    margin: 10px 0 0 10px;
+    padding: 10px 0 0 10px;
+    background-color: @bgColor;
+}
+
+//----- 盒子阴影 -----
+.boxShadow(@boxShadow){
+    -webkit-box-shadow: @boxShadow;
+    -moz-box-shadow: @boxShadow;
+    -ms-box-shadow: @boxShadow;
+    -o-box-shadow: @boxShadow;
+    box-shadow: @boxShadow;
+}
+
+//----- 透明 -----
+.transparent(@transparency:50){
+    -webkit-opacity: @transparency/100;
+    -moz-opacity: @transparency/100;
+//    -ms-filter: @transparency/100;
+//    -o-filter: @transparency/100;
+    opacity: @transparency/100;
+    filter: alpha(opacity=@transparency);
+}
+
+//----- 过度 -----
+.transition(@translate){
+    -webkit-transition: @translate;
+    -moz-transition: @translate;
+    -ms-transition: @translate;
+    -o-transition: @translate;
+    transition: @translate;
+}
+
+//----- 变形基础定位 -----
+.transformOrigin(@origin){
+    -webkit-transform-origin: @origin;
+    -moz-transform-origin: @origin;
+    -ms-transform-origin: @origin;
+    -o-transform-origin: @origin;
+    transform-origin: @origin;
+}
+
+//----- CSS3 旋转 -----
+.transformRotate(@deg) {
+    -webkit-transform: rotate(@deg);
+    -moz-transform: rotate(@deg);
+    -ms-transform: rotate(@deg);
+    -o-transform: rotate(@deg);
+    transform: rotate(@deg);
+}

@@ -1,0 +1,61 @@
+@charset "utf-8";
+@import "../lib/grid.less";
+
+//---------- Layout 布局 汇总 ----------
+// 布局使用流式栅格系统
+// 最大宽度/最小宽度由最外层的 .Container 来控制
+
+// 默认标准 屏幕宽度 1024 以下 页面宽度 960
+// 针对标准显示器
+// Container 宽度 960
+// 共 24 列
+// .module-large    24
+// .module-big      16
+// .module-normal   12
+// .module-small    8
+// .module-tiny     4
+
+// 主容器
+/*body*/.Container{
+	position:relative;
+
+	width: @grid-unit *24;
+
+	margin:0 auto;
+	padding: @header-height + @grid-space 0 0;
+}
+
+.module-large{
+	.grid-x(24);
+}
+
+.module-big{
+	.grid-x(16);
+}
+
+.module-normal{
+	.grid-x(12);
+}
+
+.module-small{
+	.grid-x(8);
+}
+
+.module-tiny{
+	.grid-x(4);
+}
+
+// 屏幕宽度 320 以上
+@import "w-320.less";
+
+// 屏幕宽度 480 以上
+@import "w-480.less";
+
+// 屏幕宽度 640 以上
+@import "w-640.less";
+
+// 屏幕宽度 800 以上
+@import "w-800.less";
+
+// 屏幕宽度 1366 以下 页面宽度 1280
+@import "w-1280.less";

@@ -1,0 +1,33 @@
+@charset "utf-8";
+
+@import "../lib/color.less";
+@import "../lib/grid.less";
+
+//----- form 表单 -----
+/*  example:
+	<form action="">
+		<div class="form_group">
+			<label class="hidden" for=""></label>
+			<input type="text" />
+		</div>
+
+		<div class="form_group">
+			<label class="hidden" for=""></label>
+			<input type="text" />
+		</div>
+	</form>
+ */
+.form{
+}
+
+.form_group{
+	overflow: hidden;
+
+	border: 1px solid @border-color;
+	border-radius: @border-radius;
+
+	margin: @space;
+	padding-left: @space;
+
+	background: @font-color;
+}

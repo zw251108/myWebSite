@@ -1,0 +1,120 @@
+@charset "utf-8";
+
+@import "../lib/color.less";
+@import "../lib/grid.less";
+
+//----- button 按钮 -----
+/*a,button,input:button,input:submit,input:reset*/.btn{
+	float: left;
+
+	min-width: @btn-min-width;
+
+	border: @btn-border-width solid @btn-border;
+	border-radius: @border-radius;
+
+	margin: 0 @btn-margin 0 0;
+	padding: 0 @padding-lr;
+
+	background: @btn-default-bg;
+
+	color: @font-color;
+	font-size: 16px;
+	line-height: @line-height - @btn-border-width *2;
+
+//	opacity: 0.9;
+
+	&:hover{
+		background-color: @btn-hover-bg;
+//		opacity: 1;
+//		outline: 3px solid #c0c0c0;
+	}
+
+	/**
+	 * 在计算盒模型时 button 元素和 a 元素的方式不同
+	 * button 会将边框计算在宽度之内，而 a 不会
+	 */
+	a&{
+		box-sizing: border-box;
+	}
+}
+/*a*/.btn-link:hover{// 链接 仅用于 a 元素
+	color: @font-color;
+}
+.btn-disabled{// 不可点击状态
+	background-color: @btn-disabled-bg;
+	color: @btn-disabled-color;
+}
+.btn-big{// 大型按钮
+
+}
+
+.btn-home{
+	background-image: url("../image/default/home.png");
+}
+
+.btn-menu{
+	background-image: url("../image/default/menu.png");
+}
+
+.btn-copyright{
+	background-image: url("../image/default/copyright.png");
+}
+
+.btn-backTop{
+	float: right;
+	background-image: url("../image/default/backTop.png");
+}
+
+// 按钮类型
+.btn-submit{// 提交按钮
+	background: @btn-submit-bg;
+}
+.btn-reset{
+
+}
+
+.btn-next{// 下一个按钮
+
+}
+.btn-prev{// 上一个按钮
+
+}
+.btn-search{// 搜索按钮
+
+}
+.btn-save{// 保存按钮
+
+}
+.btn-run{// 运行按钮
+
+}
+
+.btn-ok{// 确定按钮
+
+}
+.btn-cancel{// 取消按钮
+
+}
+
+//----- 杀人游戏相关 -----
+//.btn-pass{
+//    background-image: url("../image/mafia/Pass.png");
+//}
+//.btn-start{
+//    background-image: url("../image/mafia/Start.png");
+//}
+//.btn-chat{
+//    background-image: url("../image/mafia/Chat.png");
+//}
+//.btn-kill{
+//    background-image: url("../image/mafia/Kill.png");
+//}
+//.btn-identify{
+//    background-image: url("../image/mafia/Identify.png");
+//}
+//.btn-penalize{
+//    background-image: url("../image/mafia/Penalize.png");
+//}
+//.btn-savePeople{
+//    background-image: url("../image/mafia/Save-people.png");
+//}

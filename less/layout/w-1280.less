@@ -1,0 +1,21 @@
+@charset "utf-8";
+@import "../lib/grid.less";
+
+// 针对宽度为 1025px 至 1366px 以下的设备
+// Container 宽度 1280
+// 共 32 列
+// .module-large    32
+// .module-big      16(默认)
+// .module-normal   12(默认)
+// .module-small    8(默认)
+// .module-tiny     4(默认)
+
+@media screen and (min-width:1280px){
+    .Container{
+        width: @grid-unit *32;
+    }
+
+    .module-large{
+        .grid-x(32);
+    }
+}

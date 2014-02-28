@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<!--[if lt IE 9]><meta http-equiv="content-type" content="text/html; charset=utf-8" /><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<title>标签云 cloudTags demo（测试版）</title>
+<link rel="shortcut icon" type="image/x-icon" href="../image/AOM.ico" />
+<link rel="stylesheet" href="../style/style.css" />
+<style>
+.module{
+    height:950px;
+    overflow: hidden;
+}
+.cloudTags{
+    /*position:absolute;*/
+    width:auto;
+    max-width:200px;
+    height:auto;
+    /*padding:10px;*/
+    border-radius:10px;
+    background:#2ECC71;
+    line-height:200%;
+    text-align:center;
+}
+</style>
+</head>
+<body>
+<div id="Container" class="Container">
+    <input id="clear" type="button" value="clear" style="position:fixed;" />
+    <div id="cloudTag" class="module module-large">
+        <div id="avaterImg" class="cloudTags">
+            <img src="../image/demo/avatar.jpg" width="90" height="84" alt="头像" />
+        </div>
+        <div id="nickname" class="cloudTags">十甫寸</div>
+        <div id="sex" class="cloudTags" style="font-size:40px;">男</div>
+        <div id="email" class="cloudTags">zw150026@163.com</div>
+        <div id="age" class="cloudTags" style="font-size:36px;">28</div>
+        <div id="birthday" class="cloudTags">1986-11-07</div>
+        <div id="lv" class="cloudTags" style="font-size:32px;">Lv.10</div>
+        <div id="star" class="cloudTags">天蝎座</div>
+        <div id="blood" class="cloudTags">O型血</div>
+        <div id="profession" class="cloudTags">Web 前端工程师</div>
+        <div id="maxim" class="cloudTags" style="width:300px;">
+            和设计师一样细腻，和程序员一样严谨；游走在设计师和工程师之间，游刃于用户体验和技术实现之间，斡旋在用户利益和商业利益之间。
+        </div>
+        <div class="cloudTags">生于黑龙江哈尔滨</div>
+        <div class="cloudTags">现居辽宁大连</div>
+        <div class="cloudTags">大连民族学院</div>
+    </div>
+</div>
+<script src="../script/lib/jQuery/jquery-1.8.2.js"></script>
+<script src="../script/jquery.extend.js"></script>
+<script src="../script/plugin/cloudTag/jquery.cloudTag.js"></script>
+<script>
+$(function(){
+    var $tags, pause = false;
+    setTimeout(function(){
+        $tags = $.cloudTag({
+            container:'#cloudTag',
+            tags:'.cloudTags',
+            position:'absolute'
+        });
+    }, 2000);
+    $('#clear').on('click', function(){
+        if( pause ){
+            this.value = 'reStart';
+            $tags.reStart();
+        }
+        else{
+            this.value = 'reset';
+            $tags.resetPlace();
+        }
+        pause = !pause;
+    });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+@charset "utf-8";
+
+@import "../lib/color.less";
+@import "../lib/grid.less";
+
+//----- tag 标签 -----
+/*  example:
+	<div id="Tag">
+		<input type="hidden" name="tagsId" id="tagsId"/>
+		<input type="hidden" name="tagsName" id="tagsName"/>
+		<div class="tagsArea" id="selectTags">
+			<label id="addNewTag">
+				<input type="text" class="input" id="tagName" placeholder="创建新标签" />
+				<button class="btn hidden" id="addTag" type="button" value="">添加</button>
+			</label>
+		</div>
+		<hr/>
+		<div class="tagsArea" id="allTags"></div>
+	</div>
+ */
+.tag{
+    float: left;
+    position: relative;
+
+    min-height: @tag-min-height;
+    min-width: @tag-min-width;
+
+    border-radius: 0 @border-radius @border-radius 0;
+    margin: @tag-margin @tag-margin 0 @tag-border-width;
+    padding: 0 @padding-lr;
+
+    background: @tags-bg;   // @article-tags-bg;
+
+    cursor: pointer;
+
+    line-height: @tag-min-height;
+    text-align: center;
+
+    &:before{
+        position: absolute;
+
+        left: -@tag-min-height;
+
+        width: 10px;
+        height: 10px;
+
+        border: @tag-border-width solid;
+        border-color: transparent @tags-bg transparent transparent;
+
+        content: "";
+    }
+    &:after{
+        position: absolute;
+
+        left: @tag-point-left;
+        top: @tag-point-top;
+
+        height: @tag-point-width;
+        width: @tag-point-width;
+
+        border-radius: 50%;
+
+        content: "";
+    }
+}
+.tag-checked{
+    color: @tags-checked-c; // #c0c0c0;
+}
+
+.tagsArea{
+    float: left;
+    overflow: auto;
+}

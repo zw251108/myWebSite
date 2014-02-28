@@ -1,0 +1,46 @@
+@charset "utf-8";
+
+@import "../lib/color.less";
+@import "../lib/function.less";
+@import "../lib/grid.less";
+@import "../lib/z-index.less";
+
+//---------- Footer 页脚 ----------
+.Footer{
+    position: fixed;
+
+    z-index: @z-footer;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    height: @footer-height;
+
+    background: @background;
+
+//    .boxShadow(0 -5px 5px @box-shadow);
+}
+.module-footer{
+    overflow: hidden;
+    z-index:@z-footer;
+
+	line-height: 30px;
+//    .grid-y(5);
+
+//    .boxShadow(0 5px 5px @box-shadow);
+
+    nav, section{
+        float:left;
+        margin:0 10px;
+    }
+    li{
+        text-align:center;
+    }
+    p{
+        float:left;
+        width:100%;
+        margin:0;
+        text-align:center;
+        text-transform:capitalize;
+    }
+}

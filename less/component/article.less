@@ -1,0 +1,67 @@
+@charset "utf-8";
+
+@import "../lib/color.less";
+@import "../lib/grid.less";
+
+//----- article 文章 -----
+/*  example:
+    <article class="article">
+        <h3 class="article_title"><!-- 文章标题 --></article>
+        <div class="article_content">
+            <!-- 文章内容 -->
+        </div>
+        <hr />
+        <span class="article_date"><!-- 文章时间信息 --></span>
+        <!-- article 文章通常常配合 tag 标签组件使用 -->
+        <div class="tagsArea">
+            <span class="tag"></span>
+        </div>
+    </article>
+ */
+.article{
+    overflow: hidden;
+    height: auto;
+
+//    padding: 10px 0 10px 10px;
+	padding: 10px;
+
+    background: @article-bg;
+}
+.article_title{// 文章标题
+
+}
+.article_preview{// 文字预览图
+
+}
+.article_content{// 文章内容
+    margin: @space 0;
+    padding: 0 @space @space;
+
+    background: @article-content-bg;
+
+    line-height: @line-height;
+    text-indent: 2em;
+    color: @article-content;
+}
+.article_date{// 文章发布时间
+    float:right;
+
+    border-radius: @border-radius;
+
+	margin: @article-date-margin 0 0;
+
+    padding: 0 @padding-lr;
+
+    background:@article-date-bg;
+
+    line-height: @article-date-height;
+}
+//.article_author{// 文章作者
+//
+//}
+//.article-blog{// 博客文章
+//
+//}
+//.article-editor{// 编码
+//
+//}

@@ -1,0 +1,88 @@
+@charset "utf-8";
+
+@import "../lib/color.less";
+@import "../lib/grid.less";
+
+//---------- Mafia 杀人游戏 ----------
+.module-mafia{
+    height:auto;
+}
+.mafia_list{
+}
+.mafia_list_user{
+    float:left;
+    .grid-x(3);
+    .grid-y(3);
+    margin:0 @grid-space*2 @grid-space*2 0;
+    background:@c39 url("../image/mafia/Civilian.png") no-repeat 15px 0;
+
+    img{
+        margin-left:15px;
+        visibility:hidden;
+    }
+}
+.mafia_list_user-killed{
+    img{
+        visibility:visible;
+    }
+}
+.mafia_list_user:hover{
+    outline:3px solid @c36;
+}
+.mafia_list_user-killer{
+    background-image:url("../image/mafia/Killer.png");
+}
+.mafia_list_user-police{
+    background-image:url("../image/mafia/Police.png");
+}
+.mafia_list_user-doctor{
+    background-image:url("../image/mafia/Doctor.png");
+}
+.mafia_list_user-civilian{
+    background-image:url("../image/mafia/Civilian.png");
+}
+.mafia_list_user-secret{
+    background-image:url("../image/mafia/Secret-police.png");
+}
+.mafia_list_user_name{
+    margin-left:10px;
+}
+.mafia_chat{
+    float:left;
+    clear:both;
+
+    ul{
+        float:left;
+        clear:right;
+    }
+    li{
+        float:left;
+    }
+}
+.mafia_chat_history{
+    .grid-x(8);
+    .grid-y(10);
+    margin:0 10px 10px 0;
+    background:@c22;
+}
+.mafia_chat_history_item{}
+.mafia_chat_history_item-system{
+    color:@c12;
+}
+.mafia_yourself{
+    float:left;
+}
+.mafia_chat_form{
+    float:left;
+
+    form{
+        float:left;
+    }
+}
+.mafia_chat_text{
+    width:@grid-unit*8-@grid-space*2-2;
+    height:@grid-unit*7-@grid-space*2-2;
+    margin:0;
+    margin-right:@grid-space;
+    padding:0;
+}

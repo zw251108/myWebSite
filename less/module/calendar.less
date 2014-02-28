@@ -1,0 +1,65 @@
+@charset "utf-8";
+
+@import "../lib/color.less";
+@import "../lib/function.less";
+@import "../lib/grid.less";
+
+//---------- Calendar 日历 ----------
+.module-calendar{
+//    .metroBgSprite(4);
+	background-image: url("../image/metro/Calendar.png");
+
+//    ul{
+//        margin-right:-5px;
+//    }
+//    li{
+//        float:left;
+//        .grid-x(3);
+//        .grid-y(2);
+//        margin:@grid-space;
+//        text-align:center;
+//        background:@c24;
+//    }
+//    .first{
+//        .grid-x(1);
+//        margin-left:0;
+//    }
+}
+
+.calendar_today{
+    position: relative;
+
+    top: -(@module-metro-title-height + @module-info-height + 55px);
+
+    font-size: 36px;
+    font-weight: bolder;
+    line-height: 40px;
+    text-align: center;
+}
+
+//.calendar_head{ // 日历
+//    height:@grid-unit*2;
+//    margin-left:115px;
+//    li{
+//        .grid-x(2);
+//        .grid-y(2);
+//    }
+//    .center{
+//        .grid-x(11);
+//    }
+//}
+//
+//.calendar_nav{ // 日历导航部分
+//    height:@grid-unit*1;
+//    li{
+//        .grid-y(1);
+//        line-height:180%;
+//    }
+//}
+//
+//.calendar_body{ // 日历日期主体
+//    height:@grid-unit*2;
+//}
+//
+//.calendar_event{ // 日历待办事项
+//}

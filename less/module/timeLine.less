@@ -1,0 +1,87 @@
+@charset "utf-8";
+
+@import "../lib/color.less";
+@import "../lib/z-index.less";
+
+//---------- TimeLine 时光轴 ----------
+.module-timeLine{
+    background:url("../image/default/timeLine.png") no-repeat scroll 35px 35px #44CEF6;
+}
+.timeLine_container{
+    position:absolute;
+    left:50%;
+}
+.timeLine_line{
+    overflow:hidden;
+    position:absolute;
+    top:0;
+    left:-5px;
+    height:100%;
+    width:10px;
+    background:url("../image/skin/line.jpg") center;
+}
+.timeLine_date{
+    position:absolute;
+    left:-50px;
+    width:100px;
+    height:30px;
+    border-radius:10px;
+    line-height:200%;
+    font-size:14px;
+    text-align:center;
+    background:#BDC3C7;
+    cursor:pointer;
+}
+.timeLine_date-showAll{}
+.timeLine_date-end{}
+.timeLine_event{
+    position:absolute;
+    left:-200px;
+    height:150px;
+    border-radius:5px;
+    background:#3498DB;
+    opacity:.5;
+}
+.timeLine_event-show{}
+.timeLine_event_title{
+    margin:0;
+    height:40px;
+    line-height:200%;
+    font-size:20px;
+    text-align:center;
+    cursor:pointer;
+}
+.timeLine_event_time{
+    overflow:hidden;
+    position:absolute;
+    top:10px;
+    width:80px;
+    height:20px;
+    background:#2ECC71;
+    text-align:center;
+    font-size:12px;
+    line-height:150%;
+}
+.timeLine_event_del{
+    position:absolute;
+    top:5px;
+    right:35px;
+    width:30px;
+    height:30px;
+    background:url("../image/skin/close.png");
+    cursor:pointer;
+}
+.timeLine_event-left{}
+.timeLine_event-left .timeLine_event_time{
+    right:-80px;
+    border-radius:0 5px 5px 0;
+}
+.timeLine_event-right{}
+.timeLine_event-right .timeLine_event_time{
+    left:-80px;
+    border-radius:5px 0 0 5px;
+}
+.timeLine_event_content{
+    padding:10px;
+    text-indent:2em;
+}

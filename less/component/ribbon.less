@@ -1,0 +1,45 @@
+@charset "utf-8";
+
+@import "../lib/color.less";
+@import "../lib/function.less";
+@import "../lib/grid.less";
+
+//----- ribbon 缎带装饰 -----
+/*  example:
+    <h3 class="ribbon">Ribbon 效果</h3>
+    <!-- ribbon 效果的父级标签的 position 不能为默认值 -->
+ */
+.ribbon{
+    position: absolute;
+    left: -15px;
+    right: -15px;
+    top: 10px;
+
+    min-height: 30px;
+
+    background: #e0e0e0;
+
+    .boxShadow( 0px 0px 4px rgba(0,0,0,0.55) );
+
+    line-height: 150%;
+    text-align: center;
+}
+.ribbon:before,
+.ribbon:after{
+    position: absolute;
+    bottom: -15px;
+    z-index: -1;
+    width: 0;
+    height: 0;
+
+    border: 15px solid transparent;
+    content: "";
+}
+.ribbon:before{
+    left: -15px;
+    border-right-color: #e0e0e0;
+}
+.ribbon:after{
+    right: -15px;
+    border-left-color: #e0e0e0;
+}

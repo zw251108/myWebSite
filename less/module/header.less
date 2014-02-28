@@ -1,0 +1,75 @@
+@charset "utf-8";
+
+@import "../lib/color.less";
+@import "../lib/function.less";
+@import "../lib/grid.less";
+@import "../lib/z-index.less";
+
+//---------- Header 页头 ----------
+.Header{
+    position: fixed;
+
+    z-index: @z-header;
+    left: 0;
+    right: 0;
+    top: 0;
+
+    height: @header-height;
+
+//    background: @background;
+
+//    .boxShadow(0 5px 5px @box-shadow);
+
+	/**
+	 * @extend    module.less
+	 */
+	.module{
+		float: none;
+		height: 70px;
+		margin: 0 auto;
+
+		outline: 5px solid @outline-color;
+		background: #efefef;
+	}
+
+	.btn{
+		height: 60px;
+		width: 60px;
+
+		min-width: 60px;
+
+//		border-radius: @border-radius;
+		margin: 5px;    //@grid-space;
+		padding: 0;
+
+//		background-color: @c115;//@background;
+		background-position: 4px 4px;
+		background-repeat: no-repeat;
+	}
+}
+.module-header{
+    float: none;
+
+    position:relative;
+
+//    z-index:@z-header;
+
+    margin: 0 auto;
+
+//    .form{
+//        float:left;
+//        margin: 30px 0 0;
+//    }
+////    .fieldset{
+////        float: left;
+////        margin: 30px 5px 0;
+////    }
+//
+//    .tips{
+//        right: 85px;
+//        top: 10px;
+//
+//        height: 50px;
+//        width: 140px;
+//    }
+}

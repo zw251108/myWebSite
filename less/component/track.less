@@ -1,0 +1,79 @@
+@charset "utf-8";
+
+@import "../lib/color.less";
+@import "../lib/grid.less";
+
+//----- track 路径记录/引导 -----
+// 可以做分步引导和面包屑
+// .track            为每个路径
+// .track-first      为第一个路径 自身没有样式 有 :after 伪元素 没有 :before 伪元素
+// .track-last       为最终路径 自身没有样式 有 :before 伪元素 没有 :after 伪元素
+// .track-on         为当前停留路径
+/*  example:
+    <div>
+        <span class="track track-first">第一步</span>
+        <span class="track track-on">第二步</span>
+        <span class="track">第三步</span>
+        <span class="track track-last">第四步</span>
+    </div>
+ */
+.track{
+    float:left;
+    position: relative;
+
+    height: @track-height;
+    min-width: @track-min-width;
+
+    margin-left: @track-margin-left;
+
+    background: @track;
+
+    text-align:center;
+    line-height: 40px;
+
+    &:before,
+    &:after{
+        position:absolute;
+
+        width:0;
+        height: 0;
+
+        border-style: solid;
+
+        content: "";
+    }
+}
+.track-first{
+    margin-left: 0;
+}
+.track-first:before,
+.track-last:after{
+    display: none;
+}
+.track:before,
+.track-last:before{
+    left: -@track-border;
+    border-width: @track-arrow;
+    border-color: @track transparent;
+}
+.track:after,
+.track-first:after{
+    right: -@track-border;
+    border-width: @track-arrow;
+    border-color: transparent @track;
+}
+
+.track-done{
+
+}
+.track-on{
+    background: @track-on;
+
+    &:before{
+        border-color: @track-on transparent;
+    }
+
+    &:after{
+        border-color: transparent @track-on;
+    }
+}

@@ -1,0 +1,36 @@
+@charset "utf-8";
+
+@import "../lib/color.less";
+@import "../lib/grid.less";
+
+//----- page 页码 -----
+.pagination{
+	overflow: hidden;
+
+    min-height: 30px;
+}
+.page{
+    float: left;
+    min-width: @page-min-width;
+
+	margin: @page-margin @page-margin 0 0;
+    background: @page-bg;
+
+    line-height: @line-height;
+    text-align: center;
+}
+.page-first,    // 首页
+.page-last,     // 末页
+.page-prev,     // 上一页
+.page-next{     // 下一页
+    width: @page-const-min-width;
+}
+.page-first{
+    margin-left: 0;
+}
+.page-last{// 末页
+    margin-right: 0;
+}
+.page-current{// 当前页码
+    background: @page-current-bg;
+}

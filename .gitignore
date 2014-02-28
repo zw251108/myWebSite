@@ -1,0 +1,21 @@
+# 过滤的文件
+mysql-connector-java-5.1.26-bin.jar
+mysql-connector-license.txt
+Readme.txt
+settings.jar
+script/compress.bat
+script/test.js
+
+# 过滤的文件夹
+.idea/
+0000/
+allForOne/
+image/
+less/0/
+mafia/
+media/
+node/node_modules/
+node/views/
+script/lib/
+script/plugin/
+script/test/

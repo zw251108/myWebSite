@@ -1,0 +1,185 @@
+@charset "utf-8";
+
+@import "../lib/color.less";
+@import "../lib/function.less";
+@import "../lib/grid.less";
+@import "../lib/z-index.less";
+
+//---------- Editor 在线编辑器 ----------
+.module-editor{
+//    .metroBgSprite(2);
+	background-image: url("../image/metro/Editor.png");
+
+    .module_title{
+        background-image:url("../image/default/editor.png");
+    }
+}
+.icon-incFile{
+    float: left;
+    position: relative;
+    height: 30px;
+    width: 30px;
+
+    border: 0;
+    border-radius: 0;
+    margin: 10px 10px 0 0;
+    background: url("../image/default/incFile.png") 5px 5px no-repeat @editor_codeArea-border;
+}
+.editor_list{
+	min-height: 400px;
+
+	margin-bottom: -@space;
+}
+.editor_container{
+    overflow: hidden;
+    clear: both;
+    position: relative;
+
+//    height: 1000px;
+    min-height: 400px;
+
+    border: 10px solid @editor_codeArea-border;
+
+    .CodeMirror{
+        float: left;
+
+	    min-height: 400px;
+//        height: 1000px;
+        width: 25%;
+
+        background: @editor_codeArea-bg;
+        color: @editor_codeArea-textColor;
+
+	    font-family: Consolas, \9ED1\4F53;
+    }
+
+    .CodeMirror-linenumber,
+    .CodeMirror pre,
+    .CodeMirror .CodeMirror-lines span{
+//        font-size:13px;
+//        line-height:13px;
+	    font-size: 16px;
+	    line-height: 20px;
+    }
+}
+.editor_article{
+    float:left;
+    width: 200px;
+
+    margin: 10px 0 0 10px;
+    padding-right: 10px;
+
+    .article_title{
+        margin-bottom: 10px;
+        text-align: center;
+    }
+    .article_preview{
+        display: block;
+        max-width: 200px;
+        max-height: 200px;
+
+	    margin: 0 auto;
+    }
+}
+
+.editor_title{
+    background: @editor_detail_title-bg;
+    line-height: 70px;
+    text-align:center;
+}
+.editor_tools{
+	overflow: hidden;
+    //    margin: 10px 0 0 10px;
+//    padding: 0 0 @space @space;
+	padding: 0 0 0 @space;
+    background: @editor_detail_title-bg;
+
+	.btn{
+		margin-bottom: @space;
+	}
+}
+.editor_tabs{
+    ul{
+        display: block;
+        overflow: hidden;
+    }
+    li{
+        float: left;
+
+        height: 30px;
+        min-width:40px;
+
+        margin: @space @space 0 0;
+        padding:  0 5px;
+
+        background: @border-color;
+
+        cursor: pointer;
+        line-height: 30px;
+        text-align:center;
+    }
+    .current, li:hover{
+        background: @editor_codeArea-border;
+    }
+}
+.editor_incFile{
+    overflow: auto;
+    z-index: @z-dropDown;
+    position: absolute;
+    top: 30px;
+
+    height: 300px;
+    min-width: 220px;
+
+    padding-top: 10px;
+
+    background: @editor_codeArea-border;
+
+    li{
+        display: block;
+        min-width: 200px;
+        margin: 0 10px 10px;
+        padding: 0 5px;
+        background: @editor_detail_title-bg;
+    }
+    label{
+        width: 100%;
+    }
+}
+.editor_content{
+    position: absolute;
+
+    top: 0;
+
+    width: 400%;
+}
+.editor_area{// 编码区域 结果区域
+    float: left;
+
+	min-height: 400px;
+	//    height:1000px;
+	width: 25%;
+
+    border: 0;
+    padding: 0;
+
+    background: @editor_codeArea-bg;
+}
+.editor_fullScreenBtn{
+	position: fixed;
+	z-index: @z-fullScreenBtn;
+	left: 5px;
+	top: 5px;
+}
+.editor_rs-fullScreen{
+	position: fixed;
+
+	z-index: @z-rs-fullScreen;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	top: 0;
+
+	height: 100% !important;
+	width: 100%;
+}

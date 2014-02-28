@@ -1,0 +1,51 @@
+@charset "utf-8";
+
+@import "../lib/color.less";
+@import "../lib/grid.less";
+@import "../lib/z-index.less";
+
+.userCard{
+//    position:relative;
+    overflow: hidden;
+    z-index:@z-userCard-header;
+
+    height: @userCard-avatar-height;
+    width: @userCard-avatar-width;
+
+//    border: 5px solid @userCard-min-border;
+    border-radius: 5px;
+    margin: 10px;
+
+    background:@userCard-bg;
+
+    color: @userCard-color;
+    font-size:16px;
+}
+.userCard-header{
+    float: right;
+}
+.userCard-max{
+    border-color: @userCard-max-border;
+    border-style: solid;
+}
+.userCard_avatar{
+    float:right;
+    height: @userCard-avatar-height;
+    width: @userCard-avatar-width;
+}
+.userCard_name{
+    float: right;
+
+    height: 30px;
+
+    margin:0 10px;
+
+    font-size: 16px;
+    line-height: 30px;
+}
+.userCard_description{
+    float: right;
+
+    text-indent: 2em;
+    line-height:150%;
+}

@@ -1,0 +1,154 @@
+@charset "utf-8";
+
+@import "../lib/function.less";
+@import "../lib/grid.less";
+@import "../lib/text-indent";
+
+//---------- Palette 调色板 ----------
+.module-palette{
+//    .metroBgSprite(0);
+	background-image: url("../image/metro/Palette.png");
+
+    .module_title{
+        background-image:url("../image/default/palette.png");
+    }
+
+    .module_content{
+        margin-bottom: -@space;
+    }
+
+    .section{
+        margin-bottom: @space;
+        padding: 0;
+    }
+
+
+    .icon{
+        position:absolute;
+        top: 5px;
+        right: @space;
+    }
+
+    ul{
+        display:block;
+
+        overflow:hidden;
+
+        height:auto;
+
+        border-left: @space solid;
+
+        background: @document_dl-bg;
+
+        text-indent: @text-indent;
+    }
+    li{
+        float: left;
+
+        width: @palette-color-width;
+        height: @palette-color-height;
+
+        border-radius: @border-radius;
+
+        .marginSpace();
+
+        cursor:pointer;
+
+        text-align:center;
+        text-indent: 0;
+        font-size:20px;
+        line-height:200%;
+    }
+}
+
+.palette_section-gray{
+    background: @palette_section-gray;
+
+    .icon1,
+    .icon2,
+    .icon3{
+        background: @palette_section-gray;
+    }
+
+    ul{
+        border-color: @palette_section-gray;
+    }
+}
+.palette_section-red{
+    background: @palette_section-red;
+
+    .icon1,
+    .icon2,
+    .icon3{
+        background: @palette_section-red;
+    }
+
+    ul{
+        border-color: @palette_section-red;
+    }
+}
+.palette_section-yellow{
+    background: @palette_section-yellow;
+
+    .icon1,
+    .icon2,
+    .icon3{
+        background: @palette_section-yellow;
+    }
+
+    ul{
+        border-color: @palette_section-yellow;
+    }
+}
+.palette_section-green{
+    background: @palette_section-green;
+
+    .icon1,
+    .icon2,
+    .icon3{
+        background: @palette_section-green;
+    }
+
+    ul{
+        border-color: @palette_section-green;
+    }
+}
+.palette_section-cyan{
+    background: @palette_section-cyan;
+
+    .icon1,
+    .icon2,
+    .icon3{
+        background: @palette_section-cyan;
+    }
+
+    ul{
+        border-color: @palette_section-cyan;
+    }
+}
+.palette_section-blue{
+    background: @palette_section-blue;
+
+    .icon1,
+    .icon2,
+    .icon3{
+        background: @palette_section-blue;
+    }
+
+    ul{
+        border-color: @palette_section-blue;
+    }
+}
+.palette_section-magenta{
+    background: @palette_section-magenta;
+
+    .icon1,
+    .icon2,
+    .icon3{
+        background: @palette_section-magenta;
+    }
+
+    ul{
+        border-color: @palette_section-magenta;
+    }
+}

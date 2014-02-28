@@ -1,0 +1,74 @@
+@charset "utf-8";
+
+@import "../lib/color.less";
+@import "../lib/grid.less";
+@import "../lib/z-index.less";
+
+//----- filter 过滤器 -----
+/*  example:
+    <div class="filter favor_filter" id="Filter">
+        <div class="filter_checked" id="checked">
+			<button class="btn icon icon-filter" id="setFilter" type="button" value="">过滤</button>
+			<button class="btn icon icon-reset hidden" id="filterReset" type="button" value="">重置</button>
+        </div>
+
+        <div id="filterAll" class="filter_all hidden"></div>
+    </div>
+ */
+.filter{
+    position: relative;
+    min-height: @filter-min-height;
+
+    margin: 0 0 0 @space;
+    padding: @space 0 0 @space;
+    background: @font-color;
+
+	.btn{
+		margin: 0 @space @space 0;
+	}
+}
+.filter_checked{    // 当前过滤标签
+    overflow: hidden;
+
+    height: 100%;
+    width: 100%;
+
+    padding: @space 0 0 @space;
+    background: @filter-checked-bg;
+
+	.filter_tag{
+		margin: 0 @space @space 0;
+	}
+}
+.filter_all{    // 全部过滤标签区域
+    overflow: auto;
+
+    position: absolute;
+    z-index: @z-filter-all;
+
+    left: @space;
+    top: @filter-min-height + @space *3;
+
+    height: @filter-all-tag-height;
+
+    border: @filter-all-tag-border-width solid @filter-all-border;
+    padding: @space 0 0 @space;
+
+	background: @filter-all-bg;
+}
+.filter_tag{    // 过滤标签
+    float: left;
+
+    border-radius: @border-radius;
+
+	margin: 0 @filter-tag-margin @filter-tag-margin 0;
+    padding: 0 @padding-lr;
+
+	background: @filter-tag-bg;
+
+	line-height: @line-height;
+}
+.filter_tag-checked{    // 过滤标签——已选中状态
+    background: @filter-tag-checked-bg;
+    color: @font-color;
+}

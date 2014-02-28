@@ -1,0 +1,46 @@
+@charset "utf-8";
+
+@import "../lib/color.less";
+@import "../lib/grid.less";
+
+//---------- Favorite 收藏夹 ----------
+.module-favor{
+	background-image: url("../image/metro/Favorite.png");
+
+    .module_title{
+        background-image:url("../image/default/favorite.png");
+    }
+
+    .module_content{
+        margin-bottom: -@space;
+    }
+
+    .icon-CSS{
+        display: inline-block;
+        position: relative;
+        top: 10px;
+        width: 30px;
+        height: 30px;
+
+	    &:after,
+	    &:before{
+		    background-color: @module-main-bg;
+	    }
+    }
+
+    .tag:after{
+        background: @article-bg;
+    }
+}
+.favor_list{
+    min-height: 400px;
+
+    li{
+        margin-bottom: @space;
+    }
+}
+.favor_page{
+    margin: 0 0 0 @space;
+    padding-left: @space;
+    background: @module-content-bg;
+}

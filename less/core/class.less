@@ -1,0 +1,63 @@
+@charset "utf-8";
+
+@import "../lib/color.less";
+
+//---------- Class 公用 class 样式 ----------
+
+//----- Clearfix 清楚浮动 -----
+.clearfix:before,
+.clearfix:after{
+    content: "";
+    display: table;
+}
+.clearfix:after{
+    clear: both;
+}
+
+//----- 使可交互标签表现为可点击 -----
+.pointer{// 可操作
+    cursor:pointer;
+}
+
+// 特殊链接
+.link{
+    text-decoration:underline;
+    color:@a-hover !important;
+}
+
+//----- 页面隐藏元素 -----
+.hidden{
+    display:none;
+}
+
+//----- 浮动 -----
+.left{
+    float: left;
+}
+.right{
+    float: right;
+}
+
+//----- 文字对齐方向 -----
+.textLeft{
+    text-align:left;
+}
+.textRight{
+    text-align:right;
+}
+.textCenter{
+    text-align:center;
+}
+
+//----- 垂直居中 -----
+//  父级 position 为 relative、absolute、fixed
+//  必须定义高度
+.middle{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    margin: auto;
+}

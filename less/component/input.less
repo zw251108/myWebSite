@@ -1,0 +1,41 @@
+@charset "utf-8";
+
+@import "../lib/color.less";
+@import "../lib/function.less";
+@import "../lib/grid.less";
+
+//----- input 表单项 -----
+.input{
+    width: 100%;
+
+    border: none;
+
+    margin:0;
+    padding:0;
+
+	outline: none;
+
+    line-height: @line-height;
+}
+
+// 表单项状态
+.input-focus{// 表单项获得焦点时
+	background: @input-focus-bg;
+}
+.input-disabled{// 表单项禁用时
+
+}
+
+// 表单项类型
+.input-text{}
+.input-pwd{}
+.input-content{// textarea
+    height: 200px;
+}
+
+.input-wrong{// 输入值不合法时
+    background: @input-wrong-bg;
+}
+.input-right{// 输入值合法时
+    background: @input-right-bg;
+}

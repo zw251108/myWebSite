@@ -1,21 +1,42 @@
-# 过滤的文件
+##### 过滤的文件
 mysql-connector-java-5.1.26-bin.jar
 mysql-connector-license.txt
 Readme.txt
 settings.jar
 script/compress.bat
 script/test.js
+script/lib.inc.js
 
-# 过滤的文件夹
+##### 过滤的文件夹
+# 编辑器文件夹
 .idea/
+
+# 废弃的文件
 0000/
+
+# 实验用文件夹
 allForOne/
+
+# bower 模块管理
+bower_components/
+
+# 图片
 image/
+
+# 废弃的 less 文件
 less/0/
+
+# 杀人游戏 未完成 延迟
 mafia/
+
+# 音频 视频
 media/
+
+# NodeJS 模块
 node/node_modules/
 node/views/
+
+# JS 库文件
 script/lib/
 script/plugin/
 script/test/

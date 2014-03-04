@@ -377,6 +377,8 @@
 process.on('exit', function(){  // Node 进程退出事件
 	console.log(123);
 });
-process.on('uncaughtException', function(e){// 捕获异常
+process.on('uncaughtException', function(e){    // 捕获异常
 	console.log('exception: '+ e);
 });
+
+b();

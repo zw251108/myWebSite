@@ -3,6 +3,7 @@ mysql-connector-java-5.1.26-bin.jar
 mysql-connector-license.txt
 Readme.txt
 settings.jar
+admin/money.php
 script/compress.bat
 script/test.js
 script/lib.inc.js

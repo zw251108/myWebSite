@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="utf-8" />
@@ -110,19 +110,28 @@ var data = [
 		{date: new Date('2014/01/24'),  bc1: 12587, bc2: 10243, cmb: 10772, ccb: 11334, all: 44936},
 		{date: new Date('2014/02/16'),  bc1: 12587, bc2: 10243, cmb: 18772, ccb: 11334, all: 52936}
 		, {date: new Date('2014/02/23'),  bc1: 12587, bc2: 6039, cmb: 18272, ccb: 11334, all: 48232}
+        , {date: new Date('2014/03/02'), bc1: 1087, bc2: 39 , cmb: 11072, ccb: 1034, alipay: 34504, all: 47736}
 	]
 	, ali = [{
 		date: new Date('2014/02/25')
-		, m: 6000
+        , base: 6000
+		, m: 0.96
 	}, {
 		date: new Date('2014/02/26')
-		, m: 6000.96
+        , base: 6000
+		, m: 0.96
 	}, {
 		date: new Date('2014/02/27')
-		, m: 6001.92
+        , base: 6000
+		, m: 0.95
 	}, {
 		date: new Date('2014/02/28')
-		, m: 6002.87
+        , base: 6000
+		, m: 0.94
+    }, {
+        date: new Date('2014/03/01')
+        , base: 6000
+        , m: 0.94
 	}]
 	;
 
@@ -130,7 +139,10 @@ $(function(){
 	var width = 800,
 		height = 400,
 		margin = 100,
-		fill = ['#7d4f9e', '#30dff3', '#b22c46', '#d9d919', '#1d1626'],
+		fill = ['#7d4f9e', '#30dff3', '#b22c46', '#d9d919', '#f90', '#1d1626'],
+        keys = ['bc1', 'bc2', 'cmb', 'ccb', 'alipay', 'all'],
+        keyName = ['中行卡 1', '中行卡 2', '招行卡', '建行卡', '余额宝', '总资产'],
+
 
 		x = d3.time.scale().range([0, width]),
 		y = d3.scale.linear().range([height, 0]),
@@ -142,6 +154,7 @@ $(function(){
 			.append('g').attr('transform', 'translate(100,30)'),
 
 		i = 0, j = data.length,
+        m = 0, n = keys.length,
 
 		toolTip = d3.select('#tooltip'),
 		toolTip_bank = toolTip.select('#bank'),
@@ -151,32 +164,32 @@ $(function(){
 			var self = d3.select(this).attr('stroke-width', 5),
 				x = parseFloat( self.attr('cx') ) +100,
 				y = parseFloat( self.attr('cy') ) +120,
-				text,
+				text = keyName[key],
 				date = d.date,
 				month = date.getMonth() +1,
 				day = date.getDate();
 
-			switch( key ){
-				case 'all':
-					text = '总资产';
-					break;
-				case 'bc1':
-					text = '中行卡 1';
-					break;
-				case 'bc2':
-					text = '中行卡 2';
-					break;
-				case 'cmb':
-					text = '招行卡';
-					break;
-				case 'ccb':
-					text = '建行卡';
-					break;
-			}
+//			switch( key ){
+//				case 'all':
+//					text = '总资产';
+//					break;
+//				case 'bc1':
+//					text = '中行卡 1';
+//					break;
+//				case 'bc2':
+//					text = '中行卡 2';
+//					break;
+//				case 'cmb':
+//					text = '招行卡';
+//					break;
+//				case 'ccb':
+//					text = '建行卡';
+//					break;
+//			}
 
 			toolTip.style('left', x +'px').style('top', y +'px').classed('hidden', false);
 			toolTip_bank.text( text );
-			toolTip_num.text( d[key] );
+			toolTip_num.text( d[keys[key]] || 0 );
 			toolTip_date.text( date.getFullYear() +'-'+ (month > 9 ? month : '0'+ month)
 				+'-'+ (day > 9 ? day : '0'+ day) );
 		},
@@ -184,44 +197,87 @@ $(function(){
 			d3.select(this).attr('stroke-width', 1);
 
 			toolTip.classed('hidden', true);
-		};
+        },
+        line,
+        point,
+        datetime = {};
 
-	var line_bc1 = d3.svg.line().x(function(d){
-			return x( d.date );
-		}).y(function(d){
-			return y( d.bc1);
-		}),
-		line_bc2 = d3.svg.line().x(function(d){
-			return x( d.date );
-		}).y(function(d){
-			return y( d.bc2 );
-		}),
-		line_cmb = d3.svg.line().x(function(d){
-			return x( d.date );
-		}).y(function(d){
-			return y( d.cmb );
-		}),
-		line_ccb = d3.svg.line().x(function(d){
-			return x( d.date );
-		}).y(function(d){
-			return y( d.ccb );
-		}),
-		line_all = d3.svg.line().x(function(d){
-			return x( d.date );
-		}).y(function(d){
-			return y( d.all );
-		});
+    x.domain([d3.min(data, function(d){
+        return d.date;
+    }) -3600*24*5*1000, d3.max(data, function(d){
+        return d.date;
+    })]);
+    y.domain([0, d3.max(data, function(d){
+        return d.all;
+    }) +10000]);
 
-	x.domain([d3.min(data, function(d){
-		return d.date;
-	}) -3600*24*5*1000, d3.max(data, function(d){
-		return d.date;
-	})]);
-	y.domain([0, d3.max(data, function(d){
-		return d.all;
-	}) +10000]);
+    xAxis.tickFormat( d3.time.format('%Y-%m') );
 
-	xAxis.tickFormat( d3.time.format('%Y-%m') );
+    for(; m < n; m++){
+        // 折线
+        line = (function(k){
+            return d3.svg.line().x(function(d){
+                return x( d.date );
+            }).y(function(d){
+                return y( d[keys[k]] || 0 );
+            });
+        })(m);
+
+        svg.append('path').attr('class', 'line').style('stroke', fill[m]).datum(data).attr('d', line);
+    }
+
+    point = svg.selectAll('.x').data( data ).enter().append('g').attr('class', 'x');
+    point.filter(function(d){
+        var date = d.date,
+            y = date.getFullYear(),
+            m = date.getMonth(),
+            day = date.getDate(),
+            rs;
+
+        if( !(y in datetime) ){
+            datetime[y] = {};
+        }
+
+        if( m in datetime[y] ){
+            rs = false;
+        }
+        else{
+            if( day > 10 ){
+                datetime[y][m] = 1;
+                rs = true;
+            }
+            else rs = false;
+        }
+
+        return rs;
+    }).append('line').attr('x1', function(d){
+        return x( d.date );
+    }).attr('y1', 0).attr('x2', function(d){
+        return x( d.date );
+    }).attr('y2', height).attr('stroke-dasharray', '5 5');
+    for(m = 0; m < n; m++){
+        (function(k){
+            point.filter(function(d){
+                return d[keys[k]]
+            }).append('circle').attr({
+                cx: function(d){
+                    return x( d.date );
+                },
+                cy: function(d){
+                    return y( d[keys[k]] || 0 );
+                },
+                r: 4,
+                fill: '#fff',
+                stroke: fill[k],
+                'stroke-width': 1
+            }).on({
+                mouseover: function(d){
+                    showToolTip.call(this, d, k);
+                },
+                mouseout: hideToolTip
+            });
+        })(m);
+    }
 
 //	var stack = d3.layout.stack(),
 //
@@ -270,131 +326,6 @@ $(function(){
 //		},
 //		width: 4
 //	});
-
-	// 折线
-	svg.append('path').attr('class', 'line').style('stroke', fill[0]).datum(data).attr('d', line_bc1);
-	svg.append('path').attr('class', 'line').style('stroke', fill[1]).datum(data).attr('d', line_bc2);
-	svg.append('path').attr('class', 'line').style('stroke', fill[2]).datum(data).attr('d', line_cmb);
-	svg.append('path').attr('class', 'line').style('stroke', fill[3]).datum(data).attr('d', line_ccb);
-	svg.append('path').attr('class', 'line').style('stroke', fill[4]).datum(data).attr('d', line_all);
-
-	var point = svg.selectAll('.x').data( data ).enter().append('g').attr('class', 'x'),
-		datetime = {};
-
-	point.filter(function(d){
-		var date = d.date,
-			y = date.getFullYear(),
-			m = date.getMonth(),
-			day = date.getDate(),
-			rs;
-
-		if( !(y in datetime) ){
-			datetime[y] = {};
-		}
-
-		if( m in datetime[y] ){
-			rs = false;
-		}
-		else{
-			if( day > 10 ){
-				datetime[y][m] = 1;
-				rs = true;
-			}
-			else rs = false;
-		}
-
-		return rs;
-	}).append('line').attr('x1', function(d){
-		return x( d.date );
-	}).attr('y1', 0).attr('x2', function(d){
-		return x( d.date );
-	}).attr('y2', height).attr('stroke-dasharray', '5 5');
-
-	point.append('circle').attr({
-		cx: function(d){
-			return x(d.date );
-		},
-		cy: function(d){
-			return y( d.bc1 );
-		},
-		r: 4,
-		fill: '#fff',
-		stroke: fill[0],
-		'stroke-width': 1
-	}).on({
-		mouseover: function(d){
-			showToolTip.call(this, d, 'bc1');
-		},
-		mouseout: hideToolTip
-	});
-	point.append('circle').attr({
-		cx: function(d){
-			return x( d.date );
-		},
-		cy: function(d){
-			return y( d.bc2 );
-		},
-		r: 4,
-		fill: '#fff',
-		stroke: fill[1],
-		'stroke-width': 1
-	}).on({
-		mouseover: function(d){
-			showToolTip.call(this, d, 'bc2');
-		},
-		mouseout: hideToolTip
-	});
-	point.append('circle').attr({
-		cx: function(d){
-			return x(d.date );
-		},
-		cy: function(d){
-			return y( d.cmb );
-		},
-		r: 4,
-		fill: '#fff',
-		stroke: fill[2],
-		'stroke-width': 1
-	}).on({
-		mouseover: function(d){
-			showToolTip.call(this, d, 'cmb');
-		},
-		mouseout: hideToolTip
-	});
-	point.append('circle').attr({
-		cx: function(d){
-			return x(d.date );
-		},
-		cy: function(d){
-			return y( d.ccb );
-		},
-		r: 4,
-		fill: '#fff',
-		stroke: fill[3],
-		'stroke-width': 1
-	}).on({
-		mouseover: function(d){
-			showToolTip.call(this, d, 'ccb');
-		},
-		mouseout: hideToolTip
-	});
-	point.append('circle').attr({
-		cx: function(d){
-			return x(d.date );
-		},
-		cy: function(d){
-			return y( d.all );
-		},
-		r: 4,
-		fill: '#fff',
-		stroke: fill[4],
-		'stroke-width': 1
-	}).on({
-		mouseover: function(d){
-			showToolTip.call(this, d, 'all');
-		},
-		mouseout: hideToolTip
-	});
 
 	// 坐标轴
 	svg.append('g').attr('class', 'axis x').attr('transform', 'translate(0, 400)').call( xAxis );

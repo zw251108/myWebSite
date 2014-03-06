@@ -1340,6 +1340,19 @@ require_once('../include/Config.inc.php');
 
                     <p>需要注意的是，全局变量的命名不能覆盖 window 的默认属性，如 name 等，window.name 属性经常用于框架（frame）和 iframe 的场景中，当点击链接时，可以通过指定打开链接的目标容器来控制其在特定的框架或选项卡（浏览器的标签页）中显示，不小心修改 name 会影响到站点的链接导航</p>
                 </dd>
+				<dt class="icon icon-arrow-r">零全局变量</dt>
+				<dd>
+					<p>JavaScript 代码注入到页面时是可以做到不用创建全局变量的，这种方法应用的场景不多，只有某些特殊场景才会使用，最常见的情形是一段不会被其它脚本访问到的完全独立的脚本，实现方法就是使用一个立即执行的函数调用并将所有脚本放置其中，之后可以通过将函数设置为严格模式来避免创建全局变量，如：</p>
+
+                    <pre class="brush:js">
+                        (function(win, doc){
+                            'use strict';
+
+                            // do something
+
+                        })(window, document);
+                    </pre>
+				</dd>
                 <dt class="icon icon-arrow-r">单全局变量模式</dt>
                 <dd>
                     <p>单全局变量模式，是指创建唯一一个全局对象，命名是独一无二的，不会和内置 API 冲突，并将你所有的功能代码都挂载到这个全局对象上。因此每个可能的全局变量都会成为全局对象的属性，从而不会创建多个全局变量，目前各种流行的 JavaScript 类库都广泛使用。建议使用 GLOBAL 命名，常量、全局变量、全局函数作为其的属性方法，如：</p>
@@ -1389,19 +1402,6 @@ require_once('../include/Config.inc.php');
                         GLOBAL.code.js.author = 'ZwB';
                     </pre>
                 </dd>
-                <dt class="icon icon-arrow-r">零全局变量</dt>
-                <dd>
-                    <p>JavaScript 代码注入到页面时是可以做到不用创建全局变量的，这种方法应用的场景不多，只有某些特殊场景才会使用，最常见的情形是一段不会被其它脚本访问到的完全独立的脚本，实现方法就是使用一个立即执行的函数调用并将所有脚本放置其中，之后可以通过将函数设置为严格模式来避免创建全局变量，如：</p>
-
-                    <pre class="brush:js">
-                        (function(win, doc){
-                            'use strict';
-
-                            // do something
-
-                        })(window, document);
-                    </pre>
-                </dd>
                 <dt class="icon icon-arrow-r">单一 var 模式</dt>
                 <dd>
                     <p>在一个函数中只使用一个 var，即在函数顶部进行变量声明，提供一个单一的地址以查找到函数需要的所有局部变量，防止出现变量在定义前就被使用的逻辑错误，如：</p>
@@ -1419,7 +1419,7 @@ require_once('../include/Config.inc.php');
 
                     <p>如果为了更高的容错性，可以使用以下方式来书写单一 var 模式：</p>
 
-                    <pre class="brush:css">
+                    <pre class="brush:js">
                         function doSomething(){
                             var a = 1
                                 , b = 2
@@ -2406,7 +2406,7 @@ require_once('../include/Config.inc.php');
                 <dt class="icon icon-arrow-r">$.Callback</dt>
                 <dd>
                     <p>jQuery 多用途的回调函数列表对象 $.Callbacks()</p>
-<!-- http://www.cnblogs.com/snandy/archive/2012/11/15/2770237.html -->
+
                     <pre class="brush:js">
                         function fn1(){
                             console.log(1);
@@ -2693,15 +2693,35 @@ require_once('../include/Config.inc.php');
                     </pre>
                 </dd>
                 <dt class="icon icon-arrow-r">策略模式</dt>
-                <dd></dd>
+                <dd>
+					<pre class="brush:js">
+						// 待补充
+					</pre>
+                </dd>
                 <dt class="icon icon-arrow-r">外观模式</dt>
-                <dd></dd>
+                <dd>
+					<pre class="brush:js">
+						// 待补充
+					</pre>
+				</dd>
                 <dt class="icon icon-arrow-r">代理模式</dt>
-                <dd></dd>
+                <dd>
+					<pre class="brush:js">
+						// 待补充
+					</pre>
+				</dd>
                 <dt class="icon icon-arrow-r">中介者模式</dt>
-                <dd></dd>
+                <dd>
+					<pre class="brush:js">
+						// 待补充
+					</pre>
+                </dd>
                 <dt class="icon icon-arrow-r">观察者模式</dt>
-                <dd></dd>
+                <dd>
+					<pre class="brush:js">
+						// 待补充
+					</pre>
+				</dd>
             </dl>
         </section>
         <section class="document_section section">
@@ -3015,84 +3035,6 @@ require_once('../include/Config.inc.php');
 </section>
 
 <textarea class="newCodingStandards hidden" >
-
-PS.当事件被绑定到预计触发事件的父级标签上时，trigger()函数不能直接触发函数
-如下代码并不能正常执行：
-<script>
-    $('div')
-            .on('click.checkName', 'a', checkUser.checkName)
-            .on('checkPhone', 'a', checkUser.checkPhone)
-            .on('checkEmail', 'a', checkUser.checkEmail);
-</script>
-需改为如下形式：
-<script>
-    var checkUser = {
-        checkName:function(){
-            var self = $(this);
-            $.ajax({
-                url:'text1.do',
-                data:'id=1',
-                type:'get',
-                context:self,
-                success:function(data){
-                    if( data ){
-                        this.parents('div').trigger('checkPhone', [this]);
-                    }
-                }
-            });
-        },
-        checkPhone:function(event, self){
-            $.ajax({
-                url:'text2.do',
-                data:'id=1',
-                type:'get',
-                context:self,
-                success:function(data){
-                    if( data ){
-                        this.trigger('checkEmail', [this]);
-                    }
-                }
-            });
-        },
-        checkEmail:function(event, self){
-            $.ajax({
-                url:'test3.do',
-                data:'id=1',
-                type:'get',
-                context:self,
-                success:function(data){
-                    if( data ){
-                        //TODO 通过验证
-                    }
-                }
-            });
-        }
-    };
-
-    $('div')
-            .on('click.checkName', 'a', checkUser.checkName)
-            .on('checkPhone', checkUser.checkPhone)
-            .on('checkEmail', checkUser.checkEmail);
-</script>
-
-21.     API文档（待定）（http://www.blogjava.net/JAVA-HE/archive/2008/11/25/242477.html?opt=admin）
-@namespace  命名空间
-@module     模块
-@author     作者
-@param      参数
-@return     返回值
-@description    说明
-@example    例子
-
-23.     响应式布局：
-
-23.1   针对不同分辨率的设备设计不同的界面，使刚进入网站时的界面显示该网站的核心内容，只针对主流移动设备，如：
-iPad        ：768*1024
-iPhone5     ：640*1136
-iPhone4     ：640*960
-iPhone3GS   ：320*480
-Nokia900    ：480*800
-
     28.     定义对象（待定，代码写的很漂亮，暂时没想到如何应用。。。）
     <script>
         var Gadget = (function(){
@@ -3106,24 +3048,6 @@ Nokia900    ：480*800
             };
             return NewGadget;
         })();
-    </script>
-
-<!--    29.     命名规范（待定）-->
-<!---->
-<!--    //    -1   大小写：现在较流行JavaScript的面向对象编程，那么就会有公有或私有的概念，原则是公有接口的命名首字母大写，私有接口的命名首字母小写。-->
-<!--    //    0   命名：禁止使用各种缩写，命名应该描述其意义，而不是描述其类型，禁止使用标识类型的前缀-->
-
-    29.1   模块或类：使用大骆驼式变量命名，如：
-    <script>
-        var ChatUserList = function(){
-        };
-    </script>
-
-    29.4   局部变量或局部函数、对象的方法或属性：使用小骆驼式变量名，如：
-    <script>
-        var chatTo = function(){
-        };
-        var chatNum = 5;
     </script>
 
     30.     检测常量是否存在（待定，代码写的很漂亮，暂时没想到如何应用。。。）
@@ -3166,52 +3090,6 @@ Nokia900    ：480*800
         })();
     </script>
 
-    32.     弹窗模式固定：
-
-    HTML代码：
-    <input type="button" value="解锁" class="popupButton" data-popup="update1" id="unlock" />
-    <input type="button" value="锁定" class="popupButton" data-popup="update2" id="lock" />
-
-<div id="update1" class="popup">
-    <form action="update1.php" method="post" id="updateForm1">
-        ...
-    </form>
-</div>
-<div id="update2" class="popup">
-    <form action="update2.php" method="post" id="updateForm2">
-        ...
-    </form>
-</div>
-
-JS代码：
-<script>
-    $('#updateForm1').validator(validFunc);//加载验证
-    $('#updateForm2').validator(validFunc);//加载验证
-
-    /**
-     *  操作按钮 点击事件
-     * */
-    $('.popupButton').on('click.popup', function(){
-        var self = $(this);
-        $( '#' + self.data('popup')).trigger('popup', [self]);
-    });
-
-    /**
-     *  弹窗事件
-     * */
-    $('.popup').on('popup', function(e, self){
-        art.dialog({
-            id:'popup', title:'操作', content:self.get(0), fixed:true, lock:true,
-            okValue:'确定', ok:function(){
-                self.find('form').submit();
-            },
-            cancelValue:'取消', cancel:function(){
-                self.find('form').trigger('reset');
-            }
-        });
-    });
-</script>
-
 33.     Ajax返回数据结构固定，数据结构一律使用JSON格式
 <script>
     var responseData = {
@@ -3229,552 +3107,7 @@ JS代码：
         errorMsg:''
     };
 </script>
-
-34.   设计模式
-34.1   单例模式
-<script>
-    /**
-     *  基类
-     *  @class  Robot
-     * */
-    function Robot(){}
-    Robot.prototype.hi = function(){
-        return this.hello;
-    };
-
-    /**
-     *  继承类
-     *  @class  RobotMaker
-     * */
-    function RobotMaker(name){//构造函数
-        if( !(this instanceof RobotMaker) ){
-            return new RobotMaker(name);
-        }
-
-        var onlyOne, makeNum = 0,
-                Robots = [],
-                index = 0;
-
-//            RobotMaker = function RobotMaker(name){
-//                return onlyOne;
-//            };
-//
-//            RobotMaker.prototype = this;
-//
-//            onlyOne = new RobotMaker(name);
-//            onlyOne.constructor = RobotMaker;
-//
-//            onlyOne.name = name;
-//            onlyOne.createdNum = 0;
-//
-//            return onlyOne;
-
-        if( typeof RobotMaker.onlyOne === 'object' ){
-            return RobotMaker.onlyOne;
-        }
-
-        this.name = name;
-        this.type = 'RobotMaker';
-        this.makeNum = 0;
-        this.hello = 'Hi, I\'m a Robot, and I\'m the only one RobotMaker, you don\'t need the second, my name is '+ this.name;
-
-        RobotMaker.onlyOne = this;
-        return this;
-    }
-    RobotMaker.prototype = new Robot();
-
-    //  test
-    var r1 = new RobotMaker('r1');
-    var r2 = new RobotMaker('r2');
-
-    console.log(r1.hi());
-    console.log(r2.hi());
-</script>
-
-34.2   工厂模式
-<script>
-    RobotMaker.prototype.createId = function(){
-        this.makeNum++;
-        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c){
-            var r = Math.random()*16|0, v = c==='x'? r : (r&0x3|0x8);
-            return v.toString(16);
-        }).toUpperCase();
-    };
-    RobotMaker.prototype.MakeRobot = function(type){
-        var newRobot, robotType;
-
-        if( type in RobotMaker && typeof RobotMaker[type] === 'function' ){
-            robotType = RobotMaker[type];
-            newRobot = new Robot();
-            newRobot.maker = this;
-            newRobot.id =  this.createId();
-            newRobot.power = 0;
-            newRobot.weapons = [];
-            newRobot.hello = 'Hi, I\'m a Robot, created by RobotMaker '+ this.name +', my id is '+ newRobot.id +', my type is '+ type;
-            robotType(newRobot);
-
-            this.CreatedRobots.add( newRobot );
-        }
-        else{
-            newRobot = null;
-        }
-        return newRobot;
-    };
-    RobotMaker.Tank = function(robot){
-        robot.type = 'Tank';
-        RobotMaker.addWeapon(robot, ['missile', 'gun']);
-    };
-    RobotMaker.Plant = function(robot){
-        robot.type = 'Plant';
-        RobotMaker.addWeapon(robot, ['bomb']);
-    };
-    RobotMaker.Boat = function(robot){
-        robot.type = 'Boat';
-        RobotMaker.addWeapon(robot, ['missile']);
-    };
-
-    //  test
-    var robot1 = r1.MakeRobot('Tank');
-    var robot2 = r1.MakeRobot('Plant');
-    var robot3 = r1.MakeRobot('Boat');
-    var robot4 = r1.MakeRobot('Tank');
-    var robot5 = r1.MakeRobot('Plant');
-    var robot6 = r1.MakeRobot('Boat');
-
-    console.log(robot1.hi());
-    console.log(robot2.hi());
-    console.log(robot3.hi());
-    console.log(robot4.hi());
-    console.log(robot5.hi());
-    console.log(robot6.hi());
-</script>
-
-34.3   迭代器模式
-<script>
-    RobotMaker.prototype.CreatedRobots = {
-        robots:[],
-        index:0,
-        add:function(robot){
-            this.robots.push(robot);
-        },
-        next:function(){//下一个
-            return this.hasNext() ? this.robots[this.index++] : null;
-        },
-        prev:function(){//上一个
-            return this.index === 0 ? null : this.robots[this.index--];
-        },
-        hasNext:function(){//是否存在下一个
-            return this.index < this.robots.length;
-        },
-        rewind:function(){
-            this.index = 0;
-        },
-        current:function(){
-            return this.robots[this.index];
-        }
-    };
-
-    //  test
-    var temp, robots = r1.CreatedRobots;
-    while( temp = robots.next() ){
-        console.log( temp.hi() );
-    }
-    robots.rewind();
-    console.log( robots.current().hi() );
-</script>
-
-34.4   装饰着模式
-<script>
-    RobotMaker.addWeapon = function(robot, weaponList){
-        var weapon = this.Weapon,
-                i = 0, j = weaponList.length;
-
-        for(; i < j; i++){
-            if( weaponList[i] in weapon ){
-                weapon[weaponList[i]](robot);
-            }
-        }
-    };
-    RobotMaker.Weapon = {
-        missile:function(robot){
-            robot.power += 100;
-            robot.weapons.push({'name':'missile', 'power':100});
-        },
-        bomb:function(robot){
-            robot.power += 50;
-            robot.weapons.push({'name':'bomb', 'power':50});
-        },
-        gun:function(robot){
-            robot.power += 20;
-            robot.weapons.push({'name':'gun', 'power':20});
-        }
-    };
-
-    //  test
-    while( temp = robots.next() ){
-        console.log( temp.power );
-    }
-</script>
-
-34.5   策略模式
-
-34.6   外观模式
-
-34.7   代理模式
-
-34.8   中介者模式
-
-34.9   观察者模式
-
-36  减少浏览器的重排与重绘事件，目标：
-1   减少DOM元素的几何属性变化
-
-2   减少DOM树的结构变化
-
-3   减少获取某些属性，包括 offsetTop、offsetLeft、offsetWidth、offsetHeight、scrollTop、scrollLeft、scrollWidth、scrollHeight、clientTop、clientLeft、clientWidth、clientHeight、getComputedStyle() (currentStyle in IE)
-
-优化方法：
-1   将多次改变样式属性的操作合并成一次操作
-
-2   将需要多次重排的元素，position属性设为absolute或fixed、relative，这样此元素就脱离了文档流，它的变化不会影响到其他元素。例如有动画效果的元素就最好设置为绝对定位
-
-3   在内存中多次操作节点，完成后再添加到文档中去。例如要异步获取表格数据，渲染到页面。可以先取得数据后在内存中构建整个表格的html片段，再一次性添加到文档中去，而不是循环添加每一行
-
-4   由于display属性为none的元素不在渲染树中，对隐藏的元素操作不会引发其他元素的重排。如果要对一个元素进行复杂的操作时，可以先隐藏它，操作完成后再显示。这样只在隐藏和显示时触发2次重排
-
-5   在需要经常取那些引起浏览器重排的属性值时，要缓存到变量
-
-6   合理规划JS的事件，使其影响到的HTML标签最少DOM树
-
-7   最简化DOM结构，将HTML标签数量降到最低，当JS引发的浏览器重排与重绘事件不可避免时，只能减少所引发的操作量
-
 </textarea>
-<!--
-34.     （综合使用）数据表格模型
-    HTML代码:
-        <div id="dataBox">
-            <form id="searchForm" action="search.php" method="get">
-
-            </form>
-            <table>
-                <thead><!-- 表头 - ->
-    <tr>
-        <th><label><input type="checkbox" id="jsClickCheckAll" />全选</label></th>
-        <th>姓名</th>
-        <th>性别</th>
-        <th>操作</th>
-    </tr>
-    </thead>
-    <tbody id="dataList">
-    </tbody>
-    <tfoot>
-    <tr>
-        <td colspan="4" id="pagination"></td><!-- 输出页码 - ->
-    </tr>
-    </tfoot>
-    </table>
-</div>
-
-<!-- 信息模板 - ->
-<textarea id="tmpl_dataBox" class="template" style="display:none;">
-    <tr>
-        <td><label><input type="checkbox" name="checkInfo" class="jsClickCheckThis" value="{ id }" /></label></td>
-        <td>{ name }</td>
-        <td>{ sex }</td>
-        <td>
-            <a class="jsClickPopup" data-popup="popupUpdate" href="update.php">编辑</a>
-            <a class="jsClickPopup" data-popup="popupDelete" href="delete.php">删除</a>
-        </td>
-    </tr>
-</textarea>
-
-    <!-- 数据更新弹窗 - ->
-    <div id="popupUpdate">
-        <form action="update.php" method="post">
-            <input type="hidden" name="id" id="updateId" />
-            <table>
-                <tbody>
-                <tr>
-                    <td><label for="newPhone">请输入电话</label></td>
-                    <td><input type="text" name="newPhone" class="validator(phone)" id="newPhone" /></td>
-                    <td><!-- 验证信息 - -></td>
-                </tr>
-                <tr>
-                    <td><label for="newEmail">请输入电子邮箱</label></td>
-                    <td><input type="text" name="newEmail" class="validator(email)" id="newEmail" /></td>
-                    <td><!-- 验证信息 - -></td>
-                </tr>
-                </tbody>
-            </table>
-        </form>
-    </div>
-
-    <! -- 数据删除弹窗 - ->
-    <div id="popupDelete">
-        <form action="delete.php" method="post">
-            <input type="hidden" name="deleteIds" id="deleteFormId" />
-            <p>
-                您选择了<span id="deleteNum"></span>条数据，确定要删除吗？
-            </p>
-        </form>
-    </div>
-
-    JS代码:
-    <script>
-        $(document).ready(function(){
-            var dataBox = DataBox;
-
-            var search = $('#searchForm').validator(validFunc);
-            search.trigger('submit', ['ajax', '', '']);
-
-            //表单验证
-            $('#popupUpdate form').validator(validFunc);
-            $('#popupDelete form').validator(validFunc);
-
-            //绑定弹窗事件
-            $('#dataList').on('click.popup', '.jsClickPopup', dataBox.popup);
-
-            dataBox.init();
-        });
-
-        var DataBox = {
-            init:function(){//页面初始化获取数据
-
-            },
-            popup:function(){//弹窗
-                var content = $( '#' + $(this).data('popup') );
-                content.find();
-                art.dialog({
-                    id:'popup', title:'操作', content:content, fixed:true, lock:true,
-                    okValue:'确定', ok:function(){
-                        content.find('form').submit();
-                    },
-                    cancelValue:'取消', cancel:function(){
-                        content.find('form').trigger('reset');
-                    }
-                });
-            }
-        };
-
-        //插件函数
-        // 基于jQuery的简易模板
-        (function($, exports){
-            var replace = function(temp, data){
-                var key;
-                for( key in data ){
-                    temp = temp.replace(temp, data[key] || '');
-                }
-
-                return temp;
-            };
-
-            $.template = function(selector, data, appendTo, clean){
-                var temp = $(selector).val(),
-                        result,
-                        length,
-                        i = 0;
-                if( !data ) return null;
-
-                appendTo = $(appendTo);
-
-                if( $.isArray(data) ){//数据为数组
-                    result = [];
-                    length = data.length;
-                    for(; i<length; i++){
-                        result.push( replace(temp, data[i]) );
-                    }
-                }
-                else{//单条数据
-                    result = replace(temp, data);
-                }
-
-                (clean ? appendTo.empty() : appendTo).append( result );//是否清空
-            };
-
-        })(jQuery, window);
-
-
-        // 进阶 写成下面样式 DataBox为一个模块，将所有用的的方法放在其中
-        // 目前还未想好结构，是实现面向对象还是。。。
-        $( DataBox({}) );
-        var DataBox = function( param ){
-            //TODO 执行一系列操作
-        }
-    </script>
-
-    34.     浏览器 控制回退键
-    <script>
-        //location.hash
-
-        var Observer = {
-            hashChangeList:{},
-            publish:function(hash, fn){
-
-            },
-            subscribe:function(hash){
-
-            }
-        };
-
-        var hashChangeList = {};
-
-        $(window).on('hashchange', function(){
-
-            var title = this.location.hash.slice(1);
-            var patt = new RegExp( opts.hash+"_(\\d*)" );
-            var index = patt.exec(title);
-            if( index ){
-                titleArray[index[1]].trigger("click");
-            }
-        })
-    </script>
--->
-<!--
-<textarea class="hidden" cols="20" rows="50" id="codingStandards">
-    声明：以下内容均为读书所得和个人开发经验积累，若有异议，可以讨论。。。若有雷同，纯属你抄袭，我将保留付诸于法律的权力
-
-    1.    在网站规划时默认为一个没有任何JS功能的网站，然后渐进增强的添加用户体验
-
-    2.    Ajax：触发ajax的一定是一个A标签或submit按钮
-    Ajax一定要写错误处理
-    2.1    submit按钮：必须在一个表单中，所有想要提交的数据同时必须在该表单中，ajax的URL放在form的action中，type使用POST方式（可视具体情况而定，例如查询）
-    2.2    A标签：ajax的URL放在该标签的href中，将要传递的数据放在该标签的属性中（个人建议使用"data-"+变量名，不推荐自定义），type使用GET方式（可视具体情况而定）
-    2.3    Ajax的参数集中有context（上下文），若定义，参数集中定义的函数（如：success、beforeSend、error等）的this会被指向context，建议使用节省资源消耗
-
-    3.    尽量使用原生JS，用for替代$.each，尽量不使用for in循环（for循环的效率比for in快7倍），同时对for循环进行优化，如访问数组时，减少对数组的length访问（每次访问是都会对数组进行统计），同时如果可能使用倒序访问数组（可以减少一次判断），如：
-    <script>
-        var array = [],
-                i = 0, j;
-        for(j=array.length; i<j; i++){
-        }
-        for(i=array.length; i--;){
-        }
-    </script>
-    PS. 使用倒序访问时，可以使用while循环
-    <script>
-        var i = array.length;
-        do{
-            array[--i];
-        }while(i);
-        while(i--){
-            array[i];
-        }
-    </script>
-
-    4.    绑定事件，若绑定无名函数，一定要加命名空间，方便解绑时使用，如：
-    <script>
-        $('a').on('click.update', function(){});
-    </script>
-    这样想要解除绑定时：
-    <script>
-        $('a').off('click.update');
-    </script>
-
-    5.    基于jQuery-1.7以后的版本开发时，绑定事件使用on()函数，解绑使用off()函数，因为bind、live、delegete函数均为调用on()函数，减少不必要的开销。
-
-    6.    绑定函数时，将事件绑定到离事件触发点最近的父级，事件冒泡也会影响效率，且有可能触发非预期的事件
-
-    7.    将事件绑定与事件定义分离（所以不推荐第4条的无名函数，但不得不使用则请遵守第3条，同时本条也推荐使用命名空间），同时将事件定义在同一个命名空间下，如：
-    <script>
-        var clickEvent = {
-            show:function(){}
-        };
-        $('a').on('click.show', clickEvent.show);
-    </script>
-
-    8.    对于定义的函数，出入参数的类型固定，不要做多种类型处理，尤其是根据数据类型执行不同操作，不然建议写成闭包或插件的形式
-
-    9.    条件判断：当条件判断不超过3个的时候使用if else，若超过3个使用switch，条件越多时switch效率越高，同时条件判断按概率从最大到最小的顺序排列
-
-    10.    不建议使用css()函数直接改变CSS属性，建议将需要更改的CSS属性定义为一个类，使用addClass()、removeClass()函数来控制，所以希望美工编写CSS时，考虑各种情况
-
-    11.    在绑定的事件中，可以进量使用DOM的源生属性，而尽量不要将this封装为jQuery对象$(this)，如：
-    <script>
-        var clickEvent = {
-            show:function(){
-                alert( this.innerHTML );
-            }
-        }
-    </script>
-
-    12.    不要对非交互型的标签绑定键盘事件（keydown，keyup，keypress），尤其不要对document绑定，仅仅建议对input:text，textarea等用户可输入类型的控件进行键盘事件绑定
-
-    13.    尽量不要定义全局变量、全局函数，全局变量定义在GLOBAL命名空间或对应的模块下，全局函数则定义在对应的模块下
-
-    13.    按需求或功能划分模块，将功能抽象化，尽量使JS与HTML的脱离联系
-
-    14.    碎片化：对每个页面的布局进行划分，尽量保证每个布局块最大限度的独立，将每个布局块独立保存为HTML文件，同样对每个布局块中所涉及的交互性的JS代码集中到一个文件中，与HTML文件相对应。每个模块、功能可能对应多个碎片。
-    如：数据表格HTMＬ文件
-    <table id="dataTable">
-        <thead>
-        <tr>
-            <th>数据</th>
-            <th>操作</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>周文博</td>
-            <td><a class="add">添加</a>
-                <a class="update">修改</a>
-                <a class="del">删除</a>
-            </td>
-        </tr>
-        </tbody>
-        <tfoot>
-        <tr>
-            <td colspan="2">页码</td>
-        </tr>
-        </tfoot>
-    </table>
-    对应的JS文件
-    <script>
-        var MODULE_DATA_TABLE = function(param){
-            var events = {
-                        add:function(){},
-                        update:function(){},
-                        del:function(){}
-                    },
-                    documentReady = function(){
-                        $(param).on('click.add', '.add', events.add).on('click.update', 'update', events.update).on('click.del', 'del', events.del);
-                    };
-            return function(){
-                documentReady();
-            }
-        }
-    </script>
-    当最终页面时调用JS
-    <script>
-        $( new MODULE_DATA_TABLE('#dataTable') );
-    </script>
-
-    15.     文件存放目录 文件功能描述
-
-    16.     事件统一绑定到一个ID 或CLASS上
-    如：
-    <a class="jsClickCheckName">前缀js + 事件Click + 函数名CheckName</a>
-    <script>
-        var checkName = function(){
-            //函数体
-        };
-        $('a.jsClickCheckName').on('click.checkName', checkName);
-    </script>
-
-    17.     关于注释的详细程度
-
-    17.1   修改问题的注释    //功能管理-人名-日期-修改内容
-
-    17.2   整段JS修改的注释
-    /*star   功能管理-人名-日期 */
-    function changer(){}
-    /*end   功能管理-人名-日期 */
-
-    17.3   函数注释 多行注释至少写明函数功能
-    /**
-    * 	医生IM专有操作/事件函数
-    * */
-</textarea>
--->
 <?php require_once('../footer.php');?>
 
 <script data-main="../script/document/index" src="../script/lib/require/require.js"></script>

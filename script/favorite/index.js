@@ -199,7 +199,7 @@ require(['jquery', 'global', 'tag', 'filter',
 		                    +' '+ date.getHours() +':'+ date.getMinutes() +':'+ date.getSeconds();
 
 	                    console.log(data);
-	                    FAVOR_LIST.push( data );
+	                    FAVOR_LIST.unshift( data );
 	                    count++;
 
 	                    $t = $( favorTmpl([data]).join('') ).prependTo( $favorList);

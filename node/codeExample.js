@@ -377,6 +377,48 @@
 process.on('exit', function(){  // Node 进程退出事件
 	console.log(123);
 });
-process.on('uncaughtException', function(e){// 捕获异常
+process.on('uncaughtException', function(e){    // 捕获异常
 	console.log('exception: '+ e);
+});
+
+//b();    // 异常测试
+
+//process.stdin.resume(); // 开始从标准输入读取内容，所以程序不会退出
+//process.stdin.setEncoding('utf8');
+//process.on('SIGINT', function(){
+//	console.log('got sigint,press ctrl+d to exit');
+//});
+//process.stdin.on('data', function( chunk ){
+//	process.stdout.write('data: '+ chunk);
+//});
+//process.stdin.on('end', function(){
+//	process.stdout.write('end');
+//});
+
+process.nextTick(function(){
+	console.log(111);
+});
+process.nextTick(function(){
+//	b();
+	console.log(112);
+});
+process.nextTick(function(){
+	console.log(113);
+});
+
+//console.log(process);
+console.log(process.version, process.installPrefix,
+	process.platform, process.title, process.pid, process.execPath);
+
+/**
+ * 子进程
+ * */
+var cp = require('child_process')
+	;
+cp.exec('ls -l', function(e, stdout, stderr){
+	if( !e ){
+		console.log( typeof stdout );
+		console.log( stdout );
+		console.log( stdout );
+	}
 });

@@ -70,19 +70,19 @@ ini_set('date.timezone','Asia/Shanghai');
 		</h2>
 		<div class="module_info"></div>
 	</section>
+	<a href="document/">
+	<section class="module module-metro module-tiny module-document">
+		<h2 class="module_title">前端文档
+			<br/>document
+		</h2>
+	</section>
+	</a>
     <a href="editor/">
     <section class="module module-metro module-small module-editor">
         <h2 class="module_title">编辑器
 			<br/>editor
 		</h2>
         <span class="module_info"></span>
-    </section>
-    </a>
-    <a href="document/">
-    <section class="module module-metro module-normal module-document">
-        <h2 class="module_title">前端文档
-			<br/>document
-		</h2>
     </section>
     </a>
 	<a href="favorite">

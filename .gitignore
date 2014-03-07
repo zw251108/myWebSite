@@ -7,6 +7,7 @@ admin/money.php
 script/compress.bat
 script/test.js
 script/lib.inc.js
+sql/coding4fun.sql
 
 ##### 过滤的文件夹
 # 编辑器文件夹

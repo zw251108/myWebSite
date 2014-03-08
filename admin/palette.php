@@ -126,7 +126,7 @@ body{
 <script src="../script/plugin/artDialog/artDialog.min.js"></script>
 <script src="../script/plugin/artDialog/artDialog.plugins.min.js"></script>
 
-<script src="../script/plugin/template/jquery.template.js"></script>
+<script src="../script/ui/jquery.template.js"></script>
 
 <!--<script src="../script/lib/jQueryUI/jquery-ui-1.10.3.custom.min.js"></script>-->
 <!--<script src="../script/plugin/jqGrid/i18n/grid.locale-en.js"></script>-->

@@ -1,7 +1,7 @@
 MODULE_CONFIG.shim.dialog = shim;
-MODULE_CONFIG.paths.dialog = 'plugin/dialog/jquery.dialog';
+MODULE_CONFIG.paths.dialog = 'ui/jquery.dialog';
 MODULE_CONFIG.shim.template = shim;
-MODULE_CONFIG.paths.template = 'plugin/template/jquery.template';
+MODULE_CONFIG.paths.template = 'ui/jquery.template';
 require.config(MODULE_CONFIG);
 require(['jquery', 'global', 'template', 'dialog'], function($, g){
     var html = $.template({
@@ -43,7 +43,7 @@ require(['jquery', 'global', 'template', 'dialog'], function($, g){
                     }
                 }
             });
-        }).on('click', 'a', function(e){// 获得详细内容
+        }).on('click', 'article > a', function(e){// 获得详细内容
             var $self = $cache.add(this),
                 isDeploy = $self.data('deploy');
 

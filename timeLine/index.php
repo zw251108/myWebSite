@@ -10,7 +10,6 @@ require_once('../include/Config.inc.php');
 <meta charset="utf-8" />
 <!--[if lt IE 9]><meta http-equiv="content-type" content="text/html; charset=utf-8" /><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 <title>timeLine 时间轴插件（测试版） demo</title>
 <?php require_once('../style.php');?>
 </head>
@@ -23,7 +22,7 @@ require_once('../include/Config.inc.php');
 <?php require_once('../footer.php');?>
 </div>
 <script type="text/javascript" src="../script/lib/jQuery/jquery-1.10.2.min.js"></script>
-<script type="text/javascript" src="../script/plugin/timeLine/jquery.timeLine.js"></script>
+<script type="text/javascript" src="../script/ui/jquery.timeLine.js"></script>
 <script type="text/javascript">
 $(function(){
     var $timeLine = $.timeLine({

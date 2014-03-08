@@ -3,7 +3,7 @@ MODULE_CONFIG.paths.colorPicker = 'plugin/farbtastic/farbtastic';
 MODULE_CONFIG.shim.tree = shim;
 MODULE_CONFIG.paths.tree = 'plugin/zTree/jquery.ztree.all-3.5.min';
 MODULE_CONFIG.shim.validator = shim;
-MODULE_CONFIG.paths.validator = 'plugin/validator/jquery.validator';
+MODULE_CONFIG.paths.validator = 'ui/jquery.validator';
 MODULE_CONFIG.paths.artDialog = 'plugin/artDialog/artDialog.min';
 MODULE_CONFIG.shim.artDialogPlus = ['artDialog'];
 MODULE_CONFIG.paths.artDialogPlus = 'plugin/artDialog/artDialog.plugins.min';
@@ -19,7 +19,7 @@ MODULE_CONFIG.paths.codeMirrorXml = 'plugin/codeMirror/xml';
 MODULE_CONFIG.shim.codeMirrorEmmet = ['codeMirror'];
 MODULE_CONFIG.paths.codeMirrorEmmet = 'plugin/codeMirror/emmet';
 MODULE_CONFIG.shim.template = shim;
-MODULE_CONFIG.paths.template = 'plugin/template/jquery.template';
+MODULE_CONFIG.paths.template = 'ui/jquery.template';
 MODULE_CONFIG.paths.tag = 'module/tag';
 require.config(MODULE_CONFIG);
 require(['jquery', 'global', 'tag', 'artDialog', 'artDialogPlus', 'validator', 'colorPicker', 'tree', 'codeMirror',

@@ -54,9 +54,9 @@ var USER_INFO = <?php echo json_encode($userInfo);?>,
         paths:{
             jquery:'lib/jQuery/jquery-1.10.2.min',
             global:'module/global',
-            extend:'jquery.extend',
+            extend:'ui/jquery.extend',
             clippy:'plugin/clippy/clippy.min',
-            validator:'plugin/validator/jquery.validator'
+            validator:'ui/jquery.validator'
         }
     };
 </script>

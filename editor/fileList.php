@@ -14,6 +14,7 @@ if( isset( $_SERVER['HTTP_X_REQUESTED_WITH'] ) && $_SERVER['HTTP_X_REQUESTED_WIT
         'script/lib',
         'script/plugin',
 //        'script/test',
+		'script/ui',
         'style'
     );
     $res = [];

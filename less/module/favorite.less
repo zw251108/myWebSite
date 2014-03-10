@@ -2,6 +2,7 @@
 
 @import "../lib/color.less";
 @import "../lib/grid.less";
+@import "../lib/z-index.less";
 
 //---------- Favorite 收藏夹 ----------
 .module-favor{
@@ -15,18 +16,23 @@
         margin-bottom: -@space;
     }
 
-    .icon-CSS{
-        display: inline-block;
-        position: relative;
-        top: 10px;
-        width: 30px;
-        height: 30px;
+//    .icon-CSS{
+//        display: inline-block;
+//        position: relative;
+//        top: 10px;
+//        width: 30px;
+//        height: 30px;
+//
+//	    &:after,
+//	    &:before{
+//		    background-color: @module-main-bg;
+//	    }
+//    }
 
-	    &:after,
-	    &:before{
-		    background-color: @module-main-bg;
-	    }
-    }
+	.icon-add{
+		position: relative;
+		z-index: @z-btn-add;
+	}
 
     .tag:after{
         background: @article-bg;

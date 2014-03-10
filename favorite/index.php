@@ -25,21 +25,20 @@ $allTag = $tag->selectTagByLevel();
 <?php require_once('../header.php');?>
 <section class="module module-main module-large module-favor">
     <h2 class="module_title">收藏夹 Favorite
-        <span id="addFavor" class="icon-CSS icon-plus">
-            <span class="icon1"></span>
-            <span class="icon2"></span>
-            <span class="icon3"></span>
-        </span>
     </h2>
 
-    <div class="filter favor_filter" id="Filter">
-        <div class="filter_checked" id="checked">
-			<button class="btn icon icon-filter" id="setFilter" type="button" value="">过滤</button>
-			<button class="btn icon icon-reset hidden" id="filterReset" type="button" value="">重置</button>
-        </div>
+	<div class="toolBar">
+		<button class="btn icon icon-add" id="addFavor" type="button" value="">添加</button>
 
-        <div id="filterAll" class="filter_all hidden"></div>
-    </div>
+		<div class="filter" id="Filter">
+			<button class="btn icon icon-filter filter_setBtn" id="setFilter" type="button" value="">过滤</button>
+			<button class="btn icon icon-reset filter_resetBtn hidden" id="resetFilter" type="button" value="">重置</button>
+			<div class="filter_tagArea" id="filterTagArea">
+				<div class="filter_checked" id="filterChecked"></div>
+				<div class="filter_all hidden" id="filterAll"></div>
+			</div>
+		</div>
+	</div>
 
     <ul class="module_content favor_list" id="favorList"></ul>
 

@@ -6,35 +6,26 @@
 
 //----- filter 过滤器 -----
 /*  example:
-    <div class="filter favor_filter" id="Filter">
-        <div class="filter_checked" id="checked">
-			<button class="btn icon icon-filter" id="setFilter" type="button" value="">过滤</button>
-			<button class="btn icon icon-reset hidden" id="filterReset" type="button" value="">重置</button>
-        </div>
-
-        <div id="filterAll" class="filter_all hidden"></div>
-    </div>
+	<div class="filter" id="Filter">
+		<button class="btn icon icon-filter filter_setBtn" id="setFilter" type="button" value="">过滤</button>
+		<button class="btn icon icon-reset filter_resetBtn hidden" id="resetFilter" type="button" value="">重置</button>
+		<div class="filter_tagArea" id="filterTagArea">
+			<div class="filter_checked" id="filterChecked"></div>
+			<div class="filter_all hidden" id="filterAll"></div>
+		</div>
+	</div>
  */
 .filter{
     position: relative;
-    min-height: @filter-min-height;
-
-    margin: 0 0 0 @space;
-    padding: @space 0 0 @space;
-    background: @font-color;
-
-	.btn{
-		margin: 0 @space @space 0;
-	}
 }
+.filter_tagArea{
+	clear: both;
+}
+
 .filter_checked{    // 当前过滤标签
     overflow: hidden;
 
-    height: 100%;
-    width: 100%;
-
-    padding: @space 0 0 @space;
-    background: @filter-checked-bg;
+	clear: both;
 
 	.filter_tag{
 		margin: 0 @space @space 0;
@@ -46,13 +37,11 @@
     position: absolute;
     z-index: @z-filter-all;
 
-    left: @space;
-    top: @filter-min-height + @space *3;
+    left: @filter-all-tag-left;
 
     height: @filter-all-tag-height;
 
-    border: @filter-all-tag-border-width solid @filter-all-border;
-    padding: @space 0 0 @space;
+    padding-left: @filter-all-tag-padding;
 
 	background: @filter-all-bg;
 }

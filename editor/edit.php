@@ -54,17 +54,18 @@ else{
 <section class="module module-large module-main module-editor">
     <h2 class="module_title">前端实践 editor</h2>
 
-    <div class="module_content editor-detail">
-		<h3 class="editor_title"><?php echo isset($name) ? $name : '新建页面';?></h3>
+	<div class="toolBar">
+		<button class="btn icon icon-addFile" id="showFileList" type="button" value="">项目文件列表</button>
+		<button class="btn" id="run" type="submit" value="">运行 Run</button>
+		<button class="btn icon icon-save" id="save" type="button" value="">保存 Save</button>
+		<button class="btn" id="showColorPicker" type="button" value="">颜色选择器</button>
+		<button class="btn icon icon-fullScreen" id="fullScreen" type="button" value="">全屏显示</button>
+		<a class="btn btn-link" id="goList" href="index.php">返回列表页</a>
+	</div>
 
-		<nav class="nav nav-tools editor_tools">
-			<button class="btn icon icon-addFile" id="showFileList" type="button" value="">项目文件列表</button>
-			<button class="btn" id="run" type="submit" value="">运行 Run</button>
-			<button class="btn icon icon-save" id="save" type="button" value="">保存 Save</button>
-			<button class="btn" id="showColorPicker" type="button" value="">颜色选择器</button>
-			<button class="btn icon icon-fullScreen" id="fullScreen" type="button" value="">全屏显示</button>
-			<a class="btn btn-link" id="goList" href="index.php">返回列表页</a>
-        </nav>
+    <div class="module_content editor_detail">
+
+		<h3 class="editor_title"><?php echo isset($name) ? $name : '新建页面';?></h3>
 
         <nav class="nav">
 			<input id="incFileHidden" type="hidden" name="incFile" value="../script/lib/jQuery/jquery-1.10.2.min.js"/>

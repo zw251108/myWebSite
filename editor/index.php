@@ -29,13 +29,17 @@ $allTag = $tag->selectTagByLevel();
 <section class="module module-main module-large module-editor">
     <h2 class="module_title">前端实践 editor</h2>
 
-	<div class="filter favor_filter" id="Filter">
-		<div class="filter_checked" id="checked">
-			<button class="btn icon icon-filter" id="setFilter" type="button" value="">过滤</button>
-			<button class="btn icon icon-reset hidden" id="filterReset" type="button" value="">重置</button>
-		</div>
+	<div class="toolBar">
+		<a class="btn btn-link icon icon-add" href="edit.php?id=0">添加</a>
 
-		<div id="filterAll" class="filter_all hidden"></div>
+		<div class="filter" id="Filter">
+			<button class="btn icon icon-filter filter_setBtn" id="setFilter" type="button" value="">过滤</button>
+			<button class="btn icon icon-reset filter_resetBtn hidden" id="resetFilter" type="button" value="">重置</button>
+			<div class="filter_tagArea" id="filterTagArea">
+				<div class="filter_checked" id="filterChecked"></div>
+				<div class="filter_all hidden" id="filterAll"></div>
+			</div>
+		</div>
 	</div>
 
     <div class="module_content editor_list" id="editorList"></div>

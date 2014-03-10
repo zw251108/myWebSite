@@ -1,0 +1,25 @@
+@charset "utf-8";
+
+@import "../lib/color.less";
+@import "../lib/grid.less";
+@import "../lib/z-index.less";
+
+//----- tools 工具条 -----
+/*  example:
+	<div class="toolBar">
+		<!-- 放置各个按钮、链接 -->
+	</div>
+ */
+.toolBar{
+	position: relative;
+
+	min-height: 40px;
+
+	border: @toolbar-border-width solid @toolBar-border;
+	border-bottom: 0;
+	border-right: 0;
+	margin: 0 0 0 @toolBar-margin;
+	padding: @toolBar-padding 0 0 @toolBar-padding;
+
+	background: @toolBar-bg;
+}

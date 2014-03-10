@@ -13,22 +13,32 @@
     .module_title{
         background-image:url("../image/default/editor.png");
     }
-}
-.icon-incFile{
-    float: left;
-    position: relative;
-    height: 30px;
-    width: 30px;
 
-    border: 0;
-    border-radius: 0;
-    margin: 10px 10px 0 0;
-    background: url("../image/default/incFile.png") 5px 5px no-repeat @editor_codeArea-border;
+	.icon-add{
+		position: relative;
+		z-index: @z-btn-add;
+	}
 }
+//.icon-incFile{
+//    float: left;
+//    position: relative;
+//    height: 30px;
+//    width: 30px;
+//
+//    border: 0;
+//    border-radius: 0;
+//    margin: 10px 10px 0 0;
+//    background: url("../image/default/incFile.png") 5px 5px no-repeat @editor_codeArea-border;
+//}
 .editor_list{
 	min-height: 400px;
 
 	margin-bottom: -@space;
+}
+.editor_detail{
+	.toolBar{
+		padding-top: 0;
+	}
 }
 .editor_container{
     overflow: hidden;

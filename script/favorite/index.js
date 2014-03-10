@@ -60,7 +60,7 @@ require(['jquery', 'global', 'tag', 'filter',
         $favorAddPopup = $('#favorAddPopup'),
         $favorAddForm;
 
-    $filter.triggerHandler('setFilter', [function(filterStr){
+    $filter.triggerHandler('setFilter', [function(filterStr){    console.log( filterStr );
 	    var i = 0,
 		    temp,
 		    filterExpr;

@@ -4,6 +4,9 @@
 @import "../lib/grid.less";
 
 //----- button 按钮 -----
+/*  example:
+	<button class="btn" id="btn" type="button" value="">添加</button>
+ */
 /*a,button,input:button,input:submit,input:reset*/.btn{
 	float: left;
 
@@ -12,10 +15,15 @@
 	border: @btn-border-width solid @btn-border;
 	border-radius: @border-radius;
 
-	margin: 0 @btn-margin 0 0;
+	margin: 0 @btn-margin @btn-margin 0;
 	padding: 0 @padding-lr;
 
-	background: @btn-default-bg;
+	background-color: @btn-default-bg;
+
+	/**
+	 * 当使用背景图片时或与 .icon 联用时
+	 */
+	background-position: 4px 4px !important;
 
 	color: @font-color;
 	font-size: 16px;

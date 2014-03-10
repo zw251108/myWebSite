@@ -11,96 +11,85 @@
 
 		<div id="filterAll" class="filter_all hidden"></div>
 	</div>
+    JS 模块中调用要需要实现过滤函数
+    $filter.triggerHandler('setFilter', [function(filterStr){
+        // 过滤操作
+    }]);
  */
 define(['jquery', 'template'], function($){
     var filterTag = $.template({
             template: 'label.filter_tag>input[type=checkbox][value=%Id%]{%tagName%}'
-        }),
-	    filterCB = null,    // 过滤的回调函数
-        filterNum = 0,
-        filterStr = '',
-        filterTimeout = null,
-        $filter = $('#Filter'),
-	    $filterAll = $filter.find('#filterAll'),
-	    $filterReset = $('#filterReset');
+        })
+	    , filterFunc = null // 过滤的回调函数
+	    , filterNum = 0     // 过滤标签的选择数
+	    , filterStr = ''    // 过滤字符串
+	    , filterTimeout = null
+
+	    , $filter = $('#Filter')
+	    , $filterReset = $filter.find('#resetFilter')  // 重置按钮
+	    , $filterAll = $filter.find('#filterAll')   // 全部标签显示区域
+	    ;
 
 	$filter.on('setFilter', function(e, filter){
-		filterCB = filter;
-	}).on('click', '#setFilter', function(){    // 显示过滤选项
-        $filterAll.slideToggle();
-    }).on('click', '#filterAll input:checkbox', function(){ // 过滤选项
-        var $self, $clone;
+		filterFunc = filter;
+	}).on('click', '#setFilter', function(){
+		$filterAll.slideToggle();
+	}).on('click', '#resetFilter', function(){
+		$filterReset.addClass('hidden');
+		$filterAll.find('input:checked').trigger('click');
+	}).on('click', '#filterAll input:checkbox', function(){ // 过滤选项
+		var $self, $clone;
 
-        if( this.checked ){
-            if( filterNum === 0 ){
-	            $filterReset.removeClass('hidden');
-            }
+		if( this.checked ){
+			if( filterNum === 0 ){
+				$filterReset.removeClass('hidden');
+			}
 
-            if( filterNum < 5 ){
-                filterNum++;
-                filterStr += (filterStr ? ',' : '' )+ this.value;
+			if( filterNum < 5 ){
+				filterNum++;
+				filterStr += (filterStr ? ',' : '' )+ this.value;
 
-                $self = $(this).parent();
-                $clone = $self.clone();
+				$self = $(this).parent();
+				$clone = $self.clone();
 
-                $filter.find('#checked').append( $clone );
+				$filter.find('#filterChecked').append( $clone );
 
-                $self.addClass('filter_tag-checked').data('filterTarget', $clone);
-            }
-            else{
-                this.checked = false;
+				$self.addClass('filter_tag-checked').data('filterTarget', $clone);
+			}
+			else{
+				this.checked = false;
 
-                // todo 信息
-                alert('最多只能选择 5 个');
-            }
-        }
-        else{
-            filterNum--;
-            filterStr = filterStr.replace(new RegExp('(?:^|,)'+ this.value +'(?:,|$)'), '').replace(/^,/, '').replace(/,$/, '');
+				// todo 信息
+				alert('最多只能选择 5 个');
+			}
+		}
+		else{
+			filterNum--;
+			filterStr = (','+ filterStr +',').replace(new RegExp(','+ this.value +','), ',').replace(/^,/, '').replace(/,$/, '');
 
-            $(this).parent().removeClass('filter_tag-checked').data('filterTarget').remove();
+			$(this).parent().removeClass('filter_tag-checked').data('filterTarget').remove();
 
-            if( filterNum === 0 ){// 重设全部
-	            $filterReset.addClass('hidden');
-            }
-        }
+			if( filterNum === 0 ){// 重设全部
+				$filterReset.addClass('hidden');
+			}
+		}
 
-        filterTimeout && clearTimeout( filterTimeout );
+		filterTimeout && clearTimeout( filterTimeout );
 		filterTimeout = null;
-		if( filterCB ){
+		if( filterFunc ){
 			filterTimeout = setTimeout(function(){
 				$filterAll.slideUp();
 
-				filterCB( filterStr );
+				filterFunc( filterStr );
 
 				filterTimeout = null;
 			}, 2000);
 		}
-	}).on('mousewheel', '#filterAll', function(e){
-		return false;
-	}).on('click', '#filterReset', function(){  // 重置选项
-        $filterReset.addClass('hidden');
-        $filterAll.find('input:checked').trigger('click');
-    });
+//	}).on('mousewheel', '#filterAll', function(e){
+//		e.stopPropagation();
+	});
 
 	$filterAll.append( filterTag(TAG_DATA) );
 
     return $filter;
-//	{
-//        container: $filter,
-//        filter: function(data, filterCallback){
-//	        if( (!data.jquery && !$.isArray( data )) || !filterStr ) return data;
-//
-//	        var rs = [], temp,
-//		        i = 0, j = data.length;
-//
-//	        for(; i < j; i++){
-//		        temp = data[i];
-//		        if( filterCallback(filterStr, temp, i) ){
-//			        rs.push( temp );
-//		        }
-//	        }
-//	        return rs;
-//        }
-//    };
 });

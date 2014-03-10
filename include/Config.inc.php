@@ -36,6 +36,9 @@ function filterReq($req){
 function errMsg($errId){
     $msg = '';
     switch( $errId ){
+		case 'E1111':
+			$msg = '很抱歉，您没有此权限';
+			break;
         case 'E0000':
             $msg = '系统错误';
             break;

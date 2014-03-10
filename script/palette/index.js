@@ -6,7 +6,7 @@ require(['jquery', 'global', 'template'], function($){
             template:'li[style=background:#%colorValue%]{%colorName% #%colorValue%}'
         }),
         $cache = $([]),
-        $modules = $('.module,.Header');
+        $modules = $('.module, .Header');
 
     $('#paletteList').on('click', 'a', function(e){
         var $self = $cache.add( this),
@@ -34,11 +34,11 @@ require(['jquery', 'global', 'template'], function($){
                 }
             });
         }
-    }).on('click', 'li', function(){
-        var color = /#([0-9a-f]{6})/.exec( this.innerHTML )[1];
-
-        $modules.css('background-color', '#'+ color);
-
-        $.cookie('color', color, 3600000, '/'); // 将颜色值存入 Cookie
+//    }).on('click', 'li', function(){
+//        var color = /#([0-9a-f]{6})/.exec( this.innerHTML )[1];
+//
+//        $modules.css('background-color', '#'+ color);
+//
+//        $.cookie('color', color, 3600000, '/'); // 将颜色值存入 Cookie
     });
 });

@@ -374,15 +374,15 @@
 /**
  *
  * */
-process.on('exit', function(){  // Node 进程退出事件
-	console.log(123);
-});
-process.on('uncaughtException', function(e){    // 捕获异常
-	console.log('exception: '+ e);
-});
-
+//process.on('exit', function(){  // Node 进程退出事件
+//	console.log(123);
+//});
+//process.on('uncaughtException', function(e){    // 捕获异常
+//	console.log('exception: '+ e);
+//});
+//
 //b();    // 异常测试
-
+//
 //process.stdin.resume(); // 开始从标准输入读取内容，所以程序不会退出
 //process.stdin.setEncoding('utf8');
 //process.on('SIGINT', function(){
@@ -394,31 +394,58 @@ process.on('uncaughtException', function(e){    // 捕获异常
 //process.stdin.on('end', function(){
 //	process.stdout.write('end');
 //});
-
-process.nextTick(function(){
-	console.log(111);
-});
-process.nextTick(function(){
-//	b();
-	console.log(112);
-});
-process.nextTick(function(){
-	console.log(113);
-});
-
-//console.log(process);
-console.log(process.version, process.installPrefix,
-	process.platform, process.title, process.pid, process.execPath);
+//
+//process.nextTick(function(){
+//	console.log(111);
+//});
+//process.nextTick(function(){
+////	b();
+//	console.log(112);
+//});
+//process.nextTick(function(){
+//	console.log(113);
+//});
+//
+////console.log(process);
+//console.log(process.version, process.installPrefix,
+//	process.platform, process.title, process.pid, process.execPath);
 
 /**
  * 子进程
  * */
-var cp = require('child_process')
+//var cp = require('child_process')
+//	, cat = cp.spawn('cat')
+//	, child = cp.spawn('cat', [], {customFds: [0, 1, 2]})
+//	;
+//cp.exec('ls -l', function(e, stdout, stderr){
+//	if( !e ){
+//		console.log( typeof stdout );
+//		console.log( stdout );
+//		console.log( stdout );
+//	}
+//});
+//cp.exec('ls', {maxBuffer: 1}, function(e, stdout, stderr){
+//	console.log(e, stderr);
+//});
+//cp.exec('for i in {1..100000};do echo $i;done', {
+//	timeout: 500,
+//	killSignal: 'SIGKILL'
+//}, function(e, stdout, stderr){
+//	console.log(e);
+//});
+//cat.stdout.on('data', function(d){
+//	console.log( d.toString() );
+//});
+//cat.on('exit', function(){
+//	console.log('kthxbai');
+//});
+//cat.stdin.write('meow');
+//cat.stdin.end();
+
+//---------- assert ----------
+var assert = require('assert')
 	;
-cp.exec('ls -l', function(e, stdout, stderr){
-	if( !e ){
-		console.log( typeof stdout );
-		console.log( stdout );
-		console.log( stdout );
-	}
-});
+//assert.equal(1, true, 'Truthy');
+//assert.notEqual(1, true, 'Truthy');
+//assert.ok('this is a string', 'strings that are not empty are truthy');
+//assert.ok(0, 'zero is not truthy');

@@ -179,44 +179,52 @@ require(['jquery', 'global', 'tag', 'artDialog', 'artDialogPlus', 'validator', '
         art.dialog({
             id:'save', title:'保存', content:$editorSavePopup.get(0), lock:true, fixed:true,
             okValue:'我负全责', ok:function(){
-                var dialog = this,
-                    ok = $(this.dom.buttons[0]).find(':button').eq(0),
-                    cancel = ok.next();
+                var dialog = this
+	                , ok = $(this.dom.buttons[0]).find(':button').eq(0)
+	                , cancel = ok.next()
+	                , title
+	                , content = '<div class="module module-normal module-popup'
+	                , status = 'error'
+	                ;
 
                 $.ajax({
-                    url: $editorSaveForm.attr('action'),
-                    data: $editorSaveForm.serialize() +'&'+ $codeForm.serialize(),
-                    type: $editorSaveForm.attr('method'),
-                    dataType: 'json',
-                    success: function(data){
+                    url: $editorSaveForm.attr('action')
+	                , data: $editorSaveForm.serialize() +'&'+ $codeForm.serialize()
+	                , type: $editorSaveForm.attr('method')
+	                , dataType: 'json'
+	                , success: function(data){
                         if( 'succ' in data ){
-                            dialog.title('恭喜');
-                            dialog.content('<div id="info" class="admire">恭喜你，你成功了！</div>');
-                            ok.remove();
-                            cancel.remove();
+	                        title = '恭喜';
+	                        content += ' popup-success"><p class="msg msg-success">恭喜你，你成功了！</p></div>';
 
-                            if( $('#id').val() === '0' ){
-                                location.href = location.href.replace(/id=(\d*)$/, 'id='+ data.id);
-                            }
-                            else{
-                                dialog.time(3000);
-                            }
+	                        status = data.id;
+                        }
+                        else if( 'error' in data ){
+	                        title = '出现错误';
+	                        content += ' popup-error"><p class="msg msg-error">'+ data.msg +'</p></div>';
                         }
                         else{
-                            dialog.title('奇怪');
-                            dialog.content('<div id="info" class="error">产生了一些未知异常，不过我估计是你的问题！</div>');
-                            ok.remove();
-                            cancel.remove();
-                            dialog.time(3000);
+	                        title = '不知道什么状况';
+	                        content += ' popup-error"><p class="msg msg-error">产生了一些未知异常，不过我估计是你的问题！</p></div>';
                         }
-                    },
-                    error: function(){
-                        dialog.title('唉。。。');
-                        dialog.content('<div id="info" class="wrong">连接服务器失败，唉，你那可悲的网络，我也不说啥了。。</div>');
+                    }
+	                , error: function(){
+	                    title = '唉。。。';
+	                    content += ' popup-error"><p class="msg msg-error">连接服务器失败，唉，你那可悲的网络，我也不说啥了。。</p>';
+                    }
+	                , complete: function(){
+		                dialog.title( title );
+		                dialog.content( content );
                         ok.remove();
                         cancel.remove();
-                        dialog.time(3000);
-                    }
+
+                        if( status !== 'error' && $('#id').val() === '0' ){
+                            location.href = location.href.replace(/id=(\d*)$/, 'id='+ status);
+                        }
+                        else{
+                            dialog.time(3000);
+                        }
+	                }
                 });
                 return false;
             },
@@ -358,6 +366,4 @@ require(['jquery', 'global', 'tag', 'artDialog', 'artDialogPlus', 'validator', '
 //	});
 ////	g.$win.triggerHandler('resize');
 //	g.win.resize.fire();
-
-
 });

@@ -46,8 +46,12 @@ require(['jquery', 'global'], function($, g){
 /**
  * 时间模块
  * */
-    var $watch = $('#watch'),
-        $hourHand, $minuteHand, $secondHand, setTime;
+    var $watch = $('#watch')
+		, $hourHand
+		, $minuteHand
+		, $secondHand
+		, setTime
+		;
 
     if( !g.ie ){
         var prefix,

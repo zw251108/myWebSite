@@ -24,7 +24,7 @@ var exec = require('child_process').exec,
 console.log( cmd );
 exec(cmd, {
     encoding: 'utf-8'
-}, function(error, stdout, stderr) {
+}, function(error, stdout, stderr){
     if(error !== null) {
         console.log(error);
         return;

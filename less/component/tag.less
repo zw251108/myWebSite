@@ -64,7 +64,12 @@
     }
 }
 .tag-checked{
-    color: @tags-checked-c; // #c0c0c0;
+	background: @tags-checked-bg;
+//    color: @tags-checked-c; // #c0c0c0;
+
+	&:before{
+		border-color: transparent @tags-checked-bg transparent transparent;
+	}
 }
 
 .tagsArea{

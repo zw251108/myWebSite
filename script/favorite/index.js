@@ -215,8 +215,9 @@ require(['jquery', 'global', 'tag', 'filter',
                     else{
                         // 显示错误信息
 	                    art.dialog({
-		                    title: 'Error', fixed: true, lock: true,
-		                    content: '<div class="module module-normal module-popup msg msg-error">'+ data.msg +'</div>',
+		                    title: '出现错误', fixed: true, lock: true,
+		                    content: '<div class="module module-normal module-popup popup-error">' +
+			                    '<p class="msg msg-error">'+ data.msg +'</p></div>',
 		                    cancelValue: '确定', cancel: function(){}
 	                    });
                     }

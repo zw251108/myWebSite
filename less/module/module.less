@@ -92,6 +92,8 @@
 
 //----- 功能模块样式 -----
 // 以下顺序同时为 metro.png 中图标的顺序
+@import "user.less";        // 用户中心
+
 @import "palette.less";     // 调色板
 
 @import "document.less";    // 文档
@@ -174,6 +176,9 @@
 }
 
 // 动态磁砖颜色
+.module-user{
+	background-color: @c184;
+}
 .module-palette{
 	background-color: @c209;
 }

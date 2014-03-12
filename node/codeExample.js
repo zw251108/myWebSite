@@ -443,9 +443,73 @@
 //cat.stdin.end();
 
 //---------- assert ----------
-var assert = require('assert')
-	;
+/**
+ *
+ * */
+//var assert = require('assert')
+//	;
 //assert.equal(1, true, 'Truthy');
 //assert.notEqual(1, true, 'Truthy');
 //assert.ok('this is a string', 'strings that are not empty are truthy');
 //assert.ok(0, 'zero is not truthy');
+//assert.strictEqual('', false);
+//assert.notStrictEqual('', false);
+//assert.deepEqual({
+//	a: 1
+//}, {
+//	a: 1
+//});
+//assert.deepEqual({
+//	a: {
+//		a: 1
+//	}
+//}, {
+//	a: {
+//		a: 1
+//	}
+//});
+//assert.notDeepEqual({
+//	a: 1
+//}, {
+//	a: 2
+//});
+//assert.notDeepEqual({
+//	a: {
+//		a: 1
+//	}
+//}, {
+//	a: {
+//		a: 2
+//	}
+//});
+//assert.throws(function(){
+//	throw new Error('seven fingers.ten is too mainstream.');
+//});
+//assert.doesNotThrow(function(){
+//	throw new Error('i lived in the ocean way before nemo');
+//});
+
+//---------- vm ----------
+/**
+ * 虚拟机
+ * */
+var vm = require('vm')
+	, fs = require('fs')
+	, code = fs.readFileSync('db.js')
+	, script = vm.createScript( code )
+	, rs = vm.runInThisContext('1+1')
+	, e = 0
+	, v = 0
+	, context = {
+		alphabet: ''
+	}
+	;
+//console.log( rs, eval(e=e+1), e, vm.runInThisContext('v=v+1') );
+//console.log( rs, eval(e=e+1), e, vm.runInThisContext('v=0'), vm.runInThisContext('v=v+1') );
+//console.log( vm.runInNewContext('alphabet+="a"', context) );
+//console.log( vm.runInNewContext('alphabet+="b"', context) );
+console.log( code );
+console.log( script.runInNewContext({
+	console: console
+	, require: require
+}) );

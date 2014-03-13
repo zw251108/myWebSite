@@ -493,23 +493,277 @@
 /**
  * 虚拟机
  * */
-var vm = require('vm')
-	, fs = require('fs')
-	, code = fs.readFileSync('db.js')
-	, script = vm.createScript( code )
-	, rs = vm.runInThisContext('1+1')
-	, e = 0
-	, v = 0
-	, context = {
-		alphabet: ''
+//var vm = require('vm')
+//	, fs = require('fs')
+//	, code = fs.readFileSync('db.js')
+//	, script = vm.createScript( code )
+//	, rs = vm.runInThisContext('1+1')
+//	, e = 0
+//	, v = 0
+//	, context = {
+//		alphabet: ''
+//	}
+//	;
+////console.log( rs, eval(e=e+1), e, vm.runInThisContext('v=v+1') );
+////console.log( rs, eval(e=e+1), e, vm.runInThisContext('v=0'), vm.runInThisContext('v=v+1') );
+////console.log( vm.runInNewContext('alphabet+="a"', context) );
+////console.log( vm.runInNewContext('alphabet+="b"', context) );
+//console.log( code );
+//console.log( script.runInNewContext({
+//	console: console
+//	, require: require
+//}) );
+
+//---------- CouchDB ----------
+/**
+ * 连接 CouchDB
+ * */
+var http = require('http')
+	, qs = require('querystring')
+	, url = require('url')
+	, options = {
+		host: '127.0.0.1'
+		, port: 5984
+	}
+	, createDB = function(res, dbname){
+		var request
+			;
+
+		options.path = '/'+ dbname;
+		options.method = 'PUT';
+
+		request = http.request( options );
+		request.end();
+		request.on('response', function( response ){
+			response.on('end', function(){
+				if( response.statusCode == 201 ){
+					showDBs(res, dbname +' created');
+				}
+				else{
+					showDBs(res, dbname + ' not created');
+				}
+			});
+		});
+	}
+	, deleteDB = function(res, dbpath){
+		var request
+			;
+
+		options.path = dbpath;
+		options.method = 'DELETE';
+
+		request = http.request( options );
+		request.end();
+		request.on('response', function( response ){
+			response.on('end', function(){
+				if( response.statusCode == 200 ){
+					showDBs(res, 'delete db');
+				}
+				else{
+					showDBs(res, 'not delete db');
+				}
+			});
+		});
+	}
+	, showDBs = function(res, message){
+		var request
+			;
+
+		options.path = '/_all_dbs';
+		options.method = 'GET';
+
+		request = http.request( options );
+		request.end();
+		request.on('response', function( response ){
+			var responseBody = ''
+				;
+
+			response.on('data', function(chunk){
+				responseBody += chunk;
+			});
+			response.on('end', function(){
+				var dbname
+					, dblist = JSON.parse( responseBody )
+					, i = 0
+					, j
+					;
+				res.writeHead(200, {
+					'Content-Type': 'text/html'
+				});
+				res.write('<form method="post">');
+				res.write('new db name: <input type="text" name="dbname" />');
+				res.write('<input type="submit" value="提交" />');
+				res.write('</form>');
+
+				if( null != message ){
+					res.write('<h1>'+ message +'</h1>');
+				}
+
+				res.write('<h1>active db:</h1>');
+				res.write('<ul>');
+
+				for(j = dblist.length; i < j; i++){
+					dbname = dblist[i];
+
+					res.write('<li><a href="/'+ dbname +'">'+ dbname +'</a></li>');
+				}
+
+				res.write('</ul>');
+				res.end();
+			});
+		})
 	}
 	;
-//console.log( rs, eval(e=e+1), e, vm.runInThisContext('v=v+1') );
-//console.log( rs, eval(e=e+1), e, vm.runInThisContext('v=0'), vm.runInThisContext('v=v+1') );
-//console.log( vm.runInNewContext('alphabet+="a"', context) );
-//console.log( vm.runInNewContext('alphabet+="b"', context) );
-console.log( code );
-console.log( script.runInNewContext({
-	console: console
-	, require: require
-}) );
+//http.createServer(function(req, res){
+//	var body = ''
+//		, path
+//		;
+//	if( req.method == 'POST' ){
+//		req.on('data', function( data ){
+//			body += data;
+//		});
+//		req.on('end', function( data ){
+//			var POST = qs.parse( body )
+//				, dbname = POST['dbname']
+//				;
+//
+//			if( null != dbname ){
+//				createDB(res, dbname);
+//			}
+//			else{
+//				showDBs(res, 'bad db name, can not create');
+//			}
+//		});
+//	}
+//	else{
+//		path = url.parse( req.url ).pathname;
+//
+//		if( path != '/' ){
+//			deleteDB(res, path);
+//		}
+//		else{
+//			showDBs( res );
+//		}
+//	}
+//}).listen( 8080 );
+//http.createServer(function(req, res){
+//	var client
+//		, request
+//		, options = {
+//			host: '127.0.0.1'
+//			, port: 5984
+//		}
+////		client = http.createClient(5984, '127.0.0.1')
+////		, request = client.request('GET', '/_all_dbs')
+//		;
+//
+///**
+// * 获取 CouchDB 的数据列表
+// * */
+//	options.path = '/_all_dbs';
+//	options.method = 'GET';
+// 	request = http.request( options );
+// 	request.end();
+//	request.on('response', function(response){
+//		var responseBody = '';
+//
+//		response.on('data', function(chunk){
+//			responseBody += chunk;
+//		});
+//
+//		response.on('end', function(){
+//			res.writeHead(200, {'Content-type': 'text/plain'});
+//			res.write( responseBody );
+//			res.end();
+//		});
+//	});
+//
+///**
+// * 创建 CouchDB 数据库
+// * */
+////	options.path = '/dbname';
+////	options.method = 'PUT';
+////	request = http.request( options );
+////	request.end();
+////	request.on('response', function( respones ){
+////		respones.on('end', function(){
+////			if( respones.statusCode == 201 ){
+////				console.log( 'DB success created' );
+////			}
+////			else{
+////				console.log('could not create db');
+////			}
+////		})
+////	});
+//
+///**
+// * 删除 CouchDB 数据库
+// * */
+//	options.path = '/dbname';
+//	options.method = 'DELETE';
+// 	request = http.request( options );
+//	request.on('response', function(response){
+//		response.on('end', function(){
+//			if( response.statusCode == 200 ){
+//				console.log('delete db');
+//			}
+//			else{
+//				console.log('could not delete db');
+//			}
+//		});
+//	});
+//}).listen(8080);
+
+/**
+ * 使用 felix-couchdb
+ * */
+var couchdb = require('felix-couchdb')
+	, dbHost = '127.0.0.1'
+	, dbPort = 5984
+	, dbName = 'users'
+	, client = couchdb.createClient(dbPort, dbHost)
+	, db = client.db( dbName )
+	, user = {
+		name: {
+			first: 'jhon'
+			, last: 'doe'
+		}
+	}
+	;
+// 创建表
+db.exists(function(err, exists){
+	if( !exists ){
+		db.create();
+		console.log('db '+ dbName +' created');
+	}
+	else{
+		console.log('db '+ dbName +' exists');
+	}
+});
+//// 创建文档
+//db.saveDoc('jdoe', user, function(err, doc){
+//	if( err ){
+//		console.log( JSON.stringify( err ) );
+//	}
+//	else{
+//		console.log('Saved user');
+//	}
+//});
+//// 取回一条记录
+//db.getDoc('jdoe', function(err, doc){
+//	console.log( doc )
+//});
+
+// 更新记录
+db.getDoc('jdoe', function(err, doc){
+	console.log( doc );
+
+	doc.name.first = 'Johonny';
+	doc.email = 'jdoe@johndoe.com';
+
+	db.saveDoc('jdoe', doc);
+
+	db.getDoc('jdoe', function(err, revisedUser){
+		console.log( revisedUser );
+	});
+});

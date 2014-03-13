@@ -22,15 +22,27 @@ body{
     padding: 0;
 }
 aside{
-    float: left;
-    width: 195px;
-    border-right: 5px solid #c0c0c0;
+	position: fixed;
+
+	bottom: 0;
+	left: 0;
+	top: 0;
+
+	width: 195px;
+
+	border-right: 5px solid #c0c0c0;
 }
 h2{
     text-align:center;
 }
 .main{
-    float: left;
+	position: fixed;
+
+	bottom: 0;
+	left: 200px;
+	right: 0;
+	top: 0;
+
     border: none;
     margin: 0;
     padding: 0;
@@ -51,12 +63,20 @@ h2{
 <script src="../script/lib/jQuery/jquery-1.10.2.min.js"></script>
 <script>
 $(function(){
-    var doc = document.documentElement,
-        h = doc.clientHeight,
-        w = doc.clientWidth;
-                                    console.log(h, w)
-    $('aside').height( h );
-    $('iframe').height( h ).width( w -200 );
+    var doc = document.documentElement
+		, h
+		, w
+		, $iframe = $('iframe')
+		, resize = function(){
+			var h = doc.clientHeight
+				, w = doc.clientWidth
+				;
+			$iframe.height(h).width(w -200);
+		}
+		;
+
+	resize();
+	$(window).on('resize', resize);
 });
 </script>
 </body>

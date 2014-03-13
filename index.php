@@ -127,9 +127,7 @@ ini_set('date.timezone','Asia/Shanghai');
     </section>
 -->
 <!--    <section class="module module-metro module-tiny module-market"></section>-->
-
 <?php require_once('footer.php');?>
-
 <script data-main="script/index" src="script/lib/require/require.js"></script>
 </body>
 </html>

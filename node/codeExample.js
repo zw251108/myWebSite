@@ -518,102 +518,102 @@
 /**
  * 连接 CouchDB
  * */
-var http = require('http')
-	, qs = require('querystring')
-	, url = require('url')
-	, options = {
-		host: '127.0.0.1'
-		, port: 5984
-	}
-	, createDB = function(res, dbname){
-		var request
-			;
-
-		options.path = '/'+ dbname;
-		options.method = 'PUT';
-
-		request = http.request( options );
-		request.end();
-		request.on('response', function( response ){
-			response.on('end', function(){
-				if( response.statusCode == 201 ){
-					showDBs(res, dbname +' created');
-				}
-				else{
-					showDBs(res, dbname + ' not created');
-				}
-			});
-		});
-	}
-	, deleteDB = function(res, dbpath){
-		var request
-			;
-
-		options.path = dbpath;
-		options.method = 'DELETE';
-
-		request = http.request( options );
-		request.end();
-		request.on('response', function( response ){
-			response.on('end', function(){
-				if( response.statusCode == 200 ){
-					showDBs(res, 'delete db');
-				}
-				else{
-					showDBs(res, 'not delete db');
-				}
-			});
-		});
-	}
-	, showDBs = function(res, message){
-		var request
-			;
-
-		options.path = '/_all_dbs';
-		options.method = 'GET';
-
-		request = http.request( options );
-		request.end();
-		request.on('response', function( response ){
-			var responseBody = ''
-				;
-
-			response.on('data', function(chunk){
-				responseBody += chunk;
-			});
-			response.on('end', function(){
-				var dbname
-					, dblist = JSON.parse( responseBody )
-					, i = 0
-					, j
-					;
-				res.writeHead(200, {
-					'Content-Type': 'text/html'
-				});
-				res.write('<form method="post">');
-				res.write('new db name: <input type="text" name="dbname" />');
-				res.write('<input type="submit" value="提交" />');
-				res.write('</form>');
-
-				if( null != message ){
-					res.write('<h1>'+ message +'</h1>');
-				}
-
-				res.write('<h1>active db:</h1>');
-				res.write('<ul>');
-
-				for(j = dblist.length; i < j; i++){
-					dbname = dblist[i];
-
-					res.write('<li><a href="/'+ dbname +'">'+ dbname +'</a></li>');
-				}
-
-				res.write('</ul>');
-				res.end();
-			});
-		})
-	}
-	;
+//var http = require('http')
+//	, qs = require('querystring')
+//	, url = require('url')
+//	, options = {
+//		host: '127.0.0.1'
+//		, port: 5984
+//	}
+//	, createDB = function(res, dbname){
+//		var request
+//			;
+//
+//		options.path = '/'+ dbname;
+//		options.method = 'PUT';
+//
+//		request = http.request( options );
+//		request.end();
+//		request.on('response', function( response ){
+//			response.on('end', function(){
+//				if( response.statusCode == 201 ){
+//					showDBs(res, dbname +' created');
+//				}
+//				else{
+//					showDBs(res, dbname + ' not created');
+//				}
+//			});
+//		});
+//	}
+//	, deleteDB = function(res, dbpath){
+//		var request
+//			;
+//
+//		options.path = dbpath;
+//		options.method = 'DELETE';
+//
+//		request = http.request( options );
+//		request.end();
+//		request.on('response', function( response ){
+//			response.on('end', function(){
+//				if( response.statusCode == 200 ){
+//					showDBs(res, 'delete db');
+//				}
+//				else{
+//					showDBs(res, 'not delete db');
+//				}
+//			});
+//		});
+//	}
+//	, showDBs = function(res, message){
+//		var request
+//			;
+//
+//		options.path = '/_all_dbs';
+//		options.method = 'GET';
+//
+//		request = http.request( options );
+//		request.end();
+//		request.on('response', function( response ){
+//			var responseBody = ''
+//				;
+//
+//			response.on('data', function(chunk){
+//				responseBody += chunk;
+//			});
+//			response.on('end', function(){
+//				var dbname
+//					, dblist = JSON.parse( responseBody )
+//					, i = 0
+//					, j
+//					;
+//				res.writeHead(200, {
+//					'Content-Type': 'text/html'
+//				});
+//				res.write('<form method="post">');
+//				res.write('new db name: <input type="text" name="dbname" />');
+//				res.write('<input type="submit" value="提交" />');
+//				res.write('</form>');
+//
+//				if( null != message ){
+//					res.write('<h1>'+ message +'</h1>');
+//				}
+//
+//				res.write('<h1>active db:</h1>');
+//				res.write('<ul>');
+//
+//				for(j = dblist.length; i < j; i++){
+//					dbname = dblist[i];
+//
+//					res.write('<li><a href="/'+ dbname +'">'+ dbname +'</a></li>');
+//				}
+//
+//				res.write('</ul>');
+//				res.end();
+//			});
+//		})
+//	}
+//	;
 //http.createServer(function(req, res){
 //	var body = ''
 //		, path
@@ -717,29 +717,29 @@ var http = require('http')
 /**
  * 使用 felix-couchdb
  * */
-var couchdb = require('felix-couchdb')
-	, dbHost = '127.0.0.1'
-	, dbPort = 5984
-	, dbName = 'users'
-	, client = couchdb.createClient(dbPort, dbHost)
-	, db = client.db( dbName )
-	, user = {
-		name: {
-			first: 'jhon'
-			, last: 'doe'
-		}
-	}
-	;
-// 创建表
-db.exists(function(err, exists){
-	if( !exists ){
-		db.create();
-		console.log('db '+ dbName +' created');
-	}
-	else{
-		console.log('db '+ dbName +' exists');
-	}
-});
+//var couchdb = require('felix-couchdb')
+//	, dbHost = '127.0.0.1'
+//	, dbPort = 5984
+//	, dbName = 'users'
+//	, client = couchdb.createClient(dbPort, dbHost)
+//	, db = client.db( dbName )
+//	, user = {
+//		name: {
+//			first: 'jhon'
+//			, last: 'doe'
+//		}
+//	}
+//	;
+//// 创建表
+//db.exists(function(err, exists){
+//	if( !exists ){
+//		db.create();
+//		console.log('db '+ dbName +' created');
+//	}
+//	else{
+//		console.log('db '+ dbName +' exists');
+//	}
+//});
 //// 创建文档
 //db.saveDoc('jdoe', user, function(err, doc){
 //	if( err ){
@@ -753,17 +753,30 @@ db.exists(function(err, exists){
 //db.getDoc('jdoe', function(err, doc){
 //	console.log( doc )
 //});
+//
+//// 更新记录
+//db.getDoc('jdoe', function(err, doc){
+//	console.log( doc );
+//
+//	doc.name.first = 'Johonny';
+//	doc.email = 'jdoe@johndoe.com';
+//
+//	db.saveDoc('jdoe', doc);
+//
+//	db.getDoc('jdoe', function(err, revisedUser){
+//		console.log( revisedUser );
+//	});
+//});
+//
+//// 删除数据
+//db.getDoc('jdoe', function(err, doc){
+//	console.log(doc);
+//	db.removeDoc(doc._id, doc._rev);
+//});
 
-// 更新记录
-db.getDoc('jdoe', function(err, doc){
-	console.log( doc );
+//---------- Redis ----------
+/**
+ * Redis
+ * */
 
-	doc.name.first = 'Johonny';
-	doc.email = 'jdoe@johndoe.com';
-
-	db.saveDoc('jdoe', doc);
-
-	db.getDoc('jdoe', function(err, revisedUser){
-		console.log( revisedUser );
-	});
-});
+//---------- MongoDB ----------

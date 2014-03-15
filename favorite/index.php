@@ -73,7 +73,9 @@ $allTag = $tag->selectTagByLevel();
 			</div>
 		</div>
 
-        <input class="btn btn-submit" type="submit" value="添加收藏"/>
+		<div class="form_group-btn">
+			<input class="btn btn-submit" type="submit" value="添加收藏"/>
+		</div>
     </form>
 </section>
 

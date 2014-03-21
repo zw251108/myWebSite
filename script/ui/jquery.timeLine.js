@@ -4,7 +4,7 @@
  * @version 0.1
  * @function    $.timeLine
  * @param   {object}
- *  container   {string|object}    输出时间轴的目标容器 jQuery 选择器或 DOM 对象或 jQuery 对象
+ *  container   {string|object}    输出时间轴的目标容器 jQuery 选择器|jQuery 对象
  *  showLine    {boolean}   是否显示中轴线
  *  dateFormat  {function}  对 data 数组中的 date 进行格式处理的函数
  *                  默认处理 yyyy-mm-dd hh:ii:ss 格式字符串或 13位数字的时间戳

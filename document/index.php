@@ -13,18 +13,17 @@ require_once('../include/Config.inc.php');
 <title>Web 前端编码规范</title>
 <?php require_once('../style.php');?>
 <link rel="stylesheet" href="../script/plugin/syntaxhighlighter/style/shCoreDefault.css"/>
-<!--<link rel="stylesheet" href="../script/plugin/syntaxhighlighter/style/shThemeEclipse.css"/>-->
 </head>
 <body class="Container">
 <?php require_once('../header.php');?>
-<section class="module module-large module-main module-document">
+<section class="module module-large module-main module-document" id="doc">
     <h2 class="module_title">前端文档 document</h2>
     <div class="module_content">
         <section class="document_section section">
             <h3 class="section_title">前言
                 <span class="icon-CSS icon-minus"></span>
             </h3>
-            <dl class="list">
+            <dl>
                 <dt class="icon icon-arrow-r">为何规范</dt>
                 <dd>
                     <p>规范并不是一种限制，而是约定，强调团队的一致性；加强团队之间的合作，提高协作效率，优化项目和流程，形成一种团队文化；产品设计通过规范的方式来达到以用户为中心的目的；以标准化的方式设计界面，使最终设计出来的界面风格一致化；前端开发编码人员相互之间开发更轻松，同时便于服务器端开发人员添加功能及前端后期优化维护；最终是为项目服务的，遵循统一的操作规范，减少和改变责任不明，任务不清和由此产生的信息沟通不畅、反复修改、重复劳动、效率低下的现象，提高工作效率。</p>
@@ -88,7 +87,7 @@ require_once('../include/Config.inc.php');
             <h3 class="section_title">HTML 编码规范
                 <span class="icon-CSS icon-minus"></span>
             </h3>
-            <dl class="list">
+            <dl>
                 <dt class="icon icon-arrow-r">文件命名</dt>
                 <dd>英文命名，后缀为 .html，同时同目录需创建“必读.txt”文件，里面须有二级目录和对应的 html 文件，以及提醒开发人员需要注意的地方，以方便开发人员添加功能时查找对应页面。</dd>
                 <dt class="icon icon-arrow-r">文档类型声明及编码</dt>
@@ -473,7 +472,7 @@ require_once('../include/Config.inc.php');
             <h3 class="section_title">CSS 编码规范
                 <span class="icon-CSS icon-minus"></span>
             </h3>
-            <dl class="list">
+            <dl>
                 <dt class="icon icon-arrow-r">文件命名</dt>
                 <dd>英文命名，后缀为 .css
 
@@ -1002,7 +1001,7 @@ require_once('../include/Config.inc.php');
             <h3 class="section_title">JS 编码规范
                 <span class="icon-CSS icon-minus"></span>
             </h3>
-            <dl class="list">
+            <dl>
                 <dt class="icon icon-arrow-r">文件命名</dt>
                 <dd>
                     <p>英文命名，后缀为 .js，公用文件 common.js/base.js/lib.js/core.js，其他按实际模块需求命名</p>
@@ -2084,7 +2083,7 @@ require_once('../include/Config.inc.php');
             <h3 class="section_title">图片优化
                 <span class="icon-CSS icon-minus"></span>
             </h3>
-            <dl class="list">
+            <dl>
                 <dt class="icon icon-arrow-r">矢量图</dt>
                 <dd>缩放、旋转不失真的图像格式。存储的文件较小，但是很难表现色彩层次丰富的逼真图像效果，图片格式：EPS、CDR、AI、WMF，主要应用于印刷</dd>
                 <dt class="icon icon-arrow-r">位图</dt>
@@ -2129,7 +2128,7 @@ require_once('../include/Config.inc.php');
             <h3 class="section_title">服务器端优化
                 <span class="icon-CSS icon-minus"></span>
             </h3>
-            <dl class="list">
+            <dl>
                 <dt class="icon icon-arrow-r">请减少HTTP请求</dt>
                 <dd>
                     <p>合并图片，图片较多的页面可以使用 lazyLoad 等技术</p>
@@ -2173,7 +2172,7 @@ require_once('../include/Config.inc.php');
             <h3 class="section_title">基于 jQuery 的规范和优化
                 <span class="icon-CSS icon-minus"></span>
             </h3>
-            <dl class="list">
+            <dl>
                 <dt class="icon icon-arrow-r">版本</dt>
                 <dd>总是使用最新的版本，因为新版本会改进性能，还有很多新功能</dd>
                 <dt class="icon icon-arrow-r">选择器</dt>
@@ -2453,7 +2452,7 @@ require_once('../include/Config.inc.php');
             <h3 class="section_title">浏览器兼容
                 <span class="icon-CSS icon-minus"></span>
             </h3>
-            <dl class="list">
+            <dl>
                 <dt class="icon icon-arrow-r">浮动元素的双倍 Margin</dt>
                 <dd>
                     <p>浏览器版本：IE 6</p>
@@ -2503,7 +2502,7 @@ require_once('../include/Config.inc.php');
             <h3 class="section_title">JavaScript 设计模式
                 <span class="icon-CSS icon-minus"></span>
             </h3>
-            <dl class="list">
+            <dl>
                 <dt class="icon icon-arrow-r">单例模式</dt>
                 <dd>
 <!--                    //            RobotMaker = function RobotMaker(name){-->
@@ -2728,7 +2727,7 @@ require_once('../include/Config.inc.php');
             <h3 class="section_title">设计建议
                 <span class="icon-CSS icon-minus"></span>
             </h3>
-            <dl class="list">
+            <dl>
                 <dt class="icon icon-arrow-r">阴影</dt>
                 <dd>
                     <p>注意阴影颜色的深浅</p>

@@ -24,8 +24,7 @@ $allTag = $tag->selectTagByLevel();
 <body class="Container">
 <?php require_once('../header.php');?>
 <section class="module module-main module-large module-favor">
-    <h2 class="module_title">收藏夹 Favorite
-    </h2>
+    <h2 class="module_title">收藏夹 favorite</h2>
 
 	<div class="toolBar">
 		<button class="btn icon icon-add" id="addFavor" type="button" value="">添加</button>
@@ -40,7 +39,7 @@ $allTag = $tag->selectTagByLevel();
 		</div>
 	</div>
 
-    <ul class="module_content favor_list" id="favorList"></ul>
+    <ul class="module_content list favor_list" id="favorList"></ul>
 
     <div class="pagination favor_page" id="Pagination"></div>
 </section>

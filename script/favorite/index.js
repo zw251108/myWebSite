@@ -36,14 +36,13 @@ require(['jquery', 'global', 'tag', 'filter',
                     return html.join('');
                 }
             }
-        }),
-	    $favorList = $('#favorList'),
-
-	    currData = FAVOR_LIST,
-	    page = 1,
-        size = 20,
-        count = currData.length,
-	    $pagination = $.pagination({
+        })
+	    , $favorList = $('#favorList')
+	    , currData = FAVOR_LIST
+	    , page = 1
+	    , size = 20
+	    , count = currData.length
+	    , $pagination = $.pagination({
 		    container: '#Pagination',
 		    pageIndex: page,
 		    pageSize: size,
@@ -54,16 +53,17 @@ require(['jquery', 'global', 'tag', 'filter',
 
 			    page = index;
 		    }
-	    }),
-
-        add,
-        $favorAddPopup = $('#favorAddPopup'),
-        $favorAddForm;
+	    })
+	    , add
+	    , $favorAddPopup = $('#favorAddPopup')
+	    , $favorAddForm
+	    ;
 
     $filter.triggerHandler('setFilter', [function(filterStr){    console.log( filterStr );
-	    var i = 0,
-		    temp,
-		    filterExpr;
+	    var i = 0
+		    , temp
+		    , filterExpr
+		    ;
 
 	    if( !filterStr ){
 		    currData = FAVOR_LIST;
@@ -93,31 +93,31 @@ require(['jquery', 'global', 'tag', 'filter',
     $favorList.html( favorTmpl(currData, 0, size) );
 
     $.validator.validType.url = {
-        type:['required', '请填写收藏 url'],
-	    focus: '请填写收藏 url',
-        valid:[
+        type:['required', '请填写收藏 url']
+	    , focus: '请填写收藏 url'
+	    , valid:[
             ['url']
-        ],
-        text:['请填写合法的 url'],
-        right:'填写正确'
+        ]
+	    , text:['请填写合法的 url']
+	    , right:'填写正确'
     };
     $.validator.validType.title = {
-        type:['required', '请填写收藏标题'],
-	    focus: '请填写收藏标题',
-        valid:[
+        type:['required', '请填写收藏标题']
+	    , focus: '请填写收藏标题'
+	    , valid:[
             ['length', 0, 50]
-        ],
-        text:['请将标题限制在 50 个字内'],
-        right:'填写正确'
+        ]
+	    , text:['请将标题限制在 50 个字内']
+	    , right:'填写正确'
     };
     $favorAddForm = $.validator({
-        selector: '#favorAddForm',
-        normal:function(){
+        selector: '#favorAddForm'
+	    , normal:function(){
 	        this.prev().removeClass('tips-focus tips-error tips-succ hidden').hide();
-        },
-        focus:function(txt){
-	        var offset,
-		        tips = this.prev();
+        }
+	    , focus:function(txt){
+	        var offset
+		        , tips = this.prev();
 
 	        tips.addClass('tips-focus').removeClass('tips-error tips-succ hidden').html(txt).show();
 
@@ -131,8 +131,8 @@ require(['jquery', 'global', 'tag', 'filter',
 	        }
         },
         wrong:function(txt){
-	        var offset,
-		        tips = this.prev();
+	        var offset
+		        , tips = this.prev();
 
 	        tips.addClass('tips-error').removeClass('tips-focus tips-succ hidden').html(txt).show();
 
@@ -146,8 +146,8 @@ require(['jquery', 'global', 'tag', 'filter',
 	        }
         },
         right:function(txt){
-	        var offset,
-		        tips = this.prev();
+	        var offset
+		        , tips = this.prev();
 
             tips.addClass('tips-succ').removeClass('tips-focus tips-error hidden').html(txt)
 	            .delay('500').fadeOut();
@@ -166,8 +166,8 @@ require(['jquery', 'global', 'tag', 'filter',
 
     $('#addFavor').on('click', function(){
         add = art.dialog({
-            title: '添加收藏', content: $favorAddPopup.get(0), lock: true, fixed: true,
-            cancelValue: '取消', cancel: function(){
+            title: '添加收藏', content: $favorAddPopup.get(0), lock: true, fixed: true
+	        , cancelValue: '取消', cancel: function(){
 		        // 表单数据重置
 		        $favorAddForm.reset();
 

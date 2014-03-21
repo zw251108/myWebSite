@@ -20,7 +20,7 @@ if( isset($_SERVER['HTTP_X_REQUESTED_WITH']) &&
             $res['exit'] = true;
         }
         else{
-            $res['Id'] = $tag->insertTag($tagName);
+            $res['Id'] = $tag->insertTag( $tagName );
         }
 
         echo json_encode( $res );

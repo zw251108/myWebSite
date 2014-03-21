@@ -17,21 +17,23 @@ ini_set('date.timezone','Asia/Shanghai');
 <body class="Container">
 <?php require_once('header.php');?>
 
-    <a href="blog/">
+<a href="blog/">
     <section class="module module-metro module-big module-blog">
         <h2 class="module_title">
 			博客<br/>blog
 		</h2>
         <span class="module_info"></span>
     </section>
-    </a>
-	<a href="">
+</a>
+
+<a href="">
     <section class="module module-metro module-tiny module-user">
         <h2 class="module_title">
 			用户中心<br/>user
 		</h2>
     </section>
-	</a>
+</a>
+
     <section class="module module-metro module-tiny module-watch">
         <h2 class="module_title">
 			时间<br/>time
@@ -54,6 +56,7 @@ ini_set('date.timezone','Asia/Shanghai');
             <span class="watch_mark watch_mark-12"></span>
         </div>
     </section>
+
 <!--<a href="calendar/">-->
     <section class="module module-metro module-tiny module-calendar" id="calendar">
         <h2 class="module_title">
@@ -63,41 +66,54 @@ ini_set('date.timezone','Asia/Shanghai');
         <div class="calendar_today"><?php echo date('d');?></div>
     </section>
 <!--</a>-->
+
 	<section class="module module-metro module-small module-weather" id="weather">
 		<h2 class="module_title">
 			天气预报<br/>weather
 		</h2>
 		<div class="module_info"></div>
 	</section>
-	<a href="document/">
+
+<a href="document/">
 	<section class="module module-metro module-tiny module-document">
 		<h2 class="module_title">
 			前端文档<br/>document
 		</h2>
 	</section>
-	</a>
-    <a href="editor/">
+</a>
+
+<a href="editor/">
     <section class="module module-metro module-small module-editor">
         <h2 class="module_title">
 			编辑器<br/>editor
 		</h2>
         <span class="module_info"></span>
     </section>
-    </a>
-	<a href="favorite">
+</a>
+
+<a href="favorite">
 	<section class="module module-metro module-normal module-favor">
 		<h2 class="module_title">
 			收藏夹<br/>favorite
 		</h2>
 	</section>
-	</a>
-	<a href="palette/">
+</a>
+
+<a href="palette/">
 	<section class="module module-metro module-small module-palette">
 		<h2 class="module_title">
 			调色板<br/>palette
 		</h2>
 	</section>
-	</a>
+</a>
+
+<a href="rss/">
+	<section class="module module-metro module-normal module-rss">
+		<h2 class="module_title">
+			订阅<br/>rss
+		</h2>
+	</section>
+</a>
 <!--
 <a href="timeLine/">
     <section class="module module-metro module-small module-timeLine">

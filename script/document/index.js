@@ -11,11 +11,31 @@ define('shCore', ['plugin/syntaxhighlighter/shCore'], function(){
 });
 require.config(MODULE_CONFIG);
 require(['jquery', 'global', 'shCore', 'shBrushCss', 'shBrushJScript', 'shBrushXml'], function($, g, s){
-    $('.module-document').on('click', '.section_title', function(){
-        $(this).parents('.section').find('dl').slideToggle()
-            .end().find('.icon-CSS').toggleClass('icon-plus icon-minus');
+
+	var $doc = $('#doc')
+		, $curr = null
+		, $temp = $([])
+		;
+
+    $doc.on('click', '.section_title', function(){
+
+	    $temp.add(this)
+		    .find('.icon-CSS').toggleClass('icon-plus icon-minus').end()
+		    .next('dl').slideToggle();
     }).on('click', 'dt', function(){
-        $(this).toggleClass('icon-arrow-r icon-arrow-d').next().slideToggle();
+
+	    if( $curr ){
+		    $curr.toggleClass('icon-arrow-r icon-arrow-d').next().slideToggle();
+
+		    if( $curr.is(this) ){
+			    $curr = null;
+			    return;
+		    }
+	    }
+
+	    $curr = $temp.add(this);
+
+	    $curr.toggleClass('icon-arrow-r icon-arrow-d').next().slideToggle();
     });
 
     SyntaxHighlighter.highlight();

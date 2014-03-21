@@ -1,0 +1,48 @@
+@charset "utf-8";
+
+@import "../lib/color.less";
+@import "../lib/grid.less";
+@import "../lib/z-index.less";
+
+//---------- Rss 订阅 ----------
+.module-rss{
+	background-image: url("../image/metro/Rss.png");
+
+	.module_title{
+		background-image:url("../image/default/rss.png");
+	}
+
+	.module_content{
+		margin-bottom: -@space;
+	}
+}
+
+.rss_list{
+//	float: left;
+
+//	width: 30%;
+//	min-width: 100px;
+
+	li{
+		background: @c29;
+	}
+
+	a{
+		display: block;
+		overflow: hidden;
+
+		width: 100%;
+
+		margin: 0 5px;
+
+		text-overflow: ellipsis;
+		-o-text-overflow: ellipsis;
+
+		white-space: nowrap;
+	}
+}
+.rss_content{
+	float: left;
+
+	background-color: #add8e6;
+}

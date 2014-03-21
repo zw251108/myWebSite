@@ -1,1 +1,165 @@
 @charset "utf-8";
+
+@import "../lib/color.less";
+
+@line1: @c208;  // @c191;
+@line2: @c177;  // @c213;
+@line3: @c94;
+@line4: @c116;    //
+@line5: @c175;
+@line6: @c213;
+
+@media screen and (min-width:480px) and (max-width:639px){
+	// 第一行
+	.module-blog{
+		background-color: @line1;
+	}
+
+
+	// 第二行
+	.module-user{
+		background-color: @line2;
+	}
+	.module-watch{
+		background-color: lighten(@line2, 10%);
+	}
+	.module-calendar{
+		background-color: lighten(@line2, 20%);
+	}
+
+	// 第三行
+	.module-weather{
+		background-color: @line3;
+	}
+	.module-document{
+		background-color: lighten(@line3, 10%);
+	}
+
+	// 第四行
+	.module-editor{
+		background-color: @line4;
+	}
+
+	// 第五行
+	.module-favor{
+		background-color: @line5;
+	}
+
+	// 第六行
+	.module-palette{
+		background-color: @line6;
+	}
+}
+
+@media screen and (min-width:640px) and (max-width:799px){
+	// 第一行
+	.module-blog{
+		background-color: @line1;
+	}
+	.module-user{
+		background-color: lighten(@line1, 10%);
+	}
+
+
+	// 第二行
+	.module-watch{
+		background-color: @line2;
+	}
+	.module-calendar{
+		background-color: lighten(@line2, 10%);
+	}
+	.module-weather{
+		background-color: lighten(@line2, 20%);
+	}
+
+	// 第三行
+	.module-document{
+		background-color: @line3;
+	}
+	.module-editor{
+		background-color: lighten(@line3, 10%);
+	}
+
+	// 第四行
+	.module-favor{
+		background-color: @line4;
+	}
+
+	// 第五行
+	.module-palette{
+		background-color: @line5;
+	}
+}
+
+@media screen and (min-width:800px) and (max-width:959px){
+	// 第一行
+	.module-blog{
+		background-color: @line1;
+	}
+	.module-user{
+		background-color: lighten(@line1, 10%);
+	}
+
+
+	// 第二行
+	.module-watch{
+		background-color: @line2;
+	}
+	.module-calendar{
+		background-color: lighten(@line2, 10%);
+	}
+	.module-weather{
+		background-color: lighten(@line2, 20%);
+	}
+	.module-document{
+		background-color: lighten(@line2, 30%);
+	}
+
+	// 第三行
+	.module-editor{
+		background-color: @line3;
+	}
+	.module-favor{
+		background-color: lighten(@line3, 10%);
+	}
+
+	// 第四行
+	.module-palette{
+		background-color: @line4;
+	}
+}
+
+@media screen and (min-width:1280px){
+	// 第一行
+	.module-blog{
+		background-color: @line1;
+	}
+	.module-user{
+		background-color: lighten(@line1, 10%);
+	}
+    .module-watch{
+	    background-color: lighten(@line1, 20%);
+    }
+    .module-calendar{
+	    background-color: lighten(@line1, 30%);
+    }
+
+    // 第二行
+	.module-weather{
+		background-color: @line2;
+	}
+    .module-document{
+	    background-color: lighten(@line2, 10%);
+    }
+    .module-editor{
+	    background-color: lighten(@line2, 20%);
+    }
+    .module-favor{
+	    background-color: lighten(@line2, 30%);
+    }
+
+    // 第三行
+	.module-palette{
+		background-color: @line3;
+	}
+}

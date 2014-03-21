@@ -780,3 +780,87 @@
  * */
 
 //---------- MongoDB ----------
+/**
+ * MongoDB 驱动
+ * */
+//var mongo = require('mongodb')
+//	, host = 'localhost'
+//	, port = mongo.Connection.DEFAULT_PORT
+//	, server = new mongo.Server(host, port, {auto_reconnect: true})
+//	, db = new mongo.Db('node-mongo-examples', server, {safe: true})
+//	;
+//
+//db.open(function(err, db){
+//	if( err ){
+//		console.log(err);
+//		return;
+//	}
+//	db.collection('users', {safe: true}, function(err, collection){
+//		collection.insert({
+//			username: 'bilbo'
+//			, firstname: 'shilbo'
+//		}, function(err, docs){
+//			console.log( docs );
+//			db.close();
+//		});
+//	})
+//});
+
+/**
+ * Mongoose 库 驱动 MongoDB
+ * */
+//var mongoose = require('mongoose')
+//	, Schema = mongoose.Schema
+//	, ObjectId = Schema.ObjectId
+//	, AuthorSchema = new Schema({
+//		name: {
+//			first: String
+//			, last: String
+//			, full: String
+//		}
+//		, contact: {
+//			email: String
+//			, twitter: String
+//			, google: String
+//		}
+//		, photo: String
+//	})
+//	, CommentSchema = new Schema({
+//		commenter: String
+//		, body: String
+//		, posted: Date
+//	})
+//	, ArticleSchema = new Schema({
+//		author: ObjectId
+//		, title: String
+//		, contents: String
+//		, published: Date
+//		, comments: [CommentSchema]
+//	})
+//	, Author = mongoose.model('Author', AuthorSchema)
+//	, Article = mongoose.model('Article', ArticleSchema)
+//	;
+//
+//mongoose.connect('mongodb://localhost:27017/upandrunning', function(err){
+//	if( err ){
+//		console.log('could not connect to mongo');
+//	}
+//});
+//
+//Author.save(function(err){
+//	if( err ){
+//		console.log('could not save author');
+//	}
+//});
+//Author.find(function(err, doc){
+//	console.log(doc);
+//});
+
+//---------- MySQL ----------
+/**
+ * NodeDB
+ * */
+
+/**
+ * Sequelize
+ * */

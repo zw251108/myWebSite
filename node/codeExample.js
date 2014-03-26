@@ -864,3 +864,165 @@
 /**
  * Sequelize
  * */
+
+//---------- PostgreSQL ----------
+/**
+ * pg 模块
+ * */
+
+//---------- 连接池 ----------
+/**
+ * generic-pool
+ * */
+//var poolModule = require('generic-pool')
+//	, mysql = require('mysql')
+//	, connectParam = {
+//		hostname: 'localhost'
+//		, pot: '3306'
+//		, user: 'root'
+//		, password: 'zw251108'
+//		, database: 'coding4fun'
+//	}
+//	, pool = poolModule.Pool({
+//		name: 'mysql'
+//		, create: function( callback ){
+////			var db = new mysql;
+//			var client = mysql.createConnection( connectParam );
+//		}
+//		, destroy: function( client ){
+//			client.end();
+//		}
+//		, max: 10
+//		, idleTimeoutMilles: 3000
+//		, log: true
+//	})
+//	;
+//pool.acquire(function(error, client){
+//	if( error ){
+//		return console.log('failed to connect');
+//	}
+//
+//	// 调用
+//	client.query('', function(){
+//
+//		pool.release( client );
+//	});
+//
+//});
+
+//---------- 消息队列协议 ----------
+/**
+ * RabbitMQ
+ * */
+
+//---------- Express ----------
+/**
+ * Express
+ * */
+//var express = require('express')
+////	, app = express.createServer()
+//	, app = express()
+//	, users = [{
+//		name: 'tj'
+//	}, {
+//		name: 'tom'
+//	}]
+//	;
+//
+//app.use( express.limit('1mb') );    // limit 把请求正文大小限制在 1MB 以内
+//app.use( express.bodyParser() );    // bodyParser 解析从 Web 浏览器发送来的请求正文，把表单变量转换成 express 使用的对象
+//app.use( express.methodOverride() );    // methodOverride 允许表单提交隐藏的 _method 变量，并把 get 方法替换掉，然后调用相应的 RESTful 方法
+//
+//app.all('/user/:id/:op?', function(req, res, next){
+//	req.user = users[req.params.id];
+//	console.log(req.user);
+//	if( req.user ){
+//		next();
+//	}
+//	else{
+//		next( new Error('can not find id: '+ req.params.id ) );
+//	}
+//});
+////app.get('/', function(req, res){
+////	res.send('hello world');
+////});
+//app.get(/^\/(\d+)$/, function(req, res){
+//	res.send( 'reg '+ req.params[0] );
+//});
+//app.get('/a*', function(req, res){
+//	res.send('a');
+//});
+//app.get('/:id(b\\d+)', function(req, res){
+//	if( req.params.id ){
+//		res.send( req.params.id );
+//	}
+//	else{
+//		res.send('hello world');
+//	}
+//});
+//app.get('/user/:id', function(req, res, next){
+//	var id = req.params.id;
+//	if( /^\d+$/.test( id ) ){
+//		res.send( 'id: '+ id );
+//	}
+//	else{
+//		next();
+//	}
+//});
+//app.get('/user/:name', function(req, res){
+//	var name = req.params.name;
+//	res.send( 'name: '+ name );
+//});
+//app.get('/user/:id/edit', function(req, res){
+//	res.send('edit user: '+ req.user.name);
+//});
+//app.get('/user/:id/getData.:format((json|xml))', function(req, res){
+//	res.send('{"name":"zwb"}');
+//});
+//app.get('*', function(req, res){
+//	res.send('<form action="/" method="post">' +
+//		'<input type="hidden" name="_method" value="put"/>' +
+//		'<input type="text" name="name"/>' +
+//		'<input type="submit" value="提交"/>' +
+//		'</form>');
+//});
+//
+//app.put('/', function(req, res){
+//	res.send('welcome, '+ req.body.name);
+//});
+//
+//app.listen(9001);
+
+//---------- Socket.IO ----------
+/**
+ * Socket.IO
+ * */
+var http = require('http')
+	, server = http.createServer()
+	, io = require('socket.io')
+	, socket
+	;
+
+server.on('request', function(req, res){
+	res.writeHead(200, {
+		'Content-Type': 'text/plain'
+	});
+	res.send('Hello world');
+});
+server.listen(80);
+
+socket = io.listen( server );
+
+//socket.on('connection', function(client){
+//	console.log('client connected')
+//});
+
+// 命名空间
+socket.of('/upandrunning').on('connection', function( client ){
+	console.log('client connected');
+	client.send('welcome client');
+});
+socket.of('/weather').on('connection', function( client ){
+	console.log('get weather');
+	client.send('weather is fine');
+});

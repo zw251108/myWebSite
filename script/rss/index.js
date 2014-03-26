@@ -18,13 +18,13 @@ require(['jquery', 'global', 'template',
 	var rssTmpl = $.template({
 			template: 'li.article[data-rssid=%Id%][data-tagsid=%tagsId%]' +
 				'>a[href=%htmlUrl%][target=_blank][title=%name%]>h3.article_title{%name%}' +
-				'^hr+dl.hidden'
+				'^hr+div.rss_content>ul.rss_articleList.hidden'
 			, filter: {
 
 			}
 		})
 		, articleTmpl = $.template({
-			template: 'dt+dd'
+			template: 'li.article>h4.article_title{%title%}+div.article_content{%content%}'
 			, filter: {
 
 			}
@@ -51,4 +51,56 @@ require(['jquery', 'global', 'template',
 	$rssList.on('click', 'span', function(){
 
 	}).html( rssTmpl(currData, 0, size) );
+
+	var article = [{
+		title: '123'
+		, content: '123123'
+	}, {
+		title: '123123'
+		, content: '123123123123'
+	}, {
+		title: '123123123'
+		, content: '123121231233'
+	}, {
+		title: '123123'
+		, content: '123123123123'
+	}, {
+		title: '123123'
+		, content: '123123123123'
+	}, {
+		title: '123123'
+		, content: '123123123123'
+	}, {
+		title: '123123'
+		, content: '123123123123'
+	}, {
+		title: '123123123'
+		, content: '123121231233'
+	}, {
+		title: '123123'
+		, content: '123123123123'
+	}, {
+		title: '123123'
+		, content: '123123123123'
+	}, {
+		title: '123123'
+		, content: '123123123123'
+	}, {
+		title: '123123'
+		, content: '123123123123'
+	}, {
+		title: '123123123'
+		, content: '123121231233'
+	}, {
+		title: '123123'
+		, content: '123123123123'
+	}, {
+		title: '123123'
+		, content: '123123123123'
+	}, {
+		title: '123123'
+		, content: '123123123123'
+	}];
+
+	$rssList.find('ul:eq(0)').html( articleTmpl(article)).show();
 });

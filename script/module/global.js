@@ -325,10 +325,10 @@ define(['jquery', 'extend', 'clippy', 'validator'], function($){
 		$menu = $tools.find('#menu');
 	g.scroll.add(function(){
 		if( $backTop.is(':hidden') && (g.body.scrollTop || g.doc.scrollTop) > 0 ){
-			$backTop.fadeIn();
+			$backTop.stop().fadeIn();
 		}
 		else if( (g.body.scrollTop || g.doc.scrollTop) === 0 ){
-			$backTop.fadeOut();
+			$backTop.stop().fadeOut();
 		}
 	});
 

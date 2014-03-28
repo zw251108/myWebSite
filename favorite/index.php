@@ -37,6 +37,8 @@ $allTag = $tag->selectTagByLevel();
 				<div class="filter_all hidden" id="filterAll"></div>
 			</div>
 		</div>
+
+		<div class="clearfix"></div>
 	</div>
 
     <ul class="module_content list favor_list" id="favorList"></ul>

@@ -997,32 +997,96 @@
 /**
  * Socket.IO
  * */
-var http = require('http')
-	, server = http.createServer()
-	, io = require('socket.io')
-	, socket
-	;
-
-server.on('request', function(req, res){
-	res.writeHead(200, {
-		'Content-Type': 'text/plain'
-	});
-	res.send('Hello world');
-});
-server.listen(80);
-
-socket = io.listen( server );
-
-//socket.on('connection', function(client){
-//	console.log('client connected')
+//var http = require('http')
+//	, server = http.createServer()
+//	, io = require('socket.io')
+//	, socket
+//	;
+//
+//server.on('request', function(req, res){
+//	res.writeHead(200, {
+//		'Content-Type': 'text/plain'
+//	});
+//	res.send('Hello world');
+//});
+//server.listen(80);
+//
+//socket = io.listen( server );
+//
+////socket.on('connection', function(client){
+////	console.log('client connected')
+////});
+//
+//// 命名空间
+//socket.of('/upandrunning').on('connection', function( client ){
+//	console.log('client connected');
+//	client.send('welcome client');
+//});
+//socket.of('/weather').on('connection', function( client ){
+//	console.log('get weather');
+//	client.send('weather is fine');
 //});
 
-// 命名空间
-socket.of('/upandrunning').on('connection', function( client ){
-	console.log('client connected');
-	client.send('welcome client');
+/**
+ * Express + Socket.IO
+ * */
+var io = require('socket.io')
+	, express = require('express')
+	, app = express()
+	, store = new express.session.MemoryStore
+	, utils = require('connect').utils
+	, Session = require('connect').middleware.session.Session
+	, sio
+	;
+
+app.configure(function(){
+	app.use( express.cookieParser() );
+	app.use( express.session({
+		secret: 'secretKey'
+		, key: 'express.sid'
+		, store: store
+	}) );
+	app.use(function(req, res){
+		var sess = req.session;
+		res.render('socket.jade', {
+			email: sess.email || ''
+		});
+	});
 });
-socket.of('/weather').on('connection', function( client ){
-	console.log('get weather');
-	client.send('weather is fine');
+
+app.listen(8080);
+
+sio.listen( app );
+
+sio.configure(function(){
+	sio.set('authorization', function(data, accept){
+		var cookies = utils.parseCookie( data.headers.cookie );
+
+		data.sessionID = cookies['express.sid'];
+		data.sessionStore = store;
+
+		store.get(data.sessionID, function(err, session){
+			if( err || !session ){
+				return accept('invalid session', false);
+			}
+
+			data.session = new Session(data, session);
+			return accept(null, true);
+		});
+	});
+
+	sio.socket.on('connection', function( socket ){
+		var session = socket.handshake.session;
+
+		socket.join(socket.handshake.sessionId);
+		socket.on('emailupdate', function( data){
+			session.email = data.email;
+			session.save();
+
+			sio.sockets.in( socket.handshake.sessionId).emit('emailchanged', {
+				email: data.email
+			})
+		})
+
+	})
 });

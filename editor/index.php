@@ -40,6 +40,8 @@ $allTag = $tag->selectTagByLevel();
 				<div class="filter_all hidden" id="filterAll"></div>
 			</div>
 		</div>
+
+		<div class="clearfix"></div>
 	</div>
 
     <div class="module_content editor_list" id="editorList"></div>

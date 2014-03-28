@@ -61,6 +61,8 @@ else{
 		<button class="btn" id="showColorPicker" type="button" value="">颜色选择器</button>
 		<button class="btn icon icon-fullScreen" id="fullScreen" type="button" value="">全屏显示</button>
 		<a class="btn btn-link" id="goList" href="index.php">返回列表页</a>
+
+		<div class="clearfix"></div>
 	</div>
 
     <div class="module_content editor_detail">

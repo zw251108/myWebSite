@@ -14,7 +14,7 @@ body{
 
     font-size: @default-font-size;
     line-height: @default-line-height;
-    font-family: Consolas, \9ED1\4F53; // Verdana, Arial, trebuchet ms, helvetica,
+    font-family: Consolas, \5b8b\4f53; // Verdana, Arial, trebuchet ms, helvetica,
 	// Consolas, Monaco, Andale, monospace;
     color: @font-color;
 }
@@ -124,7 +124,7 @@ blockquote:before,
 blockquote:after,
 q:before,
 q:after{
-    content:"";
+//    content:"";
     content:none;
 }
 
@@ -236,43 +236,4 @@ p { font-size: 1.2em; line-height: 1.0em; color: #333; }
 }
 ::-webkit-selection{
     background:@selection;
-}
-
-//----- 页面隐藏元素 -----
-.hidden{
-    display:none;
-}
-
-//----- 溢出隐藏 -----
-.overHidden{
-	overflow: hidden;
-}
-
-//----- 浮动 -----
-.left{
-    float: left;
-}
-.right{
-    float: right;
-}
-
-//----- 文字对齐方向 -----
-.textLeft{
-    text-align:left;
-}
-.textRight{
-    text-align:right;
-}
-.textCenter{
-    text-align:center;
-}
-
-//----- Clearfix 清楚浮动 -----
-.clearfix:before,
-.clearfix:after{
-    content: "";
-    display: table;
-}
-.clearfix:after{
-    clear: both;
 }

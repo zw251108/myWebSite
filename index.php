@@ -20,7 +20,7 @@ ini_set('date.timezone','Asia/Shanghai');
 <a href="blog/">
     <section class="module module-metro module-big module-blog">
         <h2 class="module_title">
-			博客<br/>blog
+			博客 blog
 		</h2>
         <span class="module_info"></span>
     </section>
@@ -29,14 +29,14 @@ ini_set('date.timezone','Asia/Shanghai');
 <a href="">
     <section class="module module-metro module-tiny module-user">
         <h2 class="module_title">
-			用户中心<br/>user
+			用户中心 user
 		</h2>
     </section>
 </a>
 
     <section class="module module-metro module-tiny module-watch">
         <h2 class="module_title">
-			时间<br/>time
+			时间 time
 		</h2>
         <div class="watch_wrap hidden" id="watch">
             <span class="watch_hourHand" id="hourHand"></span>
@@ -58,9 +58,9 @@ ini_set('date.timezone','Asia/Shanghai');
     </section>
 
 <!--<a href="calendar/">-->
-    <section class="module module-metro module-tiny module-calendar" id="calendar">
+    <section class="module module-metro module-small module-calendar" id="calendar">
         <h2 class="module_title">
-			日历<br/>calendar
+			日历 calendar
 		</h2>
         <div class="module_info"><?php echo date('Y');?> 年 <?php echo date('m');?> 月</div>
         <div class="calendar_today"><?php echo date('d');?></div>
@@ -69,15 +69,15 @@ ini_set('date.timezone','Asia/Shanghai');
 
 	<section class="module module-metro module-small module-weather" id="weather">
 		<h2 class="module_title">
-			天气预报<br/>weather
+			天气预报 weather
 		</h2>
 		<div class="module_info"></div>
 	</section>
 
 <a href="document/">
-	<section class="module module-metro module-tiny module-document">
+	<section class="module module-metro module-small module-document">
 		<h2 class="module_title">
-			前端文档<br/>document
+			前端文档 document
 		</h2>
 	</section>
 </a>
@@ -85,7 +85,7 @@ ini_set('date.timezone','Asia/Shanghai');
 <a href="editor/">
     <section class="module module-metro module-small module-editor">
         <h2 class="module_title">
-			编辑器<br/>editor
+			编辑器 editor
 		</h2>
         <span class="module_info"></span>
     </section>
@@ -94,7 +94,7 @@ ini_set('date.timezone','Asia/Shanghai');
 <a href="favorite">
 	<section class="module module-metro module-normal module-favor">
 		<h2 class="module_title">
-			收藏夹<br/>favorite
+			收藏夹 favorite
 		</h2>
 	</section>
 </a>
@@ -102,7 +102,7 @@ ini_set('date.timezone','Asia/Shanghai');
 <a href="palette/">
 	<section class="module module-metro module-small module-palette">
 		<h2 class="module_title">
-			调色板<br/>palette
+			调色板 palette
 		</h2>
 	</section>
 </a>
@@ -110,7 +110,7 @@ ini_set('date.timezone','Asia/Shanghai');
 <a href="rss/">
 	<section class="module module-metro module-normal module-rss">
 		<h2 class="module_title">
-			订阅<br/>rss
+			订阅 rss
 		</h2>
 	</section>
 </a>

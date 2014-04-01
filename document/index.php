@@ -473,26 +473,26 @@ require_once('../include/Config.inc.php');
                 <span class="icon-CSS icon-minus"></span>
             </h3>
             <dl>
-                <dt class="icon icon-arrow-r">文件命名</dt>
+                <dt class="icon icon-arrow-r">文件划分</dt>
                 <dd>英文命名，后缀为 .css
 
                     <p>小型网站只需一个文件 style.css</p>
 
                     <p>门户类型网站需按公用部门和私有部门以功能模块来命名</p>
 
-                    <p>共用及初始化标签样式文件 base.css</p>
-
-                    <p>组件样式（不与实际需求相关，如：按钮、表格等）文件 component.css</p>
-
-                    <p>布局样式（包括响应式布局）文件 layout.css</p>
-
-                    <p>向下兼容（针对低版本 ie 浏览器）文件 ie.css</p>
-
-                    <p>UI 组件（由 JS 动态生成）文件 ui.css</p>
+                    <p>共用及初始化标签样式文件 base.css，设定标签元素的预设值，浏览器的 reset 可以写在这里，这里只会对标签元素本身做设定，不会出现任何 class 或 id，但是可以有属性选择器或是伪类</p>
 
                     <p>首页 index.css</p>
 
-                    <p>其它以实际模块需求命名</p>
+                    <p>布局样式（包括响应式布局和网格系统的规则）文件 layout.css，指整个网站的“大架构”的外观，而非小元件的 class</p>
+
+					<p>组件样式（不与实际需求相关，如：按钮、表格等）文件 component.css</p>
+
+					<p>UI 组件（由 JS 动态生成的组件所调用的样式，如：datepicker 插件等）文件 ui.css</p>
+
+					<p>向下兼容（针对低版本 ie 浏览器）文件 ie.css</p>
+
+					<p>其它以实际模块需求命名</p>
 
                     <p>但在发布前应尽可能将 CSS 文件合并，减少 HTTP 请求数量</p>
                 </dd>
@@ -1188,7 +1188,7 @@ require_once('../include/Config.inc.php');
                 <dd>typeof 的基本语法是：typeof variable。但也可以这样用：typeof(variable)，尽管这个是合法的 JavaScript 语法，但这种用法让 typeof 看起来像一个函数而非运算符，所以推荐使用无括号的写法</dd>
                 <dt class="icon icon-arrow-r">instanceof 运算符</dt>
                 <dd>
-                    <p>在 JavaScript 中除了原始值之外的值都是引用，typeof 运算符在判断这些引用类型时除了函数类型都会返回 "object"，这时检测某个引用值得类型的最好方法是使用 instanceof 运算符</p>
+                    <p>在 JavaScript 中除了原始值之外的值都是引用，typeof 运算符在判断这些引用类型时除了函数与 RegExp 类型都会返回 "function"，其它都会返回 "object"，这时检测某个引用值得类型的最好方法是使用 instanceof 运算符</p>
 
                     <p>instanceof 的一个特性是它不仅检测这个对象的构造器，还检测原型链，原型链包含了很多信息，包括定义对象所采用的继承模式，如：</p>
 
@@ -1718,7 +1718,12 @@ require_once('../include/Config.inc.php');
                         s.sort( by('name') ).sort( by('level') );
                     </pre>
 
-                    <p></p>
+                    <p>当需要拷贝数组的时候，可以用 slice 函数，如：</p>
+
+					<pre class="brush:js">
+						var arr = [];
+						var arrCopy = arr.slice();
+					</pre>
                 </dd>
                 <dt class="icon icon-arrow-r">正则表达式</dt>
                 <dd>

@@ -4,6 +4,7 @@
  */
 header("Content-type:text/html;charset=utf-8");
 $url = 'http://m.weather.com.cn/data/101070201.html';
+//$url = 'http://ext.weather.com.cn/101070201.json';
 
 // 打开输出缓冲区
 ob_start();

@@ -15,15 +15,17 @@
 }
 
 //----- 使可交互标签表现为可点击 -----
-.pointer{// 可操作
-    cursor:pointer;
-}
+// 与 label 标签预设值合并
+//.pointer{// 可操作
+//    cursor:pointer;
+//}
 
-// 特殊链接
-.link{
-    text-decoration:underline;
-    color:@a-hover !important;
-}
+//----- 特殊链接 -----
+// 与 a 标签预设值合并
+//.link{
+//    text-decoration:underline;
+//    color:@a-hover !important;
+//}
 
 //----- 页面隐藏元素 -----
 .hidden{
@@ -60,4 +62,9 @@
     bottom: 0;
 
     margin: auto;
+}
+
+//----- 溢出隐藏 -----
+.overHidden{
+	overflow: hidden;
 }

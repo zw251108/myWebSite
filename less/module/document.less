@@ -11,6 +11,8 @@
 //    .metroBgSprite(1);
 	background-image: url("../image/metro/Document.png");
 
+	font-weight: bold;
+
     .module_title{
         background-image:url("../image/default/document.png");
     }
@@ -48,20 +50,7 @@
 
         font-size: 20px;
         line-height: @grid-unit;
-
-//	    &:before{
-//		    height: 0;
-//		    width: 0;
-//
-//		    border: 10px solid transparent;
-//
-//		    content: "";
-//	    }
     }
-	.icon{
-		padding: 0;
-		background-position: 10px 10px;
-	}
     dd{
         display: none;
 
@@ -71,6 +60,10 @@
 
         color: @document_dd-color;
     }
+	.icon{
+		padding: 0;
+		background-position: 10px 10px;
+	}
     p{
         margin:0;
     }
@@ -80,7 +73,6 @@
     }
     th,
     td{
-//	    min-width: 100px;
         border: 1px solid @border-color;
 	    padding: 0 5px;
 
@@ -93,7 +85,7 @@
 
         border: 1px solid @border-color;
         margin: 0 !important;
-        padding: @space;
+        padding: @space 0;
 
         text-indent:0;
     }
@@ -103,8 +95,6 @@
     margin-bottom: @space;
     padding: 0 0 0 @space;
     background: @document_section-bg;
-
-//	font-family: "Consolas", Monaco, Andale, monospace;
 
 	.section_title{
 		padding-right: 70px;

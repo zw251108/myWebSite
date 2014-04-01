@@ -6,8 +6,8 @@
 // Container 宽度 480
 // 共 12 列
 // .module-large    16
-// .module-big      12
-// .module-normal   12(默认)
+// .module-big      8
+// .module-normal   88
 // .module-small    8(默认)
 // .module-tiny     4(默认)
 @media screen and (min-width:640px) and (max-width:799px){
@@ -19,7 +19,8 @@
         .grid-x(16);
     }
 
-    .module-big{
-        .grid-x(12);
+    .module-big,
+    .module-normal{
+        .grid-x(8);
     }
 }

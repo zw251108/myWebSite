@@ -1,6 +1,8 @@
 MODULE_CONFIG.baseUrl = 'script';
+MODULE_CONFIG.shim.layout = shim;
+MODULE_CONFIG.paths.layout = 'ui/jquery.layout';
 require.config(MODULE_CONFIG);
-require(['jquery', 'global'], function($, g){
+require(['jquery', 'global', 'layout'], function($, g){
 
 /**
  * 天气模块
@@ -148,4 +150,16 @@ require(['jquery', 'global'], function($, g){
     $watch.removeClass('hidden');
     setTime();
     setInterval(setTime, 1000);
+
+//	$('.module-metro').css('height', function(){
+//		return this.clientWidth;
+//	});
+//
+//	$.layout({
+//		container:'.Container'
+//		, selector: '.module-metro'
+//		, top: 80
+//		, colSpace: 10
+//		, rowSpace: 10
+//	});
 });

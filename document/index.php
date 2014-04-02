@@ -2510,19 +2510,6 @@ require_once('../include/Config.inc.php');
             <dl>
                 <dt class="icon icon-arrow-r">单例模式</dt>
                 <dd>
-<!--                    //            RobotMaker = function RobotMaker(name){-->
-<!--                    //                return onlyOne;-->
-<!--                    //            };-->
-<!--                    //-->
-<!--                    //            RobotMaker.prototype = this;-->
-<!--                    //-->
-<!--                    //            onlyOne = new RobotMaker(name);-->
-<!--                    //            onlyOne.constructor = RobotMaker;-->
-<!--                    //-->
-<!--                    //            onlyOne.name = name;-->
-<!--                    //            onlyOne.createdNum = 0;-->
-<!--                    //-->
-<!--                    //            return onlyOne;-->
                     <pre class="brush:js">
                         /**
                          * 基类

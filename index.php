@@ -14,7 +14,7 @@ ini_set('date.timezone','Asia/Shanghai');
 <title>个人小站（开发测试中...）</title>
 <?php require_once('style.php');?>
 </head>
-<body class="Container">
+<body class="Container index">
 <?php require_once('header.php');?>
 
 <a href="blog/">
@@ -29,7 +29,7 @@ ini_set('date.timezone','Asia/Shanghai');
 <a href="">
     <section class="module module-metro module-tiny module-user">
         <h2 class="module_title">
-			用户中心 user
+			我 me
 		</h2>
     </section>
 </a>

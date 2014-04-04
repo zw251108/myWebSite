@@ -483,3 +483,255 @@
         placehold: ''
     };
 })(jQuery);
+
+$(function(){
+	function showLine(ls){
+		var i = 0, j = ls.length
+			, h = '', line;
+		for(; i < j; i++){
+			line = ls[i];
+			h += '\n{\nx: ' + line.x + ',\nw: ' + line.w + ',\ny: ' + line.y + ',\nh: ' + line.h + '\n}';
+		}
+		console.log(h);
+	}
+
+	var left = 0, right = 0, top = 0, bottom = 0
+		, colSpace = 10
+		, rowSpace = 10
+		, $container = $('#container').css('position', 'relative')
+		, $items = $container.find('div.case')
+		, width = $container.width() - left - right
+		, height = 0
+		;
+	var lines = [{
+			x: left
+			, y: top
+			, w: width
+		}],
+		sortFunc = function(a, b){
+			return a.y - b.y;
+		}
+		, inArray = function(target, array){
+			return $.inArray(target, array);
+		}
+		;
+
+	var i = 0, j = $items.length
+		, $item
+		, loopLines = function(ls, $item){
+			showLine(ls);
+			var i = 0, j = ls.length
+				, sortLines = ls.slice().sort(sortFunc)
+				, line
+				, index
+				, lExtend
+				, lWidth
+				, rExtend
+				, rWidth
+				, lIndex
+				, rIndex
+				, m, n
+				, t
+				, tempWidth = $item.outerWidth() + rowSpace
+				, tempHeight = $item.outerHeight() + colSpace
+				, rs
+				;
+			for(; i < j; i++){
+				line = sortLines[i];
+
+				if( line.h && line.h < tempHeight ){    // 已为封闭区域 并且高度小于 $item 高度
+					continue;
+				}
+				index = inArray(line, ls);
+
+				for(lIndex = index - 1, lExtend = null; lIndex > -1; lIndex--){    // 向左扩展
+					t = ls[lIndex];
+
+					if( t.y > line.y ){
+						break;
+					}
+					else{
+						if( t.h && (t.y + t.h <= line.y || t.y + t.h - line.y < tempHeight) ){
+						}
+						else{
+							lExtend = t;
+						}
+//					) || (t.h && t.y + t.h > line.y && line.y - t.y + t.h < tempHeight )
+
+					}
+				}
+
+				console.log(i, 'lines, index: ', index, tempWidth, tempHeight, '\n{\nx: ' + line.x + ',\nw: ' + line.w + ',\ny: ' + line.y + '\n}'
+					, 'lExtend: ', lExtend);
+
+				lWidth = lExtend ? line.x - lExtend.x : 0;
+
+				if( line.w + lWidth >= tempWidth ){ // line 线的宽度大于 $item 宽度
+
+					$item.css({
+						position: 'absolute'
+						, left: (lExtend ? lExtend.x : line.x) + 'px'
+						, top: line.y + 'px'
+					});
+
+					if( height < line.y + tempHeight ){ // 收集容器高度
+						height = line.y + tempHeight;
+					}
+
+					if( lExtend ){  // 左边可扩展
+
+						for(m = lIndex +1, n = index; m < n; m++){  // 封闭左边区域
+
+							t = lines[m];
+							if( !t.h || (t.y + t.h > line.y) ){ // 非闭合区域
+								t.h = line.y - t.y;
+							}
+						}
+					}
+
+					if( line.w + lWidth === tempWidth ){
+						line.y += tempHeight;
+
+						if( line.h ){
+							line.h -= tempHeight;
+						}
+
+						if( lExtend ){
+							line.x = lExtend.x;
+							line.w += line.x - lExtend.x;
+						}
+					}
+					else{
+						if( lExtend ){
+							ls.splice(index, 1
+//							);
+//							ls.splice(lIndex, 0
+								, {
+								x: lExtend ? lExtend.x : line.x
+								, y: line.y + tempHeight
+								, w: tempWidth
+								, h: line.h ? line.h - tempHeight : null
+							}, {
+								x: (lExtend ? lExtend.x : line.x) + tempWidth
+								, y: line.y
+								, w: line.w - tempWidth + (lExtend ? line.x - lExtend.x : 0)
+								, h: line.h || null
+							});
+						}
+						else{
+							ls.splice(index, 1, {
+								x: lExtend ? lExtend.x : line.x
+								, y: line.y + tempHeight
+								, w: tempWidth
+							}, {
+								x: (lExtend ? lExtend.x : line.x) + tempWidth
+								, y: line.y
+								, w: line.w - tempWidth + (lExtend ? line.x - lExtend.x : 0)
+							});
+						}
+					}
+					rs = true;
+				}
+				else{
+					console.log(1);
+					for(rIndex = index +1, rExtend = null; rIndex < j; rIndex++){ // 向右扩展
+						t = ls[rIndex];
+
+//						if( line.y >= t.y && lWidth + line.w ){
+//
+//						}
+
+						if( t.y <= line.y ){
+//							continue;
+//						}
+//						else{
+							if( !t.h ){
+
+								rWidth = t.x + t.w - line.x - line.w;
+								if( lWidth + line.w + rWidth >= tempWidth ){
+									rExtend = t;
+									break;
+								}
+							}
+						}
+						else{
+							break;
+						}
+					}
+
+					console.log('rExtend: ', rExtend);
+
+//					rWidth = rExtend ? rExtend.x + rExtend.w - line.x - line.w : 0;
+					if( rExtend ){  // line.w + lWidth + rWidth >= tempWidth ){    // 右边可扩展
+
+						$item.css({
+							position: 'absolute'
+							, left: (lExtend ? lExtend.x : line.x) + 'px'
+							, top: line.y + 'px'
+						});
+
+						if( height < line.y + tempHeight ){
+							height = line.y + tempHeight;
+						}
+
+						for(m = index +1, n = rIndex-1; m < n && m < j; m++){ // 封闭右边区域
+
+							t = lines[m];
+							if( !t.h ){ // 非闭合区域
+								t.h = line.y - t.y;
+							}
+						}
+
+						if( line.w + lWidth + rWidth === tempWidth ){
+
+							line.y += tempHeight;
+						}
+						else{
+							ls.splice(index, 1, {
+								x: lExtend ? lExtend.x : line.x
+								, y: line.y + tempHeight
+								, w: tempWidth
+							});
+
+							ls.splice(rIndex, 1, {
+								x: rExtend.x
+								, y: rExtend.y
+								, w: (lExtend ? lExtend.x : line.x) + tempWidth - rExtend.x
+								, h: line.y - rExtend.y
+							}, {
+								x: (lExtend ? lExtend.x : line.x) + tempWidth
+								, y: rExtend.y
+								, w:  rExtend.x + rExtend.w - (lExtend ? lExtend.x : line.x) - tempWidth
+							});
+						}
+
+						if( lExtend ){
+							line.w += line.x - lExtend.x;
+
+							for(m = lIndex +1, n = index; m < n; m++){  // 封闭左边区域
+
+								t = lines[m];
+								if( !t.h ){ // 非闭合区域
+									t.h = line.y - t.y;
+								}
+							}
+						}
+
+						rs = true;
+					}
+				}
+
+				if( rs ) break;
+			}
+			return rs;
+		}
+		, rs
+		;
+	for(; i < j; i++){
+		console.log('$item', i)
+		$item = $items.eq(i);
+		rs = loopLines(lines, $item);
+	}
+	console.log(height)
+	$container.height( height + bottom );
+});

@@ -59,7 +59,7 @@ var connClose = function(){ // 关闭数据库连接
             errorCallBack( e );
         }
         else{
-            flag ++;
+            flag++;
             [].push.apply(together, rs);
 
             if( flag === 3 ){

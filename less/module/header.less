@@ -10,8 +10,8 @@
     position: fixed;
 
     z-index: @z-header;
-    left: 0;
-    right: 0;
+    left: @grid-space;
+    right: @grid-space;
     top: 0;
 
     height: @header-height;
@@ -35,10 +35,14 @@
 
 		min-width: 60px;
 
-		margin: 5px;    //@grid-space;
+		margin: 5px 10px 5px 0;    //@grid-space;
 		padding: 0;
 
 		background-repeat: no-repeat;
+	}
+
+	.btn-backTop{
+		margin-right: 0;
 	}
 }
 .module-header{

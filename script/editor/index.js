@@ -17,29 +17,28 @@ require(['jquery', 'global', 'filter', 'template', 'layout'], function($, g, $fi
                     return data.preview ? data.name : '没有预览图片';
                 }
             }
-        }),
-	    $editorList = $('#editorList'),
-
-	    page = 1,
-	    size = 20,
-	    currData = EDITOR_LIST,
-	    count = currData.length,
-	    pageCount = Math.ceil( count / size ),
-
-	    space = parseInt( $editorList.css('marginLeft') ),
-	    layout = function(){
+        })
+	    , $editorList = $('#editorList')
+	    , page = 1
+	    , size = 20
+	    , currData = EDITOR_LIST
+	    , count = currData.length
+	    , pageCount = Math.ceil( count / size )
+	    , space = parseInt( $editorList.css('marginLeft') )
+	    , layout = function(){
 		    $.layout({
 			    container: $editorList,
 			    selector: 'article',
-			    left: space +10,
+			    left: space -10,
 			    top: space -10,
 			    colSpace: space,
 			    rowSpace: space
 		    });
-	    },
+	    }
+	    , scrollTimeout = null;
 
-	    scrollTimeout = null;
 
+	// 设置过滤回调函数
 	$filter.triggerHandler('setFilter', [function(filterStr){
 		var i = 0,
 			temp,
@@ -70,7 +69,36 @@ require(['jquery', 'global', 'filter', 'template', 'layout'], function($, g, $fi
 
 	// 加载数据
 	$editorList.html( editorTmpl(currData, 0, size) );
+
 	layout();
+
+//	if( $editorList.width() > 290 ){
+//		layout = function(){
+//			$.layout({
+//				container: $editorList,
+//				selector: 'article',
+//				left: space -10,
+//				top: space -10,
+//				colSpace: space,
+//				rowSpace: space
+//			});
+//		};
+//
+//		layout();
+//		g.resize.add(layout);
+//	}
+//	else{
+//		layout = function(){};
+//		g.resize.add(function(){
+//			if( $editorList.width() > 290 ){
+//				$('#minArt').remove();
+//			}
+//			else{
+//				$('head').append('<style id="minArt">.editor_article{width:270px;margin-left:0;}</style>');
+//			}
+//		});
+//		$('head').append('<style id="minArt">.editor_article{width:270px;margin-left:0;}</style>');
+//	}
 
 	g.resize.add(layout);
 	g.scroll.add(function(){

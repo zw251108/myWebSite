@@ -30,7 +30,15 @@ $allTag = $tag->selectTagByLevel();
 		<button class="btn icon icon-add" id="addFavor" type="button" value="">添加</button>
 
 		<div class="filter" id="Filter">
-			<button class="btn icon icon-filter filter_setBtn" id="setFilter" type="button" value="">过滤</button>
+			<button class="btn icon icon-filter filter_setBtn" id="setFilter" type="button" value="">过滤
+				<span id="filterCd" class="countdown hidden">
+					<span class="cd_quarter quarter_1"></span>
+					<span class="cd_quarter quarter_2"></span>
+					<span class="cd_quarter quarter_3"></span>
+					<span class="cd_quarter quarter_4"></span>
+					<span id="filterCdNum" class="cd_num">0</span>
+				</span>
+			</button>
 			<button class="btn icon icon-reset filter_resetBtn hidden" id="resetFilter" type="button" value="">重置</button>
 			<div class="filter_tagArea" id="filterTagArea">
 				<div class="filter_checked" id="filterChecked"></div>

@@ -26,8 +26,11 @@ define(['jquery', 'template'], function($){
 	    , filterTimeout = null
 
 	    , $filter = $('#Filter')
-	    , $filterReset = $filter.find('#resetFilter')  // 重置按钮
+	    , $filterSet = $filter.find('#setFilter')   // 过滤按钮
+	    , $filterReset = $filter.find('#resetFilter')   // 重置按钮
 	    , $filterAll = $filter.find('#filterAll')   // 全部标签显示区域
+	    , $countdown = $filter.find('#filterCd')    // 倒计时
+	    , $countdownNum = $countdown.find('#filterCdNum')   // 倒计时数字
 	    ;
 
 	$filter.on('setFilter', function(e, filter){
@@ -74,16 +77,34 @@ define(['jquery', 'template'], function($){
 			}
 		}
 
-		filterTimeout && clearTimeout( filterTimeout );
+		if( filterTimeout ){
+			$countdown.removeClass('cd-start');
+			clearTimeout( filterTimeout );
+		}
 		filterTimeout = null;
 		if( filterFunc ){
-			filterTimeout = setTimeout(function(){
-				$filterAll.slideUp();
+			$filterSet.addClass('filter_setBtn-cd');
+			$countdown.addClass('cd-start');
+			$countdownNum.html( 5 );
 
-				filterFunc( filterStr );
+			filterTimeout = setInterval(function(){
+				var num= parseInt( $countdownNum.html(), 10 );
+				if( num > 0 ){
+					$countdownNum.html( num-1 );
+				}
+				else{
+					$countdownNum.html( 0 );
+					$countdown.removeClass('cd-start');
+					$filterSet.removeClass('filter_setBtn-cd');
 
-				filterTimeout = null;
-			}, 2000);
+					$filterAll.slideUp();
+
+					filterFunc( filterStr );
+
+					clearTimeout( filterTimeout);
+					filterTimeout = null;
+				}
+			}, 1000);
 		}
 //	}).on('mousewheel', '#filterAll', function(e){
 //		e.stopPropagation();

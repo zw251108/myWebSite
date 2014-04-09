@@ -1184,11 +1184,15 @@ require_once('../include/Config.inc.php');
                         }
                     </pre>
                 </dd>
+				<dt class="icon icon-arrwo-r">new 操作符</dt>
+				<dd>如果在一个函数前面带上 new 操作符来调用，那么会创建一个连接到该函数的 prototype 成员的新对象，同时 this 会被绑定到那个新对象上，new 操作符也会改变 return 语句的行为：当返回值不是一个对象时，则返回 this</dd>
+				<dt class="icon icon-arrow-r">delete 操作符</dt>
+				<dd>delete 操作符是将属性从一个对象中删除的唯一方法，将属性设置为 undefined 或 null 只能改变属性的值，而不会将属性从对象中删除，delete 操作符只能对实例的属性和方法起作用，不会删除 prototype 的属性或方法</dd>
                 <dt class="icon icon-arrow-r">typeof 运算符</dt>
                 <dd>typeof 的基本语法是：typeof variable。但也可以这样用：typeof(variable)，尽管这个是合法的 JavaScript 语法，但这种用法让 typeof 看起来像一个函数而非运算符，所以推荐使用无括号的写法</dd>
                 <dt class="icon icon-arrow-r">instanceof 运算符</dt>
                 <dd>
-                    <p>在 JavaScript 中除了原始值之外的值都是引用，typeof 运算符在判断这些引用类型时除了函数与 RegExp 类型都会返回 "function"，其它都会返回 "object"，这时检测某个引用值得类型的最好方法是使用 instanceof 运算符</p>
+                    <p>在 JavaScript 中除了原始值之外的值都是引用，typeof 运算符在判断这些引用类型时除了函数类型会返回 "function"，其它都会返回 "object"（部分浏览器在判断 RegExp 类型时会返回 "function"），这时检测某个引用值得类型的最好方法是使用 instanceof 运算符</p>
 
                     <p>instanceof 的一个特性是它不仅检测这个对象的构造器，还检测原型链，原型链包含了很多信息，包括定义对象所采用的继承模式，如：</p>
 
@@ -1344,13 +1348,15 @@ require_once('../include/Config.inc.php');
 					<p>JavaScript 代码注入到页面时是可以做到不用创建全局变量的，这种方法应用的场景不多，只有某些特殊场景才会使用，最常见的情形是一段不会被其它脚本访问到的完全独立的脚本，实现方法就是使用一个立即执行的函数调用并将所有脚本放置其中，之后可以通过将函数设置为严格模式来避免创建全局变量，如：</p>
 
                     <pre class="brush:js">
-                        (function(win, doc){
+                        ;(function(win, doc){
                             'use strict';
 
                             // do something
 
                         })(window, document);
                     </pre>
+
+					<p>注意在括号前面的分号，这是为了防止之前的代码中缺少分号而使这段代码被理解成一个传入一个函数做参数的自调用函数</p>
 				</dd>
                 <dt class="icon icon-arrow-r">单全局变量模式</dt>
                 <dd>

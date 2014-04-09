@@ -18,7 +18,7 @@
  * @example
 
  */
-(function($){
+;(function($){
     var methods = {
 	    sort: function(a, b){
 		    var rs = a.top - b.top;
@@ -258,12 +258,6 @@
         // 可用区域
 	    width = $container.css('position', 'relative').width() - left - opts.right;
 
-//        if( opts.animate ){
-//            func = 'animate';
-//
-//            $selector.css('position', 'absolute');
-//        }
-
 	    /**
 	     * todo
 	     * 添加计算 placeholder
@@ -300,10 +294,6 @@
             for(i = 1, j = $selector.length; i < j; i++){
 
                 $temp = $selector.eq(i);
-
-//                if( $temp.css('display') === 'none' ){
-//                    continue;
-//                }
 
                 tempHeight = $temp.outerHeight() + rowSpace;
                 tempWidth = $temp.outerWidth() + colSpace;
@@ -369,98 +359,6 @@
             // todo
         }
 
-//        if( tempWidth < width ){
-//            $temp.css({
-//                position: 'absolute',
-//                left: left +'px',
-//                top: top +'px'
-//            });
-//
-//            area.push({
-//                left: left + tempWidth,
-//                top: top,
-//                width: width - tempWidth,
-//                height: tempHeight,
-//                ext:true
-//            });
-//            bottom += tempHeight;
-//
-//            for(i = 1, j = $selector.length; i < j; i++){
-//
-//                $temp = $selector.eq(i).css('position', 'absolute');
-//                tempHeight = $temp.outerHeight();
-//                tempWidth = $temp.outerWidth();
-//
-//                targetArea = null;
-//                for(m = 0, n = area.length; m < n; m++){
-//                    temp = area[m];
-//
-//                    if( temp.width >= tempWidth && (!targetArea || temp.width < targetArea.width ) &&
-//                        temp.height >= tempHeight && (!targetArea || temp.height < targetArea.height ) ){
-//
-//                        targetArea = temp;
-//                    }
-//                }
-//
-//                if( targetArea ){
-//                    $temp.css({
-//                        position: 'absolute',
-//                        left: targetArea.left +'px',
-//                        top: targetArea.top +'px'
-//                    });
-//
-//                    if( targetArea.height > tempHeight && targetArea.width > tempWidth ){// 目标区域 完全大于 当前块
-//                        area.push({
-//                            left: targetArea.left + tempWidth,
-//                            top: targetArea.top,
-//                            height: tempHeight,
-//                            width: targetArea.width - tempWidth,
-//                            ext: targetArea.ext
-//                        });
-//                        targetArea.top += tempHeight;
-//                        targetArea.height -= tempHeight;
-//                    }
-//                    else if( targetArea.height > tempHeight && targetArea.width === tempWidth ){// 目标区域 仅高于 当前块
-//                        targetArea.top += tempHeight;
-//                        targetArea.height -= tempHeight;
-//                    }
-//                    else if( targetArea.height === tempHeight && targetArea.width > tempWidth ){// 目标区域 仅宽于 当前块
-//                        targetArea.left += tempWidth;
-//                        targetArea.width -= tempWidth;
-//                    }
-//                    else{// 目标区域 完全等于 当前块
-//                        targetArea.width = 0;
-//                        targetArea.height = 0;
-//                    }
-//                }
-//                else{// 封闭之前区域，使其高度不可变
-////                    for(m = 0, n = area.length; m < n; m++){
-////                        area[m].ext = false;
-////                    }
-//                    $temp.css({
-//                        position: 'absolute',
-//                        left: left +'px',
-//                        top: bottom +'px'
-//                    });
-//
-//                    area.push({
-//                        left: left + tempWidth,
-//                        top: bottom,
-//                        width: width - tempWidth,
-//                        height: tempHeight,
-//                        ext:true
-//                    });
-//                    bottom += tempHeight;
-//                }
-//
-//                area.sort(sort);
-//            }
-//        }
-//        else{// 第一块 宽度超出 容器 宽度
-//
-//            // todo
-//        }
-
         $container.height( bottom + opts.bottom );
     };
 
@@ -485,16 +383,6 @@
 })(jQuery);
 
 $(function(){
-	function showLine(ls){
-		var i = 0, j = ls.length
-			, h = '', line;
-		for(; i < j; i++){
-			line = ls[i];
-			h += '\n{\nx: ' + line.x + ',\nw: ' + line.w + ',\ny: ' + line.y + ',\nh: ' + line.h + '\n}';
-		}
-		console.log(h);
-	}
-
 	var left = 0, right = 0, top = 0, bottom = 0
 		, colSpace = 10
 		, rowSpace = 10
@@ -519,7 +407,6 @@ $(function(){
 	var i = 0, j = $items.length
 		, $item
 		, loopLines = function(ls, $item){
-			showLine(ls);
 			var i = 0, j = ls.length
 				, sortLines = ls.slice().sort(sortFunc)
 				, line
@@ -556,13 +443,8 @@ $(function(){
 						else{
 							lExtend = t;
 						}
-//					) || (t.h && t.y + t.h > line.y && line.y - t.y + t.h < tempHeight )
-
 					}
 				}
-
-				console.log(i, 'lines, index: ', index, tempWidth, tempHeight, '\n{\nx: ' + line.x + ',\nw: ' + line.w + ',\ny: ' + line.y + '\n}'
-					, 'lExtend: ', lExtend);
 
 				lWidth = lExtend ? line.x - lExtend.x : 0;
 
@@ -603,16 +485,13 @@ $(function(){
 					}
 					else{
 						if( lExtend ){
-							ls.splice(index, 1
-//							);
-//							ls.splice(lIndex, 0
-								, {
-								x: lExtend ? lExtend.x : line.x
+							ls.splice(index, 1, {
+								x: lExtend.x
 								, y: line.y + tempHeight
 								, w: tempWidth
 								, h: line.h ? line.h - tempHeight : null
 							}, {
-								x: (lExtend ? lExtend.x : line.x) + tempWidth
+								x: lExtend.x + tempWidth
 								, y: line.y
 								, w: line.w - tempWidth + (lExtend ? line.x - lExtend.x : 0)
 								, h: line.h || null
@@ -620,31 +499,23 @@ $(function(){
 						}
 						else{
 							ls.splice(index, 1, {
-								x: lExtend ? lExtend.x : line.x
+								x: line.x
 								, y: line.y + tempHeight
 								, w: tempWidth
 							}, {
-								x: (lExtend ? lExtend.x : line.x) + tempWidth
+								x: line.x + tempWidth
 								, y: line.y
-								, w: line.w - tempWidth + (lExtend ? line.x - lExtend.x : 0)
+								, w: line.w - tempWidth
 							});
 						}
 					}
 					rs = true;
 				}
 				else{
-					console.log(1);
 					for(rIndex = index +1, rExtend = null; rIndex < j; rIndex++){ // 向右扩展
 						t = ls[rIndex];
 
-//						if( line.y >= t.y && lWidth + line.w ){
-//
-//						}
-
 						if( t.y <= line.y ){
-//							continue;
-//						}
-//						else{
 							if( !t.h ){
 
 								rWidth = t.x + t.w - line.x - line.w;
@@ -659,10 +530,7 @@ $(function(){
 						}
 					}
 
-					console.log('rExtend: ', rExtend);
-
-//					rWidth = rExtend ? rExtend.x + rExtend.w - line.x - line.w : 0;
-					if( rExtend ){  // line.w + lWidth + rWidth >= tempWidth ){    // 右边可扩展
+					if( rExtend ){  // 右边可扩展
 
 						$item.css({
 							position: 'absolute'
@@ -728,10 +596,8 @@ $(function(){
 		, rs
 		;
 	for(; i < j; i++){
-		console.log('$item', i)
 		$item = $items.eq(i);
 		rs = loopLines(lines, $item);
 	}
-	console.log(height)
 	$container.height( height + bottom );
 });

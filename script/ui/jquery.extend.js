@@ -1,7 +1,7 @@
 /**
  *  基于 jQuery 的库函数扩展
  */
-(function($, dom, exports){
+;(function($, dom, exports){
     /**
      *  GUID（全局统一标识 Globally Unique Identifier）生成器
      * */

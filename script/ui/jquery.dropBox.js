@@ -8,7 +8,7 @@
  * @description
  * @example
  */
-(function($){
+;(function($){
     $.dropBox = function(options){
         var opts = $.extend({}, $.dropBox.defaults, options),
             $target = opts.target;

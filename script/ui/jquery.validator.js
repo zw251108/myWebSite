@@ -55,7 +55,7 @@
         <input type="text" name="username" id="username" data-validator="username" /><span></span>
     </form>
  */
-(function($){
+;(function($){
     var methods = {
         valid:function(){
             var $items = this.formItems,

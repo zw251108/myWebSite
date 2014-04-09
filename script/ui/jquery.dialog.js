@@ -12,7 +12,7 @@
  * @description
  * @example
  */
-(function($, exports, doc){
+;(function($, exports, doc){
 //    var methods = {
 //        $bg:'',
 //        $dialog:'',

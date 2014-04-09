@@ -18,7 +18,7 @@
     conn.closeConn();
     conn.openConn();
  */
-(function($, exports){
+;(function($, exports){
     var conn = true, interval = 200,
         defaults = {// 默认参数
             type:'GET',

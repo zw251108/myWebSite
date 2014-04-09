@@ -8,7 +8,7 @@
  * @description
  * @example
  */
-(function($){
+;(function($){
     var methods = {
         init:function(opts){
             var container = $(opts.container);

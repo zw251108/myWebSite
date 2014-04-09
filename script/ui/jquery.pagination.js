@@ -29,7 +29,7 @@
         }
     });
  * */
-(function($){
+;(function($){
 //    var pageConfig = $.pageConfig;
     var methods = {
         setPage: function(e, index, size, count){

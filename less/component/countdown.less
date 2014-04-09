@@ -1,0 +1,154 @@
+@charset "utf-8";
+
+@import "../lib/color.less";
+@import "../lib/function.less";
+
+//----- countdown 倒计时 -----
+/*  example:
+    <span class="countdown">
+		<span class="cd_quarter quarter_1"></span>
+		<span class="cd_quarter quarter_2"></span>
+		<span class="cd_quarter quarter_3"></span>
+		<span class="cd_quarter quarter_4"></span>
+		<span class="cd_num">0</span>
+	</span>
+ */
+.countdown{
+	overflow: hidden;
+	position: relative;
+
+	border: 2px solid #efefef;
+	border-radius: 50%;
+}
+.cd_quarter{
+	float: left;
+	width: 50%;
+	height: 50%;
+	background: @countdown-quarter-bg;
+}
+.quarter_1{
+	.transformOrigin( right bottom 0 );
+
+	.transformSkewX( 90deg );
+}
+.quarter_2{
+	.transformOrigin( left top 0 );
+
+	.transformSkewY( -90deg );
+}
+.quarter_3{
+	.transformOrigin( right top 0 );
+
+	.transformSkewY( -90deg );
+}
+.quarter_4{
+	.transformOrigin( left top 0 );
+
+	.transformSkewX( 90deg );
+}
+
+@-webkit-keyframes quarter_1{
+	75%{
+		.transformSkewX( 90deg );
+	}
+	100%{
+		.transformSkewX( 0deg );
+	}
+}
+@keyframes quarter_1{
+	75%{
+		.transformSkewX( 90deg );
+	}
+	100%{
+		.transformSkewX( 0deg );
+	}
+}
+@-webkit-keyframes quarter_2{
+	25%{
+		.transformSkewY( -0deg );
+
+	}
+	100%{
+		.transformSkewY( -0deg );
+	}
+}
+@keyframes quarter_2{
+	25%{
+		.transformSkewY( -0deg );
+	}
+	100%{
+		.transformSkewY( -0deg );
+	}
+}
+@-webkit-keyframes quarter_3{
+	50%{
+		.transformSkewY( -90deg );
+	}
+	75%{
+		.transformSkewY( -0deg );
+	}
+	100%{
+		.transformSkewY( -0deg );
+	}
+}
+@keyframes quarter_3{
+	50%{
+		.transformSkewY( -90deg );
+	}
+	75%{
+		.transformSkewY( -0deg );
+	}
+	100%{
+		.transformSkewY( -0deg );
+	}
+}
+@-webkit-keyframes quarter_4{
+	25%{
+		.transformSkewX( 90deg );
+	}
+	50%{
+		.transformSkewX( 0deg );
+	}
+	100%{
+		.transformSkewX( 0deg );
+	}
+}
+@keyframes quarter_4{
+	25%{
+		.transformSkewX( 90deg );
+	}
+	50%{
+		.transformSkewX( 0deg );
+	}
+	100%{
+		.transformSkewX( 0deg );
+	}
+}
+
+.cd-start{
+	.quarter_1{
+		.animation( quarter_1 1s linear infinite );
+	}
+	.quarter_2{
+		.animation( quarter_2 1s linear infinite );
+	}
+	.quarter_3{
+		.animation( quarter_3 1s linear infinite );
+	}
+	.quarter_4{
+		.animation( quarter_4 1s linear infinite );
+	}
+}
+.cd_num{
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+
+	color: @countdown-num-color;
+	font-size: 16px;
+	line-height: 26px;
+	text-align: center;
+}

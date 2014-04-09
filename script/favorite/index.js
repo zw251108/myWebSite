@@ -59,7 +59,7 @@ require(['jquery', 'global', 'tag', 'filter',
 	    , $favorAddForm
 	    ;
 
-    $filter.triggerHandler('setFilter', [function(filterStr){    console.log( filterStr );
+    $filter.triggerHandler('setFilter', [function(filterStr){
 	    var i = 0
 		    , temp
 		    , filterExpr
@@ -198,7 +198,6 @@ require(['jquery', 'global', 'tag', 'filter',
 	                    data.datetime = date.getFullYear() +'-'+ (date.getMonth()+1) +'-'+ date.getDate()
 		                    +' '+ date.getHours() +':'+ date.getMinutes() +':'+ date.getSeconds();
 
-	                    console.log(data);
 	                    FAVOR_LIST.unshift( data );
 	                    count++;
 

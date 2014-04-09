@@ -44,7 +44,7 @@
         ]
     });
  */
-(function($){
+;(function($){
     var fillZero = function(num){return $.number.fillZero(num, 2);};
 
     /**

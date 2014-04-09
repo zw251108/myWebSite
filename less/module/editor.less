@@ -19,17 +19,6 @@
 		z-index: @z-btn-add;
 	}
 }
-//.icon-incFile{
-//    float: left;
-//    position: relative;
-//    height: 30px;
-//    width: 30px;
-//
-//    border: 0;
-//    border-radius: 0;
-//    margin: 10px 10px 0 0;
-//    background: url("../image/default/incFile.png") 5px 5px no-repeat @editor_codeArea-border;
-//}
 .editor_list{
 	min-height: 400px;
 
@@ -45,7 +34,6 @@
     clear: both;
     position: relative;
 
-//    height: 1000px;
     min-height: 400px;
 
     border: 10px solid @editor_codeArea-border;
@@ -74,12 +62,11 @@
 }
 .editor_article{
     float:left;
-    width: 210px;
+
+    width: 200px;
 
     margin: 10px 0 0 10px;
     padding-right: 10px;
-
-//	background:darken(#4617b4, 20%);
 
     .article_title{
         margin-bottom: 10px;
@@ -87,8 +74,9 @@
     }
     .article_preview{
         display: block;
-        max-width: 210px;
-//        max-height: 210px;
+
+	    max-height: 200px;
+        max-width: 200px;
 
 	    margin: 0 auto;
     }
@@ -101,8 +89,7 @@
 }
 .editor_tools{
 	overflow: hidden;
-    //    margin: 10px 0 0 10px;
-//    padding: 0 0 @space @space;
+
 	padding: 0 0 0 @space;
     background: @editor_detail_title-bg;
 
@@ -165,11 +152,11 @@
 
     width: 400%;
 }
-.editor_area{// 编码区域 结果区域
+.editor_area{   // 编码区域 结果区域
     float: left;
 
 	min-height: 400px;
-	//    height:1000px;
+
 	width: 25%;
 
     border: 0;

@@ -7,7 +7,7 @@
  * @description
  * @example
  */
-(function($){
+;(function($){
     var methods = {
         rand:function(min, max){
             return Math.floor( Math.random() * (max-min) + min );

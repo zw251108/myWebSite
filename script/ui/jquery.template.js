@@ -19,7 +19,7 @@
     });
     html([{sex:1}]); // <span>男</span>
  */
-(function($){
+;(function($){
     var elemExpr = /(\w*)((?:#[\w%]*)?)((?:\.[\w\-%]*)*)((?:\[[\w\-%]*=.*?\])*)((?:\{.*?\})?)/,
         keyListExpr = /%\w*?%/g,
         keyExpr = /%(.*)%/;

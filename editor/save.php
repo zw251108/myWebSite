@@ -27,7 +27,7 @@ if( isset( $_SERVER['HTTP_X_REQUESTED_WITH'] ) &&
 			$tagsId = isset($_POST['tagsId']) ? filterReq( $_POST['tagsId'] ) : '';
 			$tagsName = isset($_POST['tagsName']) ? filterReq( $_POST['tagsName'] ) : '';
 
-			if ($id != '0') { // 更新 UI
+			if( $id != '0' ) { // 更新 UI
 				$flag = $editor->updateCode($id, $name, $html, $css, $js, $incFile, $tagsId, $tagsName);
 			} else { // 创建新 UI
 				$flag = $editor->insertCode($name, $html, $css, $js, $incFile, $tagsId, $tagsName);

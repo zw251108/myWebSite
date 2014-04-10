@@ -1187,7 +1187,16 @@ require_once('../include/Config.inc.php');
 				<dt class="icon icon-arrwo-r">new 操作符</dt>
 				<dd>如果在一个函数前面带上 new 操作符来调用，那么会创建一个连接到该函数的 prototype 成员的新对象，同时 this 会被绑定到那个新对象上，new 操作符也会改变 return 语句的行为：当返回值不是一个对象时，则返回 this</dd>
 				<dt class="icon icon-arrow-r">delete 操作符</dt>
-				<dd>delete 操作符是将属性从一个对象中删除的唯一方法，将属性设置为 undefined 或 null 只能改变属性的值，而不会将属性从对象中删除，delete 操作符只能对实例的属性和方法起作用，不会删除 prototype 的属性或方法</dd>
+				<dd>
+					<p>delete 操作符是将属性从一个对象中删除的唯一方法，将属性设置为 undefined 或 null 只能改变属性的值，而不会将属性从对象中删除，delete 操作符只能对实例的属性和方法起作用，不会删除 prototype 的属性或方法，如：</p>
+
+					<pre class="brush:js">
+						var foo = {bar: 'bar'};
+
+						delete foo.bar
+						console.log('bar' in foo);	// false
+					</pre>
+				</dd>
                 <dt class="icon icon-arrow-r">typeof 运算符</dt>
                 <dd>typeof 的基本语法是：typeof variable。但也可以这样用：typeof(variable)，尽管这个是合法的 JavaScript 语法，但这种用法让 typeof 看起来像一个函数而非运算符，所以推荐使用无括号的写法</dd>
                 <dt class="icon icon-arrow-r">instanceof 运算符</dt>
@@ -1500,6 +1509,19 @@ require_once('../include/Config.inc.php');
                             // do something
                         }
                     </pre>
+
+					<p>for-in 循环只能遍历可枚举的属性，即在遍历对象时可用的属性，例如原生的构造函数属性就不会显示，可以使用 propertyIsEnumerable() 方法检查哪些属性是可枚举的，如：</p>
+
+					<pre class="brush:js">
+						console.log( 'apply' in Function );	// true
+
+						for(var k in Function){
+							console.log(Function[k])
+						}
+						// 没有输出
+
+						console.log( Function.propertyIsEnumerable('apply') );	// false 说明 apply 属性不可枚举
+					</pre>
 
                     <p>除 return 和 throw 语句，有两种方法可以更改循环的执行过程，一是使用 break，二是使用 continue。但事实上，使用 continue 的情况都可以使用条件语句，同时更具可读性，所以推荐避免使用 continue，如：</p>
 

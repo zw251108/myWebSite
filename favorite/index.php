@@ -55,7 +55,7 @@ $allTag = $tag->selectTagByLevel();
 </section>
 
 <section class="module module-popup module-normal hidden" id="favorAddPopup">
-    <form id="favorAddForm" action="addFavor.php" method="post">
+    <form id="favorAddForm" action="editFavor.php" method="post">
 
 		<div class="form_group">
 			<label class="tips tips-bottom hidden" for="title"></label>
@@ -83,7 +83,9 @@ $allTag = $tag->selectTagByLevel();
 		</div>
 
 		<div class="form_group-btn">
-			<input class="btn btn-submit" type="submit" value="添加收藏"/>
+			<input id="favorId" name="favorId" type="hidden" value="0"/>
+			<input id="favorIndex" type="hidden"/>
+			<input class="btn btn-submit" type="submit" value="确定"/>
 		</div>
     </form>
 </section>

@@ -44,4 +44,21 @@ class Favorite extends DB{
         return $this->insert($this->TABLE_NAME, '(url,tagsId,tagsName,title,content,datetime)',
             '\''. $url .'\',\''. $tagsId .'\',\''. $tagsName .'\',\''. $title . '\',\''. $content .'\',now()');
     }
+
+	/**
+	 * @description 编辑收藏
+	 * @param	string	$id		收藏 Id
+	 * @param   string  $url    收藏链接
+	 * @param   string  $tagsId 标签 Id
+	 * @param   string  $tagsName   标签 名称
+	 * @param   string  $title  文章标题
+	 * @param   string  $content    文章内容
+	 * @return	number  更新影响的行数
+	 */
+	public function updateFavor($id, $url, $tagsId='', $tagsName='', $title='', $content=''){
+		return $this->update( $this->TABLE_NAME,
+			'url=\''. $url .'\',tagsId=\''. $tagsId .'\',tagsName=\''. $tagsName .'\',title=\''. $title
+			.'\',content=\''. $content .'\'',
+			'where Id='. $id);
+	}
 }

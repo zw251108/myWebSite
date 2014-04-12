@@ -320,9 +320,11 @@ define(['jquery', 'extend', 'clippy', 'validator'], function($){
 //        }).find('.module-header').addClass('hidden');
 //    }, 1800);
 
-	var $tools = $('#header'),
-		$backTop = $tools.find('#backTop'),
-		$menu = $tools.find('#menu');
+	var $tools = $('#header')
+		, $backTop = $tools.find('#backTop')
+		, $menu = $tools.find('#menu')
+		, $headerMenu = $tools.find('#headerMenu')
+		;
 	g.scroll.add(function(){
 		if( $backTop.is(':hidden') && (g.body.scrollTop || g.doc.scrollTop) > 0 ){
 			$backTop.stop().fadeIn();
@@ -338,7 +340,9 @@ define(['jquery', 'extend', 'clippy', 'validator'], function($){
 			scrollTop: 0
 		}, 'slow');
 	});
-//	$menu.on('click', function(){});
+	$menu.on('click', function(){
+		$headerMenu.stop().slideToggle();
+	});
 /***** END *****/
 
 /***** START 助手插件 *****/

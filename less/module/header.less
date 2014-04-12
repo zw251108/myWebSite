@@ -10,15 +10,15 @@
     position: fixed;
 
     z-index: @z-header;
-    left: @grid-space;
-    right: @grid-space;
+    left: 0;    //@grid-space;
+    right: 0;   //@grid-space;
     top: 0;
 
     height: @header-height;
 
-    background: @background;
+    background: #fff;
 
-//    .boxShadow(0 5px 5px @box-shadow);
+	.boxShadow(5px 5px 5px #888);
 
 	/**
 	 * @extend    module.less
@@ -27,22 +27,43 @@
 		float: none;
 		height: 70px;
 		margin: 0 auto;
+
+		background-color: transparent;
 	}
 
 	.btn{
-		height: 60px;
-		width: 60px;
+
+		width: 70px;
+		height: 70px;
 
 		min-width: 60px;
 
-		margin: 5px 10px 5px 0;    //@grid-space;
+		border: none;
+		margin: 0 @space 0 0;
 		padding: 0;
 
+		background-position: 10px 10px !important;
 		background-repeat: no-repeat;
 	}
 
 	.btn-backTop{
 		margin-right: 0;
+	}
+
+	.menu{
+		position: absolute;
+		top: 70px;
+		left: 0;
+		right: 0;
+
+		margin: 0 -5px;
+		background: #fff;
+
+		.boxShadow(5px 5px 5px #888);
+
+		.btn-link{
+			margin: 10px 5px 0;
+		}
 	}
 }
 .module-header{

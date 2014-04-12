@@ -4,17 +4,55 @@
 		<a class="btn btn-big btn-link btn-home" id="home" href="<?php echo projectRoot();?>" title="返回首页"></a>
 
 		<button class="btn btn-big btn-menu<?php echo projectRoot()=='' ? ' hidden' : '';?>" id="menu" type="button" title="显示菜单"></button>
+
+		<ul id="headerMenu" class="menu hidden">
+			<li class="menu_item">
+				<a class="btn btn-big btn-link btn-blog" title="博客" href="<?php echo projectRoot();?>blog"></a>
+			</li>
+			<li class="menu_item">
+				<a class="btn btn-big btn-link btn-document" title="前端文档" href="<?php echo projectRoot();?>document"></a>
+			</li>
+			<li class="menu_item">
+				<a class="btn btn-big btn-link btn-editor" title="编辑器" href="<?php echo projectRoot();?>editor"></a>
+			</li>
+			<li class="menu_item">
+				<a class="btn btn-big btn-link btn-favorite" title="收藏夹" href="<?php echo projectRoot(); ?>favorite"></a>
+			</li>
+			<li class="menu_item">
+				<a class="btn btn-big btn-link btn-palette" title="调色板" href="<?php echo projectRoot(); ?>palette"></a>
+			</li>
+		</ul>
+
 		<button class="btn btn-big btn-copyright" id="copyright" type="button"
 				title="copyright &copy; <?php echo date('Y');?> 周文博 All rights reserved"></button>
 
 		<button class="btn btn-big btn-backTop hidden" id="backTop" type="button" title="回到顶部"></button>
 	</div>
 
-	<div class="hidden">
-		<div>
-			<a class="btn btn-big btn-link" href=""></a>
-		</div>
-	</div>
+<!--	<ul class="menu hidden" style="-->
+<!--    width: 100%;-->
+<!--    overflow: hidden;-->
+<!--    position: absolute;-->
+<!--    top: 70px;-->
+<!--    left: 0;-->
+<!--    background: #fff;-->
+<!--">-->
+<!--		<li class="menu_item">-->
+<!--			<a class="btn btn-big btn-link btn-blog" title="博客" href="--><?php //echo projectRoot();?><!--blog"></a>-->
+<!--		</li>-->
+<!--		<li class="menu_item">-->
+<!--			<a class="btn btn-big btn-link btn-document" title="前端文档" href="--><?php //echo projectRoot();?><!--document"></a>-->
+<!--		</li>-->
+<!--		<li class="menu_item">-->
+<!--			<a class="btn btn-big btn-link btn-editor" title="编辑器" href="--><?php //echo projectRoot();?><!--editor"></a>-->
+<!--		</li>-->
+<!--		<li class="menu_item">-->
+<!--			<a class="btn btn-big btn-link btn-favorite" title="收藏夹" href="--><?php //echo projectRoot(); ?><!--favorite"></a>-->
+<!--		</li>-->
+<!--		<li class="menu_item">-->
+<!--			<a class="btn btn-big btn-link btn-palette" title="调色板" href="--><?php //echo projectRoot(); ?><!--palette"></a>-->
+<!--		</li>-->
+<!--	</ul>-->
 
 <!--
     <div class="module module-large module-header">

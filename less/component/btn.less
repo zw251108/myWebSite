@@ -1,6 +1,7 @@
 @charset "utf-8";
 
 @import "../lib/color.less";
+@import "../lib/function.less";
 @import "../lib/grid.less";
 
 //----- button 按钮 -----
@@ -10,6 +11,7 @@
 /*a,button,input:button,input:submit,input:reset*/.btn{
 	float: left;
 
+	height: @line-height;
 	min-width: @btn-min-width;
 
 	border: @btn-border-width solid @btn-border;
@@ -43,7 +45,7 @@
 	 * button 会将边框计算在宽度之内，而 a 不会
 	 */
 	a&{
-		box-sizing: border-box;
+		.boxSizing(border-box);
 	}
 }
 /*a*/.btn-link:hover{// 链接 仅用于 a 元素
@@ -81,6 +83,9 @@
 }
 .btn-favorite{
 	background-image: url("../image/default/btn-favorite.png");
+}
+.btn-rss{
+	background-image: url("../image/default/btn-rss.png");
 }
 .btn-palette{
 	background-image: url("../image/default/btn-palette.png");

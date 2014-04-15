@@ -30,6 +30,7 @@ require(['jquery', 'global', 'filter', 'template', 'layout'], function($, g, $fi
 			    container: $editorList,
 			    selector: 'article',
 			    left: space -10,
+			    right: -space,
 			    top: space -10,
 			    colSpace: space,
 			    rowSpace: space

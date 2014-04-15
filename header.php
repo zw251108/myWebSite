@@ -7,19 +7,22 @@
 
 		<ul id="headerMenu" class="menu hidden">
 			<li class="menu_item">
-				<a class="btn btn-big btn-link btn-blog" title="博客" href="<?php echo projectRoot();?>blog"></a>
+				<a class="btn btn-big btn-link btn-blog" title="博客" href="<?php echo projectRoot();?>blog/"></a>
 			</li>
 			<li class="menu_item">
-				<a class="btn btn-big btn-link btn-document" title="前端文档" href="<?php echo projectRoot();?>document"></a>
+				<a class="btn btn-big btn-link btn-document" title="前端文档" href="<?php echo projectRoot();?>document/"></a>
 			</li>
 			<li class="menu_item">
-				<a class="btn btn-big btn-link btn-editor" title="编辑器" href="<?php echo projectRoot();?>editor"></a>
+				<a class="btn btn-big btn-link btn-editor" title="编辑器" href="<?php echo projectRoot();?>editor/"></a>
 			</li>
 			<li class="menu_item">
-				<a class="btn btn-big btn-link btn-favorite" title="收藏夹" href="<?php echo projectRoot(); ?>favorite"></a>
+				<a class="btn btn-big btn-link btn-favorite" title="收藏夹" href="<?php echo projectRoot(); ?>favorite/"></a>
 			</li>
 			<li class="menu_item">
-				<a class="btn btn-big btn-link btn-palette" title="调色板" href="<?php echo projectRoot(); ?>palette"></a>
+				<a class="btn btn-big btn-link btn-rss" title="订阅" href="<?php echo projectRoot(); ?>rss/"></a>
+			</li>
+			<li class="menu_item">
+				<a class="btn btn-big btn-link btn-palette" title="调色板" href="<?php echo projectRoot(); ?>palette/"></a>
 			</li>
 		</ul>
 

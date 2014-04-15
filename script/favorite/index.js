@@ -143,8 +143,8 @@ require(['jquery', 'global', 'tag', 'filter',
 		        tips.offset(offset);
 		        this.data('tipsinit', true);
 	        }
-        },
-        wrong:function(txt){
+        }
+	    , wrong:function(txt){
 	        var offset
 		        , tips = this.prev();
 
@@ -158,8 +158,8 @@ require(['jquery', 'global', 'tag', 'filter',
 		        tips.offset(offset);
 		        this.data('tipsinit', true);
 	        }
-        },
-        right:function(txt){
+        }
+	    , right:function(txt){
 	        var offset
 		        , tips = this.prev();
 

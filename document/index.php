@@ -1184,7 +1184,7 @@ require_once('../include/Config.inc.php');
                         }
                     </pre>
                 </dd>
-				<dt class="icon icon-arrwo-r">new 操作符</dt>
+				<dt class="icon icon-arrow-r">new 操作符</dt>
 				<dd>如果在一个函数前面带上 new 操作符来调用，那么会创建一个连接到该函数的 prototype 成员的新对象，同时 this 会被绑定到那个新对象上，new 操作符也会改变 return 语句的行为：当返回值不是一个对象时，则返回 this</dd>
 				<dt class="icon icon-arrow-r">delete 操作符</dt>
 				<dd>
@@ -2212,7 +2212,7 @@ require_once('../include/Config.inc.php');
                 <dd>
                     <p>最快的选择器：id 选择器和元素标签选择器</p>
 
-                    <p>较慢的选择器：class 选择器（取决于浏览器版本，新版本会有 getElementByClassName() 方法，所以也许并不慢。。。是的，就是低版本的 IE 会很慢）</p>
+                    <p>较慢的选择器：class 选择器（取决于浏览器版本，新版本会有 getElementsByClassName() 方法，所以也许并不慢。。。是的，就是低版本的 IE 会很慢）</p>
 
                     <p>最慢的选择器：伪类选择器和属性选择器（因为浏览器没有针对它们的原生方法，一些浏览器的新版本，增加了 querySelector() 和 querySelectorAll() 方法，没错。。。同上）</p>
 
@@ -2221,12 +2221,11 @@ require_once('../include/Config.inc.php');
                     <p>优化选择器以适用 Sizzle 的“从右至左”模型，确保最右的选择器具体些，而左边的选择器选择范围较宽泛些，如：</p>
 
                     <pre class="brush:js">
-                        // 推荐
-                        var linkContacts = $('.contact-links div.side-wrapper');
-
-                        // 不推荐
+						// 不推荐
                         var linkContacts = $('a.contact-links .side-wrapper');
 
+                        // 推荐
+                        var linkContacts = $('.contact-links div.side-wrapper');
                     </pre>
                 </dd>
                 <dt class="icon icon-arrow-r">关于 jQuery 对象与 jQuery 函数</dt>
@@ -2246,12 +2245,6 @@ require_once('../include/Config.inc.php');
                 </dd>
                 <dt class="icon icon-arrow-r">for 与 each</dt>
                 <dd>原生 JavaScript 的执行几乎总是要比 jQuery 快一些。正因为如此，请使用 JavaScript 的 for 循环，不要使用 jQuery.each 方法。但是请注意，虽然 for in 是原生的，可是在许多情况下，它的性能要比 jQuery.each 差一些</dd>
-                <dt class="icon icon-arrow-r">关于 this</dt>
-                <dd>
-                    <p>在绑定的事件中，可以尽量使用 DOM 的原生属性，而尽量不要将 this 封装为 jQuery 对象 $(this)</p>
-
-                    <p>ajax 方法的参数集中有 context（上下文），若设置，参数集中定义的函数（如：success 等）的 this 会被指向 context，建议使用节省资源消耗</p>
-                </dd>
                 <dt class="icon icon-arrow-r">缓存变量</dt>
                 <dd>选择器的使用次数应该越少越好，尽可能缓存选择器的结果，便于以后反复使用</dd>
                 <dt class="icon icon-arrow-r">链式调用</dt>
@@ -2297,8 +2290,27 @@ require_once('../include/Config.inc.php');
 
                     <p>不建议使用 css() 函数直接改变 CSS 属性，建议将需要更改的 CSS 属性定义为一个类，使用 addClass()、removeClass() 函数来控制，所以布局编写 CSS 时，要考虑各种情况</p>
                 </dd>
-                <dt class="icon icon-arrow-r">动画效果</dt>
-                <dd>使用 CSS 动画比起 JavaScript 驱动的动画效率更高，在不支持 CSS 动画的情况下（IE8 及以下版本的浏览器），你可以引入 JavaScript 动画逻辑</dd>
+				<dt class="icon icon-arrow-r">不要处理不存在的元素</dt>
+				<dd>
+					<p>不要处理不存在的元素</p>
+
+					<pre class="brush:js">
+						// 糟糕的做法，jQuery 内部要执行三个函数后才知道这个元素其实不存在
+						$('#nosuchthing').slideUp();
+
+						// 推荐的做法
+						var $selector = $('#nosuchthing');
+						if( $selector.length ){
+							$selector.slideUp();
+						}
+					</pre>
+				</dd>
+                <dt class="icon icon-arrow-r">动画与特效</dt>
+                <dd>
+					<p>使用 CSS 动画比起 JavaScript 驱动的动画效率更高，在不支持 CSS 动画的情况下（IE8 及以下版本的浏览器），你可以引入 JavaScript 动画逻辑</p>
+
+					<p>保持一个始终如一风格统一的动画实现</p>
+				</dd>
                 <dt class="icon icon-arrow-r">事件</dt>
                 <dd>
                     <p>基于 jQuery 1.7 以后的版本开发时，绑定事件使用 on() 函数，解绑使用 off() 函数，因为 bind、live、delegete 函数均为调用 on() 函数，减少不必要的开销。</p>
@@ -2331,14 +2343,18 @@ require_once('../include/Config.inc.php');
                         $('a').on('click.show', clickEvent.show);
                     </pre>
 
-
                     <p>在绑定的事件中，可以使用 DOM 的源生属性，而尽量不要将 this 封装为 jQuery 对象 $(this)，如：</p>
 
                     <pre class="brush:js">
                         var clickEvent = {
                             show:function(){
-                                alert( this.innerHTML );
-                            }
+
+								// 不推荐
+								console.log( $(this).html() );
+
+								// 推荐
+								console.log( this.innerHTML );
+							}
                         }
                     </pre>
 
@@ -2352,13 +2368,15 @@ require_once('../include/Config.inc.php');
                 </dd>
                 <dt class="icon icon-arrow-r">Ajax</dt>
                 <dd>
-                    <p>触发功能型数据交互 ajax 的一定是一个链接（&lt;a&gt;&lt;/a&gt;）的点击事件或表单（&lt;form&gt;&lt;/form&gt;）的提交事件，Ajax 一定要写错误处理</p>
+					<p>不推荐使用 $.get()、$.post() 或 $.getJSON() 等方法，因为最终将转为 $.ajax() 方法</p>
 
-                    <p>表单：所有想要提交的数据同时必须在该表单中，对其绑定 submit 事件，ajax 的 URL 放在 form 的 action 中，type 使用 POST 方式（可视具体情况而定，例如搜索可以使用 GET）</p>
+                    <p>触发功能型数据交互 Ajax 的一定是一个链接（&lt;a&gt;&lt;/a&gt;）的点击事件或表单（&lt;form&gt;&lt;/form&gt;）的提交事件，Ajax 一定要写错误处理</p>
+
+                    <p>表单：所有想要提交的数据同时必须在该表单中，对其绑定 submit 事件，Sjax 的 URL 放在 form 的 action 中，type 使用 POST 方式（可视具体情况而定，例如搜索可以使用 GET）</p>
 
                     <p>链接：type 使用 GET 方式（可视具体情况而定），所要传递的参数直接写在 href 属性中，若想传递其它参数可通过其它触发事件来改变该链接的 href 属性的值</p>
 
-                    <p>若为获取页面数据型的 ajax 建议以模块划分，以事件的形式绑定到模块的最顶级标签上：如：</p>
+                    <p>若为获取页面数据型的 Ajax 建议以模块划分，以事件的形式绑定到模块的最顶级标签上：如：</p>
 
                     <pre class="brush:js">
                         var $header = $('#module_header').on('getUserData', function(e, uid){
@@ -2375,7 +2393,9 @@ require_once('../include/Config.inc.php');
                         $header.triggerHandler('getUserData', [1]);
                     </pre>
 
-                    <p>当需要发送多个 Ajax 到服务器端验证时，不要对 Ajax 进行嵌套，也可使用 triggerHandler 函数，如：</p>
+					<p>Ajax 方法的参数集中有 context（上下文），若设置，参数集中定义的函数（如：success 等）的 this 会被指向 context，建议使用节省资源消耗</p>
+
+					<p>当需要发送多个 Ajax 到服务器端验证时，不要对 Ajax 进行嵌套，也可使用 triggerHandler 函数，如：</p>
 
                     <pre class="brush:js">
                         $validItem.on({
@@ -2479,6 +2499,14 @@ require_once('../include/Config.inc.php');
 
                     <p>消息则允许一个组件以非硬编码的方式监听其他组件</p>
                 </dd>
+				<dt class="icon icon-arrow-r">插件相关</dt>
+				<dd>
+					<p>始终选择一个有良好支持，完善文档，全面测试过并且社区活跃的插件</p>
+
+					<p>注意所用插件与当前使用的 jQuery 版本是否兼容</p>
+
+					<p>一些常用功能应该写成 jQuery 插件</p>
+				</dd>
             </dl>
         </section>
         <section class="document_section section">

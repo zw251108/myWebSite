@@ -110,7 +110,7 @@ require(['jquery', 'global', 'layout'], function($, g){
 		;
 
     if( !g.ie ){
-        var prefix,
+        var prefix = '',
 	        temp = document.createElement('div').style;
 
         if( '-webkit-transform' in temp ){

@@ -16,7 +16,7 @@ require(['jquery', 'global', 'template',
 //	'tag', 'filter',
 	'pagination', 'artDialog', 'artDialogPlus', 'validator'], function($, g){
 	var rssTmpl = $.template({
-			template: 'li.article[data-rssid=%Id%][data-tagsid=%tagsId%]' +
+			template: 'li.article[data-rssid=%Id%][data-rssfeed=%xmlUrl%][data-tagsid=%tagsId%]' +
 				'>a[href=%htmlUrl%][target=_blank][title=%name%]>h3.article_title{%name%}' +
 				'^hr+div.rss_content>ul.rss_articleList.hidden'
 			, filter: {
@@ -24,7 +24,7 @@ require(['jquery', 'global', 'template',
 			}
 		})
 		, articleTmpl = $.template({
-			template: 'li.article>h4.article_title{%title%}+div.article_content{%content%}'
+			template: 'li.article>h4.article_title{%title%}+div.article_content{%description%}'
 			, filter: {
 
 			}
@@ -48,59 +48,70 @@ require(['jquery', 'global', 'template',
 //		})
 		;
 
-	$rssList.on('click', 'span', function(){
+	$rssList.on('click', 'a', function(e){
+		e.preventDefault();
 
+		var $self = $(this);
+		$.ajax({
+			url: 'feed.php'
+			, data: 'feed='+ $self.parent().data('rssfeed')
+			, context: $self
+			, success: function(data){console.log(articleTmpl( data.data ))
+				console.log( this.nextAll('div').html() );
+				this.nextAll('div').find('ul').html( articleTmpl( data.data).join('') ).show();
+			}
+		});
 	}).html( rssTmpl(currData, 0, size) );
 
-	var article = [{
-		title: '123'
-		, content: '123123'
-	}, {
-		title: '123123'
-		, content: '123123123123'
-	}, {
-		title: '123123123'
-		, content: '123121231233'
-	}, {
-		title: '123123'
-		, content: '123123123123'
-	}, {
-		title: '123123'
-		, content: '123123123123'
-	}, {
-		title: '123123'
-		, content: '123123123123'
-	}, {
-		title: '123123'
-		, content: '123123123123'
-	}, {
-		title: '123123123'
-		, content: '123121231233'
-	}, {
-		title: '123123'
-		, content: '123123123123'
-	}, {
-		title: '123123'
-		, content: '123123123123'
-	}, {
-		title: '123123'
-		, content: '123123123123'
-	}, {
-		title: '123123'
-		, content: '123123123123'
-	}, {
-		title: '123123123'
-		, content: '123121231233'
-	}, {
-		title: '123123'
-		, content: '123123123123'
-	}, {
-		title: '123123'
-		, content: '123123123123'
-	}, {
-		title: '123123'
-		, content: '123123123123'
-	}];
+//	var article = [{
+//		title: '123'
+//		, content: '123123'
+//	}, {
+//		title: '123123'
+//		, content: '123123123123'
+//	}, {
+//		title: '123123123'
+//		, content: '123121231233'
+//	}, {
+//		title: '123123'
+//		, content: '123123123123'
+//	}, {
+//		title: '123123'
+//		, content: '123123123123'
+//	}, {
+//		title: '123123'
+//		, content: '123123123123'
+//	}, {
+//		title: '123123'
+//		, content: '123123123123'
+//	}, {
+//		title: '123123123'
+//		, content: '123121231233'
+//	}, {
+//		title: '123123'
+//		, content: '123123123123'
+//	}, {
+//		title: '123123'
+//		, content: '123123123123'
+//	}, {
+//		title: '123123'
+//		, content: '123123123123'
+//	}, {
+//		title: '123123'
+//		, content: '123123123123'
+//	}, {
+//		title: '123123123'
+//		, content: '123121231233'
+//	}, {
+//		title: '123123'
+//		, content: '123123123123'
+//	}, {
+//		title: '123123'
+//		, content: '123123123123'
+//	}, {
+//		title: '123123'
+//		, content: '123123123123'
+//	}];
 
-	$rssList.find('ul:eq(0)').html( articleTmpl(article)).show();
+//	$rssList.find('ul:eq(0)').html( articleTmpl(article)).show();
 });

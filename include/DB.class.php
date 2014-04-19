@@ -1,15 +1,17 @@
 <?php
 require_once('Config.inc.php');
 /**
- *@author   zhouwenbo
- *
  *@class    DB  数据库操作基类
+ *
+ *@author   zhouwenbo
  */
 class DB{
-    private $_CONN;					//数据库连接
-    protected $TABLE_NAME;			//表名
-    protected $TABLE_COL_TEXT;      //列名说明
-    protected $TABLE_COL_NAME;		//列名数组
+    private $_CONN;					// 数据库连接
+	private $ACCESSIBLE = true;		// 是否可访问数据库
+
+    protected $TABLE_NAME;			// 表名
+    protected $TABLE_COL_TEXT;      // 列名说明
+    protected $TABLE_COL_NAME;		// 列名数组
 
     /**
      * 预定义SQL语句
@@ -25,8 +27,6 @@ class DB{
     //删除数据
     protected $DELETE   = 'delete from {tableName} {where}';
 
-    private $enable = true;
-
     /**
      * @description 初始化构造函数，连接数据库
      */
@@ -39,7 +39,7 @@ class DB{
         else{
             echo '数据库链接失败';
             //exit();
-            $this->enable = false;
+            $this->ACCESSIBLE = false;
         }
         $this->_CONN = $connection;
     }
@@ -72,7 +72,7 @@ class DB{
      */
     public function select($tableName, $tableColName='*', $where='', $limit='', $order=''){
         $rs = null;
-        if( $this->enable ){
+        if( $this->ACCESSIBLE ){
             $sql = $this->SELECT;
 
             //TODO  替换预定义的SQL语句中的变量
@@ -97,7 +97,7 @@ class DB{
      */
     public function count($tableName, $tableColName='*', $where=''){
         $result = array('count'=>0);
-        if( $this->enable ){
+        if( $this->ACCESSIBLE ){
             $sql = $this->COUNT;
 
             //TODO  替换预定义的SQL语句中的变量
@@ -119,7 +119,7 @@ class DB{
      */
     public function selectCustom($sql){
         $rs = null;
-        if( $this->enable ){
+        if( $this->ACCESSIBLE ){
             $rs = $this->transformToObj( mysql_query( $sql, $this->_CONN) );
         }
         return $rs;
@@ -135,7 +135,7 @@ class DB{
      */
     public function insert($tableName, $tableColName, $value){
         $flag = 0;
-        if( $this->enable ){
+        if( $this->ACCESSIBLE ){
             $sql = $this->INSERT;
 
             //TODO	替换预定义的SQL语句中的变量
@@ -158,7 +158,7 @@ class DB{
      */
     public function update($tableName, $set, $where){
         $flag = 0;
-        if( $this->enable ){
+        if( $this->ACCESSIBLE ){
             $sql = $this->UPDATE;
 
             //TODO  替换预定义的SQL语句中的变量
@@ -180,7 +180,7 @@ class DB{
      */
     public function delete($tableName, $where=''){
         $flag = 0;
-        if( $this->enable ){
+        if( $this->ACCESSIBLE ){
             $sql = $this->DELETE;
 
             //TODO	替换预定义的SQL语句中的变量
@@ -217,7 +217,7 @@ class DB{
 ////	//删除数据
 ////	protected $DELETE   = 'delete from {tableName} {where}';
 //
-//	private $enable = true;
+//	private $ACCESSIBLE = true;
 //
 //	/**
 //     * @description 初始化构造函数，连接数据库
@@ -255,7 +255,7 @@ class DB{
 //     */
 //	public function select($tableName, $tableColName='*', $where='', $limit='', $order=''){
 //		$rs = null;
-//		if( $this->enable ){
+//		if( $this->ACCESSIBLE ){
 //			$sql = $this->SELECT;
 //
 //			//TODO  替换预定义的SQL语句中的变量

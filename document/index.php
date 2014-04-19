@@ -645,6 +645,12 @@ require_once('../include/Config.inc.php');
 
                     <p>IE 中的斜体文字非常有可能导致水平溢出</p>
                 </dd>
+				<dt class="icon icon-arrow-r">z-index</dt>
+				<dd>
+					<p>z-index 属性只对定位元素有效，即 position 值为 absolute,relative,fixed 时才有效</p>
+
+					<p>关于 z-index 属性，上下的层次关系也是按照树状结构进行层次划分的，优先父元素之间的分集，子元素这层次排序依赖于父元素的层次</p>
+				</dd>
                 <dt class="icon icon-arrow-r">外边距重叠（collapsing margin）</dt>
                 <dd>
                     <p>CSS 盒模型（box model）中一个较为晦涩的概念。指若两个元素上下毗邻且都定义了都为正数的外边距值，同时有没有任何内边距、边框等设定，那么这两个元素之间的距离为二者外边距中较大的一个，即外边距要尽可能的重合</p>

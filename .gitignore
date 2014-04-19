@@ -7,7 +7,7 @@ admin/money.php
 script/compress.bat
 script/test.js
 script/lib.inc.js
-sql/coding4fun.sql
+
 
 ##### 过滤的文件夹
 # 编辑器文件夹
@@ -38,7 +38,14 @@ media/
 node/node_modules/
 node/views/
 
+# Cocos2d-html5
+cocos2d/
+game/
+
 # JS 库文件
 script/lib/
 script/plugin/
 script/test/
+
+# 数据库文件
+sql/

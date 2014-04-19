@@ -16,7 +16,7 @@ class Rss extends DB{
 	 */
 	public function selectByType( $type='' ){
 
-		return $this->select( $this->TABLE_NAME, 'Id,name,htmlUrl,tagsId,tagsName' );
+		return $this->select( $this->TABLE_NAME, 'Id,name,xmlUrl,htmlUrl,tagsId,tagsName' );
 	}
 
 	/**

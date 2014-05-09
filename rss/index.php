@@ -3,13 +3,17 @@
  *  todo
  * */
 require_once("../include/Rss.class.php");
+require_once('../include/Tag.class.php');
 
 $PAGE_TITLE = '订阅列表';
 $rss = new Rss();
 $rs = $rss->selectByType();
+
+$tag = new Tag();
+$allTag = $tag->selectTagByLevel();
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
 <meta charset="utf-8" />
 <!--[if lt IE 9]><meta http-equiv="content-type" content="text/html; charset=utf-8" /><![endif]-->
@@ -22,11 +26,77 @@ $rs = $rss->selectByType();
 <?php require_once('../header.php');?>
 <section class="module module-main module-large module-rss">
 	<h2 class="module_title">订阅 rss</h2>
+
+	<div class="toolBar">
+		<button class="btn icon icon-add" id="addFavor" type="button" value="">添加</button>
+
+		<div class="filter" id="Filter">
+			<button class="btn icon icon-filter filter_setBtn" id="setFilter" type="button" value="">过滤
+				<span id="filterCd" class="countdown hidden">
+					<span class="cd_quarter quarter_1"></span>
+					<span class="cd_quarter quarter_2"></span>
+					<span class="cd_quarter quarter_3"></span>
+					<span class="cd_quarter quarter_4"></span>
+					<span id="filterCdNum" class="cd_num">0</span>
+				</span>
+			</button>
+			<button class="btn icon icon-reset filter_resetBtn hidden" id="resetFilter" type="button" value="">重置</button>
+			<div class="filter_tagArea" id="filterTagArea">
+				<div class="filter_checked" id="filterChecked"></div>
+				<div class="filter_all hidden" id="filterAll"></div>
+			</div>
+		</div>
+
+		<div class="clearfix"></div>
+	</div>
+
 	<ul class="module_content list rss_list" id="rssList"></ul>
+
+	<div class="pagination rss_page" id="Pagination"></div>
 </section>
+
+<section class="module module-popup module-normal hidden" id="favorAddPopup">
+	<form id="favorAddForm" action="editFavor.php" method="post">
+
+		<div class="form_group">
+			<label class="tips tips-bottom hidden" for="title"></label>
+			<input class="input" type="text" name="title" id="title" data-validator="title" placeholder="收藏标题"/>
+		</div>
+
+		<div class="form_group">
+			<label class="tips tips-bottom hidden" for="url"></label>
+			<input class="input" type="text" name="url" id="url" data-validator="url" placeholder="收藏 url"/>
+		</div>
+
+		<div class="form_group">
+			<div id="Tag">
+				<input type="hidden" name="tagsId" id="tagsId"/>
+				<input type="hidden" name="tagsName" id="tagsName"/>
+				<div class="tagsArea" id="selectTags">
+					<label id="addNewTag">
+						<input type="text" class="input" id="tagName" placeholder="创建新标签" />
+						<button class="btn hidden" id="addTag" type="button" value="">添加</button>
+					</label>
+				</div>
+				<hr/>
+				<div class="tagsArea" id="allTags"></div>
+			</div>
+		</div>
+
+		<div class="form_group-btn">
+			<input id="favorId" name="favorId" type="hidden" value="0"/>
+			<input id="favorIndex" type="hidden"/>
+			<input class="btn btn-submit" type="submit" value="确定"/>
+		</div>
+	</form>
+</section>
+
 <?php require_once('../footer.php');?>
 
-<script>var RSS_LIST = <?php echo isset($rs) ? json_encode( $rs ) : '[]';?>;</script>
+<script>
+var RSS_LIST = <?php echo isset($rs) ? json_encode( $rs ) : '[]';?>,
+	TAG_DATA = <?php echo isset($allTag) ? json_encode($allTag) : '[]';?>;
+</script>
 <script data-main="../script/rss/index" src="../script/lib/require/require.js"></script>
 </body>
 </html>

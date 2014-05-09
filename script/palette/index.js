@@ -4,9 +4,10 @@ require.config(MODULE_CONFIG);
 require(['jquery', 'global', 'template'], function($){
     var colorTmpl = $.template({
             template:'li[style=background:#%colorValue%]{%colorName% #%colorValue%}'
-        }),
-        $cache = $([]),
-        $modules = $('.module, .Header');
+        })
+	    , $cache = $([])
+//	    , $modules = $('.module, .Header')
+	    ;
 
     $('#paletteList').on('click', 'a', function(e){
         var $self = $cache.add( this),

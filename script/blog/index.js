@@ -29,32 +29,35 @@ require(['jquery', 'global', 'template', 'dialog'], function($, g){
             }
         })
 	    , $cache = $([])
-	    , $blogList = $('#blogList').html( blogTmpl(BLOG_LIST) ).on('getArticleContent', function(e, $item){
-            $.ajax({
-                url: $item.attr('href')
-	            , context: $item
-	            , success:function(data){
-                    if( !('error' in data) ){
-                        $('<div class="article_content">'+ data.content +'</div>').hide()
-	                        .insertAfter( this.data('deploy', true) ).slideDown();
-                    }
-                    else{// 错误
-                        // todo 错误提示
-                    }
-                }
-            });
-        }).on('click', 'article > a', function(e){// 获得详细内容
-            var $self = $cache.add(this)
-	            , isDeploy = $self.data('deploy')
-	            ;
+	    , $blogList = $('#blogList')
+		;
 
-            if( isDeploy ){// 已获取数据
-                $self.next().slideToggle();
-            }
-            else{
-                $blogList.triggerHandler('getArticleContent', [$self]);
-            }
+	$blogList.on('getArticleContent', function(e, $item){
+		$.ajax({
+			url: $item.attr('href')
+			, context: $item
+			, success:function(data){
+				if( !('error' in data) ){
+					$('<div class="article_content">'+ data.content +'</div>').hide()
+						.insertAfter( this.data('deploy', true) ).slideDown();
+				}
+				else{// 错误
+					// todo 错误提示
+				}
+			}
+		});
+	}).on('click', 'article > a', function(e){// 获得详细内容
+		var $self = $cache.add(this)
+			, isDeploy = $self.data('deploy')
+			;
 
-            e.preventDefault();
-        });
+		if( isDeploy ){// 已获取数据
+			$self.next().slideToggle();
+		}
+		else{
+			$blogList.triggerHandler('getArticleContent', [$self]);
+		}
+
+		e.preventDefault();
+	}).html( blogTmpl(BLOG_LIST) );
 });

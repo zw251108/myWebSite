@@ -6,68 +6,89 @@
 
 //---------- Rss 订阅 ----------
 .module-rss{
-	background-image: url("../image/metro/Rss.png");
+	background-image: url("../image/default/metro/Rss.png");
 
 	.module_title{
-		background-image:url("../image/default/rss.png");
+		background-image:url("../image/default/metro-small/rss.png");
 	}
 
 	.module_content{
 		margin-bottom: -@space;
 	}
+
+	.icon-add{
+		position: relative;
+		z-index: 5;
+	}
 }
 
 .rss_list{
-//	float: left;
+}
+.rss_item{
+	position: relative;
+	padding: 10px;
+	background: @c29;
 
-//	width: 30%;
-//	min-width: 100px;
-
-	li{
-		background: @c29;
+	.btn_group{
+		position: absolute;
+		top: 0;
+		right: 0;
 	}
-
-	a{
-		display: block;
-		overflow: hidden;
-
-		width: 100%;
-
-		margin: 0 5px;
-
-		text-overflow: ellipsis;
-		-o-text-overflow: ellipsis;
-
-		white-space: nowrap;
+	.btn{
+		margin: 10px 10px 0 0;
 	}
 }
-.rss_content{
-	overflow: hidden;
-
-	border-bottom: 10px solid white;
-
-	margin-right: -10px;
-	margin-top: 10px;
-	padding-left: 10px;
-
-	background-color: white;
-}
+//.rss_content{
+//	overflow: hidden;
+//
+////	border-bottom: 10px solid white;
+//
+////	margin-right: -10px;
+//	margin-top: 10px;
+//	padding: 0 10px;
+//
+//	background-color: white;
+//}
 
 .rss_articleList{
 	overflow: hidden;
 
-	margin-bottom: -10px;
 	margin-top: 10px;
+//	margin-bottom: -10px;
 
-	li{
-		float: left;
-		border: 10px dashed @c35;
-		border-left: 0;
-		border-top: 0;
-		margin-bottom: 0;
-		background: white;
+	padding: 10px 10px 0;
 
-		padding: 0;
-		width: 300px;
+	background-color: @background;
+
+	.article{
+		position: relative;
+//		border-bottom: 1px dashed @border-color;
+//		border-bottom: 10px dashed @border-color;
+//		padding: 0;
+
+		background: #fff;
+
+		.btn{
+			border-color: @border-color;
+		}
 	}
+//	.article_title{
+//		text-align: center;
+//	}
+
+	.article_content{
+		a{
+			color: @a-hover;
+		}
+		img{
+			display: block;
+			margin: 0 auto;
+		}
+	}
+}
+
+.rss_page{
+	margin: 0 0 0 @space;
+	padding-left: @space;
+	background: @module-content-bg;
 }

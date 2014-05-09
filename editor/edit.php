@@ -34,7 +34,7 @@ else{
     $allTag = $tag->selectTagByLevel();
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
 <!--[if lt IE 9]><meta http-equiv="content-type" content="text/html; charset=utf-8" /><![endif]-->
 <meta charset="utf-8" />
@@ -141,8 +141,8 @@ $(function(){
 			<input type="hidden" name="tagsName" id="tagsName"/>
 			<div class="tagsArea" id="selectTags">
 				<label id="addNewTag">
-					<input type="text" id="tagName" placeholder="创建新标签" />
-					<button class="hidden" id="addTag" type="button" value="">添加</button>
+					<input type="text" class="input" id="tagName" placeholder="创建新标签" />
+					<button class="btn hidden" id="addTag" type="button" value="">添加</button>
 				</label>
 			</div>
 			<hr/>

@@ -267,8 +267,10 @@ require(['jquery', 'global', 'tag', 'artDialog', 'artDialogPlus', 'validator', '
     $('#showFileList').on('click', function(){
         var self = this;
         art.dialog({
-            id:'showFileList', title:'项目文件列表', content:$('#directory').get(0), follow:this,
-            initialize:function(){
+            id:'showFileList', title:'项目文件列表'
+	        , content:$('#directory').get(0)
+//	        , follow:self
+	        , initialize:function(){
                 if( !/getList/.test( self.className ) ){
                     $.ajax({
                         url:'fileList.php',
@@ -316,8 +318,8 @@ require(['jquery', 'global', 'tag', 'artDialog', 'artDialogPlus', 'validator', '
                     });
                     self.className += ' getList';
                 }
-            },
-            cancelValue:'关闭', cancel:function(){}
+            }
+	        , cancelValue:'关闭', cancel:function(){}
         });
     });
 	$incFile.on('click', 'li:gt(0)', function(){

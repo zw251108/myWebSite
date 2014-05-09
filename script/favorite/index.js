@@ -12,8 +12,9 @@ MODULE_CONFIG.paths.pagination = 'ui/jquery.pagination';
 require.config(MODULE_CONFIG);
 require(['jquery', 'global', 'tag', 'filter',
 	'pagination', 'artDialog', 'artDialogPlus', 'validator'], function($, g, tag, $filter){
-    var favorTmpl = $.template({
-            template: 'li.article[data-index=%index%][data-favid=%Id%][data-tagsid=%tagsId%]' +
+    var GUID_DATA = {}
+	    , favorTmpl = $.template({
+            template: 'li.article[data-guid=%guid%][data-index=%index%][data-favid=%Id%][data-tagsid=%tagsId%]' +
                 '>a[href=%url%][target=_blank]>h3.article_title{%title%}' +
                 '^hr+span.article_date{%datetime%}+div.tagArea{%tags%}' +
 	            '+div.btn_group.hidden>button.btn.icon.icon-edit.js-edit[type=button]{编辑}' +
@@ -22,7 +23,14 @@ require(['jquery', 'global', 'tag', 'filter',
                 index: function(data, index){
 	                return data.index || index;
                 }
-                , tags: function(data, index){
+	            , guid: function( data ){
+		            var guid = $._guid();
+
+		            GUID_DATA[guid] = data;
+
+		            return guid;
+	            }
+                , tags: function( data ){
                     var ids, names, temp
 	                    , html = []
 	                    , i = 0
@@ -198,10 +206,14 @@ require(['jquery', 'global', 'tag', 'filter',
 
 					    if( $favorIndex.val() ){  // 编辑
 //						    data.id = data.favorId;
-						    $t = target.data.target;
-						    index = $t.data('index');
 
-						    $.extend(FAVOR_LIST[index], temp);
+						    /**
+						     * todo 调整
+						     * */
+//						    $t = target.data.target;
+//						    index = $t.data('index');
+//
+//						    $.extend(FAVOR_LIST[index], temp);
 					    }
 					    else{   // 添加
 //		                    $.extend(data, temp);
@@ -217,13 +229,13 @@ require(['jquery', 'global', 'tag', 'filter',
 						    $t = $( favorTmpl([data]).join('') ).prependTo( $favorList);
 						    $t.queue();
 						    $t.fadeTo('slow', 0.2).fadeTo('slow', 0.8).fadeTo('slow', 0.2).fadeTo('slow', 1);
-
-						    // 表单数据重置
-						    $favorAddForm.reset();
-
-						    // 所选标签重置
-						    tag.reset();
 					    }
+
+					    // 表单数据重置
+					    $favorAddForm.reset();
+
+					    // 所选标签重置
+					    tag.reset();
 				    }
 				    else{
 					    // 显示错误信息
@@ -241,7 +253,7 @@ require(['jquery', 'global', 'tag', 'filter',
 	$favorTitle = $favorAddForm.find('#title');
 	$favorUrl = $favorAddForm.find('#url');
 	$favorId = $favorAddForm.find('#favorId');
-	$favorIndex = $favorAddForm.find('#favorIndex')
+	$favorIndex = $favorAddForm.find('#favorIndex');
 
 	/**
 	 * 列表操作

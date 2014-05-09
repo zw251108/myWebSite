@@ -2,76 +2,76 @@
 /**
  *  创建 TCP 服务器
  * */
-//var net = require('net')
-//	, chatServer = net.createServer()
-//	, clientList = []
-//	;
-//
-//function broadcast(message, client){
-//	var temp
-//		, i = 0
-//		, j = clientList.length
-//		, cleanup = []
-//		;
-//	for(; i < j; i++){
-//		temp = clientList[i];
-//		if( client !== temp ){
-//			// 检查 socket 的可写状态
-//			if( temp.writable ){
-//				temp.write(client.name +' says: '+ message);
-//			}
-//			else{
-//				cleanup.push(i);
-////				cleanup.push(temp);
-////				temp.destroy();
-//			}
-//		}
-//	}
-//
-//	// 删除死节点，消除垃圾索引
-//	for(i = 0, j = cleanup.length; i < j; i++){
-//		temp = cleanup[i];
-//
-//		clientList[temp].destroy();
-////		clientList.splice(clientList.indexOf(cleanup[i]), 1);
-//		clientList.splice(temp, 1);
-//	}
-//}
-//
-//chatServer.on('connection', function(client){
-//	// 添加名称
-//	client.name = client.remoteAddress +':'+ client.remotePort;
-//
-//	client.write('hi,'+ client.name +'\n');
-//
-//	clientList.push( client );
-//
-//	// client 发送数据是触发
-//	client.on('data', function(data){
-//		console.log(data);
-//
-//		// 每个客户端都接受信息
-////		for(var i = 0, j = client.length; i < j; i++){
-////			clientList[i].write(data);
-////		}
-//
+var net = require('net')
+	, chatServer = net.createServer()
+	, clientList = []
+	;
+
+function broadcast(message, client){
+	var temp
+		, i = 0
+		, j = clientList.length
+		, cleanup = []
+		;
+	for(; i < j; i++){
+		temp = clientList[i];
+		if( client !== temp ){
+			// 检查 socket 的可写状态
+			if( temp.writable ){
+				temp.write(client.name +' says: '+ message);
+			}
+			else{
+				cleanup.push(i);
+//				cleanup.push(temp);
+//				temp.destroy();
+			}
+		}
+	}
+
+	// 删除死节点，消除垃圾索引
+	for(i = 0, j = cleanup.length; i < j; i++){
+		temp = cleanup[i];
+
+		clientList[temp].destroy();
+//		clientList.splice(clientList.indexOf(cleanup[i]), 1);
+		clientList.splice(temp, 1);
+	}
+}
+
+chatServer.on('connection', function(client){
+	// 添加名称
+	client.name = client.remoteAddress +':'+ client.remotePort;
+
+	client.write('hi,'+ client.name +'\n');
+
+	clientList.push( client );
+	                                         console.log( clientList.length );
+	// client 发送数据是触发
+	client.on('data', function(data){
+		console.log(data);
+
+		// 每个客户端都接受信息
+		for(var i = 0, j = client.length; i < j; i++){
+			clientList[i].write(data);
+		}
+
 //		broadcast(data, client);
-//	});
-//
-//	// 记录错误
-//	client.on('error', function(e){
-//		console.log(e);
-//	});
-//
-//	// 端口连接时将 client 从 clientList 中删除
-//	client.on('end', function(){
-//		clientList.splice(clientList.indexOf(client), 1);
-//	});
-//
-//	// 关闭连接
-////	client.end();
-//});
-//chatServer.listen(9000);
+	});
+
+	// 记录错误
+	client.on('error', function(e){
+		console.log(e);
+	});
+
+	// 端口连接时将 client 从 clientList 中删除
+	client.on('end', function(){
+		clientList.splice(clientList.indexOf(client), 1);
+	});
+
+	// 关闭连接
+//	client.end();
+});
+chatServer.listen(9000);
 
 //---------- 使用集群来分发任务 ----------
 /**
@@ -1030,63 +1030,63 @@
 /**
  * Express + Socket.IO
  * */
-var io = require('socket.io')
-	, express = require('express')
-	, app = express()
-	, store = new express.session.MemoryStore
-	, utils = require('connect').utils
-	, Session = require('connect').middleware.session.Session
-	, sio
-	;
-
-app.configure(function(){
-	app.use( express.cookieParser() );
-	app.use( express.session({
-		secret: 'secretKey'
-		, key: 'express.sid'
-		, store: store
-	}) );
-	app.use(function(req, res){
-		var sess = req.session;
-		res.render('socket.jade', {
-			email: sess.email || ''
-		});
-	});
-});
-
-app.listen(8080);
-
-sio.listen( app );
-
-sio.configure(function(){
-	sio.set('authorization', function(data, accept){
-		var cookies = utils.parseCookie( data.headers.cookie );
-
-		data.sessionID = cookies['express.sid'];
-		data.sessionStore = store;
-
-		store.get(data.sessionID, function(err, session){
-			if( err || !session ){
-				return accept('invalid session', false);
-			}
-
-			data.session = new Session(data, session);
-			return accept(null, true);
-		});
-	});
-
-	sio.socket.on('connection', function( socket ){
-		var session = socket.handshake.session;
-
-		socket.join(socket.handshake.sessionId);
-		socket.on('emailupdate', function( data){
-			session.email = data.email;
-			session.save();
-
-			sio.sockets.in( socket.handshake.sessionId).emit('emailchanged', {
-				email: data.email
-			})
-		})
-
-	})
-});
+//var io = require('socket.io')
+//	, express = require('express')
+//	, app = express()
+//	, store = new express.session.MemoryStore
+//	, utils = require('connect').utils
+//	, Session = require('connect').middleware.session.Session
+//	, sio
+//	;
+//
+//app.configure(function(){
+//	app.use( express.cookieParser() );
+//	app.use( express.session({
+//		secret: 'secretKey'
+//		, key: 'express.sid'
+//		, store: store
+//	}) );
+//	app.use(function(req, res){
+//		var sess = req.session;
+//		res.render('socket.jade', {
+//			email: sess.email || ''
+//		});
+//	});
+//});
+//
+//app.listen(8080);
+//
+//sio.listen( app );
+//
+//sio.configure(function(){
+//	sio.set('authorization', function(data, accept){
+//		var cookies = utils.parseCookie( data.headers.cookie );
+//
+//		data.sessionID = cookies['express.sid'];
+//		data.sessionStore = store;
+//
+//		store.get(data.sessionID, function(err, session){
+//			if( err || !session ){
+//				return accept('invalid session', false);
+//			}
+//
+//			data.session = new Session(data, session);
+//			return accept(null, true);
+//		});
+//	});
+//
+//	sio.socket.on('connection', function( socket ){
+//		var session = socket.handshake.session;
+//
+//		socket.join(socket.handshake.sessionId);
+//		socket.on('emailupdate', function( data){
+//			session.email = data.email;
+//			session.save();
+//
+//			sio.sockets.in( socket.handshake.sessionId).emit('emailchanged', {
+//				email: data.email
+//			})
+//		})
+//
+//	})
+//});

@@ -41,7 +41,7 @@ define(['jquery', 'template'], function(){
             var i = 0, j,
                 $temp = $tags.find('#allTags');
 
-            ids = ids.split(',');
+	        ids = ids.toString().split(',');
             for(j = ids.length; i < j; i++){
                 $temp.find('span.tag[data-tagid="'+ ids[i] +'"]').trigger('click');
             }

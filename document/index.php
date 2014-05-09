@@ -3,9 +3,23 @@
  *  todo
  * */
 require_once('../include/Config.inc.php');
+
+//$raw = '22.11.2001';
+//$start = DateTime::createFromFormat('d.m.Y', $raw);
+//echo $start->format('m/d/Y');
+//
+//$end = clone $start;
+//$end->add(new DateInterval('P1M6D'));
+//$diff = $end->diff( $start );
+//echo $diff->format('%m %d(%a days)');
+//
+//$juice = 'plum';
+//echo "I drank some juice made of $juice";
+
+//echo @json_encode( array() );
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
 <meta charset="utf-8" />
 <!--[if lt IE 9]><meta http-equiv="content-type" content="text/html; charset=utf-8" /><![endif]-->
@@ -31,11 +45,6 @@ require_once('../include/Config.inc.php');
                     <p>其中编程风格是编码规范的一种，用来规约单文件中代码的规划。编码规范还包含编程最佳实践、文件和目录的规划以及注释等方面。一旦编程风格确立后，这套编程风格就会促成团队成员高水准的协作，因为所有代码的风格看起来极为类似，任何开发者都不会在乎某个文件的作者是谁，代码具备可读性、可预测性，也就没有必要花费额外精力去理解代码逻辑并重新排版，很容易地识别出问题代码并发现错误。</p>
 
                     <p>编程最佳实践是另外一类编程规范。编程风格关心代码的呈现，编程实践则关心编码的结果。设计模式是编程实践的组成部分，专用于解决和软件组织相关的特定问题</p>
-
-<!--                    <p>数据是不应当影响指令的正常运行的，精心设计的应用应当将关键数据从主要的源码中抽离出来，-->
-<!--                        配置数据：URL、需要展现给用户的字符串、重复的值、设置（比如每页的配置项）、任何可能发生变更的值，-->
-<!--                        配置数据最好放在单独的文件中，以便清晰的分隔数据和应用逻辑，-->
-<!--                        一种值得尝试的做法是将配置数据存放于非 JavaScript 文件中</p>-->
                 </dd>
                 <dt class="icon icon-arrow-r">基本准则</dt>
                 <dd>
@@ -48,7 +57,9 @@ require_once('../include/Config.inc.php');
                         <li>CSS 用来给页面添加样式，创造视觉特征</li>
                         <li>JavaScript 用来给页面添加行为，使其更具交互性</li>
                     </ul>
-                </dd>
+
+<!--					<p>数据不应当影响指令的正常运行的，精心设计的应用应当将关键数据从主要的源码中抽离出来，配置数据：URL、需要展现给用户的字符串、重复的值、设置（比如每页的配置项）、任何可能发生变更的值，配置数据最好放在单独的文件中，以便清晰的分隔数据和应用逻辑，一种值得尝试的做法是将配置数据存放于非 JavaScript 文件中</p>-->
+				</dd>
                 <dt class="icon icon-arrow-r">文件规范</dt>
                 <dd>以项目名称建立文件夹，以日期建立文件夹区别版本，最终版本须有以下几个文件夹：html、psd、jpg、需求资料。html 文件夹里有 style、script、image、media（放置视频、音频和 flash 文件）。另：如果项目较多，需要给每个项目名称前上首个拼音的大写字母，例如：K-宽系列。</dd>
                 <dt class="icon icon-arrow-r">关于优化</dt>
@@ -96,6 +107,8 @@ require_once('../include/Config.inc.php');
 
                     <p>书写时用 IDE 实现层次分明的缩进，但在发布前应利用自动化工具删除注释、空格与缩进，压缩 HTML 文件的体积，因为这些对浏览器不重要</p>
                 </dd>
+				<dt class="icon icon-arrow-r">语言属性</dt>
+				<dd>根据 HTML5 规范：强烈建议为 html 根元素指定 lang 属性，从而为文档设置正确的语言。这将有助于语音合成工具确定其所应该采用的发音，有助于翻译工具确定其翻译时所应遵守的规则等</dd>
                 <dt class="icon icon-arrow-r">meta</dt>
                 <dd>
                     <p>keyword、content 对于网站的 SEO 很重要，页面描述不超过 150 个字符，author 定义网页作者，robots 定义网页搜索引擎方式，值为一组使用英文逗号“,”分割的值，通常有如下几种取值：none，noindex，nofollow，all，index和follow，如：</p>
@@ -506,7 +519,7 @@ require_once('../include/Config.inc.php');
                 <dd>当你在一个外部样式表中使用 @import url('style.css') 时，览器无法通过并行下载的方式下载这个资源，这样就会导致其他资源的下载被阻塞，所以不建议使用</dd>
                 <dt class="icon icon-arrow-r">class & id</dt>
                 <dd>
-                    <p>id 是唯一的并是父级的，class 是可以重复的并是子级的</p>
+                    <p>id 是唯一的并是父级的，class 用于标识高度可复用组件是可以重复的并是子级的</p>
 
                     <p>所以 id 仅使用在大的模块上，class 可用在重复使用率高或是子级中</p>
 
@@ -532,9 +545,9 @@ require_once('../include/Config.inc.php');
                 <dd>
                     <p>选择器尽可能简单，如：#example，而不是 ul#example，过深的选择器路径可能会使第三方组件的样式失效</p>
 
-                    <p>尽量避免使用元素标签名和 ID、class 进行组合的选择器，做到样式与元素的分离，两者独立维护</p>
+                    <p>尽量避免使用元素标签名和 id、class 进行组合的选择器，做到样式与元素的分离，两者独立维护</p>
 
-                    <p>选择器有个先后排序：ID、class、标签及一般，这意味着一个带有 id 的元素集比只带有标签选择器的元素更快的被渲染。但在所有 DOM 元素都加上 id 是没有意义的</p>
+                    <p>选择器有个先后排序：id、class、标签及一般，这意味着一个带有 id 的元素集比只带有标签选择器的元素更快的被渲染。但在所有 DOM 元素都加上 id 是没有意义的</p>
 
                     <p>出于性能上的考虑避免使用子元素选择器和后代选择器，浏览器是从右向左来分析选择器的，对于 #example &gt; li{}，浏览器会先查找页面上所有的 li 节点，然后再去进一步判断：如果它的父节点的 id 为 example 则匹配成功，后代选择器比之前的子元素选择器效率更慢，会步步上溯其父节点，直到 DOM 结构的根节点（document）。由此可知，CSS 选择器的匹配性能问题不容忽视</p>
 
@@ -552,8 +565,22 @@ require_once('../include/Config.inc.php');
 
                     <p>注：在 IE 中 :hover 会降低响应速度</p>
 
-                    <p>最大限度复用 CSS 样式</p>
-                </dd>
+                    <p>将选择器和声明隔行，每个选择器和声明都要独立新行</p>
+
+                    <pre class="brush:css">
+                        /* 推荐 */
+                        h1,
+                        h2,
+                        h3 {
+                            font-weight: normal;
+                            line-height: 1.2;
+                        }
+                    </pre>
+
+					<p>为选择器中的属行添加双引号</p>
+
+					<p>最大限度复用 CSS 样式</p>
+				</dd>
 				<dt class="icon icon-arrow-r">准修饰选择器</dt>
 				<dd>
 					<p>有时你希望告诉其他开发者 class 的使用范围，我们可以在选择器前加上准修饰来描述我们规划的 class 作用范围，如：</p>
@@ -916,29 +943,17 @@ require_once('../include/Config.inc.php');
 
                     <p>属性的值为 0 时，可以省略后边的单位</p>
 
-                    <p>省略 0 开头小数点前面的 0</p>
+                    <p>省略 0 开头小数点前面的 0，如：margin: .5em -.5em</p>
 
                     <p>考虑到一致性和拓展性，请在每个属性声明尾部都加上分号</p>
 
-                    <p>加颜色值时使用3个字符的十六进制更短与简洁，如：#abc</p>
+                    <p>加颜色值时尽量使用简写 3 个字符的十六进制更短与简洁且应该全部小写，如：#abc</p>
 
-                    <p>大型项目中最好在 ID 或 class 名字前加上这种标识性前缀（命名空间），使用短破折号链接</p>
+                    <p>大型项目中最好在 id 或 class 名字前加上这种标识性前缀（命名空间），使用短破折号链接</p>
 
                     <p>最好避免使用该死的 CSS "hacks"</p>
 
-                    <p>出于一致性的原因，在属性名和值之间加一个空格（可不是属性名和冒号之间哦）</p>
-
-                    <p>将选择器和声明隔行，每个选择器和声明都要独立新行</p>
-
-                    <pre class="brush:css">
-                        /* 推荐 */
-                        h1,
-                        h2,
-                        h3 {
-                            font-weight: normal;
-                            line-height: 1.2;
-                        }
-                    </pre>
+                    <p>出于一致性的原因，在属性名和值之间加一个空格（并不是属性名和冒号之间）</p>
                 </dd>
                 <dt class="icon icon-arrow-r">响应式布局</dt>
                 <dd>
@@ -1059,7 +1074,31 @@ require_once('../include/Config.inc.php');
                     <p>注意: 如果在 window.onload 事件中或之后执行 document.write 方法，会将当前页面替换掉。</p>
                 </dd>
                 <dt class="icon icon-arrow-r">eval()</dt>
-                <dd>避免使用 eval() 除非反序列化</dd>
+                <dd>
+					<p>避免使用 eval() 除非反序列化</p>
+
+					<p>eval 函数会在当前作用域中执行一段 JavaScript 代码字符串，但是 eval 函数只在被直接调用并且调用函数就是 eval 本身时，才在当前作用域中执行，如：</p>
+
+					<pre class="brush:js">
+						var num = 1;
+						function doSomething(){
+							var num = 2;
+							eval('num = 3');
+							return num;
+						}
+						console.log(doSomething(), num);	// 3, 1
+
+						var num = 1;
+						function doSomething(){
+							var num = 2
+								, doThings = eval
+								;
+							bar('num = 3');
+							return num;
+						}
+						console.log(doSomething(), num);	// 2, 3
+					</pre>
+				</dd>
                 <dt class="icon icon-arrow-r">严格模式</dt>
                 <dd>
                     <p>ECMAScript5 引入了“严格模式”（strict mode）："use strict"，但不推荐将其用在全局作用域中，建议只在函数内使用</p>
@@ -1191,7 +1230,7 @@ require_once('../include/Config.inc.php');
                     </pre>
                 </dd>
 				<dt class="icon icon-arrow-r">new 操作符</dt>
-				<dd>如果在一个函数前面带上 new 操作符来调用，那么会创建一个连接到该函数的 prototype 成员的新对象，同时 this 会被绑定到那个新对象上，new 操作符也会改变 return 语句的行为：当返回值不是一个对象时，则返回 this</dd>
+				<dd>如果在一个函数前面带上 new 操作符来调用，这个函数会被认为是构造函数，将会会创建一个连接到该函数的 prototype 成员的新对象，同时 this 会被绑定到那个新对象上，new 操作符也会改变 return 语句的行为：当返回值不是一个对象时，则返回 this</dd>
 				<dt class="icon icon-arrow-r">delete 操作符</dt>
 				<dd>
 					<p>delete 操作符是将属性从一个对象中删除的唯一方法，将属性设置为 undefined 或 null 只能改变属性的值，而不会将属性从对象中删除，delete 操作符只能对实例的属性和方法起作用，不会删除 prototype 的属性或方法，如：</p>
@@ -1204,7 +1243,11 @@ require_once('../include/Config.inc.php');
 					</pre>
 				</dd>
                 <dt class="icon icon-arrow-r">typeof 运算符</dt>
-                <dd>typeof 的基本语法是：typeof variable。但也可以这样用：typeof(variable)，尽管这个是合法的 JavaScript 语法，但这种用法让 typeof 看起来像一个函数而非运算符，所以推荐使用无括号的写法</dd>
+                <dd>
+					<p>typeof 的基本语法是：typeof variable。但也可以这样用：typeof(variable)，尽管这个是合法的 JavaScript 语法，但这种用法让 typeof 看起来像一个函数而非运算符，所以推荐使用无括号的写法</p>
+
+					<p>typeof 只有一个实际的应用，用来检测一个对象是否已经定义或者是否已经赋值，而不是用来检查对象的类型</p>
+				</dd>
                 <dt class="icon icon-arrow-r">instanceof 运算符</dt>
                 <dd>
                     <p>在 JavaScript 中除了原始值之外的值都是引用，typeof 运算符在判断这些引用类型时除了函数类型会返回 "function"，其它都会返回 "object"（部分浏览器在判断 RegExp 类型时会返回 "function"），这时检测某个引用值得类型的最好方法是使用 instanceof 运算符</p>
@@ -1325,6 +1368,8 @@ require_once('../include/Config.inc.php');
                     <p>JavaScript 中有 3 中原始包装类型：Boolean、Number、String。每种类型都代表全局作用域中的一个构造函数，并分别表示各自对应的原始值的对象。原始包装类型的主要作用是让原始值具有对象般的行为，如：</p>
 
                     <pre class="brush:js">
+						console.log( 'zwb'.toUpperCase() );	// ZWB
+
                         var name = 'zwb';
                         console.log( name.toUpperCase() );  // ZWB
                         // 在调用方法时，JavaScript 引擎创建了 String 类型的新实例
@@ -1333,6 +1378,14 @@ require_once('../include/Config.inc.php');
                         console.log( name.id ); // undefined
                         // 在对原始类型添加属性时，JavaScript 引擎创建了 String 类型的新实例，并添加了属性，但是紧跟着就被销毁了
                         // 而使用添加的属性时，又创建了 String 类型的新实例，但并没有 id 属性，所以返回 undefined
+
+						// 需要注意的是数字的字面值，因为 JavaScript 解析器的一个错误， 它试图将点操作符解析为浮点数字面值的一部分
+						console.log( 2.toString() );	// error 报错
+
+						// 以下方法可以正确执行
+						console.log( 2..toString() );	// "2"
+						console.log( 2 .toString() );	// "2"
+						console.log( (2).toString() );	// "2"
                     </pre>
                 </dd>
                 <dt class="icon icon-arrow-r">中文字符</dt>
@@ -1551,9 +1604,27 @@ require_once('../include/Config.inc.php');
                 </dd>
                 <dt class="icon icon-arrow-r">函数</dt>
                 <dd>
-                    <p>一个 function 语句就是其值为一个函数的 var 语句的速记形式</p>
+                    <p>和变量声明一样，函数声明也会被 JavaScript 引擎提前，一个 function 语句就是其值为一个函数的 var 语句的速记形式，但两者有一些不同，如：</p>
 
-                    <p>和变量声明一样，函数声明也会被 JavaScript 引擎提前，因此在代码中函数的调用可以出现在函数声明之前，但这应该是尽量避免的，建议内部函数应紧接着变量声明之后声明，如：</p>
+					<pre class="brush:js">
+						// 函数声明
+						doSomething();	// 正常运行，因为 doSomething 在代码运行前已经被创建
+						function doSomething(){}
+
+						// 函数赋值表达式
+						doOtherThing;	// undefined
+						doOtherThing();	// 报错 TypeError
+						var doOtherThing = function(){};
+
+						// 命名函数的赋值表达式
+						var callback = function doThings(){
+							doThings();	// 正常运行
+							// 函数名在函数内部总是可见
+						}
+						doThings();	// 报错 ReferenceError
+					</pre>
+
+					<p>因此在代码中函数的调用可以出现在函数声明之前，但这应该是尽量避免的，建议内部函数应紧接着变量声明之后声明，如：</p>
 
                     <pre class="brush:js">
                         function doSomething(){
@@ -1586,6 +1657,15 @@ require_once('../include/Config.inc.php');
 
                     <p>一个函数或方法应该只有一个 return 语句</p>
 
+					<p>当访问函数内的变量是，JavaScript 会按照下列顺序查找：</p>
+
+					<ol>
+						<li>当前作用域内是否有该变量的定义</li>
+						<li>函数形式参数是否有使用该变量名称</li>
+						<li>函数自身是否为该变量名称</li>
+						<li>回溯到上一级作用域，然后从 #1 重新开始</li>
+					</ol>
+
                     <p>不在块域中使用 function，如：</p>
 
                     <pre class="brush:js">
@@ -1614,22 +1694,82 @@ require_once('../include/Config.inc.php');
 						A[A.length] = v;
 					</pre>
                 </dd>
+				<dt class="icon icon-arrow-r">arguments 对象</dt>
+				<dd>
+					<p>JavaScript 中每个函数内都能访问一个特别变量 arguments，这个变量维护着所有传递到这个函数的参数列表。arguments 变量不是一个数组，虽然有数组相关的属性 length，但它不从 Array.prototype 继承</p>
+
+					<p>arguments 对象为其内部属性以及函数形式参数创建 getter 和 setter 方法，因此改变形参的值会影响到 arguments 对象的值，反之亦然，如：</p>
+
+					<pre class="brush:js">
+						function doSomething(a, b, c){
+							console.log( a );	// 1
+							console.log( arguments[0] );	// 1
+
+							a = 4;
+							console.log( a );	// 4
+							console.log( arguments[0] );	// 4
+
+							arguments[1] = 5;
+							console.log( b );	// 5
+							console.log( arguments[1] );	// 5
+						}
+						doSomething(1, 2, 3)
+					</pre>
+
+					<p>arguments 对象总会被创建，除了两个特殊情况：作为局部变量声明和作为形式参数，自定义 arguments 参数将会阻止原生的 arguments 对象的创建，而不管它是否被使用</p>
+
+					<p>使用 arguments.callee 会显著影响现代 JavaScript 引擎的性能，如：</p>
+
+					<pre class="brush:js">
+						function doSomething(){
+							arguments.callee;
+							arguments.callee.caller;
+						}
+						function doOtherThing(){
+							var i = 0;
+							for(; i < 10000; i++){
+						    	doSomething();
+							}
+						}
+					</pre>
+
+					<p>上面代码中，doSomething 不再是一个单纯的内联函数 inlining（指的是解析器可以做内联处理），因为它需要知道自己和它的调用者。这不仅抵消了内联函数带来的性能提升，而且破坏了封装，因此现在的函数可能要依赖于特定的上下文</p>
+
+					<p>因此建议不要使用 arguments.callee 和它的属性，在 ES5 中 arguments.callee 属性已被取消</p>
+				</dd>
                 <dt class="icon icon-arrow-r">匿名函数</dt>
                 <dd>
                     <p>匿名函数通常被用来当做立即调用的函数或用来做闭包，如：</p>
 
                     <pre class="brush:js">
                         var value = (function(){
+							var hi = 'Hi';
+
                             // do something
 
                             return {
-                                message: 'Hi'
+								sayHi: function(){
+									return hi;
+								}
                             };
                         })();
                     </pre>
+
+					<p>匿名函数被认为是表达式，因此为了可调用性，它们会首先被执行</p>
+
+					<p>其它的调用函数表达式的方法：</p>
+
+					<pre class="brush:js">
+						+function(){}();
+						(function(){}());
+					</pre>
                 </dd>
                 <dt class="icon icon-arrow-r">闭包</dt>
-                <dd>小心使用闭包，过度使用有可能造成内存泄露</dd>
+                <dd>
+					<p>闭包是 JavaScript 一个非常重要的特性，这意味着当前作用域总是能够访问外部作用域中的变量。因为函数是 JavaScript 中唯一拥有自身作用域的结构，因此闭包的创建依赖于函数</p>
+
+					<p>小心使用闭包，过度使用有可能造成内存泄露</p>
+				</dd>
                 <dt class="icon icon-arrow-r">递归</dt>
                 <dd>不允许在在代码中使用递归，各个浏览器对函数的递归都有不同程度的限制，若函数运行时间过长，浏览器将会阻止</dd>
                 <dt class="icon icon-arrow-r">异常</dt>
@@ -1945,6 +2085,16 @@ require_once('../include/Config.inc.php');
                             elems = document.forms[0].elements;    // 页面上第一个表单中的所有域
                     </pre>
                 </dd>
+				<dt class="icon icon-arrow-r">document.all</dt>
+				<dd>
+					<p>document.all 用来取得页面中所有元素，这个方法最初由 IE 实现，后来 Firefox、Chrome 也实现了该方法，但由于早期开发中，人们会使用 documen.all 来判断是否为 IE 浏览器，所以在 Firefox、Chrome 浏览器中 typeof document.all 会返回 "undefined"，但实际是可用的</p>
+
+					<pre class="brush:js">
+						console.log( typeof document.all );	// 在 Firefox、Chrome 中输出 undefined
+
+						var dom = document.all;	// HTMLAllCollection[112] （112 为页面中元素总数）
+					</pre>
+				</dd>
                 <dt class="icon icon-arrow-r">减少 DOM 操作</dt>
                 <dd>浏览器遍历 DOM 元素的代价是昂贵的。虽然 JavaScript 引擎变得越来越强大，越来越快速，但是还是应该最大化的优化查询 DOM 树的操作，减少对 DOM 元素的查询和修改，查询时可将其赋值给局部变量，这样就没必要每次都去查询 DOM 树了</dd>
                 <dt class="icon icon-arrow-r">最小化重绘（repaint）和回流（reflow 重排）</dt>

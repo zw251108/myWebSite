@@ -34,7 +34,7 @@ else if( $_SERVER['REQUEST_METHOD'] == 'POST' ){
 }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
 <!--[if lt IE 9]><meta http-equiv="content-type" content="text/html; charset=utf-8" /><![endif]-->
 <meta charset="utf-8" />
@@ -60,31 +60,33 @@ echo $css ? '<style>'. $css .'</style>' : '';
 <script>
 // 加载用户输入的代码
 function __addHJC(incFile, cssCode, jsCode, htmlCode){
-    var doc = document,
-        head = doc.head,
-        body = doc.body,
+    var doc = document
+		, head = doc.head
+		, body = doc.body
+		, cssExpr = /\.css/
+		, jsExpr = /\.js$/
+		, i = 0
+		, j = incFile.length
+		, temp
+		, css
+		, jsCache = []
+		, jsNum = 0
+		, loadScript = function(){
+			var script;
+			if(jsNum < jsCache.length) {
+				script = doc.createElement('script');
 
-        cssExpr = /\.css/,
-        jsExpr = /\.js$/,
-        i = 0, j = incFile.length, temp,
+				script.src = jsCache[jsNum];
 
-        css,
-        jsCache = [],
-        jsNum = 0,
-        loadScript = function(){
-            if(jsNum < jsCache.length) {
-                var s = doc.createElement('script');
+				script.onload = loadScript;
 
-                s.src = jsCache[jsNum];
-
-                s.onload = loadScript;
-
-                body.appendChild(s);
-                jsNum++;
-            }
-            else{
+				body.appendChild( script );
+				jsNum++;
+			}
+			else{
+				script = eval;
 				try{
-					jsCode && eval( jsCode );
+					jsCode && script( jsCode );
 				}
 				catch(ex){
 					var msg;
@@ -102,8 +104,9 @@ function __addHJC(incFile, cssCode, jsCode, htmlCode){
 				}
 
                 $(window).trigger('load');
-            }
-        };
+			}
+		}
+		;
 
     // 加载 CSS 引用文件
     for(; i < j; i++ ){

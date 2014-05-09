@@ -1,39 +1,70 @@
 <?php
 /**
- * 获取 RSS 订阅
  */
-header('Content-type:application/xml');
-if( isset( $_GET['url'] ) ){
-	$url = $_GET['url'];
 
-//// 打开输出缓冲区
-//	ob_start();
-//
-//// 初始化会话
-//	$ch = curl_init();
-//
-//// 设定目标URL
-//	curl_setopt($ch, CURLOPT_URL, $url);
-//
-//// 发送请求
-//	curl_exec($ch);
-//
-//// 返回内部缓冲区的内容
-////$content = ob_get_contents();
-//
-//// 删除内部缓冲区的内容并关闭内部缓冲区
-////ob_end_clean();
-//
-//// 会话结束
-//	curl_close($ch);
+include_once('../include/DB.class.php');
 
-	$handle = fopen($_REQUEST['url'], "r");
+$db = new DB();
 
-	if ($handle) {
-		while (!feof($handle)) {
-			$buffer = fgets($handle, 4096);
-			echo $buffer;
+$res = [];
+if( isset( $_GET['feed'] ) ){
+	$url = $_GET['feed'];
+
+//	$url = 'http://feed.feedsky.com/programmer';
+//	$url = 'http://www.huxiu.com/rss/0.xml';
+//	$url = 'http://feeds.geekpark.net/';
+	$xml = @file_get_contents( $url );
+
+	$parser = xml_parser_create();
+
+//echo $xml;
+
+// xml_parser_set_option -- 为指定 XML 解析进行选项设置
+	xml_parser_set_option($parser, XML_OPTION_SKIP_WHITE, 1);
+
+// xml_parse_into_struct -- 将 XML 数据解析到数组$values中
+	xml_parse_into_struct($parser, $xml, $value, $index);
+
+// xml_parser_free -- 释放指定的 XML 解析器
+	xml_parser_free($parser);
+
+// print_r( $value );
+
+	$data = [];
+	for($i = 0, $j = count( $value ); $i < $j; $i++){
+		$val = $value[$i];
+
+		$tag = strtolower( $val['tag'] );
+		$type = strtolower( $val['type'] );
+
+		if( $tag != 'item' ){
+			continue;
 		}
-		fclose($handle);
+		$temp = array();
+
+		for(;;){
+			$val = $value[++$i];
+
+			if( strtolower( $val['tag'] ) == 'item' && strtolower( $val['type'] ) == 'close' ){
+				break;
+			}
+
+			if( isset( $val['value'] ) ){	// 保证不是空标签
+				$v = $val['value'];
+				$v = str_replace('<style', '&lt;style', $v);
+				$v = str_replace('</style>', '&lt;/style&gt;', $v);
+				$v = str_replace('<script', '&lt;script', $v);
+				$v = str_replace('</script>', '&lt;/script&gt;', $v);
+
+				$temp[strtolower( $val['tag'] )] = $v;
+			}
+		}
+		$data[] = $temp;
 	}
+	$res['data'] = $data;
 }
+else{
+
+}
+//输出结果
+echo json_encode( $res );

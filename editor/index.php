@@ -14,7 +14,7 @@ $tag = new Tag();
 $allTag = $tag->selectTagByLevel();
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
 <!--[if lt IE 9]><meta http-equiv="content-type" content="text/html; charset=utf-8" /><![endif]-->
 <meta charset="utf-8" />

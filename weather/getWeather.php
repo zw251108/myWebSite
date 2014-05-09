@@ -3,20 +3,18 @@
  * 获取天气
  */
 header("Content-type:text/html;charset=utf-8");
-$url = 'http://m.weather.com.cn/data/101070201.html';
-//$url = 'http://ext.weather.com.cn/101070201.json';
 
-// 打开输出缓冲区
-ob_start();
+$url = 'http://www.weather.com.cn/data/cityinfo/101070201.html';
+//$url = 'http://www.weather.com.cn/data/sk/101070201.html';	//
+//$url = 'http://www.weather.com.cn/data/zs/101070201.html';	//
 
-// 初始化会话
-$ch = curl_init();
+ob_start();	// 打开输出缓冲区
 
-// 设定目标URL
-curl_setopt($ch, CURLOPT_URL, $url);
+$ch = curl_init();	// 初始化会话
 
-// 发送请求
-curl_exec($ch);
+curl_setopt($ch, CURLOPT_URL, $url);	// 设定目标URL
+
+curl_exec($ch);	// 发送请求
 
 // 返回内部缓冲区的内容
 //$content = ob_get_contents();
@@ -24,7 +22,7 @@ curl_exec($ch);
 // 删除内部缓冲区的内容并关闭内部缓冲区
 //ob_end_clean();
 
-// 会话结束
-curl_close($ch);
+
+curl_close($ch);	// 会话结束
 
 //echo json_encode( $content );

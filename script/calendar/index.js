@@ -1,8 +1,8 @@
-MODULE_CONFIG.paths.artDialog = 'plugin/artDialog/artDialog.min';
+MODULE_CONFIG.paths.artDialog = '../plugin/artDialog/artDialog.min';
 MODULE_CONFIG.shim.artDialogPlus = ['artDialog'];
-MODULE_CONFIG.paths.artDialogPlus = 'plugin/artDialog/artDialog.plugins.min';
+MODULE_CONFIG.paths.artDialogPlus = '../plugin/artDialog/artDialog.plugins.min';
 MODULE_CONFIG.shim.calendar = shim;
-MODULE_CONFIG.paths.calendar = 'ui/jquery.calendar';
+MODULE_CONFIG.paths.calendar = '../script/ui/jquery.calendar';
 require(['jquery', 'global', 'artDialog', 'artDialogPlus', 'calendar'], function($, g){
 
 	var $calendar = $.calendar({

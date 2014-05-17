@@ -45,18 +45,17 @@ $userInfo = isset( $_SESSION['userId'] ) ? $user->selectById( $_SESSION['userId'
 var USER_INFO = <?php echo json_encode($userInfo);?>,
     shim = ['jquery'],
     MODULE_CONFIG = {
-        baseUrl:'../script',
         shim:{
-            extend:['jquery'],
-            clippy:['jquery'],
-            validator:['jquery']
+            extend:shim,
+            clippy:shim,
+            validator:shim
         },
         paths:{
-            jquery:'lib/jQuery/jquery-1.10.2.min',
-            global:'module/global',
-            extend:'ui/jquery.extend',
-            clippy:'plugin/clippy/clippy.min',
-            validator:'ui/jquery.validator'
+            jquery:'<?php echo projectRoot();?>lib/jQuery/jquery-1.10.2.min',
+            global:'<?php echo projectRoot();?>module/global',
+            extend:'<?php echo projectRoot();?>ui/jquery.extend',
+            clippy:'<?php echo projectRoot();?>plugin/clippy/clippy.min',
+            validator:'<?php echo projectRoot();?>ui/jquery.validator'
         }
     };
 </script>

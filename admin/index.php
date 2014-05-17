@@ -20,6 +20,8 @@ body{
     border: 0;
     margin: 0;
     padding: 0;
+
+	font-family: "Consolas",Monaco,Andale,monospace;
 }
 aside{
 	position: fixed;

@@ -22,6 +22,7 @@ $rs = $color->selectInfoColor();
 <style type="text/css">
 body{
     color: #000;
+	font-family: "Consolas",Monaco,Andale,monospace;
 }
 .icon{
     float:left;

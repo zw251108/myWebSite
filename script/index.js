@@ -1,4 +1,4 @@
-MODULE_CONFIG.baseUrl = 'script';
+//MODULE_CONFIG.baseUrl = 'script';
 MODULE_CONFIG.shim.layout = shim;
 MODULE_CONFIG.paths.layout = 'ui/jquery.layout';
 require.config(MODULE_CONFIG);

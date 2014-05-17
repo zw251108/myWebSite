@@ -43,7 +43,8 @@ else{
 <?php require_once('../style.php');?>
 <link rel="stylesheet" href="../script/plugin/clippy/clippy.css" /><!-- 帮助 -->
 <link rel="stylesheet" href="../script/plugin/artDialog/artDialog.css" /><!-- 弹窗 -->
-<link rel="stylesheet" href="../script/plugin/codeMirror/codemirror.css" /><!-- 代码编辑工具 -->
+<link rel="stylesheet" href="../script/plugin/codeMirror/lib/codemirror.css" /><!-- 代码编辑工具 -->
+<link rel="stylesheet" href="../script/plugin/codeMirror/addon/fold/foldgutter.css" /><!-- 代码编辑折叠工具 -->
 <link rel="stylesheet" href="../script/plugin/farbtastic/farbtastic.css" /><!-- 颜色选择器 -->
 <link rel="stylesheet" href="../script/plugin/zTree/zTreeStyle.css" /><!-- 树结构 -->
 </head>

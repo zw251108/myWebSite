@@ -1,10 +1,10 @@
 MODULE_CONFIG.shim.template = shim;
-MODULE_CONFIG.paths.template = 'ui/jquery.template';
+MODULE_CONFIG.paths.template = '../ui/jquery.template';
 MODULE_CONFIG.shim.dialog = shim;
-MODULE_CONFIG.paths.dialog = 'ui/jquery.dialog';
+MODULE_CONFIG.paths.dialog = '../ui/jquery.dialog';
 MODULE_CONFIG.shim.layout = shim;
-MODULE_CONFIG.paths.layout = 'ui/jquery.layout';
-MODULE_CONFIG.paths.filter = 'module/filter';
+MODULE_CONFIG.paths.layout = '../ui/jquery.layout';
+MODULE_CONFIG.paths.filter = '../module/filter';
 require.config(MODULE_CONFIG);
 require(['jquery', 'global', 'filter', 'template', 'layout'], function($, g, $filter){
     var editorTmpl = $.template({
@@ -24,6 +24,33 @@ require(['jquery', 'global', 'filter', 'template', 'layout'], function($, g, $fi
 	    , currData = EDITOR_LIST
 	    , count = currData.length
 	    , pageCount = Math.ceil( count / size )
+	    , allWidth
+	    , articleWidth
+	    , $style = $('<style id="js-style"></style>').appendTo('head')
+	    , setWidth = function(){
+		    allWidth = $editorList.width();
+		    switch( allWidth ){
+			    case 290:
+				    articleWidth = 270;
+				    break;
+			    case 450:
+				    articleWidth = 200;
+				    break;
+			    case 610:
+				    articleWidth = 280;
+				    break;
+			    case 770:
+				    articleWidth = 230;
+				    break;
+			    case 1250:
+				    articleWidth = 222;
+				    break;
+			    default:
+				    articleWidth = 205;
+				    break;
+		    }
+		    $style.html('.editor_article{width:'+ articleWidth +'px;}');
+	    }
 	    , space = parseInt( $editorList.css('marginLeft') )
 	    , layout = function(){
 		    $.layout({
@@ -37,7 +64,6 @@ require(['jquery', 'global', 'filter', 'template', 'layout'], function($, g, $fi
 		    });
 	    }
 	    , scrollTimeout = null;
-
 
 	// 设置过滤回调函数
 	$filter.triggerHandler('setFilter', [function(filterStr){
@@ -71,36 +97,10 @@ require(['jquery', 'global', 'filter', 'template', 'layout'], function($, g, $fi
 	// 加载数据
 	$editorList.html( editorTmpl(currData, 0, size) );
 
+	setWidth();
 	layout();
 
-//	if( $editorList.width() > 290 ){
-//		layout = function(){
-//			$.layout({
-//				container: $editorList,
-//				selector: 'article',
-//				left: space -10,
-//				top: space -10,
-//				colSpace: space,
-//				rowSpace: space
-//			});
-//		};
-//
-//		layout();
-//		g.resize.add(layout);
-//	}
-//	else{
-//		layout = function(){};
-//		g.resize.add(function(){
-//			if( $editorList.width() > 290 ){
-//				$('#minArt').remove();
-//			}
-//			else{
-//				$('head').append('<style id="minArt">.editor_article{width:270px;margin-left:0;}</style>');
-//			}
-//		});
-//		$('head').append('<style id="minArt">.editor_article{width:270px;margin-left:0;}</style>');
-//	}
-
+	g.resize.add(setWidth);
 	g.resize.add(layout);
 	g.scroll.add(function(){
 		var doc = g.doc,

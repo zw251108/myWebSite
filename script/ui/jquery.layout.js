@@ -268,7 +268,7 @@
         tempHeight = $temp.outerHeight() + rowSpace;
         tempWidth = $temp.outerWidth() + colSpace;
 
-        if( tempWidth < width ){
+        if( tempWidth <= width ){
             $temp.css({
                 position: 'absolute',
                 left: left +'px',

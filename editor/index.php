@@ -22,7 +22,7 @@ $allTag = $tag->selectTagByLevel();
 <title><?php echo isset($PAGE_TITLE) ? $PAGE_TITLE : '';?></title>
 <?php require_once('../style.php');?>
 <link rel="stylesheet" href="../script/plugin/artDialog/artDialog.css" />
-<link rel="stylesheet" href="../script/plugin/codeMirror/codemirror.css" />
+<link rel="stylesheet" href="../script/plugin/codeMirror/lib/codemirror.css" />
 </head>
 <body class="Container">
 <?php require_once('../header.php');?>

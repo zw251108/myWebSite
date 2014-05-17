@@ -999,6 +999,8 @@ require_once('../include/Config.inc.php');
 
                     <p>在不支持 CSS 动画的情况下（IE8 及以下版本的浏览器），你可以引入 JavaScript 动画逻辑</p>
                 </dd>
+				<dt class="icon icon-arrow-r">IE 浏览器的选择器限制</dt>
+				<dd>IE9 及其以下版本的浏览器限制每个样式表最多有 4096 个选择器，也限制了 31 个复合的样式表和每个页面包含的 &lt;style&gt;&lt;/style&gt; 元素，所有超过这个限制的内容都会被浏览器忽略，把你的 CSS 样式表分开或者重构</dd>
                 <dt class="icon icon-arrow-r">注释</dt>
                 <dd>
                     <p>必须为大区块样式添加注释，小区块适量注释</p>

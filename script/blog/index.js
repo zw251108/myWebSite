@@ -1,7 +1,7 @@
 MODULE_CONFIG.shim.dialog = shim;
-MODULE_CONFIG.paths.dialog = 'ui/jquery.dialog';
+MODULE_CONFIG.paths.dialog = '../ui/jquery.dialog';
 MODULE_CONFIG.shim.template = shim;
-MODULE_CONFIG.paths.template = 'ui/jquery.template';
+MODULE_CONFIG.paths.template = '../ui/jquery.template';
 require.config(MODULE_CONFIG);
 require(['jquery', 'global', 'template', 'dialog'], function($, g){
     var blogTmpl = $.template({

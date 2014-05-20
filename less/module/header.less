@@ -38,10 +38,12 @@
 		min-width: 60px;
 
 		border: none;
-		margin: 0 @space 0 0;
-		padding: 0;
+//		margin: 0 @space 0 0;
+//		padding: 0;
+//		padding-left: 80px;
 
 //		background-color: transparent;
+		background-color: #dfdfdf;
 		background-position: 10px 10px !important;
 		background-repeat: no-repeat;
 	}
@@ -88,21 +90,41 @@
 .menu{
 	position: absolute;
 	top: 70px;
-	left: 0;
-	right: 0;
+	left: 80px;
+//	right: 0;
+	width: 240px;
 
 	margin: 0 -5px;
+	padding-bottom: 5px;
 	background: #fff;   //#392f41;    //
 
 	.boxShadow(5px 5px 5px #888);
-
-	.btn-link{
-		margin: 10px 5px 0;
-	}
 }
 
 .menu_item{
+	float: none;
+	display: block;
+	width: auto !important;
 
+	margin: 10px 5px 0;
+	padding: 0 0 0 120px;
+
+	font-size: 24px;
+	font-weight: bold;
+	line-height: 35px;
+	text-align: left;
+	text-indent: -40px;
+	text-transform: capitalize;
+}
+.menu_item:before{
+	float: left;
+	height: 70px;
+	width: 70px;
+	
+	margin-left: -120px;
+	background: no-repeat 10px 10px;
+	
+	content: "";
 }
 .menu_item-home{
 	background-image: url("../image/default/menu/menu_item-home.png");
@@ -110,21 +132,45 @@
 .menu_item-copyright{
 	background-image: url("../image/default/menu/menu_item-copyright.png");
 }
-.menu_item-blog{
+.menu_item-blog:before{
+	background-color: #00d8cc;
 	background-image: url("../image/default/menu/menu_item-blog.png");
 }
-.menu_item-document{
+.menu_item-blog:hover{
+	background-color: #00d8cc !important;
+}
+.menu_item-document:before{
+	background-color: #4617b4;
 	background-image: url("../image/default/menu/menu_item-document.png");
 }
-.menu_item-editor{
+.menu_item-document:hover{
+	background-color: #4617b4 !important;
+}
+.menu_item-editor:before{
+	background-color: #78ba00;
 	background-image: url("../image/default/menu/menu_item-editor.png");
 }
-.menu_item-favorite{
+.menu_item-editor:hover{
+	background-color: #78ba00 !important;
+}
+.menu_item-favorite:before{
+	background-color: #aa40ff;
 	background-image: url("../image/default/menu/menu_item-favorite.png");
 }
-.menu_item-rss{
+.menu_item-favorite:hover{
+	background-color: #aa40ff !important;
+}
+.menu_item-rss:before{
+	background-color: #4e0000;
 	background-image: url("../image/default/menu/menu_item-rss.png");
 }
-.menu_item-palette{
+.menu_item-rss:hover{
+	background-color: #4e0000 !important;
+}
+.menu_item-palette:before{
+	background-color: #ff76bc;
 	background-image: url("../image/default/menu/menu_item-palette.png");
+}
+.menu_item-palette:hover{
+	background-color: #ff76bc !important;
 }

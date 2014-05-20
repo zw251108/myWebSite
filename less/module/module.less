@@ -40,7 +40,7 @@
  */
 
 // 模块样式
-.module{
+/*section*/.module{
     float:left;
     margin: @grid-space;
 
@@ -48,6 +48,32 @@
     background-repeat: no-repeat;
 }
 
+//----- 模块标题 建议标签 h2 -----
+/*h2*/.module_title{
+	text-transform: capitalize;
+}
+
+//----- 模块内容 -----
+/*div*/.module_content{
+	overflow:hidden;
+}
+//----- 模块信息 -----
+/*span*/.module_info{
+	position: absolute;
+
+	top: 0;// @module-info-top;
+	right: 10px;
+
+	height: @module-info-height;
+
+	//    padding-right: @module-info-padding-right;
+
+	font-size: 18px;
+	line-height: @module-info-height;
+	text-align: right;
+}
+
+//----- 模块类型 -----
 // main、header、footer、nav 模块不显示 模块信息
 .module-main,
 .module-nav,
@@ -59,36 +85,12 @@
 }
 
 // header、footer 模块的 模块标题 定位不同 待议
-.module-header, .module-footer{
+.module-header,
+.module-footer{
     .module_title{
         float: left;
         margin-top: 115px;
     }
-}
-
-//----- 模块标题 建议标签 h2 -----
-.module_title{
-//    text-align: center;
-    text-transform: capitalize;
-}
-//----- 模块内容 -----
-.module_content{
-    overflow:hidden;
-}
-//----- 模块信息 -----
-.module_info{
-    position: absolute;
-
-    top: 0;// @module-info-top;
-	right: 10px;
-
-    height: @module-info-height;
-
-//    padding-right: @module-info-padding-right;
-
-    font-size: 18px;
-    line-height: @module-info-height;
-    text-align: right;
 }
 
 //----- 功能模块样式 -----

@@ -40,7 +40,7 @@ require(['jquery', 'global', 'layout'], function($, g){
 //					+'\n洗车指数：'+ data.index_xc
 //					+'\n旅游指数：'+ data.index_tr
 //					+'\n感冒指数：'+ data.index_ag)
-				.find('div.module_info').html( data.city +' '+ data.weather +' '+ data.temp1);
+				.find('span.module_info').html( data.city +' '+ data.weather +' '+ data.temp1);
 		}
 	});
 

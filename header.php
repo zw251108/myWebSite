@@ -6,23 +6,23 @@
 		<button class="btn btn-big btn-menu<?php echo projectRoot()=='' ? ' hidden' : '';?>" id="menu" type="button" title="显示菜单"></button>
 
 		<ul id="headerMenu" class="menu hidden">
-			<li class="menu_item">
-				<a class="btn btn-big btn-link menu_item menu_item-blog" title="博客" href="<?php echo projectRoot();?>blog/"></a>
+			<li>
+				<a class="btn btn-big btn-link menu_item menu_item-blog" title="博客" href="<?php echo projectRoot();?>blog/">博客<br />blog</a>
 			</li>
-			<li class="menu_item">
-				<a class="btn btn-big btn-link menu_item menu_item-document" title="前端文档" href="<?php echo projectRoot();?>document/"></a>
+			<li>
+				<a class="btn btn-big btn-link menu_item menu_item-document" title="前端文档" href="<?php echo projectRoot();?>document/">前端文档<br />document</a>
 			</li>
-			<li class="menu_item">
-				<a class="btn btn-big btn-link menu_item menu_item-editor" title="编辑器" href="<?php echo projectRoot();?>editor/"></a>
+			<li>
+				<a class="btn btn-big btn-link menu_item menu_item-editor" title="编辑器" href="<?php echo projectRoot();?>editor/">编辑器<br />editor</a>
 			</li>
-			<li class="menu_item">
-				<a class="btn btn-big btn-link menu_item menu_item-favorite" title="收藏夹" href="<?php echo projectRoot(); ?>favorite/"></a>
+			<li>
+				<a class="btn btn-big btn-link menu_item menu_item-favorite" title="收藏夹" href="<?php echo projectRoot(); ?>favorite/">收藏夹<br />favorite</a>
 			</li>
-			<li class="menu_item">
-				<a class="btn btn-big btn-link menu_item menu_item-rss" title="订阅" href="<?php echo projectRoot(); ?>rss/"></a>
+			<li>
+				<a class="btn btn-big btn-link menu_item menu_item-rss" title="订阅" href="<?php echo projectRoot(); ?>rss/">订阅<br />rss</a>
 			</li>
-			<li class="menu_item">
-				<a class="btn btn-big btn-link menu_item menu_item-palette" title="调色板" href="<?php echo projectRoot(); ?>palette/"></a>
+			<li>
+				<a class="btn btn-big btn-link menu_item menu_item-palette" title="调色板" href="<?php echo projectRoot(); ?>palette/">调色板<br />palette</a>
 			</li>
 		</ul>
 
@@ -32,30 +32,32 @@
 		<button class="btn btn-big btn-backTop hidden" id="backTop" type="button" title="回到顶部"></button>
 	</nav>
 
-<!--	<ul class="menu hidden" style="-->
-<!--    width: 100%;-->
-<!--    overflow: hidden;-->
-<!--    position: absolute;-->
-<!--    top: 70px;-->
-<!--    left: 0;-->
-<!--    background: #fff;-->
-<!--">-->
-<!--		<li class="menu_item">-->
-<!--			<a class="btn btn-big btn-link btn-blog" title="博客" href="--><?php //echo projectRoot();?><!--blog"></a>-->
-<!--		</li>-->
-<!--		<li class="menu_item">-->
-<!--			<a class="btn btn-big btn-link btn-document" title="前端文档" href="--><?php //echo projectRoot();?><!--document"></a>-->
-<!--		</li>-->
-<!--		<li class="menu_item">-->
-<!--			<a class="btn btn-big btn-link btn-editor" title="编辑器" href="--><?php //echo projectRoot();?><!--editor"></a>-->
-<!--		</li>-->
-<!--		<li class="menu_item">-->
-<!--			<a class="btn btn-big btn-link btn-favorite" title="收藏夹" href="--><?php //echo projectRoot(); ?><!--favorite"></a>-->
-<!--		</li>-->
-<!--		<li class="menu_item">-->
-<!--			<a class="btn btn-big btn-link btn-palette" title="调色板" href="--><?php //echo projectRoot(); ?><!--palette"></a>-->
-<!--		</li>-->
-<!--	</ul>-->
+<!--
+	<ul class="menu hidden" style="
+    width: 100%;
+    overflow: hidden;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    background: #fff;
+">
+		<li class="menu_item">
+			<a class="btn btn-big btn-link btn-blog" title="博客" href="<?php echo projectRoot();?>blog"></a>
+		</li>
+		<li class="menu_item">
+			<a class="btn btn-big btn-link btn-document" title="前端文档" href="<?php echo projectRoot();?>document"></a>
+		</li>
+		<li class="menu_item">
+			<a class="btn btn-big btn-link btn-editor" title="编辑器" href="<?php echo projectRoot();?>editor"></a>
+		</li>
+		<li class="menu_item">
+			<a class="btn btn-big btn-link btn-favorite" title="收藏夹" href="<?php echo projectRoot(); ?>favorite"></a>
+		</li>
+		<li class="menu_item">
+			<a class="btn btn-big btn-link btn-palette" title="调色板" href="<?php echo projectRoot(); ?>palette"></a>
+		</li>
+	</ul>
+-->
 
 <!--
     <div class="module module-large module-header">
@@ -96,6 +98,3 @@
     </hgroup>
 -->
 </header>
-
-<!--<div class="tools hidden" id="Tools">-->
-<!--</div>-->

@@ -62,7 +62,7 @@ ini_set('date.timezone','Asia/Shanghai');
         <h2 class="module_title">
 			日历 calendar
 		</h2>
-        <div class="module_info"><?php echo date('Y');?> 年 <?php echo date('m');?> 月</div>
+        <span class="module_info"><?php echo date('Y');?> 年 <?php echo date('m');?> 月</span>
         <div class="calendar_today"><?php echo date('d');?></div>
     </section>
 <!--</a>-->
@@ -71,7 +71,7 @@ ini_set('date.timezone','Asia/Shanghai');
 		<h2 class="module_title">
 			天气预报 weather
 		</h2>
-		<div class="module_info"></div>
+		<span class="module_info"></span>
 	</section>
 
 <a href="document/">

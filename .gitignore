@@ -1,8 +1,5 @@
 ##### 过滤的文件
-mysql-connector-java-5.1.26-bin.jar
-mysql-connector-license.txt
 Readme.txt
-settings.jar
 admin/money.php
 script/compress.bat
 script/test.js
@@ -37,6 +34,10 @@ media/
 # NodeJS 模块
 node/node_modules/
 node/views/
+
+package.json
+node_modules/
+Gruntfile.js
 
 # Cocos2d-html5
 cocos2d/

@@ -80,7 +80,7 @@ require(['jquery', 'global', 'tag'
 				t = temp[i];
 
 				rs.push('<li class="level2"><span class="button chk checkbox_true_',
-					(/jquery-([\d\.]*)\.min\.js$/.test(t) ? 'disable': 'full'),
+					(/jquery\.min\.js$/.test(t) ? 'disable': 'full'),
 					'"></span><input type="hidden" value="',
 					t, '"/><a class="level2"><span class="button ico_docu"></span><span>',
 					/\/([^\/]*)$/.exec(t)[1], '</span></a></li>');

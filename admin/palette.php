@@ -122,7 +122,7 @@ body{
     </form>
 </div>
 
-<script src="../script/lib/jQuery/jquery-1.8.2.js"></script>
+<script src="../script/lib/jQuery/jquery.min.js"></script>
 <script src="../script/plugin/farbtastic/farbtastic.js"></script>
 <script src="../script/plugin/artDialog/artDialog.min.js"></script>
 <script src="../script/plugin/artDialog/artDialog.plugins.min.js"></script>

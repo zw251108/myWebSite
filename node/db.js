@@ -21,6 +21,7 @@ var sys = require('util'),
 conn.connect();
 
 var connClose = function(){ // 关闭数据库连接
+		console.log('close connection');
         conn.end();
     },
     countTag = function(){  // 统计标签
@@ -71,5 +72,31 @@ var connClose = function(){ // 关闭数据库连接
 conn.query('select tagsId from blog where tagsId<>\'\'', queryCallback);
 conn.query('select tagsId from editor where tagsId<>\'\'', queryCallback);
 conn.query('select tagsId from favorite where tagsId<>\'\'', queryCallback);
+
+/**
+ * 修改数据库 editor 表
+ * */
+//conn.query('select Id,includeFile from editor', function(e, rs, fields){
+//	if( e ){
+//		errorCallBack( e );
+//	}
+//	var i = 1
+//		, j = rs.length
+//		, k
+//		;
+//
+//	k = j;
+//	while( j-- ){
+//		conn.query('update editor set includeFile=? where Id=?', [
+//			rs[j].includeFile.replace('../bower_components/jquery/dist/jquery.min.js'
+//				, '../script/lib/jQuery/jquery.min.js')
+//			, rs[j].Id], function(e){
+//				i++;
+//				if( i === k ){
+//					connClose();
+//				}
+//		});
+//	}
+//});
 
 //conn.end();

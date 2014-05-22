@@ -628,7 +628,8 @@ require_once('../include/Config.inc.php');
                 <dt class="icon icon-arrow-r">重复使用率</dt>
                 <dd>书写代码前，考虑并提高样式重复使用率，遵循组件不依赖于 DOM 结构的原则</dd>
                 <dt class="icon icon-arrow-r">编码</dt>
-                <dd>编码统一为 utf-8（不需要制定样式表的编码，它默认为 utf-8），编码统一使用小写字母</dd>
+                <dd>编码统一为 <span class="code">utf-8</span>（不需要制定样式表的编码，它默认为
+					<span class="code">utf-8</span>），编码统一使用小写字母</dd>
                 <dt class="icon icon-arrow-r">@import</dt>
                 <dd>当你在一个外部样式表中使用 <span class="code">@import url('style.css');</span>
 					时，览器无法通过并行下载的方式下载这个资源，这样就会导致其他资源的下载被阻塞，所以不建议使用</dd>
@@ -1234,7 +1235,7 @@ require_once('../include/Config.inc.php');
                     <p>但在发布前应尽可能将 JS 文件合并，减少 HTTP 请求数量</p>
                 </dd>
                 <dt class="icon icon-arrow-r">编码</dt>
-                <dd>文件编码统一为 utf-8</dd>
+                <dd>文件编码统一为 <span class="code">utf-8</span></dd>
                 <dt class="icon icon-arrow-r">规范</dt>
                 <dd>
                     <p>书写过程中，每行代码结束必须有分号</p>
@@ -1265,7 +1266,7 @@ require_once('../include/Config.inc.php');
                         scripts.parentNode.insertBefore(script, scripts);
                     </pre>
                 </dd>
-                <dt class="icon icon-arrow-r">document.write</dt>
+                <dt class="icon icon-arrow-r">document.write()</dt>
                 <dd>
                     <p>这个（坏）方法已经被开发者抛弃了很多年，但是在某些情况下仍然是需要的，例如在一些 JavaScript
 						文件的同步回退中，如：</p>
@@ -1304,7 +1305,7 @@ require_once('../include/Config.inc.php');
 							var num = 2
 								, doThings = eval
 								;
-							bar('num = 3');
+							doThings('num = 3');
 							return num;
 						}
 						console.log(doSomething(), num);	// 2, 3
@@ -1846,7 +1847,7 @@ require_once('../include/Config.inc.php');
                     <p>循环不要省略大括号，将开放的大括号放置在前面语句的同一行</p>
 
                     <p>JavaScript 原生循环方法 <span class="code">for</span> 和 <span class="code">while</span>，要比
-						<span class="code">jQuery.each()</span> 方法快</p>
+						<span class="code">$.each()</span> 方法快</p>
 
                     <p>不要循环引用</p>
 
@@ -2842,9 +2843,9 @@ require_once('../include/Config.inc.php');
                 </dd>
                 <dt class="icon icon-arrow-r">for 与 each</dt>
                 <dd>原生 JavaScript 的执行几乎总是要比 jQuery 快一些。正因为如此，请使用 JavaScript 的
-					<span class="code">for</span> 循环，不要使用 <span class="code">jQuery.each()</span>
+					<span class="code">for</span> 循环，不要使用 <span class="code">$.each()</span>
 					方法。但是请注意，虽然 <span class="code">for-in</span> 循环是原生的，可是在许多情况下，它的性能要比
-					<span class="code">jQuery.each()</span> 差一些</dd>
+					<span class="code">$.each()</span> 差一些</dd>
                 <dt class="icon icon-arrow-r">缓存变量</dt>
                 <dd>选择器的使用次数应该越少越好，尽可能缓存选择器的结果，便于以后反复使用</dd>
                 <dt class="icon icon-arrow-r">链式调用</dt>
@@ -2867,26 +2868,26 @@ require_once('../include/Config.inc.php');
                 <dt class="icon icon-arrow-r">DOM 结构</dt>
                 <dd>
                     <p>改动 DOM 结构开销很大，不要频繁使用
-						<span class="code">.append()</span>、<span class="code">.insertBefore()</span> 和
-						<span class="code">.insertAfter()</span> 等方法</p>
+						<span class="code">append()</span>、<span class="code">insertBefore()</span> 和
+						<span class="code">insertAfter()</span> 等方法</p>
 
                     <p>如果要插入多个元素，就把它们合并，一次性插入</p>
 
-                    <p>如果对一个 DOM 元素进行大量处理，应先使用 <span class="code">.detach()</span>
+                    <p>如果对一个 DOM 元素进行大量处理，应先使用 <span class="code">detach()</span>
 						方法，处理完毕后，再重新插回文档</p>
 
-                    <p>插入 HTML 代码的时候，源生的 <span class="code">.innerHTML</span> 比 jQuery 的
-						<span class="code">.html()</span> 方法更快</p>
+                    <p>插入 HTML 代码的时候，源生的 <span class="code">innerHTML</span> 比 jQuery 的
+						<span class="code">html()</span> 方法更快</p>
 
                     <p>jQuery 的文档操作接口根据编程的不同场景来划分使用它们</p>
 
-                    <p>如果需要插入硬编码的元素或者跟在静态实例后面的元素，使用 <span class="code">.append()</span> 方法</p>
+                    <p>如果需要插入硬编码的元素或者跟在静态实例后面的元素，使用 <span class="code">append()</span> 方法</p>
 
-                    <p>如果需要处理包含多个元素或者动态数据的对象，使用 <span class="code">.appendTo()</span> 方法</p>
+                    <p>如果需要处理包含多个元素或者动态数据的对象，使用 <span class="code">appendTo()</span> 方法</p>
                 </dd>
                 <dt class="icon icon-arrow-r">样式变更</dt>
                 <dd>
-                    <p>要给少数的元素加样式，通常的方法是使用 jQuery 的 <span class="code">.css()</span> 方法，然而更新 15
+                    <p>要给少数的元素加样式，通常的方法是使用 jQuery 的 <span class="code">css()</span> 方法，然而更新 15
 						个以上的较多的元素添加样式时，直接给 DOM 添加 <span class="code">style</span>
 						标签更有效些。这个方法可以避免在代码中使用硬编码（hard code）。如：</p>
 
@@ -2894,9 +2895,9 @@ require_once('../include/Config.inc.php');
                         $('&lt;style type="text/css"&gt;div.class{color: red;}&lt;/style&gt;').appendTo('head');
                     </pre>
 
-                    <p>不建议使用 <span class="code">.css()</span> 方法直接改变 CSS 属性，建议将需要更改的 CSS
+                    <p>不建议使用 <span class="code">css()</span> 方法直接改变 CSS 属性，建议将需要更改的 CSS
 						属性定义为一个类，使用
-						<span class="code">.addClass()</span>、<span class="code">.removeClass()</span>
+						<span class="code">addClass()</span>、<span class="code">removeClass()</span>
 						函数来控制，所以布局编写 CSS 时，要考虑各种情况</p>
                 </dd>
 				<dt class="icon icon-arrow-r">不要处理不存在的元素</dt>
@@ -2905,10 +2906,10 @@ require_once('../include/Config.inc.php');
 
 					<pre class="brush:js">
 						// 糟糕的做法，jQuery 内部要执行三个函数后才知道这个元素其实不存在
-						$('#nosuchthing').slideUp();
+						$('#noSuchThing').slideUp();
 
 						// 推荐的做法
-						var $selector = $('#nosuchthing');
+						var $selector = $('#noSuchThing');
 						if( $selector.length ){
 							$selector.slideUp();
 						}
@@ -2923,10 +2924,10 @@ require_once('../include/Config.inc.php');
 				</dd>
                 <dt class="icon icon-arrow-r">事件</dt>
                 <dd>
-                    <p>基于 jQuery 1.7 以后的版本开发时，绑定事件使用 <span class="code">.on()</span> 方法，解绑使用
-						<span class="code">.off()</span> 方法，因为
-						<span class="code">.bind()</span>、<span class="code">.live()</span>、<span class="code">.delegete()</span>
-						方法均为调用 <span class="code">.on()</span> 函数，减少不必要的开销，并且这些方法将会在为了的版本中取消</p>
+                    <p>基于 jQuery 1.7 以后的版本开发时，绑定事件使用 <span class="code">on()</span> 方法，解绑使用
+						<span class="code">off()</span> 方法，因为
+						<span class="code">bind()</span>、<span class="code">live()</span>、<span class="code">delegete()</span>
+						方法均为调用 <span class="code">on()</span> 函数，减少不必要的开销，并且这些方法将会在为了的版本中取消</p>
 
                     <p>绑定事件时，将事件绑定到离事件触发点最近的父级，事件冒泡也会影响效率，且有可能触发非预期的事件</p>
 
@@ -2985,14 +2986,15 @@ require_once('../include/Config.inc.php');
 						<span class="code">class</span> 名，最好遵从某些规律，推荐以 <span class="code">j-</span> 或
 						<span class="code">js-</span> 为前缀</p>
 
-                    <p>同时为防止 HTML 代码层级结构变化，尽量不使用固定结构的方法，如：<span class="code">.next()</span>,<span class="code">.prev()</span>,<span class="code">.parent()</span>
-						等。而使用 <span class="code">.parents()</span> 找到模块级别的父级再使用
-						<span class="code">.find()</span> 来执行</p>
+                    <p>同时为防止 HTML 代码层级结构变化，尽量不使用固定结构的方法，如：<span class="code">next()</span>,<span class="code">prev()</span>,<span class="code">parent()</span>
+						等。而使用 <span class="code">parents()</span> 找到模块级别的父级再使用
+						<span class="code">find()</span> 来执行</p>
                 </dd>
                 <dt class="icon icon-arrow-r">Ajax</dt>
                 <dd>
 					<p>不推荐使用 <span class="code">$.get()</span>、<span class="code">$.post()</span> 或
-						<span class="code">$.getJSON()</span> 等方法，因为最终将转为 <span class="code">$.ajax()</span>
+						<span class="code">$.getJSON()</span> 等方法，因为最终将转为
+						<span class="code">$.ajax()</span>
 						方法</p>
 
                     <p>触发功能型数据交互 Ajax
@@ -3031,7 +3033,7 @@ require_once('../include/Config.inc.php');
 						<span class="code">context</span>，建议使用节省资源消耗</p>
 
 					<p>当需要发送多个 Ajax 到服务器端验证时，不要对 Ajax 进行嵌套，也可使用
-						<span class="code">triggerHandler</span> 方法，如：</p>
+						<span class="code">triggerHandler()</span> 方法，如：</p>
 
                     <pre class="brush:js">
                         $validItem.on({
@@ -3088,7 +3090,7 @@ require_once('../include/Config.inc.php');
                     </pre>
                 </dd>
                 <dt class="icon icon-arrow-r">data()</dt>
-                <dd>采用 jQuery 的内部方法 <span class="code">.data()</span> 来存储状态</dd>
+                <dd>采用 jQuery 的内部方法 <span class="code">data()</span> 来存储状态</dd>
                 <dt class="icon icon-arrow-r">jQuery utility</dt>
                 <dd>使用 jQuery 的 utility 方法，如
 					<span class="code">$.isFunction()</span>,<span class="code">$.isArray()</span> 等</dd>

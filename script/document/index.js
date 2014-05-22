@@ -34,7 +34,12 @@ require(['jquery', 'global', 'shCore', 'shBrushCss', 'shBrushJScript', 'shBrushX
 
 	    $curr = $temp.add(this);
 
-	    $curr.toggleClass('icon-arrow-r icon-arrow-d').next().slideToggle();
+	    $curr.toggleClass('icon-arrow-r icon-arrow-d').next().slideToggle(function(){
+		    // todo
+		    g.$body.animate({
+			    scrollTop: this.offsetTop -120
+		    });
+	    });
     });
 
     SyntaxHighlighter.highlight();

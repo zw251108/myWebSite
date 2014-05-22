@@ -280,6 +280,7 @@ define(['jquery', 'extend', 'clippy', 'validator'], function($){
 
 	g.doc = doc;
 	g.body = document.body;
+	g.$body = $(g.body);
 
 
 	resize.add(function(){
@@ -336,7 +337,7 @@ define(['jquery', 'extend', 'clippy', 'validator'], function($){
 
 	// 工具条
 	$backTop.on('click', function(){
-		$('body').animate({
+		g.$body.animate({
 			scrollTop: 0
 		}, 'slow');
 	});

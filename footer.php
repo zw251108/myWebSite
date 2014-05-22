@@ -51,7 +51,7 @@ var USER_INFO = <?php echo json_encode($userInfo);?>,
             validator:shim
         },
         paths:{
-            jquery:'<?php echo projectRoot();?>lib/jQuery/jquery-1.10.2.min',
+            jquery:'<?php echo projectRoot();?>lib/jQuery/jquery.min',
             global:'<?php echo projectRoot();?>module/global',
             extend:'<?php echo projectRoot();?>ui/jquery.extend',
             clippy:'<?php echo projectRoot();?>plugin/clippy/clippy.min',

@@ -62,7 +62,7 @@ h2{
     </ul>
 </aside>
 <iframe class="main" src="message.php" name="content"></iframe>
-<script src="../script/lib/jQuery/jquery-1.10.2.min.js"></script>
+<script src="../script/lib/jQuery/jquery.min.js"></script>
 <script>
 $(function(){
     var doc = document.documentElement

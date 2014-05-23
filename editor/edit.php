@@ -71,7 +71,7 @@ else{
 		<h3 class="editor_title"><?php echo isset($name) ? $name : '新建页面';?></h3>
 
         <nav class="nav">
-			<input id="incFileHidden" type="hidden" name="incFile" value="../script/lib/jQuery/jquery-1.10.2.min.js"/>
+			<input id="incFileHidden" type="hidden" name="incFile" value="../script/lib/jQuery/jquery.min.js"/>
 
             <ul id="codeTabs" class="nav-tabs editor_tabs">
                 <li class="current">HTML</li>

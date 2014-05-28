@@ -34,7 +34,7 @@ body{
 <body>
 
 <script src="../script/lib/jQuery/jquery.min.js"></script>
-<script src="../script/lib/d3/d3.v3.min.js"></script>
+<script src="../script/lib/d3/d3.min.js"></script>
 <script>
 var TAG_DATA = <?php echo isset($allTag) ? json_encode($allTag) : '[]';?>;
 $(function(){

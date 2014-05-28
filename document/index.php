@@ -124,16 +124,16 @@ require_once('../include/Config.inc.php');
                 <dt class="icon icon-arrow-r">meta</dt>
                 <dd>
                     <p><span class="code">keyword</span>、<span class="code">content</span> 对于网站的 SEO
-						很重要，页面描述不超过 150 个字符，<span class="code">author</span>
-						定义网页作者，<span class="code">robots</span>
+						很重要，页面描述不超过 150 个字符；<span class="code">author</span>
+						定义网页作者；<span class="code">robots</span>
 						定义网页搜索引擎方式，值为一组使用英文逗号“,”分割的值，通常有如下几种取值：<span class="code">none</span>，<span class="code">noindex</span>，<span class="code">nofollow</span>，<span class="code">all</span>，<span class="code">index</span>
 						和 <span class="code">follow</span>，如：</p>
 
 					<pre class="brush:html">
-						&lt;meta name="description" content="不超过 150 个字符" /&gt;
-						&lt;meta name="keywords" content="" /&gt;
+						&lt;meta name="description" content="web 前端开发编码规范" /&gt;
+						&lt;meta name="keywords" content="web,前端,js,css,html" /&gt;
 						&lt;!-- 定义网页作者 --&gt;
-						&lt;meta name="author" content="name, email@email.com" /&gt;
+						&lt;meta name="author" content="name,email@email.com" /&gt;
 						&lt;!-- 定义网页搜索引擎方式 --&gt;
 						&lt;meta name="robots" content="index,follow" /&gt;
 					</pre>
@@ -2813,7 +2813,10 @@ require_once('../include/Config.inc.php');
 						<span class="code">querySelector()</span> 和 <span class="code">querySelectorAll()</span>
 						方法，没错。。。同上）</p>
 
-                    <p>在 <span class="code">class</span> 前面使用标签</p>
+                    <p>在 <span class="code">class</span> 前面使用标签（这条是针对低版本的 IE
+						浏览器的，在现代浏览器中，这样做会使 <span class="code">jQuery</span> 使用
+						<span class="code">querySelector()/querySelectorAll()</span>，而不去使用
+						<span class="code">getElementsByClassName()</span>，从而可能会降低一些性能）</p>
 
                     <p>优化选择器以适用 <span class="code">Sizzle</span>
 						的“从右至左”模型，确保最右的选择器具体些，而左边的选择器选择范围较宽泛些，如：</p>
@@ -2834,8 +2837,8 @@ require_once('../include/Config.inc.php');
 
                     <ol>
                         <li><span class="code">$parent.find('.child')</span></li>
-                        <li><span class="code">$('.child', 0parent)</span></li>
-                        <li><span class="code">$('.child', 0('#parent') )</span></li>
+                        <li><span class="code">$('.child', $parent)</span></li>
+                        <li><span class="code">$('.child', $('#parent') )</span></li>
                         <li><span class="code">$parent.children('.child')</span></li>
                         <li><span class="code">$('#parent > .child')</span></li>
                         <li><span class="code">$('#parent .child')</span></li>
@@ -2927,7 +2930,7 @@ require_once('../include/Config.inc.php');
                     <p>基于 jQuery 1.7 以后的版本开发时，绑定事件使用 <span class="code">on()</span> 方法，解绑使用
 						<span class="code">off()</span> 方法，因为
 						<span class="code">bind()</span>、<span class="code">live()</span>、<span class="code">delegete()</span>
-						方法均为调用 <span class="code">on()</span> 函数，减少不必要的开销，并且这些方法将会在为了的版本中取消</p>
+						方法均为调用 <span class="code">on()</span> 函数，减少不必要的开销，并且这些方法将会在未来的版本中取消</p>
 
                     <p>绑定事件时，将事件绑定到离事件触发点最近的父级，事件冒泡也会影响效率，且有可能触发非预期的事件</p>
 
@@ -3028,7 +3031,7 @@ require_once('../include/Config.inc.php');
                     </pre>
 
 					<p>Ajax 方法的参数集中有
-						<span class="code">context</span>（上下文），若设置，参数集中定义的函数（如：<span class="code">success</span>
+						<span class="code">context</span>(上下文)，若设置，参数集中定义的函数（如：<span class="code">success</span>
 						等）的 <span class="code">this</span> 会被指向
 						<span class="code">context</span>，建议使用节省资源消耗</p>
 

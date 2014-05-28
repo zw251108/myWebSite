@@ -34,7 +34,7 @@ require(['jquery', 'global', 'tag'
 	, 'artDialog', 'artDialogPlus', 'validator', 'colorPicker', 'tree'
 ], function($, g, tag, cm){
 	window.CodeMirror = cm;
-	require(['../plugin/codeMirror/emmet']);
+	require(['../plugin/codeMirror/emmet/emmet.min']);
 
 	var $cache = $([]),
 		$body = $('body'),

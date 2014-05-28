@@ -4,7 +4,7 @@ MODULE_CONFIG.shim.shBrushJScript = ['shCore'];
 MODULE_CONFIG.paths.shBrushJScript = '../plugin/syntaxhighlighter/shBrushJScript';
 MODULE_CONFIG.shim.shBrushXml = ['shCore'];
 MODULE_CONFIG.paths.shBrushXml = '../plugin/syntaxhighlighter/shBrushXml';
-define('shCore', ['../plugin/syntaxhighlighter/shCore'], function(){
+define('shCore', ['../plugin/syntaxhighlighter/XRegExp', '../plugin/syntaxhighlighter/shCore'], function(){
     return {
         SyntaxHighlighter:SyntaxHighlighter
     };

@@ -26,9 +26,9 @@
 <!--</div>-->
 <!--</footer>-->
 
-<div class="module module-large module-advert hidden">
+<section class="module module-large module-advert hidden">
     <h2 class="module_title">可耻的广告区</h2>
-</div>
+</section>
 
 <div class="clearfix"></div>
 

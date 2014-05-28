@@ -206,7 +206,9 @@ $(function(){
 
 <div class="module module-normal module-popup hidden" id="directory">
 	<ul class="ztree list list-left" id="selectedFile">
-		<li class="level2"><span class="button chk checkbox_true_disable"></span><a class="level2"><span class="button ico_docu"></span><span>jQuery-1.10.2.min.js</span></a></li>
+		<li class="level2">
+			<span class="button chk checkbox_true_disable"></span><a class="level2"><span class="button ico_docu"></span><span>jquery.min.js</span></a>
+		</li>
 	</ul>
     <ul class="ztree list list-right" id="tree"></ul>
 </div>

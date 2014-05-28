@@ -55,42 +55,26 @@
 	background-color: @btn-disabled-bg;
 	color: @btn-disabled-color;
 }
-.btn-big{// 大型按钮
 
+// 作为菜单项的按钮
+.btn-menuItem{
+	font-size: 24px;
+	font-weight: bold;
+	line-height: 35px;
+	text-align: left;
+	text-indent: -40px;
+	text-transform: capitalize;
 }
+.btn-menuItem:before{
+	float: left;
+	height: 70px;
+	width: 70px;
 
-.btn-menu{
-	background-image: url("../image/default/btn/btn-menu.png");
-}
-.btn-backTop{
-	float: right;
-	background-image: url("../image/default/btn/btn-backTop.png");
-}
-//.btn-home{
-//	background-image: url("../image/default/home.png");
-//}
+	margin-left: -120px;
+	background: no-repeat 10px 10px;
 
-//.btn-copyright{
-//	background-image: url("../image/default/copyright.png");
-//}
-//.btn-blog{
-//	background-image: url("../image/default/btn-blog.png");
-//}
-//.btn-document{
-//	background-image: url("../image/default/btn-document.png");
-//}
-//.btn-editor{
-//	background-image: url("../image/default/btn-editor.png");
-//}
-//.btn-favorite{
-//	background-image: url("../image/default/btn-favorite.png");
-//}
-//.btn-rss{
-//	background-image: url("../image/default/btn-rss.png");
-//}
-//.btn-palette{
-//	background-image: url("../image/default/btn-palette.png");
-//}
+	content: "";
+}
 
 // 按钮类型
 .btn-submit{// 提交按钮

@@ -48,5 +48,8 @@ script/lib/
 script/plugin/
 script/test/
 
+# CSS 库文件
+style/lib/
+
 # 数据库文件
 sql/

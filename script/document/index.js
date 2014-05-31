@@ -24,22 +24,23 @@ require(['jquery', 'global', 'shCore', 'shBrushCss', 'shBrushJScript', 'shBrushX
     }).on('click', 'dt', function(){
 
 	    if( $curr ){
-		    $curr.toggleClass('icon-arrow-r icon-arrow-d').next().slideToggle();
+		    $curr.toggleClass('icon-arrow-r icon-arrow-d');
 
 		    if( $curr.is(this) ){
+				$curr.next().slideToggle();
 			    $curr = null;
 			    return;
 		    }
 	    }
 
+		$curr && $curr.next().hide();
 	    $curr = $temp.add(this);
 
-	    $curr.toggleClass('icon-arrow-r icon-arrow-d').next().slideToggle(function(){
-		    // todo
-		    g.$body.animate({
-			    scrollTop: this.offsetTop -120
-		    });
-	    });
+		g.$body.animate({
+			scrollTop: this.offsetTop -80
+		}, function(){
+			$curr.toggleClass('icon-arrow-r icon-arrow-d').next().slideToggle();
+		});
     });
 
     SyntaxHighlighter.highlight();

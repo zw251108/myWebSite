@@ -44,7 +44,7 @@ $userInfo = isset( $_SESSION['userId'] ) ? $user->selectById( $_SESSION['userId'
 <script>
 var USER_INFO = <?php echo json_encode($userInfo);?>,
     shim = ['jquery'],
-    MODULE_CONFIG = {
+    MODULE_CONFIG = MODULE_CONFIG || {
         shim:{
             extend:shim,
             clippy:shim,
@@ -59,3 +59,4 @@ var USER_INFO = <?php echo json_encode($userInfo);?>,
         }
     };
 </script>
+<!--[if lt IE 9]><script src="<?php echo projectRoot();?>script/ie.js"></script><![endif]-->

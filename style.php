@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="<?php echo projectRoot();?>script/plugin/clippy/clippy.css" />
 <!--[if lt IE 9]>
 <link rel="stylesheet" href="<?php echo projectRoot();?>style/ie.css" />
-<script src="<?php echo projectRoot();?>script/ie.js"></script>
+<script src="<?php echo projectRoot();?>script/lib/html5shiv/html5shiv.min.js"></script>
 <![endif]-->
 <?php
 if( isset( $_COOKIE['color'] ) ){

@@ -16,13 +16,13 @@
 				<a class="btn btn-link btn-menuItem btn-menuItem-editor" title="编辑器" href="<?php echo projectRoot();?>editor/">编辑器<br />editor</a>
 			</li>
 			<li>
-				<a class="btn btn-link btn-menuItem btn-menuItem-favorite" title="收藏夹" href="<?php echo projectRoot(); ?>favorite/">收藏夹<br />favorite</a>
+				<a class="btn btn-link btn-menuItem btn-menuItem-favorite" title="收藏夹" href="<?php echo projectRoot();?>favorite/">收藏夹<br />favorite</a>
 			</li>
 			<li>
-				<a class="btn btn-link btn-menuItem btn-menuItem-rss" title="订阅" href="<?php echo projectRoot(); ?>rss/">订阅<br />rss</a>
+				<a class="btn btn-link btn-menuItem btn-menuItem-rss" title="订阅" href="<?php echo projectRoot();?>rss/">订阅<br />rss</a>
 			</li>
 			<li>
-				<a class="btn btn-link btn-menuItem btn-menuItem-palette" title="调色板" href="<?php echo projectRoot(); ?>palette/">调色板<br />palette</a>
+				<a class="btn btn-link btn-menuItem btn-menuItem-palette" title="调色板" href="<?php echo projectRoot();?>palette/">调色板<br />palette</a>
 			</li>
 		</ul>
 

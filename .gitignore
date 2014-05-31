@@ -1,9 +1,8 @@
 ##### 过滤的文件
 Readme.txt
 admin/money.php
-script/compress.bat
-script/test.js
-script/lib.inc.js
+
+npm-debug.log
 
 
 ##### 过滤的文件夹
@@ -16,14 +15,43 @@ script/lib.inc.js
 # 实验用文件夹
 allForOne/
 
-# bower 模块管理
+# Bower 模块管理
 bower_components/
 
-# 图片
-image/
+# Grunt 工具配置文件
+Gruntfile.js
+
+# NodeJS 模块
+node_modules/
+package.json
+
+# Express 生成文件
+app.js
+bin/
+public/
+routes/
+views/
+
+# NodeJS 测试代码
+node/node_modules/
+node/views/
+
+# JS 库文件
+script/lib/
+script/plugin/
+script/test/
+script/compress.bat
+script/test.js
+script/lib.inc.js
+
+# CSS 库文件
+style/lib/
 
 # 废弃的 less 文件
 less/0/
+
+# 图片
+image/
 
 # 杀人游戏 未完成 延迟
 mafia/
@@ -31,25 +59,9 @@ mafia/
 # 音频 视频
 media/
 
-# NodeJS 模块
-node/node_modules/
-node/views/
-
-package.json
-node_modules/
-Gruntfile.js
-
 # Cocos2d-html5
 cocos2d/
 game/
-
-# JS 库文件
-script/lib/
-script/plugin/
-script/test/
-
-# CSS 库文件
-style/lib/
 
 # 数据库文件
 sql/

@@ -136,7 +136,7 @@ require_once('../include/Config.inc.php');
 						&lt;meta name="author" content="name,email@email.com" /&gt;
 						&lt;!-- 定义网页搜索引擎方式 --&gt;
 						&lt;meta name="robots" content="index,follow" /&gt;
-					</pre>
+                    </pre>
 
                     <p><span class="code">X-UA-Compatible</span> 是用来描述文件在某些浏览器上的渲染程度，不允许设置为
 						<span class="code">IE=7</span> 来兼容 IE8</p>
@@ -155,13 +155,13 @@ require_once('../include/Config.inc.php');
 
 					<pre class="brush:html">
 						&lt;link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml" /&gt;
-					</pre>
+                    </pre>
 
 					<p>favicon icon</p>
 
 					<pre class="brush:html">
 						&lt;link rel="shortcut icon" type="image/ico" href="favicon.ico" /&gt;
-					</pre>
+                    </pre>
 
                     <p>随着移动开发，逐渐添加了额外的属性</p>
 
@@ -188,7 +188,7 @@ require_once('../include/Config.inc.php');
 						&lt;meta name="msapplication-TileColor" content="#000" /&gt;
 						&lt;!-- Windows 8 磁贴图片 --&gt;
 						&lt;meta name="msapplacation-TileImage" content="icon.png" /&gt;
-					</pre>
+                    </pre>
                 </dd>
                 <dt class="icon icon-arrow-r">title</dt>
                 <dd>永远在 <span class="code">&lt;title&gt;</span> 元素中给出页面的简单介绍</dd>
@@ -733,20 +733,9 @@ require_once('../include/Config.inc.php');
                 <dd>充分利用 HTML 标签自身属性</dd>
                 <dt class="icon icon-arrow-r">继承</dt>
                 <dd>
-                    <p>CSS 中的继承是指只定义一次就能将同一样式赋予多个元素的能力。充分利用继承机制减少代码量，能够继承的属性有：</p>
-
-                    <ul>
-                        <li><span class="code">color</span></li>
-                        <li><span class="code">font</span></li>
-                        <li><span class="code">letter-spacing</span></li>
-                        <li><span class="code">line-height</span></li>
-                        <li><span class="code">list-style</span></li>
-                        <li><span class="code">text-align</span></li>
-                        <li><span class="code">text-indent</span></li>
-                        <li><span class="code">text-transform</span></li>
-                        <li><span class="code">white-space</span></li>
-                        <li><span class="code">word-spacing</span></li>
-                    </ul>
+                    <p>CSS
+						中的继承是指只定义一次就能将同一样式赋予多个元素的能力。充分利用继承机制减少代码量，能够继承的属性有：<span class="code">color</span>、<span class="code">font</span>、<span class="code">letter-spacing</span>、<span class="code">line-height</span>、<span class="code">list-style</span>、<span class="code">text-align</span>、<span class="code">text-indent</span>、<span class="code">text-transform</span>、<span class="code">white-space</span>、<span class="code">word-spacing</span>
+					</p>
                 </dd>
                 <dt class="icon icon-arrow-r">CSS 属性书写顺序</dt>
                 <dd>
@@ -1465,7 +1454,7 @@ require_once('../include/Config.inc.php');
 						isNaN( 123 );	// false
 						isNaN( '123' );	// false
 						isNaN( 'abc' );	// true
-					</pre>
+                    </pre>
 
                     <p>判断一个值是否可用做数字的最佳方法是 <span class="code">isFinite</span> 函数，它会筛除掉
 						<span class="code">NaN</span> 和
@@ -1496,7 +1485,7 @@ require_once('../include/Config.inc.php');
 
 						delete foo.bar
 						console.log('bar' in foo);	// false
-					</pre>
+                    </pre>
 				</dd>
                 <dt class="icon icon-arrow-r">typeof 运算符</dt>
                 <dd>
@@ -1896,7 +1885,7 @@ require_once('../include/Config.inc.php');
 						// 没有输出
 
 						console.log( Function.propertyIsEnumerable('apply') );	// false 说明 apply 属性不可枚举
-					</pre>
+                    </pre>
 
                     <p>除 <span class="code">return</span> 和 <span class="code">throw</span>
 						语句，有两种方法可以更改循环的执行过程，一是使用 <span class="code">break</span>，二是使用
@@ -1942,7 +1931,7 @@ require_once('../include/Config.inc.php');
 							// 函数名在函数内部总是可见
 						}
 						doThings();	// 报错 ReferenceError
-					</pre>
+                    </pre>
 
 					<p>因此在代码中函数的调用可以出现在函数声明之前，但这应该是尽量避免的，建议内部函数应紧接着变量声明之后声明，如：</p>
 
@@ -2012,7 +2001,7 @@ require_once('../include/Config.inc.php');
 						// 针对于优化，推荐使用下面的代码：
 						var min = a < b ? a : b;
 						A[A.length] = v;
-					</pre>
+                    </pre>
                 </dd>
 				<dt class="icon icon-arrow-r">arguments 对象</dt>
 				<dd>
@@ -2039,8 +2028,8 @@ require_once('../include/Config.inc.php');
 							console.log( b );	// 5
 							console.log( arguments[1] );	// 5
 						}
-						doSomething(1, 2, 3)
-					</pre>
+						doSomething(1, 2, 3);
+                    </pre>
 
 					<p><span class="code">arguments</span>
 						对象总会被创建，除了两个特殊情况：作为局部变量声明和作为形式参数，自定义
@@ -2060,7 +2049,7 @@ require_once('../include/Config.inc.php');
 						    	doSomething();
 							}
 						}
-					</pre>
+                    </pre>
 
 					<p>上面代码中，<span class="code">doSomething</span> 不再是一个单纯的内联函数（inlining
 						指的是解析器可以做内联处理），因为它需要知道自己和它的调用者。这不仅抵消了内联函数带来的性能提升，而且破坏了封装，因此现在的函数可能要依赖于特定的上下文</p>
@@ -2093,7 +2082,7 @@ require_once('../include/Config.inc.php');
 					<pre class="brush:js">
 						+function(){}();
 						(function(){}());
-					</pre>
+                    </pre>
                 </dd>
                 <dt class="icon icon-arrow-r">闭包</dt>
                 <dd>
@@ -2247,7 +2236,7 @@ require_once('../include/Config.inc.php');
 					<pre class="brush:js">
 						var arr = [];
 						var arrCopy = arr.slice();
-					</pre>
+                    </pre>
                 </dd>
                 <dt class="icon icon-arrow-r">正则表达式</dt>
                 <dd>
@@ -2476,7 +2465,7 @@ require_once('../include/Config.inc.php');
 						console.log( typeof document.all );	// 在 Firefox、Chrome 中输出 undefined
 
 						var dom = document.all;	// HTMLAllCollection[112] （112 为页面中元素总数）
-					</pre>
+                    </pre>
 				</dd>
                 <dt class="icon icon-arrow-r">减少 DOM 操作</dt>
                 <dd>浏览器遍历 DOM 元素的代价是昂贵的。虽然 JavaScript
@@ -2790,7 +2779,8 @@ require_once('../include/Config.inc.php');
                     </pre>
 
                     <p>Nginx:
-                        <br/>在 server{} 区域里（最好是闭合符前面起一行）添加 add_header "X-UA-Compatible" "IE=Edge,chrome=1";</p>
+                        <br/>在 <span class="code">server{}</span> 区域里（最好是闭合符前面起一行）添加
+						<span class="code">add_header "X-UA-Compatible" "IE=Edge,chrome=1";</span></p>
                 </dd>
             </dl>
         </section>
@@ -2916,7 +2906,7 @@ require_once('../include/Config.inc.php');
 						if( $selector.length ){
 							$selector.slideUp();
 						}
-					</pre>
+                    </pre>
 				</dd>
                 <dt class="icon icon-arrow-r">动画与特效</dt>
                 <dd>
@@ -3097,7 +3087,10 @@ require_once('../include/Config.inc.php');
                 <dt class="icon icon-arrow-r">jQuery utility</dt>
                 <dd>使用 jQuery 的 utility 方法，如
 					<span class="code">$.isFunction()</span>,<span class="code">$.isArray()</span> 等</dd>
-                <dt class="icon icon-arrow-r">$.Callback</dt>
+				<dt class="icon icon-arrow-r">$.Deferred()</dt>
+				<dd><span class="code">$.Deferred()</span> 是 jQuery 基于 Promise
+						规范的实现，使用可以降低异步编程的复杂度</dd>
+                <dt class="icon icon-arrow-r">$.Callbacks()</dt>
                 <dd>
                     <p>jQuery 多用途的回调函数列表对象 <span class="code">$.Callbacks()</span></p>
 
@@ -3105,11 +3098,16 @@ require_once('../include/Config.inc.php');
                         function fn1(){
                             console.log(1);
                         }
+						function fn2(){
+							console.log(2);
+						}
 
                         var callbacks = $.Callbacks();
 
                         callbacks.add(fn1);
-                        callbacks.fire();   //  1
+						callbacks.add(fn2);
+						callbacks.add(fn1);
+                        callbacks.fire();   //  1 2 1
                     </pre>
                 </dd>
                 <dt class="icon icon-arrow-r">模块化 组件化</dt>

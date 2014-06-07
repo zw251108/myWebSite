@@ -39,6 +39,6 @@ class Blog extends DB{
     public function selectByType( $type='' ){
 //        $type = explode (',', $type);
 //        if(  )
-        return $this->select( $this->TABLE_NAME, 'Id,title,datetime,tagsId,tagsName' );
+        return $this->select( $this->TABLE_NAME, 'Id,title,datetime,tagsId,tagsName', '', '', ' order by Id desc' );
     }
 }

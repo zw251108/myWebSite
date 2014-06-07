@@ -40,6 +40,8 @@ define(['jquery', 'template'], function($){
 	}).on('click', '#resetFilter', function(){
 		$filterReset.addClass('hidden');
 		$filterAll.find('input:checked').trigger('click');
+	}).on('click', '#filterChecked input:checkbox', function(){
+		$( $(this).parent().data('filterTarget') ).trigger('click');
 	}).on('click', '#filterAll input:checkbox', function(){ // 过滤选项
 		var $self, $clone;
 
@@ -52,17 +54,19 @@ define(['jquery', 'template'], function($){
 				filterNum++;
 				filterStr += (filterStr ? ',' : '' )+ this.value;
 
-				$self = $(this).parent();
+				$self = $(this).parent().addClass('filter_tag-checked');
 				$clone = $self.clone();
 
 				$filter.find('#filterChecked').append( $clone );
 
-				$self.addClass('filter_tag-checked').data('filterTarget', $clone);
+				$clone.data('filterTarget', this);
+
+				$self.data('filterTarget', $clone);
 			}
 			else{
 				this.checked = false;
 
-				// todo 信息
+				// todo 错误信息
 				alert('最多只能选择 5 个');
 			}
 		}

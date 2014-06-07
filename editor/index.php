@@ -42,15 +42,6 @@ $allTag = $tag->selectTagByLevel();
 					<span id="filterCdNum" class="cd_num">0</span>
 				</span>
 			</button>
-
-			<div id="countdown" class="countdown hidden">
-				<div class="cd_quarter quarter_1"></div>
-				<div class="cd_quarter quarter_2"></div>
-				<div class="cd_quarter quarter_3"></div>
-				<div class="cd_quarter quarter_4"></div>
-				<div id="countdownNum" class="cd_num">0</div>
-			</div>
-
 			<button class="btn icon icon-reset filter_resetBtn hidden" id="resetFilter" type="button" value="">重置</button>
 			<div class="filter_tagArea" id="filterTagArea">
 				<div class="filter_checked" id="filterChecked"></div>

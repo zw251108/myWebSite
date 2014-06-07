@@ -7,21 +7,21 @@
 <div id="statistics" class="hidden"></div>
 
 <script>
-	var USER_INFO = <?php echo json_encode($userInfo);?>,
+var USER_INFO = '',
 	shim = ['jquery'],
-			MODULE_CONFIG = MODULE_CONFIG || {
-				shim:{
-					extend:shim,
-					clippy:shim,
-					validator:shim
-				},
-				paths:{
-					jquery:'<?php echo projectRoot();?>lib/jQuery/jquery.min',
-					global:'<?php echo projectRoot();?>module/global',
-					extend:'<?php echo projectRoot();?>ui/jquery.extend',
-					clippy:'<?php echo projectRoot();?>plugin/clippy/clippy.min',
-					validator:'<?php echo projectRoot();?>ui/jquery.validator'
-				}
-			};
+	MODULE_CONFIG = MODULE_CONFIG || {
+		shim:{
+			extend:shim,
+			clippy:shim,
+			validator:shim
+		},
+		paths:{
+			jquery:'%STATIC_PATH%lib/jQuery/jquery.min',
+			global:'%STATIC_PATH%module/global',
+			extend:'%STATIC_PATH%ui/jquery.extend',
+			clippy:'%STATIC_PATH%plugin/clippy/clippy.min',
+			validator:'%STATIC_PATH%ui/jquery.validator'
+		}
+	};
 </script>
-<!--[if lt IE 9]><script src="/script/ie.js"></script><![endif]-->
+<!--[if lt IE 9]><script src="%STATIC_PATH%script/ie.js"></script><![endif]-->

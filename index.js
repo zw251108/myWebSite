@@ -228,7 +228,8 @@ app.get('/document/', function(req, res){
  * 访问静态资源 *.*
  * */
 app.get(/.*\..*$/, function(req, res){
-	console.log(req.url)
+//	console.log(req.url)
+
 	var pathname = url.parse( req.url).pathname
 		, extname = path.extname( pathname )
 		, type = extname.slice(1)
@@ -236,13 +237,13 @@ app.get(/.*\..*$/, function(req, res){
 	fs.readFile('.'+ pathname, function(e, d){
 		if( e ){
 			res.writeHead(404, {'Content-Type': 'text/plain'});
-			res.end();
+
 		}
 		else{
 			res.writeHead(200, {'Content-Type': mime[type]});
 			res.write(d, 'binary');
-			res.end();
 		}
+		res.end();
 	});
 });
 

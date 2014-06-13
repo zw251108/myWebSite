@@ -23,23 +23,24 @@
 
     line-height: 150%;
     text-align: center;
-}
-.ribbon:before,
-.ribbon:after{
-    position: absolute;
-    bottom: -15px;
-    z-index: -1;
-    width: 0;
-    height: 0;
 
-    border: 15px solid transparent;
-    content: "";
-}
-.ribbon:before{
-    left: -15px;
-    border-right-color: #e0e0e0;
-}
-.ribbon:after{
-    right: -15px;
-    border-left-color: #e0e0e0;
+	&:before,
+	&:after{
+		position: absolute;
+		bottom: -15px;
+		z-index: -1;
+		width: 0;
+		height: 0;
+
+		border: 15px solid transparent;
+		content: "";
+	}
+	&:before{
+		left: -15px;
+		border-right-color: #e0e0e0;
+	}
+	&:after{
+		right: -15px;
+		border-left-color: #e0e0e0;
+	}
 }

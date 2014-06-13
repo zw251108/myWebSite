@@ -1,22 +1,33 @@
-MODULE_CONFIG.shim.shBrushCss = ['shCore'];
-MODULE_CONFIG.paths.shBrushCss = '../plugin/syntaxhighlighter/shBrushCss';
-MODULE_CONFIG.shim.shBrushJScript = ['shCore'];
-MODULE_CONFIG.paths.shBrushJScript = '../plugin/syntaxhighlighter/shBrushJScript';
-MODULE_CONFIG.shim.shBrushXml = ['shCore'];
-MODULE_CONFIG.paths.shBrushXml = '../plugin/syntaxhighlighter/shBrushXml';
-define('shCore', ['../plugin/syntaxhighlighter/XRegExp', '../plugin/syntaxhighlighter/shCore'], function(){
-    return {
-        SyntaxHighlighter:SyntaxHighlighter
-    };
+define('XRegExp', ['../plugin/syntaxhighlighter/XRegExp'], function(){
+	return {
+		XRegExp:XRegExp
+	};
 });
+define('shCore', ['XRegExp', '../plugin/syntaxhighlighter/shCore'], function(){
+	return {
+		SyntaxHighlighter:SyntaxHighlighter
+	};
+});
+MODULE_CONFIG.shim.shAutoloader = ['shCore'];
+MODULE_CONFIG.paths.shAutoloader = '../plugin/syntaxhighlighter/shAutoloader';
+
 require.config(MODULE_CONFIG);
-require(['jquery', 'global', 'shCore', 'shBrushCss', 'shBrushJScript', 'shBrushXml'], function($, g, s){
+require(['jquery', 'global', 'shCore', 'shAutoloader'], function($, g, s){
 	var $doc = $('#doc')
 		, $curr = null
 		, $temp = $([])
 		;
 
-    $doc.on('click', '.section_title', function(){
+	s = s.SyntaxHighlighter;
+	s.autoloader([
+		'css', '../script/plugin/syntaxhighlighter/shBrushCss.js'
+	], [
+		'js', 'jscript', 'javascript',	'../script/plugin/syntaxhighlighter/shBrushJScript.js'
+	], [
+		'xml', 'xhtml', 'xslt', 'html', '../script/plugin/syntaxhighlighter/shBrushXml.js'
+	]);
+
+	$doc.on('click', '.section_title', function(){
 
 	    $temp.add(this)
 		    .find('.icon-CSS').toggleClass('icon-plus icon-minus').end()
@@ -43,5 +54,5 @@ require(['jquery', 'global', 'shCore', 'shBrushCss', 'shBrushJScript', 'shBrushX
 		});
     });
 
-    SyntaxHighlighter.highlight();
+	s.all();
 });

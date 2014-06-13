@@ -1,8 +1,8 @@
 @charset "utf-8";
 
-@import "../lib/color.less";
-@import "../lib/function.less";
-@import "../lib/grid.less";
+@import "lib/color";
+@import "lib/function";
+@import "lib/grid";
 
 //---------- Module 模块 汇总 ----------
 // 模块根据特定的商业逻辑呈现不同的样式
@@ -79,7 +79,7 @@
 .module-nav,
 .module-header,
 .module-footer{
-    .module_info{
+    > .module_info{
         display: none;
     }
 }
@@ -87,43 +87,43 @@
 // header、footer 模块的 模块标题 定位不同 待议
 .module-header,
 .module-footer{
-    .module_title{
+    > .module_title{
         float: left;
         margin-top: 115px;
     }
 }
 
-//----- 功能模块样式 -----
+//----- 功能模块样式 -----    todo
 // 以下顺序同时为 metro.png 中图标的顺序
-@import "user.less";        // 用户中心
+@import "module/user";        // 用户中心
 
-@import "palette.less";     // 调色板
+@import "module/palette";     // 调色板
 
-@import "document.less";    // 文档
+@import "module/document";    // 文档
 
-@import "editor.less";      // 编码
+@import "module/editor";      // 编码
 
-@import "watch.less";       // 时钟
+@import "module/watch";       // 时钟
 
-@import "blog.less";        // 博客
+@import "module/blog";        // 博客
 
-@import "calendar.less";    // 日历
+@import "module/calendar";    // 日历
 
-@import "weather.less";     // 天气
+@import "module/weather";     // 天气
 
-@import "favorite.less";    // 收藏夹
+@import "module/favorite";    // 收藏夹
 
-@import "rss.less";         // 订阅
+@import "module/rss";         // 订阅
 
 //@import "timeLine.less";    // 时间轴
 
-@import "advert.less";      // 广告区
+@import "module/advert";      // 广告区
 
-@import "popup.less";       // 弹窗
+@import "module/popup";       // 弹窗
 
-@import "header.less";      // 页头
+@import "module/header";      // 页头
 
-@import "footer.less";      // 页脚
+@import "module/footer";      // 页脚
 
 //----- Main 主内容模块 ------
 .module-main{
@@ -131,7 +131,7 @@
 	background-color: @module-main-bg;
 	background-image: none;
 
-    .module_title{
+    > .module_title{
         min-height: @module-main-title-height;
 
         background-repeat: no-repeat;
@@ -142,7 +142,7 @@
         text-indent: 45px;
     }
 
-    .module_content{
+    > .module_content{
         margin-left: @module-content-margin-left;
 
         .paddingSpace();
@@ -159,7 +159,6 @@
 
 	outline: @outline-width solid @outline-color;
 	background-position: center @module-metro-bg-top;
-//    .metroBgImg();
 
 	.boxShadow(5px 5px 5px #888);
 
@@ -167,16 +166,12 @@
 	    outline: @outline-width solid @a-hover;
     }
 
-    .module_title{
+    > .module_title{
 	    position: absolute;
 	    bottom: 0;
 	    left: @module-metro-title-left;
 	    right: 0;
 	    width: auto;
-
-//	    height: @module-metro-title-height;
-
-//	    margin-top: @module-metro-title-margin-top;
 
 	    background: none;
 
@@ -185,7 +180,7 @@
 	    font-size: 20px;
     }
 
-    .module_content{
+    > .module_content{
         display:none;
     }
 }

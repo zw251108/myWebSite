@@ -21,143 +21,124 @@
     border: @tips-border-width solid @tips-border;
     border-radius: @border-radius;
 
-//    background: @tips-bg;
-
     color: @tips-color;
 	line-height: @line-height;
+
+	&:before,
+	&:after{
+		position: absolute;
+
+		height: 0;
+		width: 0;
+
+		border: @tips-arrow-width solid @tips-border;
+
+		content: "";
+	}
 }
-.tips:before,
-.tips:after{
-    position: absolute;
-
-    height: 0;
-    width: 0;
-
-    border: @tips-arrow-width solid @tips-border;
-
-    content: "";
-}
-//.tips:after{
-////    border-color: @tips-bg;
-//}
 
 // 状态
 .tips-focus{
 	background: @tips-focus;
-}
-.tips-focus:after{
-    border-color: @tips-focus;
+
+	&:after{
+		border-color: @tips-focus;
+	}
 }
 .tips-error{
 	background: @tips-error;
-}
-.tips-error:after{
-    border-color: @tips-error;
+
+	&:after{
+		border-color: @tips-error;
+	}
 }
 .tips-succ{
 	background: @tips-success;
-}
-.tips-succ:after{
-    border-color: @tips-success;
+
+	&:after{
+		border-color: @tips-success;
+	}
 }
 
 // 箭头方位
-.tips-top:before,
-.tips-top:after{
-    top: -@tips-arrow-width *2;
-    left: 50%;
-    border-top-color: transparent;
-    border-left-color: transparent;
-    border-right-color: transparent;
-    margin-left: -@tips-arrow-width;
+.tips-top{
+	&:before,
+	&:after{
+		top: -@tips-arrow-width *2;
+		left: 50%;
+		border-top-color: transparent;
+		border-left-color: transparent;
+		border-right-color: transparent;
+		margin-left: -@tips-arrow-width;
+	}
+	&:after{
+		top: -( @tips-arrow-width *2 - @tips-border-width );
+	}
 }
-.tips-top:after{
-    top: -( @tips-arrow-width *2 - @tips-border-width );
+.tips-bottom{
+	&:before,
+	&:after{
+		bottom: -@tips-arrow-width *2;
+		left: 50%;
+		border-bottom-color: transparent;
+		border-left-color: transparent;
+		border-right-color: transparent;
+		margin-left: -@tips-arrow-width;
+	}
+	&:after{
+		bottom: -( @tips-arrow-width *2 - @tips-border-width );
+	}
 }
-
-.tips-bottom:before,
-.tips-bottom:after{
-    bottom: -@tips-arrow-width *2;
-    left: 50%;
-    border-bottom-color: transparent;
-    border-left-color: transparent;
-    border-right-color: transparent;
-    margin-left: -@tips-arrow-width;
+.tips-left{
+	&:before,
+	&:after{
+		right: -@tips-arrow-width *2;
+		top: 50%;
+		border-bottom-color: transparent;
+		border-top-color: transparent;
+		border-right-color: transparent;
+		margin-top: -@tips-arrow-width;
+	}
+	&:after{
+		right: -( @tips-arrow-width *2 - @tips-border-width );
+	}
 }
-.tips-bottom:after{
-    bottom: -( @tips-arrow-width *2 - @tips-border-width );
-}
-
-.tips-left:before,
-.tips-left:after{
-    right: -@tips-arrow-width *2;
-    top: 50%;
-    border-bottom-color: transparent;
-    border-top-color: transparent;
-    border-right-color: transparent;
-    margin-top: -@tips-arrow-width;
-}
-.tips-left:after{
-    right: -( @tips-arrow-width *2 - @tips-border-width );
-}
-
-.tips-right:before,
-.tips-right:after{
-    left: -@tips-arrow-width *2;
-    top: 50%;
-    border-bottom-color: transparent;
-    border-top-color: transparent;
-    border-left-color: transparent;
-    margin-top: -@tips-arrow-width;
-}
-.tips-right:after{
-    left: -( @tips-arrow-width *2 - @tips-border-width );
+.tips-right{
+	&:before,
+	&:after{
+	    left: -@tips-arrow-width *2;
+	    top: 50%;
+	    border-bottom-color: transparent;
+	    border-top-color: transparent;
+	    border-left-color: transparent;
+	    margin-top: -@tips-arrow-width;
+	}
+	&:after{
+		left: -( @tips-arrow-width *2 - @tips-border-width );
+	}
 }
 
 .tips_content{
-    padding: 5px;
-    line-height: 20px;
+	padding: 5px;
+	line-height: 20px;
 }
 .tips_arrow{
-    position: absolute;
+	position: absolute;
 
-    left: 145px;
-    top: 15px;
+	left: 145px;
+	top: 15px;
 
-    height: 0;
-    width: 0;
+	height: 0;
+	width: 0;
 
-    border-style: solid;
-    border-color: transparent @tips-border;
-    border-width: 10px 0 10px 10px;
+	border-style: solid;
+	border-color: transparent @tips-border;
+	border-width: 10px 0 10px 10px;
 }
+.tips-msg{  // 提示信息
+	border-color: @tips-msg;
 
-//.tips-msg{
-//    right: 80px;
-//    top: 10px;
-//
-//    height: 50px;
-//    width: 140px;
-//
-//    .tips_arrow{
-//        left: 145px;
-//        top: 15px;
-//    }
-//}
-
-.tips-msg{// 提示信息
-    border-color: @tips-msg;
-
-    .tips_arrow{
-        border-color: transparent @tips-msg;
-    }
+	.tips_arrow{
+		border-color: transparent @tips-msg;
+	}
 }
-//.tips-warming{// 重要提示 警告
-//    border-color: @tips-warming-border;
-//
-////    color: @tips-warming-color;
-//
-//    .tips_arrow{
-//        border-color: transparent @tips-warming-border;
-//    }
-//}

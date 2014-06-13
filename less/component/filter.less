@@ -4,7 +4,7 @@
 @import "../lib/grid.less";
 @import "../lib/z-index.less";
 
-//----- filter 过滤器 -----
+//----- filter 过滤器 -----    todo
 /*  组件用到了倒计时 countdown 组件
     example:
 	<div class="filter" id="Filter">
@@ -67,8 +67,6 @@
 	float: left;
 	width: 100%;
 
-//	margin-top: 5px;
-
 	&:before{
 		content: "";
 	}
@@ -83,10 +81,6 @@
 	padding-left: 5px;
 
 	background: @filter-checked-bg;
-
-//	.filter_tag{
-//		margin: 0 @space @space 0;
-//	}
 }
 .filter_all{    // 全部过滤标签区域
     overflow: auto;
@@ -107,8 +101,7 @@
 
     border-radius: @border-radius;
 
-//	margin: 0 @filter-tag-margin @filter-tag-margin 0;
-	margin: @filter-tag-margin; // 0 0 @filter-tag-margin;
+	margin: @filter-tag-margin;
     padding: 0 @padding-lr;
 
 	background: @filter-tag-bg;

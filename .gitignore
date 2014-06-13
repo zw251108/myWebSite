@@ -40,9 +40,9 @@ node/views/
 script/lib/
 script/plugin/
 script/test/
-script/compress.bat
 script/test.js
-script/lib.inc.js
+#script/lib.inc.js
+#script/compress.bat
 
 # CSS 库文件
 style/lib/

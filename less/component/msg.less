@@ -3,7 +3,7 @@
 @import "../lib/color.less";
 
 //----- message 消息 -----
-.msg{
+/*p*/.msg{
 	position: relative;
 
 	min-height: 110px;
@@ -11,51 +11,31 @@
     margin: 0 0 0 70px;
 	padding: 30px 10px 10px;
 
-//    background:no-repeat 5px 5px;
-
 	font-size: 30px;
 	line-height: 200%;
 	text-indent: 2em;
+
+	&:before{
+		position: absolute;
+		top: 0;
+		left: -70px;
+
+		width: 70px;
+		height: 100%;
+
+		background-repeat: no-repeat;
+		background-position: center center;
+
+		content: "";
+	}
 }
-//.msg-info{  // 提示
-//    background-image:url("../image/default/Msg-tips.png");
-//}
-//.msg-warm{// 警告
-//    background-image:url("../image/default/Msg-error.png");
-//}
 
-.msg:before{
-	position: absolute;
-	top: 0;
-	left: -70px;
-
-	width: 70px;
-	height: 100%;
-
-	background-repeat: no-repeat;
-	background-position: center center;
-
-	content: "";
-}
-//.msg-success{   // 成功
-//	background-image:url("../image/default/success.png");
-//}
 .msg-success:before{    // 成功
 	background-image: url("../image/default/success.png");
 	background-color: darken(@success, 20%);
 }
-//.msg-error{ // 错误
-//    background-image:url("../image/default/error.png");
-//}
+
 .msg-error:before{  // 错误
 	background-image: url("../image/default/error.png");
 	background-color: darken(@error, 20%);
 }
-////提示信息
-//#info{width:200px; height:38px; padding:20px 0 20px 100px; background-repeat:no-repeat;}
-
-////表情
-//.admire{.lookBg("admire")}//欣赏
-//.welcome{.lookBg("welcome")}//欢迎
-//.error{.lookBg("error")}//未知错误
-//.wrong{.lookBg("wrong")}//用户错误

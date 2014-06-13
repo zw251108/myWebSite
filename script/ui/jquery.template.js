@@ -20,18 +20,24 @@
     html([{sex:1}]); // <span>男</span>
  */
 ;(function($){
-    var elemExpr = /(\w*)((?:#[\w%]*)?)((?:\.[\w\-%]*)*)((?:\[[\w\-%]*=.*?\])*)((?:\{.*?\})?)/,
-        keyListExpr = /%\w*?%/g,
-        keyExpr = /%(.*)%/;
+    var elemExpr = /(\w*)((?:#[\w%]*)?)((?:\.[\w\-%]*)*)((?:\[[\w\-%]*=.*?\])*)((?:\{.*?\})?)/
+	    , keyListExpr = /%\w*?%/g
+	    , keyExpr = /%(.*)%/
+	    ;
 
     var methods = {
         specialTag:{
-            input:'',
-            img:'',
-            br:'',
-            hr:''
-        },
-        createElement:function(rs, front, end){
+            input: ''
+	        , img: ''
+	        , br: ''
+	        , hr: ''
+        }
+	    , attrDefault: {
+		    disabled: 'disabled'
+		    , checked: 'checked'
+
+	    }
+	    , createElement:function(rs, front, end){
             var html = ['<'],
                 temp,
                 tag = rs[1] || 'div';
@@ -69,8 +75,8 @@
 
                 end.unshift('</'+ tag +'>');
             }
-        },
-        operator:function(template, front, end){
+        }
+	    , operator:function(template, front, end){
             var tempArr = template.split(''),
                 operate = tempArr.shift(), temp;
             switch( operate ){

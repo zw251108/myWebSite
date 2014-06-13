@@ -55,7 +55,7 @@ require(['jquery', 'global', 'filter', 'template', 'layout'], function($, g, $fi
 	    , layout = function(){
 		    $.layout({
 			    container: $editorList,
-			    selector: 'article',
+			    items: 'article',
 			    left: space -10,
 			    right: -space,
 			    top: space -10,

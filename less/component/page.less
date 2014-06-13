@@ -11,12 +11,14 @@
 }
 .page{
     float: left;
+	height: 30px;
     min-width: @page-min-width;
 
+	border-radius: 50%;
 	margin: @page-margin @page-margin 0 0;
     background: @page-bg;
 
-    line-height: @line-height;
+    line-height: 200%;
     text-align: center;
 }
 .page-first,    // 首页
@@ -24,6 +26,7 @@
 .page-prev,     // 上一页
 .page-next{     // 下一页
     width: @page-const-min-width;
+	border-radius: 5px;
 }
 .page-first{
     margin-left: 0;

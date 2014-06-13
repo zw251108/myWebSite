@@ -5,13 +5,15 @@
 //---------- Class 公用 class 样式 ----------
 
 //----- Clearfix 清楚浮动 -----
-.clearfix:before,
-.clearfix:after{
-    content: "";
-    display: table;
-}
-.clearfix:after{
-    clear: both;
+.clearfix{
+	&:before,
+	&:after{
+		content: "";
+		display: table;
+	}
+	&:after{
+		clear: both;
+	}
 }
 
 //----- 使可交互标签表现为可点击 -----

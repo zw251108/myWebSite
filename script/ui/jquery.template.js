@@ -10,46 +10,63 @@
  * @description
  * @example
     var html = $.template({
-        template:'span{%sex%}',
+        template: 'span{%sex%}',
         filter:{
-            sex:function(data, i){
+            sex: function(data, i){
                 return data[key] === 1?'男':'女';
             }
         }
     });
     html([{sex:1}]); // <span>男</span>
  */
-;(function($){
+;(function(p, jqPath){
+	if( typeof exports === 'object' && typeof module === 'object' ){
+		p( require( jqPath || 'jquery' ) );
+	}
+	else if( typeof define === 'function' && define.amd ){
+		define([ jqPath || 'jquery' ], p);
+	}
+	else{
+		p();
+	}
+})(function($){
+	$ = $ || jQuery;
+
     var elemExpr = /(\w*)((?:#[\w%]*)?)((?:\.[\w\-%]*)*)((?:\[[\w\-%]*=.*?\])*)((?:\{.*?\})?)/
 	    , keyListExpr = /%\w*?%/g
 	    , keyExpr = /%(.*)%/
 	    ;
 
     var methods = {
-        specialTag:{
+        specialTag: {    // 特别标签
             input: ''
 	        , img: ''
 	        , br: ''
 	        , hr: ''
         }
-	    , attrDefault: {
+	    , attrDefault: {    // 属性默认值
 		    disabled: 'disabled'
 		    , checked: 'checked'
 
 	    }
-	    , createElement:function(rs, front, end){
-            var html = ['<'],
-                temp,
-                tag = rs[1] || 'div';
+	    , createElement: function(rs, front, end){   // 构建元素
+            var html = []
+	            , temp
+	            , tag = rs[1] // || 'div'
+	            ;
 
-            html.push(tag);
+		    // 添加标签
+            tag && html.push('<', tag);
 
+		    // 添加 id 属性
             temp = rs[2];
-            html.push(temp?' id="'+ /#(.*)/.exec(temp)[1] +'"':'');
+		    html.push(temp?' id="'+ /#(.*)/.exec(temp)[1] +'"':'');
 
+		    // 添加 class 属性
             temp = rs[3];
             html.push(temp?' class="'+ temp.split('.').slice(1).join(' ')+'"':'');
 
+		    // 添加属性
             temp = rs[4];
             if( temp ){
                 temp = temp.replace(/\[/g, ' ');
@@ -57,6 +74,7 @@
                 html.push(temp);
             }
 
+		    // 判断标签是否闭合
             if( tag in this.specialTag ){
                 html.push('/>');
                 temp = /\{(.*)\}/.exec( rs[5] );
@@ -76,37 +94,45 @@
                 end.unshift('</'+ tag +'>');
             }
         }
-	    , operator:function(template, front, end){
-            var tempArr = template.split(''),
-                operate = tempArr.shift(), temp;
+	    , operator: function(template, front, end){  // 处理操作符
+            var tempArr = template.split('')
+	            , operate = tempArr.shift()
+	            , temp
+	            ;
+
             switch( operate ){
-                case '>':
-                    template = tempArr.join('');
-                    break;
-                case '+':
+            case '>':
+                template = tempArr.join('');
+                break;
+            case '+':
+                temp = end.shift();
+                front.push( temp );
+                template = tempArr.join('');
+                break;
+            case '^':
+                temp = end.shift();
+                front.push( temp );
+                operate = tempArr.shift();
+                if( operate !== '^' ){
                     temp = end.shift();
                     front.push( temp );
-                    template = tempArr.join('');
-                    break;
-                case '^':
-                    temp = end.shift();
-                    front.push( temp );
-                    operate = tempArr.shift();
-                    if( operate !== '^' ){
-                        temp = end.shift();
-                        front.push( temp );
-                    }
-                    tempArr.unshift( operate );
-                    template = tempArr.join('');
-                    break;
-                default:
-                    break;
+                }
+                tempArr.unshift( operate );
+                template = tempArr.join('');
+                break;
+            default:
+                break;
             }
+
             return template;
-        },
-        handleData:function(template, data, filter, keyList, index){// 处理数据
-            var i = 0, j = keyList ? keyList.length : 0,
-                tempData, temp, key;
+        }
+	    , handleData: function(template, data, filter, keyList, index){  // 处理数据
+            var i = 0
+	            , j = keyList ? keyList.length : 0
+	            , tempData
+	            , temp
+	            , key
+	            ;
 
             for(; i<j; i++ ){
                 temp = keyList[i];
@@ -123,11 +149,13 @@
     };
 
     $.template = function(options){
-        var opts = $.extend({}, $.template.defaults, options),
-            template = opts.template,
-            filter = opts.filter,
-            front = [], end = [],
-            rs, keyList;
+        var opts = $.extend({}, $.template.defaults, options)
+	        , template = opts.template
+	        , filter = opts.filter
+	        , front = []
+	        , end = []
+	        , rs
+	        , keyList;
 
         while( template ){
             rs = elemExpr.exec( template );
@@ -144,21 +172,24 @@
         keyList = template.match( keyListExpr );
 
         return function(data, start, end){
-            var i = end,
-                j = data.length;
+	        data = $.isArray( data ) ? data : [].push( data );
 
-            front = [];
+            var i = end
+	            , j = data.length
+	            , temp = []
+	            ;
+
             j = (i > 0 && i < j)? i : j;
             i = start > 0 ? start : 0;
             for(; i<j; i++ ){
-                front.push( methods.handleData(template, data[i], filter, keyList, i) );
+	            temp.push( methods.handleData(template, data[i], filter, keyList, i) );
             }
 
-            return front;
+            return temp;
         };
     };
     $.template.defaults = {
-        template:'',
-        filter:null
+        template: ''
+	    , filter: {}
     };
-})(jQuery);
+}, '');

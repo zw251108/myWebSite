@@ -23,7 +23,7 @@ define(['jquery', 'template'], function(){
         $tagsName = $tags.find('#tagsName'),
         $addNewTag = $tags.find('#addNewTag'),
         tagsTmpl = $.template({
-            template: 'span.tag[data-tagid=%Id%][title=%tagTips%]{%tagName%}',
+            template: 'span.tag[data-tagid=%Id% title=%tagTips%]{%tagName%}',
             filter:{
                 tagTips:function(data, i){
                     return data.tips || '';

@@ -1,0 +1,55 @@
+@charset "utf-8";
+
+@import "../lib/color.less";
+@import "../lib/grid.less";
+
+//---------- Profile 个人资料 ----------
+.module-profile{
+	background-image: url("../image/default/metro/Profile.png");
+
+	.module_title{
+		background-image:url("../image/default/metro-small/profile.png");
+	}
+
+	.module_content{
+		margin-bottom: -@space;
+	}
+
+	.icon-CSS{
+		position:absolute;
+		top: 5px;
+		right: @space;
+
+		height: @module-main-title-height - 10px *2;
+		width: @module-main-title-height - 10px *2;
+	}
+}
+.profile_section{
+	overflow: hidden;
+
+	margin-bottom: @space;
+	padding: 0 0 0 @space;
+	background: @profile_section-bg;
+
+	.section_title{
+		padding-right: 70px;
+	}
+}
+
+.profile_chart{
+	float: left;
+
+	min-width: 300px;
+	width: 50%;
+}
+.profile_timeLine{
+	position: relative;
+
+	padding-top: 10px;
+	background: #fff;
+
+	p{
+		margin: 0;
+//		line-height: 2em;
+	}
+}

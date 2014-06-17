@@ -14,8 +14,8 @@ require(['jquery', 'global', 'tag', 'filter',
 	'pagination', 'artDialog', 'artDialogPlus', 'validator'], function($, g, tag, $filter){
     var GUID_DATA = {}
 	    , favorTmpl = $.template({
-            template: 'li.article[data-guid=%guid%][data-index=%index%][data-favid=%Id%][data-tagsid=%tagsId%]' +
-                '>a[href=%url%][target=_blank]>h3.article_title{%title%}' +
+            template: 'li.article[data-guid=%guid% data-index=%index% data-favid=%Id% data-tagsid=%tagsId%]' +
+                '>a[href=%url% target=_blank]>h3.article_title{%title%}' +
                 '^hr+span.article_date{%datetime%}+div.tagArea{%tags%}' +
 	            '+div.btn_group.hidden>button.btn.icon.icon-edit.js-edit[type=button]{编辑}' +
 	            '+button.btn.icon.icon-delete.js-delete[type=button]{删除}',
@@ -172,7 +172,7 @@ require(['jquery', 'global', 'tag', 'filter',
 		        , tips = this.prev();
 
             tips.addClass('tips-succ').removeClass('tips-focus tips-error hidden').html(txt)
-	            .delay('500').fadeOut();
+	            .delay(500).fadeOut();
 
 
 	        if( !this.data('tipsinit') ){

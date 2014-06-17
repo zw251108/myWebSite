@@ -1,7 +1,7 @@
 /**
  * @fileOverview    基于 jQuery 的分页插件
  * @author  ZwB
- * @version 0.3
+ * @version 0.9
  * @function    $.pagination
  * @param   {object}
  *  container   {string|object} jQuery 选择器|jQuery 对象
@@ -22,15 +22,28 @@
  *  当前页码 class 为 page-current
  * @example
     var $pagination = $.pagination({
-        container: '#pagination',
-        count: 100,
-        pageIndex: 2,
-        action: function(page, size){
+        container: '#pagination'
+        , count: 100
+        , pageIndex: 2
+        , action: function(page, size){
         }
     });
  * */
-;(function($){
-//    var pageConfig = $.pageConfig;
+;(function(p, jqPath){
+	if( typeof exports === 'object' && typeof module === 'object' ){
+		p( require( jqPath || 'jquery' ) );
+	}
+	else if( typeof define === 'function' && define.amd ){
+		define([ jqPath || 'jquery' ], p);
+	}
+	else{
+		p();
+	}
+})(function($){
+	'use strict';
+
+	$ = $ || jQuery;
+
     var methods = {
         setPage: function(e, index, size, count){
             var opts = e.data,
@@ -137,17 +150,15 @@
     };
 
     $.pagination.defaults = {
-        container: '',
-        action: null,
-        count: 0,
-        pageSize: 1,
-        pageIndex: 1,
-        pageNum: 0,
-        pageShow: 10,
-        error: null
-
-//        ,
-//        dataType:'',
-//        dataSource:''
+        container: ''
+	    , action: null
+	    , count: 0
+	    , pageSize: 1
+	    , pageIndex: 1
+	    , pageNum: 0
+	    , pageShow: 10
+	    , error: null
+//		, dataType: ''
+//		, dataSource: ''
     };
-})(jQuery);
+}, '');

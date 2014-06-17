@@ -11,7 +11,7 @@ require(['jquery', 'global', 'filter', 'template', 'layout'], function($, g, $fi
             template:'a[href=edit.php?id=%Id%]' +
                 '>article.article.editor_article[data-tagsid=%tagsId%]' +
                 '>h3.article_title{%name%}' +
-                '+img.article_preview[src=%preview%][width=%width%][height=%height%][alt=%alt%]',
+                '+img.article_preview[src=%preview% width=%width% height=%height% alt=%alt%]',
             filter:{
                 alt:function(data, index){
                     return data.preview ? data.name : '没有预览图片';

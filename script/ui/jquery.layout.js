@@ -1,4 +1,3 @@
-// JavaScript Document
 /**
  * @fileOverview    流式布局
  * @author  ZwB
@@ -34,6 +33,8 @@
 		p();
 	}
 })(function($){
+	'use strict';
+
 	$ = $ || jQuery;
 
 	var methods = {

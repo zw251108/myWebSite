@@ -18,7 +18,7 @@
  */
 define(['jquery', 'template'], function($){
     var filterTag = $.template({
-            template: 'label.filter_tag>input[type=checkbox][value=%Id%]{%tagName%}'
+            template: 'label.filter_tag>input[type=checkbox value=%Id%]{%tagName%}'
         })
 	    , filterFunc = null // 过滤的回调函数
 	    , filterNum = 0     // 过滤标签的选择数
@@ -82,13 +82,13 @@ define(['jquery', 'template'], function($){
 		}
 
 		if( filterTimeout ){
-			$countdown.removeClass('cd-start');
+//			$countdown.removeClass('cd-start');
 			clearTimeout( filterTimeout );
 		}
 		filterTimeout = null;
 		if( filterFunc ){
 			$filterSet.addClass('filter_setBtn-cd');
-			$countdown.addClass('cd-start');
+//			$countdown.addClass('cd-start');
 			$countdownNum.html( 5 );
 
 			filterTimeout = setInterval(function(){
@@ -98,7 +98,7 @@ define(['jquery', 'template'], function($){
 				}
 				else{
 					$countdownNum.html( 0 );
-					$countdown.removeClass('cd-start');
+//					$countdown.removeClass('cd-start');
 					$filterSet.removeClass('filter_setBtn-cd');
 
 					$filterAll.slideUp();

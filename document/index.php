@@ -141,7 +141,7 @@ require_once('../include/Config.inc.php');
                     <p><span class="code">X-UA-Compatible</span> 是用来描述文件在某些浏览器上的渲染程度，不允许设置为
 						<span class="code">IE=7</span> 来兼容 IE8</p>
 
-                    <pre class="brush:html">
+					<pre class="brush:html">
                         &lt;!-- 不允许使用 --&gt;
                         &lt;meta http-equiv="X-UA-Compatible" content="IE=7" /&gt;
 

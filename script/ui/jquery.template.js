@@ -1,7 +1,7 @@
 /**
  * @fileOverview    HTML 模板引擎
  * @author  ZwB
- * @version 0.2
+ * @version 0.9
  * @function
  * @param   {object}
  *  template    {string}    模板字符串   符合 emmet 编写规则 其中 %key% 为动态插入数据
@@ -30,9 +30,12 @@
 		p();
 	}
 })(function($){
+	'use strict';
+
 	$ = $ || jQuery;
 
-    var elemExpr = /(\w*)((?:#[\w%]*)?)((?:\.[\w\-%]*)*)((?:\[[\w\-%]*=.*?\])*)((?:\{.*?\})?)/
+    var elemExpr = /(\w*)((?:#[\w%]*)?)((?:\.[\w\-%]*)*)((?:\[[\w\-%]*(?:=.*?)?(?:(?:\s[\w\-%]*)(?:=.*?)?)*\])?)((?:\{.*?\})?)/
+	    , expr = /(\w*)((?:#[\w%]*)?)((?:\.[\w\-%]*)*)((?:\[[\w\-%]*=.*?\])*)((?:\{.*?\})?)/
 	    , keyListExpr = /%\w*?%/g
 	    , keyExpr = /%(.*)%/
 	    ;
@@ -52,48 +55,61 @@
 	    , createElement: function(rs, front, end){   // 构建元素
             var html = []
 	            , temp
-	            , tag = rs[1] // || 'div'
+	            , tag = rs[1] || ''
+	            , i, j, t
 	            ;
 
-		    // 添加标签
-            tag && html.push('<', tag);
+		    // 若没有 tag 但有 id class 属性等值，tag 设为 div
+		    if( !tag && ( rs[2] || rs[3] || rs[4] ) ){
+			    tag = 'div';
+		    }
 
-		    // 添加 id 属性
-            temp = rs[2];
-		    html.push(temp?' id="'+ /#(.*)/.exec(temp)[1] +'"':'');
+		    if( tag ){
+			    // 添加标签
+			    html.push('<', tag);
 
-		    // 添加 class 属性
-            temp = rs[3];
-            html.push(temp?' class="'+ temp.split('.').slice(1).join(' ')+'"':'');
+			    // 添加 id 属性
+			    temp = rs[2];
+			    html.push( temp ? ' id="'+ /#(.*)/.exec(temp)[1] +'"' : '' );
 
-		    // 添加属性
-            temp = rs[4];
-            if( temp ){
-                temp = temp.replace(/\[/g, ' ');
-                temp = temp.replace(/=(.*?)\]/g, '="$1"');
-                html.push(temp);
-            }
+			    // 添加 class 属性
+			    temp = rs[3];
+			    html.push( temp ? ' class="'+ temp.split('.').slice(1).join(' ')+ '"' : '');
 
-		    // 判断标签是否闭合
-            if( tag in this.specialTag ){
-                html.push('/>');
-                temp = /\{(.*)\}/.exec( rs[5] );
-                html.push(temp?temp[1]:'');
-                temp = html.join('');
-                front.push( temp );
+			    // 添加属性
+			    temp = rs[4];
+			    if( temp ){
+				    temp = temp.replace(/\[|\]/g, '');
+				    temp = temp.split(' ');
 
-                end.unshift('');
-            }
-            else{
-                html.push('>');
-                temp = /\{(.*)\}/.exec( rs[5] );
-                html.push(temp?temp[1]:'');
-                temp = html.join('');
-                front.push( temp );
+				    for(i = 0, j = temp.length; i < j; i++){
+					    t = temp[i];
 
-                end.unshift('</'+ tag +'>');
-            }
-        }
+					    if( t.indexOf('=') === -1 ){
+						    html.push( t in this.attrDefault ? ' '+ t +'="'+ this.attrDefault[t] : t );
+					    }
+					    else{
+						    html.push( ' '+ t.replace(/=(.*)$/g, '="$1"') );
+					    }
+				    }
+			    }
+
+			    // 判断标签是否闭合
+			    if( tag in this.specialTag ){
+				    html.push('/>');
+				    end.unshift('');
+			    }
+			    else{
+				    html.push('>');
+				    end.unshift('</'+ tag +'>');
+			    }
+		    }
+
+		    temp = /\{(.*)\}/.exec( rs[5] );
+		    html.push( temp ? temp[1] : '' );
+		    temp = html.join('');
+		    front.push( temp );
+	    }
 	    , operator: function(template, front, end){  // 处理操作符
             var tempArr = template.split('')
 	            , operate = tempArr.shift()
@@ -160,7 +176,7 @@
         while( template ){
             rs = elemExpr.exec( template );
 
-            if( rs.join('') !== '' ){
+	        if( rs.join('') !== '' ){
                 methods.createElement(rs, front, end);
                 template = template.replace(rs[0], '');
             }

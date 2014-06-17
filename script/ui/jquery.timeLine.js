@@ -4,7 +4,7 @@
  * @version 0.1
  * @function    $.timeLine
  * @param   {object}
- *  container   {string|object}    输出时间轴的目标容器 jQuery 选择器|jQuery 对象
+ *  container   {string|object}    输出时间轴的目标容器 jQuery 选择器 | jQuery 对象
  *  showLine    {boolean}   是否显示中轴线
  *  dateFormat  {function}  对 data 数组中的 date 进行格式处理的函数
  *                  默认处理 yyyy-mm-dd hh:ii:ss 格式字符串或 13位数字的时间戳
@@ -20,13 +20,13 @@
  *                      this 所属的方位 为 left 或 right
  *                  返回 该时间点事件内容的高度
  *  coordinateTmpl  {function}  坐标模板函数
- *  order       {boolean}   排序参数 true为正序(过去时间在前) false为倒序  目前该功能尚未实现
+ *  order       {boolean}   排序参数 true 为正序(过去时间在前) false 为倒序  目前该功能尚未实现
  *  startDate   {object}(Date)  显示截取时间段的开始时间 参数类型 Date 对象
  *  endDate     {object}(Date)  显示截取时间段的结束时间 参数类型 Date 对象
  *  coordinate  {boolean}   是否显示时间坐标
  *  interval    {string|number} 设置间隔区间 参数类型：字符串，year/month/week/day/hour(同时前面可以加数字，如：2month,为以2个月为间隔)；数字，分隔的周期(为毫秒数)
  *  sort        {function}  基于数据的排序规则，若数据为无序，则需定义，来执行排序
- *  colWidth    {number}    左右时间点事件之间的距离，即为与中轴线的偏移量的 2倍
+ *  colWidth    {number}    左右时间点事件之间的距离，即为与中轴线的偏移量的 2 倍
  *  lineHeight  {number}    时间点事件上下的间距
  *  left        {number}    左边时间点事件的基础高度
  *  right       {number}    右边时间点事件的基础高度
@@ -36,39 +36,62 @@
  * @description
  * @example
     var $timeLine = $.timeLine({
-        container:'#container',
-        interval:'month',
-        data:[
-            {date:'2013-01-12 12:11:12', title:'2013-01-12 12:11:12', content:'2012-11-12 12:11:12'},
-            {date:'2012-11-12 12:11:13', title:'2012-11-12 12:11:13', content:'2012-11-12 12:11:13'}
-        ]
+        container: '#container'
+        , interval: 'month'
+        , data:[{
+            data: '2013-01-12 12:11:12'
+            , title: '事件一'
+            , content: '事件一事件一'
+        }, {
+            data: '2013-01-12 12:11:13'
+            , title: '事件一'
+            , content: '事件一事件一'
+        }]
     });
  */
-;(function($){
-    var fillZero = function(num){return $.number.fillZero(num, 2);};
+;(function(p, jqPath){
+	if( typeof exports === 'object' && typeof module === 'object' ){
+		p( require( jqPath || 'jquery' ) );
+	}
+	else if( typeof define === 'function' && define.amd ){
+		define([ jqPath || 'jquery' ], p);
+	}
+	else{
+		p();
+	}
+})(function($){
+	'use strict';
+
+	$ = $ || jQuery;
+
+    var fillZero = function(num){
+	    return $.number.fillZero(num, 2);
+    };
 
     /**
      *  公有方法
      * */
     var methods = {
-        init:function(opts){
+        init: function(opts){
             var $container = opts.container;
             $container = (typeof $container === 'object' && $container.jQuery)? $container : $( $container );
-            var temp = opts.data,
-                target = $('<div>'+(opts.showLine?'<div class="timeLine_line"></div>':'')+'</div>').css({
-                    'position':'absolute',
-                    'left':'50%'
-                }).appendTo($container);
+
+            var temp = opts.data
+	            , target = $('<div>'+ (opts.showLine ? '<div class="timeLine_line"></div>' : '') +'</div>').css({
+                    'position': 'absolute'
+	                , 'left': '50%'
+                }).appendTo( $container );
+
             opts.data = [];
 
             $container.data({
-                opts:opts,
-                target:target,
-                area:{
-                    indexArray:[]
-                },
-                datetime:{
-                    indexArray:[]
+                opts: opts
+	            , target: target
+	            , area: {
+                    indexArray: []
+                }
+	            , datetime: {
+                    indexArray: []
                 }
             });
 
@@ -82,8 +105,8 @@
             $container.addEvent(temp);
 
             return $container;
-        },
-        addEvent:function(data){
+        }
+	    , addEvent: function(data){
             if( !$.isArray( data ) && data.date ){
                 data = [data];
             }
@@ -99,20 +122,20 @@
             }
 
             methods.placement(this, data);
-        },
-        refresh:function(){
+        }
+	    , refresh: function(){
             methods.placement(this, this.data('opts').data);
-        },
-        order:function(){// 正序 倒序 未实现
+        }
+	    , order: function(){// 正序 倒序 未实现
 
-        },
-        interval:function(i){// 设置间隔 未实现
+        }
+	    , interval: function(i){// 设置间隔 未实现
 
-        },
-        setStartEnd:function(start, end){// 设置显示区间
+        }
+	    , setStartEnd: function(start, end){// 设置显示区间
 
-        },
-        clearData:function(){
+        }
+	    , clearData: function(){
             this.data('opts').data = [];
             var datetime = this.data('datetime'),
                 area = this.data('area'),
@@ -128,8 +151,8 @@
                 delete datetime[temp[i]];
             }
             datetime.indexArray = [];
-        },
-        placement:function($container, data){// 定位数据
+        }
+	    , placement:function($container, data){// 定位数据
             var i = 0,
                 j = data.length,
                 target = $container.data('target'),
@@ -182,8 +205,8 @@
                 $container.height(opts.marginBottom + temp);
             }
             if( opts.showLine ) $container.find('.timeLine_line').height(temp-lineHeight);
-        },
-        endAll:function(){// 设置最终结束
+        }
+	    , endAll:function(){// 设置最终结束
 
         }
     };
@@ -195,9 +218,9 @@
 
     // 默认参数
     $.timeLine.defaults = {
-        container:'',
-        showLine:'true',
-        dateFormat:function(datetime){
+        container: ''
+	    , showLine: true
+	    , dateFormat:function(datetime){
             var date = null;
             if( /^\d{4}\-\d{2}\-\d{2} \d{2}:\d{2}:\d{2}$/.test(datetime) ){// 验证日期格式 yyyy-MM-dd hh:mm:ss
                 date = datetime.split(/:|\s|\-/);
@@ -207,14 +230,15 @@
                 date = new Date( Number(datetime) );
             }
             return date;
-        },
-        changePlace:function(data, date, top, left, pos){
+        }
+	    , changePlace:function(data, date, top, left, pos){
             if( !this.data('timeLine_position') ){//<span class="timeLine_event_del"></span>
-                this.html('<h3 class="timeLine_event_title">'+data.title+'</h3><span class="timeLine_event_time">'+date+'</span><div class="timeLine_event_content">'+data.content+'</div>')
+                this.html('<h3 class="timeLine_event_title">'+ data.title +'</h3><span class="timeLine_event_time">'+
+	                date +'</span><div class="timeLine_event_content">'+ data.content +'</div>');
             }
             if( this.data('timeLine_position') !== pos ){
                 this.removeClass('timeLine_event-left timeLine_event-right')
-                    .addClass(pos==='left'?'timeLine_event-left':'timeLine_event-right');
+                    .addClass(pos==='left' ? 'timeLine_event-left' : 'timeLine_event-right');
             }
             if( top !== this.offset.top || left !== this.offset.left ){
                 this.animate({
@@ -224,22 +248,22 @@
                 });
             }
             return this.height();
-        },
-        coordinateTmpl:function(date){
+        }
+	    , coordinateTmpl:function(date){
             var temp = fillZero( date.getMonth()+1 );
-            return '<div class="timeLine_date" id="area_'+date.getFullYear()+temp+'">'+date.getFullYear()+'年'+temp+'月</div>';
-        },
-        order:true,
-        sort:null,
-        interval:'month',
-        coordinate:true,
-        startDate:null,
-        endDate:null,
-        colWidth:80,
-        lineHeight:20,
-        marginBottom:0,
-        left:0,
-        right:30,
-        data:[]
+            return '<div class="timeLine_date" id="area_'+ date.getFullYear() + temp +'">'+ date.getFullYear() +'年'+ temp +'月</div>';
+        }
+	    , order: true
+	    , sort: null
+	    , interval: 'month'
+	    , coordinate: true
+	    , startDate: null
+	    , endDate: null
+	    , colWidth: 80
+	    , lineHeight: 20
+	    , marginBottom: 0
+	    , left: 0
+	    , right: 30
+	    , data: []
     };
-})(jQuery);
+}, '');

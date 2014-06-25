@@ -4,7 +4,7 @@
 @import "../lib/function.less";
 @import "../lib/grid.less";
 
-//----- input 表单项 -----
+//----- input 表单项 文本输入框 -----
 //input[type="text"],
 //input[type="password"],
 /*input:text, input:password*/.input{
@@ -43,9 +43,10 @@
     background: @input-right-bg;
 }
 
-input[type="checkbox"]{
-	float: left;
-	height: 20px;
-	width: 20px;
-	margin: 5px;
+//----- 表单项 占位符 -----
+::-webkit-input-placeholder{    // webkit
+}
+::-moz-placeholder{ // firefox 19+
+}
+:-ms-input-placeholder{ // ie
 }

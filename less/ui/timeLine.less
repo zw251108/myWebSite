@@ -1,0 +1,139 @@
+@charset "utf-8";
+
+@import "../lib/color.less";
+@import "../lib/z-index.less";
+
+//---------- 时间轴插件 相关样式 ----------
+/*  example
+	<div class="timeLine_container">
+		<div class="timeLine_line">
+			<div class="timeLine_date timeLine_date-start></div>
+			<div class="timeLine_date"></div>
+			<div class="timeLine_date timeLine_date-end"></div>
+		</div>
+
+		<!-- 时间轴左边 -->
+		<div class="timeLine_event timeLine_event-left">
+			<div class="timeLine_event_time"></div>
+			<div class="timeLine_event_title"></div>
+			<div class="timeLine_event_content"></div>
+		</div>
+
+		<!-- 时间轴右边 -->
+		<div class="timeLine_event timeLine_event-right">
+			<div class="timeLine_event_time"></div>
+			<div class="timeLine_event_title"></div>
+			<div class="timeLine_event_content"></div>
+		</div>
+	</div>
+ */
+.timeLine_container{
+	position: absolute;
+	left: 50%;
+}
+
+.timeLine_line{ // 时间轴 中线
+	overflow: hidden;
+	position: absolute;
+	top: 0;
+	left: -5px;
+	height:100%;
+	width: 10px;
+	background: #efefef;
+}
+
+.timeLine_date{ // 时间轴上的日期坐标
+	position: absolute;
+	left: -50px;
+
+	height: 30px;
+	width: 100px;
+
+	border-radius: 10px;
+	background: #BDC3C7;
+
+	font-size: 14px;
+	line-height: 200%;
+	text-align: center;
+
+	cursor: pointer;
+}
+//.timeLine_date-showAll{}
+//.timeLine_date-end{}
+
+.timeLine_event{    // 时间点事件
+	position: absolute;
+	//    left:-200px;
+	//    height: 150px;
+	width: 410px;
+	//	width: auto;
+
+	border-radius: 5px;
+	background: #3498DB;
+
+	opacity: .5;
+}
+//.timeLine_event-show{}
+.timeLine_event-left{   // 位于时间轴左边的时间点事件
+	.timeLine_event_time{
+		right: -70px;
+		border-radius: 0 5px 5px 0;
+	}
+}
+.timeLine_event-right{  // 位于时间轴右边的时间点事件
+	.timeLine_event_time{
+		left: -70px;
+		border-radius: 5px 0 0 5px;
+	}
+}
+
+.timeLine_event_time{   // 时间点事件中的时间标识
+	//	overflow: hidden;
+
+	position: absolute;
+	top: 10px;
+
+	height: 20px;
+	width: 70px;
+
+	background: #2ecc71;
+
+	font-size: 12px;
+	line-height: 150%;
+	text-align: center;
+}
+
+.timeLine_event_title{  // 时间点事件的标题
+	height: 40px;
+
+	margin: 0;
+
+	font-size: 18px;
+	line-height: 200%;
+	text-align: center;
+
+	cursor: pointer;
+}
+
+//.timeLine_event_del{    // 时间点事件的删除按钮
+//	position: absolute;
+//	top: 5px;
+//	right: 35px;
+//
+//	height: 30px;
+//	width: 30px;
+//
+//	//    background: url("../image/skin/close.png");
+//	cursor: pointer;
+//}
+
+.timeLine_event_content{    // 时间点事件的内容
+	border-radius: 5px;
+	margin: 0 10px 10px;
+	padding: 10px;
+
+	background: #fff;
+
+	color: @selection;
+	text-indent: 2em;
+}

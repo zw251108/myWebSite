@@ -26,7 +26,7 @@ ini_set('date.timezone','Asia/Shanghai');
     </section>
 </a>
 
-<a href="">
+<a href="profile/">
     <section class="module module-metro module-tiny module-user">
         <h2 class="module_title">
 			我 me
@@ -114,8 +114,6 @@ ini_set('date.timezone','Asia/Shanghai');
 		</h2>
 	</section>
 </a>
-
-div.wb_handle.web_handle_community>span>a.li[href=javascript:;]^span>a[href=javascript:;]^span>a[href=javascript:;]^a[href=home/show/detail.html]^div[style=left:260px;]+div.community[style=display:none]>div.info_content>ul#replyList.replyList^div.paging^div.speakCon[style=display:none]>div.speak_message>textarea^div.speak_handle>div.ico_box>a.face^div.operate_box>input.speak[type=button]^^^div.packBtn[style=display:none]
 
 <!--
 <a href="timeLine/">

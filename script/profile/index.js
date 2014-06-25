@@ -9,43 +9,15 @@ MODULE_CONFIG.paths.timeLine = '../ui/jquery.timeLine';
 require.config(MODULE_CONFIG);
 require(['jquery', 'global', 'highcharts', 'highchartsMore', 'highchartsExporting', 'timeLine'], function($, g){
 
-	$('.timeLine_event-left').css('left', '+=20px').find('.timeLine_event_time').html('').css({width:'auto',height:'auto'})
-	$('.timeLine_event-right').css('left', '-=20px').find('.timeLine_event_time').html('').css({width:'auto',height:'auto'})
-
-	$('<style>' +
-		'.timeLine_event-left .timeLine_event_time:before{content:"";position:absolute;top:0;right:40px;width:0;height:0;border:10px solid #3498db;border-radius:50%;}' +
-		'.timeLine_event-left .timeLine_event_time:after{content:"";position:absolute;left:-70px;width:0;height:0;border:10px solid transparent;border-left-color:#3498db;}' +
-		'.timeLine_event-right .timeLine_event_time:before{content:"";position:absolute;top:0;left:40px;width:0;height:0;border:10px solid #3498db;border-radius:50%;}' +
-		'.timeLine_event-right .timeLine_event_time:after{content:"";position:absolute;right:-70px;width:0;height:0;border:10px solid transparent;border-right-color:#3498db;}' +
-		'</style>').appendTo('head');
-//		.hide()
-//		.end().append('<span class="timeLine_time"></span>')
-//			.find('.timeLine_time')
-
-//		.css({
-//			border: '10px solid transparent'
-//			, 'border-left-color': '#3498db'
-//			, width: 0
-//			, height: 0
-//			, position: 'absolute'
-//			, 'top': '10px'
-//			, right: '-20px'
-//			, left: 'auto'
-//		});
-//		.hide()
-//		.end().append('<span class="timeLine_time"></span>')
-//			.find('.timeLine_time')
-
-//		.css({
-//			border: '10px solid transparent'
-//			, 'border-right-color': '#3498db'
-//			, width: 0
-//			, height: 0
-//			, position: 'absolute'
-//			, 'top': '10px'
-//			, left: '-20px'
-//			, right: 'auto'
-//		});
+//	$('.timeLine_event-left').css('left', '+=20px').find('.timeLine_event_time').html('').css({width:'auto',height:'auto'})
+//	$('.timeLine_event-right').css('left', '-=20px').find('.timeLine_event_time').html('').css({width:'auto',height:'auto'})
+//
+//	$('<style>' +
+//		'.timeLine_event-left .timeLine_event_time:before{content:"";position:absolute;top:0;right:40px;width:0;height:0;border:10px solid #3498db;border-radius:50%;}' +
+//		'.timeLine_event-left .timeLine_event_time:after{content:"";position:absolute;left:-70px;width:0;height:0;border:10px solid transparent;border-left-color:#3498db;}' +
+//		'.timeLine_event-right .timeLine_event_time:before{content:"";position:absolute;top:0;left:40px;width:0;height:0;border:10px solid #3498db;border-radius:50%;}' +
+//		'.timeLine_event-right .timeLine_event_time:after{content:"";position:absolute;right:-70px;width:0;height:0;border:10px solid transparent;border-right-color:#3498db;}' +
+//		'</style>').appendTo('head');
 
 	/**
 	 * 个人能力
@@ -89,7 +61,7 @@ require(['jquery', 'global', 'highcharts', 'highchartsMore', 'highchartsExportin
 			, layout: 'vertical'
 		}
 		, series: [{
-			name: '战斗力'
+			name: '自我评估'
 			, data: [9, 7, 9, 7, 8, 8]
 			, pointPlacement: 'on'
 		}]
@@ -133,7 +105,7 @@ require(['jquery', 'global', 'highcharts', 'highchartsMore', 'highchartsExportin
 			, layout: 'vertical'
 		}
 		, series: [{
-			name: '战斗力'
+			name: '自我评估'
 			, data: [9, 8, 9, 7, 5, 6]
 			, pointPlacement: 'on'
 		}]

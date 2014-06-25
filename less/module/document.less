@@ -42,7 +42,13 @@
         text-indent: @text-indent;
     }
     dt{
-        .marginSpace();
+	    position: relative;
+	    z-index: 2;
+
+	    border-top: 10px solid #fff;
+	    margin: 0 0 0 10px;
+
+//        .marginSpace();
 
         background-color: @document_dt-bg;
 
@@ -55,11 +61,17 @@
         display: none;
 	    overflow: hidden;
 
-        border-left: @space solid @document_dt-bg;
-        margin-left: @space;
-        padding: 0 @space;
+	    border: 10px solid #fff;
+	    border-right-width: 0;
 
-        color: @document_dd-color;
+	    outline: rgb(211, 84, 0) solid 10px;
+
+	    margin: 0 0 -10px 20px;
+	    padding: @space;
+
+	    background: @document_dd-color;
+
+        color: #fff;
     }
 	.icon{
 		padding: 0;

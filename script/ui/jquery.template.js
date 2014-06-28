@@ -35,7 +35,6 @@
 	$ = $ || jQuery;
 
     var elemExpr = /(\w*)((?:#[\w%]*)?)((?:\.[\w\-%]*)*)((?:\[[\w\-%]*(?:=.*?)?(?:(?:\s[\w\-%]*)(?:=.*?)?)*\])?)((?:\{.*?\})?)/
-//	    , expr = /(\w*)((?:#[\w%]*)?)((?:\.[\w\-%]*)*)((?:\[[\w\-%]*=.*?\])*)((?:\{.*?\})?)/
 	    , keyListExpr = /%\w*?%/g
 	    , keyExpr = /%(.*)%/
 	    ;
@@ -208,4 +207,68 @@
         template: ''
 	    , filter: {}
     };
+
+	$.template.emmet = function(html, openTag, closeTag){
+		var htmlStartExpr = /^<(\w+)((?:\s[\w\-]*(?:="[\w\s\-]*"))*)\s*(\/?)>/
+//			, htmlEndExpr = /<\/\w+>$/  // ?
+			, attrExpr = /([\w\-]+)(?:="([\w\-\s]*)")/
+			, idExpr = /id="(\w*)"/
+			, classExpr = /class="([\w\s]*)"/
+			, tagExpr = new RegExp( openTag +'.*?'+ closeTag )
+
+			, $html = $( html ) // 将 HTML 代码转换成 DOM 对象
+			, temp
+			, $temp
+			, tag
+			, isClose
+			, id
+			, klass
+			, i = 0, j = $html.length
+			, rs = []
+			, t
+			, attArr
+			, attr
+			, m, n
+			;
+
+		for(; i < j; i++){
+			temp = $html.get(i);
+//			$temp = $html.eq(i);
+
+			tag = htmlStartExpr( temp.outerHTML );
+//			tag = htmlStartExpr( $temp[0].outerHTML );
+
+			if( tag ){
+
+				// 添加标签
+				rs.push( tag[1] );
+
+				if( tag[2] ){
+					t = $.trim( tag[2] ).split(' ');
+					attArr = [];
+
+					for(m = 0, n = t.length; m < n; m++){
+
+						attr = t[m];
+
+						if( attr.indexOf('id') !== -1 ){
+							id = idExpr.exec( attr )[1];
+						}
+						else if( attr.indexOf('class') !== -1 ){
+							klass = classExpr.exec( attr )[1].split(' ').join('.');
+						}
+						else{
+							attArr.push( attr.replace('"', '') );
+						}
+					}
+				}
+				// 判断标签是否为闭合标签
+				isClose = !!tag[3];
+			}
+
+			if( temp.childNodes.length ){
+
+			}
+		}
+	};
 }, '');

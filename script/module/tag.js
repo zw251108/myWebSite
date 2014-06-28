@@ -47,11 +47,13 @@ define(['jquery', 'template'], function(){
             }
         }
     }).on('click', '#allTags span.tag', function(){// 选择标签
-        var $temp = $cache.add(this),
-            tagId = $temp.data('tagid'),
-            tagName = $temp.html(),
-            nameExpr = new RegExp('(^|,)'+ tagName +'(,|$)'),
-            idExpr = new RegExp('(^|,)'+ tagId +'(,|$)');
+        var $temp = $cache.add(this)
+	        , $clone
+	        , tagId = $temp.data('tagid')
+	        , tagName = $temp.html()
+	        , nameExpr = new RegExp('(^|,)'+ tagName +'(,|$)')
+	        , idExpr = new RegExp('(^|,)'+ tagId +'(,|$)')
+	        ;
 
         if( !idExpr.test($tagsId.val()) && !nameExpr.test($tagsName.val()) && !$temp.hasClass('tag-checked') ){
 
@@ -63,8 +65,13 @@ define(['jquery', 'template'], function(){
                 var val = this.value;
                 return val? val +','+ tagName : tagName;
             });
-            $addNewTag.before( $temp.clone().data('target', $temp) );
+	        $clone = $temp.clone().data('target', $temp);
+	        $temp.data('target', $clone);
+            $addNewTag.before( $clone );
             $temp.addClass('tag-checked');
+        }
+	    else{
+	        $temp.data('target').trigger('click');
         }
     }).on('click', '#selectTags span.tag', function(){// 删除已选择标签
         var $temp = $cache.add(this),

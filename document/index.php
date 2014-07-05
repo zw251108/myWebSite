@@ -449,6 +449,24 @@ require_once('../include/Config.inc.php');
                         th, td{padding:0;}
                     </pre>
                 </dd>
+				<dt class="icon icon-arrow-r">iframe 标签</dt>
+				<dd>
+					<p>使用 iframe 的优点：</p>
+
+					<ul>
+						<li>可以用来加载速度较慢的内容，例如广告</li>
+						<li>安全沙箱保护，浏览器会对 iframe 中的内容进行安全控制</li>
+						<li>脚本可以并行下载</li>
+					</ul>
+
+					<p>缺点：</p>
+
+					<ul>
+						<li>即使 iframe 内容为空也消耗加载时间</li>
+						<li>会阻止页面加载</li>
+						<li>没有语义</li>
+					</ul>
+				</dd>
                 <dt class="icon icon-arrow-r">链接</dt>
                 <dd>
                     <p>避免重定向，即须在 URL 地址后面加上 "<span class="code">/</span>"</p>
@@ -668,10 +686,10 @@ require_once('../include/Config.inc.php');
                     <p>选择器尽可能简单，如：<span class="code">#example</span>，而不是
 						<span class="code">ul#example</span>，过深的选择器路径可能会使第三方组件的样式失效</p>
 
-                    <p>尽量避免使用元素标签名和 <span class="code">id</span>、<span class="code">class</span>
+                    <p>尽量避免使用元素标签名和 <span class="code">#id</span>、<span class="code">.class</span>
 						进行组合的选择器，做到样式与元素的分离，两者独立维护</p>
 
-                    <p>选择器有个先后排序：<span class="code">id</span>、<span class="code">class</span>、标签及一般，这意味着一个带有
+                    <p>选择器有个先后排序：<span class="code">#id</span>、<span class="code">.class</span>、标签及一般，这意味着一个带有
 						<span class="code">id</span> 的元素集比只带有标签选择器的元素更快的被渲染。但在所有 DOM 元素都加上
 						<span class="code">id</span> 是没有意义的</p>
 
@@ -697,6 +715,18 @@ require_once('../include/Config.inc.php');
                     <p>当页面重排（reflow）时，低效的选择器依然会引发更高的开销</p>
 
                     <p>注：在 IE 中 <span class="code">:hover</span> 会降低响应速度</p>
+
+					<p>以下是 CSS 选择器的性能排行（从最快的开始）：</p>
+
+					<ol>
+						<li>ID 选择器：<span class="code">#id</span></li>
+						<li>class 选择器：<span class="code">.class</span></li>
+						<li>标签选择器：<span class="code">div</span></li>
+						<li>相邻的兄弟选择器：<span class="code">a + i</span></li>
+						<li>父元素选择器：<span class="code">ul > li</span></li>
+						<li>通配符选择器：<span class="code">*</span></li>
+						<li>伪类和伪元素：<span class="code">a:hover</span></li>
+					</ol>
 
                     <p>将选择器和声明隔行，每个选择器和声明都要独立新行</p>
 
@@ -2752,6 +2782,14 @@ require_once('../include/Config.inc.php');
                 </dd>
 				<dt class="icon icon-arrow-r">精简文件</dt>
 				<dd>在发布前，压缩 HTML、CSS 与 JS 文件，降低图片保存质量</dd>
+				<dt class="icon icon-arrow-r">根据域名划分内容</dt>
+				<dd>
+					<p>浏览器一般对同一个域的下载连接数有所限制，按照域名划分下载内容可以使浏览器增大并行下载连接数量，但是注意控制域名使用在
+						2-4 个之间，不然 DNS 查询也是个问题</p>
+
+					<p>一般网站规划会将静态资源放在类似于 static.example.com，动态内容放在 www.example.com
+						上，这样做还有一个好处是可以在静态的域名上避免使用 cookie</p>
+				</dd>
 				<dt class="icon icon-arrow-r">使用 CDN(内容分发网络) 加速</dt>
                 <dd>
                     <p>可将网站的图片、CSS、JS、资料、资源放到独立的站点，做下 CDN 加速，二级域名会有 Cookies，最好使用一级域名</p>
@@ -2759,6 +2797,10 @@ require_once('../include/Config.inc.php');
                     <p>实时性不太好是 CDN
 						的致命缺陷，解决方法是在网络内容发生变化时将新的网络内容从服务器端直接传送到缓存器，或者当对网络内容的访问增加时将数据源服务器的网络内容尽可能实时地复制到缓存服务器</p>
                 </dd>
+				<dt class="icon icon-arrow-r">避免页面跳转</dt>
+				<dd>当客户端收到服务器的跳转回复时，客户端再次根据服务器回复中的 location
+					指定的地址再次发送请求，当客户端遇到这种回复的时候，用户只能等待客户端再次发送请求，有的网站甚至会一直跳 n
+					次，跳到它想带你去的地方，这个时候用户看不到任何页面内容，只有浏览器的进度条一直在刷新</dd>
                 <dt class="icon icon-arrow-r">GZIP</dt>
                 <dd>服务器端启用 GZIP 压缩</dd>
 				<dt class="icon icon-arrow-r">支持浏览器缓存</dt>

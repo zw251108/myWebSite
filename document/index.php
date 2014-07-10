@@ -173,12 +173,16 @@ require_once('../include/Config.inc.php');
 
 					<p>iOS 设备</p>
 
-                    <p>告诉 iphone 的 safari 浏览器，这个网站对应的 app 是什么，然后在页面上面显示一个下载 banner</p>
-
                     <pre class="brush:html">
+						&lt;!-- 告诉 iphone 的 safari 浏览器，这个网站对应的 app 是什么，然后在页面上面显示一个下载 banner --&gt;
                         &lt;meta name="apple-itunes-app" content="app-id=xxxxxxxxx" /&gt;
+						&lt;!-- 是否启动 webapp 功能，会删除默认的苹果工具栏和菜单栏 --&gt;
+						&lt;meta name="apple-mobile-web-app-capable" content="yes" /&gt;
+						&lt;!-- 当启动 webapp 功能时，显示手机信号、时间、电池的顶部导航栏的颜色。默认值为 default(白色)，可以定为 black(黑色) 和 black-translucent(灰色半透明) --&gt;
+						&lt;meta name="apple-mobile-web-app-status-bar-style" content="black" /&gt;
+						&lt;!-- 忽略页面中的数字识别为电话号码，忽略 email，也可以分开写 --&gt;
+						&lt;meta name="format-detection" content="telephone=no, email=no" /&gt;
 
-						&lt;meta name="format-detection" content="telephone=no" /&gt;
                     </pre>
 
 					<p>Windows 8</p>
@@ -188,6 +192,8 @@ require_once('../include/Config.inc.php');
 						&lt;meta name="msapplication-TileColor" content="#000" /&gt;
 						&lt;!-- Windows 8 磁贴图片 --&gt;
 						&lt;meta name="msapplacation-TileImage" content="icon.png" /&gt;
+						&lt;!-- 点击无高光 --&gt;
+						&lt;meta name="msapplication-tap-highlight" content="no" /&gt;
                     </pre>
                 </dd>
                 <dt class="icon icon-arrow-r">title</dt>
@@ -2788,11 +2794,12 @@ require_once('../include/Config.inc.php');
 						2-4 个之间，不然 DNS 查询也是个问题</p>
 
 					<p>一般网站规划会将静态资源放在类似于 static.example.com，动态内容放在 www.example.com
-						上，这样做还有一个好处是可以在静态的域名上避免使用 cookie</p>
+						上，这样做还有一个好处是可以在静态的域名上避免使用 Cookie</p>
 				</dd>
 				<dt class="icon icon-arrow-r">使用 CDN(内容分发网络) 加速</dt>
                 <dd>
-                    <p>可将网站的图片、CSS、JS、资料、资源放到独立的站点，做下 CDN 加速，二级域名会有 Cookies，最好使用一级域名</p>
+                    <p>可将网站的图片、CSS、JS、资料、资源放到独立的站点，做下 CDN 加速，二级域名会有
+						Cookies，最好使用一级域名</p>
 
                     <p>实时性不太好是 CDN
 						的致命缺陷，解决方法是在网络内容发生变化时将新的网络内容从服务器端直接传送到缓存器，或者当对网络内容的访问增加时将数据源服务器的网络内容尽可能实时地复制到缓存服务器</p>

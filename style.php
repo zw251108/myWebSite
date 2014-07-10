@@ -3,6 +3,7 @@
 <meta name="keywords" content="web,前端,html,html5,css,css3,javascript" />
 <meta name="msapplication-TileColor" content="#44cef6"/><!-- win 8 磁贴颜色 -->
 <meta name="msapplication-TileImage" content="<?php echo projectRoot();?>image/favicon.png"/><!-- win 8 磁贴图标 -->
+<meta name="msapplication-tap-highlight" content="no" />
 <link rel="shortcut icon" type="image/x-icon" href="<?php echo projectRoot();?>image/favicon.ico" />
 <link rel="stylesheet" href="<?php echo projectRoot();?>style/style.css" />
 <link rel="stylesheet" href="<?php echo projectRoot();?>script/plugin/clippy/clippy.css" />

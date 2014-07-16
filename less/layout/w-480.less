@@ -5,19 +5,19 @@
 // 针对宽度为 480px 至 800px 以下的设备
 // Container 宽度 480
 // 共 12 列
-// .module-large    12
-// .module-big      12
-// .module-normal   12(默认)
-// .module-small    12
-// .module-tiny     4(默认)
+// .large    12
+// .big      12
+// .normal   12(默认)
+// .small    12
+// .tiny     4(默认)
 @media screen and (min-width:480px) and (max-width:639px){
     .Container{
         width: @grid-unit*12;
     }
 
-    .module-large,
-    .module-big,
-    .module-small{
+    .large,
+    .big,
+    .small{
         .grid-x(12);
     }
 }

@@ -18,7 +18,7 @@ ini_set('date.timezone','Asia/Shanghai');
 <?php require_once('header.php');?>
 
 <a href="blog/">
-    <section class="module module-metro module-big module-blog">
+    <section class="module module-metro big module-blog">
         <h2 class="module_title">
 			博客 blog
 		</h2>
@@ -27,14 +27,14 @@ ini_set('date.timezone','Asia/Shanghai');
 </a>
 
 <a href="profile/">
-    <section class="module module-metro module-tiny module-user">
+    <section class="module module-metro tiny module-user">
         <h2 class="module_title">
 			我 me
 		</h2>
     </section>
 </a>
 
-    <section class="module module-metro module-tiny module-watch">
+    <section class="module module-metro tiny module-watch">
         <h2 class="module_title">
 			时间 time
 		</h2>
@@ -58,7 +58,7 @@ ini_set('date.timezone','Asia/Shanghai');
     </section>
 
 <!--<a href="calendar/">-->
-    <section class="module module-metro module-small module-calendar" id="calendar">
+    <section class="module module-metro small module-calendar" id="calendar">
         <h2 class="module_title">
 			日历 calendar
 		</h2>
@@ -67,7 +67,7 @@ ini_set('date.timezone','Asia/Shanghai');
     </section>
 <!--</a>-->
 
-	<section class="module module-metro module-small module-weather" id="weather">
+	<section class="module module-metro small module-weather" id="weather">
 		<h2 class="module_title">
 			天气预报 weather
 		</h2>
@@ -75,7 +75,7 @@ ini_set('date.timezone','Asia/Shanghai');
 	</section>
 
 <a href="document/">
-	<section class="module module-metro module-small module-document">
+	<section class="module module-metro small module-document">
 		<h2 class="module_title">
 			前端文档 document
 		</h2>
@@ -83,7 +83,7 @@ ini_set('date.timezone','Asia/Shanghai');
 </a>
 
 <a href="editor/">
-    <section class="module module-metro module-small module-editor">
+    <section class="module module-metro small module-editor">
         <h2 class="module_title">
 			编辑器 editor
 		</h2>
@@ -92,7 +92,7 @@ ini_set('date.timezone','Asia/Shanghai');
 </a>
 
 <a href="favorite">
-	<section class="module module-metro module-normal module-favor">
+	<section class="module module-metro normal module-favor">
 		<h2 class="module_title">
 			收藏夹 favorite
 		</h2>
@@ -100,7 +100,7 @@ ini_set('date.timezone','Asia/Shanghai');
 </a>
 
 <a href="palette/">
-	<section class="module module-metro module-small module-palette">
+	<section class="module module-metro small module-palette">
 		<h2 class="module_title">
 			调色板 palette
 		</h2>
@@ -108,7 +108,7 @@ ini_set('date.timezone','Asia/Shanghai');
 </a>
 
 <a href="rss/">
-	<section class="module module-metro module-normal module-rss">
+	<section class="module module-metro normal module-rss">
 		<h2 class="module_title">
 			订阅 rss
 		</h2>
@@ -117,33 +117,33 @@ ini_set('date.timezone','Asia/Shanghai');
 
 <!--
 <a href="timeLine/">
-    <section class="module module-metro module-small module-timeLine">
+    <section class="module module-metro small module-timeLine">
         <h2 class="module_title">时光轴 timeLine</h2>
     </section>
 </a>
 -->
 <!--
-    <section class="module module-metro module-tiny module-music">
+    <section class="module module-metro tiny module-music">
         <h2 class="module_title">音乐 music</h2>
         <span class="module_info"></span>
     </section>
 -->
 <!--
-    <section class="module module-metro module-tiny module-picture">
+    <section class="module module-metro tiny module-picture">
         <h2 class="module_title">相册 album</h2>
         <span class="module_info"></span>
         <img src="" alt="" />
     </section>
 -->
-<!--    <section class="module module-metro module-tiny module-rss"></section>-->
-<!--    <section class="module module-metro module-tiny module-mail"></section>-->
+<!--    <section class="module module-metro tiny module-rss"></section>-->
+<!--    <section class="module module-metro tiny module-mail"></section>-->
 <!--
-    <section class="module module-metro module-tiny module-news">
+    <section class="module module-metro tiny module-news">
         <h2 class="module_title">新闻 news</h2>
         <span class="module_info">123</span>
     </section>
 -->
-<!--    <section class="module module-metro module-tiny module-market"></section>-->
+<!--    <section class="module module-metro tiny module-market"></section>-->
 <?php require_once('footer.php');?>
 <script data-main="script/index" src="script/lib/require/require.js"></script>
 </body>

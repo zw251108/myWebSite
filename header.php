@@ -1,6 +1,7 @@
 <header class="Header">
 
-	<nav class="module module-header module-large" id="header">
+<!-- class="module module-header module-large" -->
+	<nav class="nav large" id="header">
 		<a class="btn btn-link btn-menuItem btn-menuItem-home" id="home" href="<?php echo projectRoot();?>" title="返回首页"></a>
 
 		<button class="btn btn-menu<?php echo projectRoot()=='' ? ' hidden' : '';?>" id="menu" type="button" title="显示菜单"></button>

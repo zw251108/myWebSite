@@ -52,7 +52,7 @@ else{
 <?php require_once("../header.php");?>
 
 <form id="code" action="result.php" method="post" target="result">
-<section class="module module-large module-main module-editor">
+<section class="module large module-main module-editor">
     <h2 class="module_title">前端实践 editor</h2>
 
 	<div class="toolBar">
@@ -122,7 +122,7 @@ $(function(){
 </section>
 </form>
 
-<div class="module module-big module-popup hidden" id="editorSavePopup">
+<div class="module big module-popup hidden" id="editorSavePopup">
     <form action="save.php" method="post" id="editorSaveForm">
 
 	<div class="form_group">
@@ -204,7 +204,7 @@ $(function(){
     </form>
 </div>
 
-<div class="module module-normal module-popup hidden" id="directory">
+<div class="module normal module-popup hidden" id="directory">
 	<ul class="ztree list list-left" id="selectedFile">
 		<li class="level2">
 			<span class="button chk checkbox_true_disable"></span><a class="level2"><span class="button ico_docu"></span><span>jquery.min.js</span></a>
@@ -213,7 +213,7 @@ $(function(){
     <ul class="ztree list list-right" id="tree"></ul>
 </div>
 
-<div class="module module-small module-popup hidden" id="colorPicker">
+<div class="module small module-popup hidden" id="colorPicker">
     <label><input type="text" name="color" id="color" value="#ffffff" /></label>
     <div id="picker"></div>
 </div>

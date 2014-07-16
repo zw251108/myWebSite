@@ -11,10 +11,13 @@ require_once('../include/Config.inc.php');
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 <title>个人资料</title>
 <?php require_once('../style.php');?>
+<style>
+/*text{font-family: Consolas, \5b8b\4f53;}*/
+</style>
 </head>
 <body class="Container">
 <?php require_once('../header.php');?>
-<section class="module module-large module-main module-profile" id="profile">
+<section class="module large module-main module-profile" id="profile">
 	<h2 class="module_title">个人资料 profile</h2>
 
 	<div class="module_content">

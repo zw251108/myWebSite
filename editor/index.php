@@ -26,7 +26,7 @@ $allTag = $tag->selectTagByLevel();
 </head>
 <body class="Container">
 <?php require_once('../header.php');?>
-<section class="module module-main module-large module-editor">
+<section class="module module-main large module-editor">
     <h2 class="module_title">前端实践 editor</h2>
 
 	<div class="toolBar">

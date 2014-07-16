@@ -16,7 +16,7 @@ require_once('../include/Config.inc.php');
 <body>
 <div class="Container" id="Container">
 <?php require_once('../header.php');?>
-    <div id="timeLine" class="module module-large module-timeLine">
+    <div id="timeLine" class="module large module-timeLine">
         <h1 class="module_title">时光轴</h1>
     </div>
 <?php require_once('../footer.php');?>

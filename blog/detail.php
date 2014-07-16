@@ -57,7 +57,7 @@ else{// get 方式访问
 </head>
 <body class="Container">
 <?php require_once('../header.php');?>
-<section class="module module-large module-main module-blog">
+<section class="module large module-main module-blog">
     <h2 class="module_title">博客 Blog</h2>
     <div class="module_content blog-detail" id="blogDetail">
         <article class="article">

@@ -16,7 +16,7 @@ require_once('../include/Config.inc.php');
 <body class="Container">
 <?php require_once('../header.php');?>
 
-<section class="module module-main module-large module-calendar">
+<section class="module module-main large module-calendar">
 	<h2 class="module_title">日历 calendar</h2>
 
 	<div class="module_content calendar_main" id="calendarMain">
@@ -83,7 +83,7 @@ require_once('../include/Config.inc.php');
 	</div>
 </section>
 
-<section class="module module-popup module-normal hidden"></section>
+<section class="module module-popup normal hidden"></section>
 
 <?php require_once( '../footer.php');?>
 

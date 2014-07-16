@@ -52,7 +52,7 @@ else{
 </head>
 <body class="Container">
 <?php require_once('../header.php');?>
-<section class="module module-large module-main module-palette" id="paletteList">
+<section class="module large module-main module-palette" id="paletteList">
     <h2 class="module_title">调色板 palette</h2>
     <div class="module_content">
         <section class="palette_section-gray section">

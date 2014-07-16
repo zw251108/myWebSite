@@ -1,9 +1,9 @@
 @charset "utf-8";
 
-@import "../lib/color.less";
-@import "../lib/function.less";
-@import "../lib/grid.less";
-@import "../lib/z-index.less";
+@import "lib/color.less";
+@import "lib/function.less";
+@import "lib/grid.less";
+@import "lib/z-index.less";
 
 //---------- Header 页头 ----------
 .Header{
@@ -14,11 +14,12 @@
     right: 0;   //@grid-space;
     top: 0;
 
-    height: @header-height;
+    height: 70px;   //@header-height;
 
-    background: #fff;   //#392f41;    //
+//    background: #fff;   //#392f41;    //
+	background-color: rgb(118, 209, 127);
 
-	.boxShadow(5px 5px 5px #888);
+//	.boxShadow(5px 5px 5px #888);
 
 	/**
 	 * @extend    module.less
@@ -43,8 +44,8 @@
 //		padding: 0;
 //		padding-left: 80px;
 
-//		background-color: transparent;
-		background-color: #dfdfdf;
+		background-color: transparent;
+//		background-color: #dfdfdf;
 		background-position: 10px 10px !important;
 		background-repeat: no-repeat;
 	}

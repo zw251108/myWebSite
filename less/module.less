@@ -17,9 +17,9 @@
 // 模块类型 目前有 6 种类型
 //      .module-metro   动态磁砖
 //      .module-main    页面主模块 为页面主要内容 一般一个页面只有一个 main 模块
-//      .module-header  页头模块
-//      .module-footer  页脚模块
-//      .module-nav     页面导航
+//      .module-header  页头模块    --> 已取消
+//      .module-footer  页脚模块    --> 已取消
+//      .module-nav     页面导航    --> 已取消
 //      .module-popup   页面弹窗
 // .module_xxx 为模块所包含的的子模块
 //
@@ -44,7 +44,8 @@
     float:left;
     margin: @grid-space;
 
-    background-color: @module-metro-bg;
+//    background-color: @module-metro-bg;
+	background-color: rgb(118, 209, 127);
     background-repeat: no-repeat;
 }
 
@@ -75,23 +76,25 @@
 
 //----- 模块类型 -----
 // main、header、footer、nav 模块不显示 模块信息
-.module-main,
-.module-nav,
-.module-header,
-.module-footer{
+.module-main
+//,
+//.module-nav,
+//.module-header,
+//.module-footer
+{
     > .module_info{
         display: none;
     }
 }
 
-// header、footer 模块的 模块标题 定位不同 待议
-.module-header,
-.module-footer{
-    > .module_title{
-        float: left;
-        margin-top: 115px;
-    }
-}
+//// header、footer 模块的 模块标题 定位不同 待议
+//.module-header,
+//.module-footer{
+//    > .module_title{
+//        float: left;
+//        margin-top: 115px;
+//    }
+//}
 
 //----- 功能模块样式 -----    todo
 // 以下顺序同时为 metro.png 中图标的顺序
@@ -123,9 +126,9 @@
 
 @import "module/popup";       // 弹窗
 
-@import "module/header";      // 页头
-
-@import "module/footer";      // 页脚
+//@import "module/header";      // 页头
+//
+//@import "module/footer";      // 页脚
 
 //----- Main 主内容模块 ------
 .module-main{
@@ -162,7 +165,7 @@
 	outline: @outline-width solid @outline-color;
 	background-position: center @module-metro-bg-top;
 
-	.boxShadow(5px 5px 5px #888);
+//	.boxShadow(5px 5px 5px #888);
 
     &:hover{
 	    outline: @outline-width solid @a-hover;
@@ -188,33 +191,33 @@
 }
 
 // 动态磁砖颜色
-.module-user{
-	background-color: @c184;
-}
-.module-palette{
-	background-color: @c209;
-}
-.module-document{
-	background-color: @c213;
-}
-.module-editor{
-	background-color: @c180;
-}
-.module-watch{
-	background-color: @c186;
-}
-.module-blog{
-	background-color: @c191;
-}
-.module-calendar{
-	background-color: @c177;
-}
-.module-weather{
-	background-color: @c179;
-}
-.module-favor{
-	background-color: @c217;
-}
-.module-rss{
-	background-color: @c198;
-}
+//.module-user{
+//	background-color: @c184;
+//}
+//.module-palette{
+//	background-color: @c209;
+//}
+//.module-document{
+//	background-color: @c213;
+//}
+//.module-editor{
+//	background-color: @c180;
+//}
+//.module-watch{
+//	background-color: @c186;
+//}
+//.module-blog{
+//	background-color: @c191;
+//}
+//.module-calendar{
+//	background-color: @c177;
+//}
+//.module-weather{
+//	background-color: @c179;
+//}
+//.module-favor{
+//	background-color: @c217;
+//}
+//.module-rss{
+//	background-color: @c198;
+//}

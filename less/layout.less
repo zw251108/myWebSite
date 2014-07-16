@@ -9,11 +9,11 @@
 // 针对标准显示器
 // Container 宽度 960
 // 共 24 列
-// .module-large    24
-// .module-big      16
-// .module-normal   12
-// .module-small    8
-// .module-tiny     4
+// .large    24
+// .big      16
+// .normal   12
+// .small    8
+// .tiny     4
 
 // 主容器
 /*body*/.Container{
@@ -22,26 +22,26 @@
 	width: @grid-unit *24;
 
 	margin:0 auto;
-	padding: @header-height + @grid-space 0 0;  // @header-height + @grid-space 0 0;
+	padding: @header-height 0 0;  // @header-height + @grid-space 0 0;
 }
 
-.module-large{
+.large{
 	.grid-x(24);
 }
 
-.module-big{
+.big{
 	.grid-x(16);
 }
 
-.module-normal{
+.normal{
 	.grid-x(12);
 }
 
-.module-small{
+.small{
 	.grid-x(8);
 }
 
-.module-tiny{
+.tiny{
 	.grid-x(4);
 }
 

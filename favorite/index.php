@@ -23,7 +23,7 @@ $allTag = $tag->selectTagByLevel();
 </head>
 <body class="Container">
 <?php require_once('../header.php');?>
-<section class="module module-main module-large module-favor">
+<section class="module module-main large module-favor">
     <h2 class="module_title">收藏夹 favorite</h2>
 
 	<div class="toolBar">
@@ -54,7 +54,7 @@ $allTag = $tag->selectTagByLevel();
     <div class="pagination favor_page" id="Pagination"></div>
 </section>
 
-<section class="module module-popup module-normal hidden" id="favorAddPopup">
+<section class="module module-popup normal hidden" id="favorAddPopup">
     <form id="favorAddForm" action="editFavor.php" method="post">
 
 		<div class="form_group">

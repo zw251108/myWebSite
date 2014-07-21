@@ -1,3 +1,4 @@
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="author" content="周文博" />
 <meta name="description" content="小小的前端工程师，自说自话，自娱自乐的小网站" />
 <meta name="keywords" content="web,前端,html,html5,css,css3,javascript" />

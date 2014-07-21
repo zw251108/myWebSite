@@ -17,9 +17,6 @@
 // 模块类型 目前有 6 种类型
 //      .module-metro   动态磁砖
 //      .module-main    页面主模块 为页面主要内容 一般一个页面只有一个 main 模块
-//      .module-header  页头模块    --> 已取消
-//      .module-footer  页脚模块    --> 已取消
-//      .module-nav     页面导航    --> 已取消
 //      .module-popup   页面弹窗
 // .module_xxx 为模块所包含的的子模块
 //
@@ -37,6 +34,12 @@
             <!-- 详细内容 -->
         </div>
     </section>
+ */
+
+/**
+ *      .module-header  页头模块    --> 已取消
+ *      .module-footer  页脚模块    --> 已取消
+ *      .module-nav     页面导航    --> 已取消
  */
 
 // 模块样式
@@ -133,7 +136,7 @@
 //----- Main 主内容模块 ------
 .module-main{
     overflow: hidden;
-	background-color: @module-main-bg;
+//	background-color: @module-main-bg;
 	background-image: none;
 
     > .module_title{
@@ -168,7 +171,9 @@
 //	.boxShadow(5px 5px 5px #888);
 
     &:hover{
-	    outline: @outline-width solid @a-hover;
+//	    outline: @outline-width solid @a-hover;
+	    background-color: @a-hover;
+	    color: @font-color;
     }
 
     > .module_title{

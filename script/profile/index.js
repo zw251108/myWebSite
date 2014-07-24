@@ -85,7 +85,7 @@ require(['jquery', 'global', 'highcharts', 'highchartsMore', 'highchartsExportin
 			size: '80%'
 		}
 		, xAxis: {
-			categories: ['HTML(5) & CSS(3)', 'JavaScript(jQuery)', 'Node.js', '设计能力', '用户体验']
+			categories: ['HTML(5) & CSS(3)', 'JavaScript(jQuery)', 'Node.js', '服务器端开发(Java/PHP)', '设计能力', '用户体验']
 			, tickmarkPlacement: 'on'
 			, lineWidth: 0
 		}
@@ -106,7 +106,7 @@ require(['jquery', 'global', 'highcharts', 'highchartsMore', 'highchartsExportin
 		}
 		, series: [{
 			name: '自我评估'
-			, data: [7, 8, 6, 4, 6]
+			, data: [8, 9, 7, 5, 4, 7]
 			, pointPlacement: 'on'
 		}]
 	});

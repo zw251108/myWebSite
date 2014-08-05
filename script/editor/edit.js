@@ -124,20 +124,20 @@ require(['jquery', 'global', 'tag'
 	tag.setValue(EDITOR_DETAIL.tagsId || '', EDITOR_DETAIL.tagsName || '');
 
 	$.validator.validType.title = {
-		type:['required', '请输入 UI 标题'],
-		focus: '请输入 UI 标题',
-		valid:[
+		type:['required', '请输入 UI 标题']
+		, focus: '请输入 UI 标题'
+		, valid:[
 			['length', 0, 50]
-		],
-		text:['请将标题限制在 50 个字内'],
-		right:'填写正确'
+		]
+		, text:['请将标题限制在 50 个字内']
+		, right:'填写正确'
 	};
 	$editorSaveForm = $.validator({
-		selector: '#editorSaveForm',
-		normal:function(){
+		selector: '#editorSaveForm'
+		, normal: function(){
 			this.prev().removeClass('tips-focus tips-error tips-succ hidden').hide();
-		},
-		focus:function(txt){
+		}
+		, focus: function(txt){
 			var offset,
 				tips = this.prev();
 
@@ -151,8 +151,8 @@ require(['jquery', 'global', 'tag'
 				tips.offset(offset);
 				this.data('tipsinit', true);
 			}
-		},
-		wrong:function(txt){
+		}
+		, wrong: function(txt){
 			var offset,
 				tips = this.prev();
 
@@ -166,8 +166,8 @@ require(['jquery', 'global', 'tag'
 				tips.offset(offset);
 				this.data('tipsinit', true);
 			}
-		},
-		right:function(txt){
+		}
+		, right: function(txt){
 			var offset,
 				tips = this.prev();
 
@@ -269,8 +269,8 @@ require(['jquery', 'global', 'tag'
 		$editorContent.css('marginLeft', '-300%');
 		$codeForm.find('#codeTabs li.current').removeClass('current').end().find('#codeTabs li:eq(3)').addClass('current');
 	}).on('click', '#codeTabs li', function(){
-		var $temp = $cache.add(this),
-			i = $temp.index();
+		var $temp = $cache.add(this)
+			, i = $temp.index();
 
 		if( currentShow !== i ){
 			$editorContent.animate({

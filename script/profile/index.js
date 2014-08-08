@@ -120,15 +120,15 @@ require(['jquery', 'global', 'highcharts', 'highchartsMore', 'highchartsExportin
 		, data: [{
 			date: '2013.04'
 			, title: '德辉科技（大连）有限公司'
-			, content: '<p>2013.04 - 现在&nbsp;&nbsp;任职：Web 前端工程师</p><p>主要负责前端 UI 开发，改善用户体验。</p>'
+			, content: '<p>2013.04 - 现在</p><p>任职：Web 前端工程师</p><p>主要负责前端 UI 开发，改善用户体验。</p>'
 		}, {
 			date: '2012.03'
 			, title: '中科海云网络科技（大连）有限公司'
-			, content: '<p>2012.03 - 2013.04&nbsp;&nbsp;任职：Web 前端工程师</p><p>参与开发了 IM 系统，后台信息管理系统。</p>'
+			, content: '<p>2012.03 - 2013.04</p><p>任职：Web 前端工程师</p><p>参与开发了 IM 系统，后台信息管理系统。</p>'
 		}, {
 			date:'2009.10'
 			, title:'大连网景科技有限公司'
-			, content: '<p>2009.10 - 2012.01&nbsp;&nbsp;任职：开发工程师</p><p>主要使用 PHP 和 JavaScript 对 CMS 系统进行二次开发。</p>'
+			, content: '<p>2009.10 - 2012.01</p><p>任职：开发工程师</p><p>主要使用 PHP 和 JavaScript 对 CMS 系统进行二次开发。</p>'
 //		}, {
 //			date:'2009-06'
 //			, title:'大连民族学院'

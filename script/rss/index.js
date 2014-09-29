@@ -15,8 +15,8 @@ require.config(MODULE_CONFIG);
 require(['jquery', 'global', 'tag', 'filter', 'template',
 	'pagination', 'artDialog', 'artDialogPlus', 'validator'], function($, g, tag, $filter){
 	var rssTmpl = $.template({
-			template: 'li.rss_item[data-rssid=%Id%][data-tagsid=%tagsId%]' +
-				'>a[href=%htmlUrl%][data-rssfeed=%xmlUrl%][target=_blank][title=%name%]>h3.rssItem_title{%name%}' +
+			template: 'li.rss_item[data-rssid=%Id% data-tagsid=%tagsId%]' +
+				'>a[href=%htmlUrl% data-rssfeed=%xmlUrl% target=_blank title=%name%]>h3.rssItem_title{%name%}' +
 				'^hr+ul.rss_articleList.hidden+div.tagArea{%tags%}' +
 				'+div.btn_group.btn_group-item.hidden>button.btn.icon.icon-edit.js-edit[type=button]{编辑}' +
 				'+button.btn.icon.icon-delete.js-delete[type=button]{删除}'
@@ -25,7 +25,7 @@ require(['jquery', 'global', 'tag', 'filter', 'template',
 			}
 		})
 		, articleTmpl = $.template({
-			template: 'li.article>a.link[href=%link%][target=_blank]>h4.article_title{%title%}' +
+			template: 'li.article>a.link[href=%link% target=_blank]>h4.article_title{%title%}' +
 				'^div.article_content{%description%}+div.btn_group.btn_group-article.hidden' +
 				'>button.btn.icon.icon-favor.js-edit[type=button]{收藏}'
 			, filter: {

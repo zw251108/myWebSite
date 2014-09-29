@@ -2,76 +2,76 @@
 /**
  *  创建 TCP 服务器
  * */
-var net = require('net')
-	, chatServer = net.createServer()
-	, clientList = []
-	;
-
-function broadcast(message, client){
-	var temp
-		, i = 0
-		, j = clientList.length
-		, cleanup = []
-		;
-	for(; i < j; i++){
-		temp = clientList[i];
-		if( client !== temp ){
-			// 检查 socket 的可写状态
-			if( temp.writable ){
-				temp.write(client.name +' says: '+ message);
-			}
-			else{
-				cleanup.push(i);
-//				cleanup.push(temp);
-//				temp.destroy();
-			}
-		}
-	}
-
-	// 删除死节点，消除垃圾索引
-	for(i = 0, j = cleanup.length; i < j; i++){
-		temp = cleanup[i];
-
-		clientList[temp].destroy();
-//		clientList.splice(clientList.indexOf(cleanup[i]), 1);
-		clientList.splice(temp, 1);
-	}
-}
-
-chatServer.on('connection', function(client){
-	// 添加名称
-	client.name = client.remoteAddress +':'+ client.remotePort;
-
-	client.write('hi,'+ client.name +'\n');
-
-	clientList.push( client );
-	                                         console.log( clientList.length );
-	// client 发送数据是触发
-	client.on('data', function(data){
-		console.log(data);
-
-		// 每个客户端都接受信息
-		for(var i = 0, j = client.length; i < j; i++){
-			clientList[i].write(data);
-		}
-
-//		broadcast(data, client);
-	});
-
-	// 记录错误
-	client.on('error', function(e){
-		console.log(e);
-	});
-
-	// 端口连接时将 client 从 clientList 中删除
-	client.on('end', function(){
-		clientList.splice(clientList.indexOf(client), 1);
-	});
-
-	// 关闭连接
-//	client.end();
-});
-chatServer.listen(9000);
+//var net = require('net')
+//	, chatServer = net.createServer()
+//	, clientList = []
+//	;
+//
+//function broadcast(message, client){
+//	var temp
+//		, i = 0
+//		, j = clientList.length
+//		, cleanup = []
+//		;
+//	for(; i < j; i++){
+//		temp = clientList[i];
+//		if( client !== temp ){
+//			// 检查 socket 的可写状态
+//			if( temp.writable ){
+//				temp.write(client.name +' says: '+ message);
+//			}
+//			else{
+//				cleanup.push(i);
+////				cleanup.push(temp);
+////				temp.destroy();
+//			}
+//		}
+//	}
+//
+//	// 删除死节点，消除垃圾索引
+//	for(i = 0, j = cleanup.length; i < j; i++){
+//		temp = cleanup[i];
+//
+//		clientList[temp].destroy();
+////		clientList.splice(clientList.indexOf(cleanup[i]), 1);
+//		clientList.splice(temp, 1);
+//	}
+//}
+//
+//chatServer.on('connection', function(client){
+//	// 添加名称
+//	client.name = client.remoteAddress +':'+ client.remotePort;
+//
+//	client.write('hi,'+ client.name +'\n');
+//
+//	clientList.push( client );
+//	                                         console.log( clientList.length );
+//	// client 发送数据是触发
+//	client.on('data', function(data){
+//		console.log(data);
+//
+//		// 每个客户端都接受信息
+//		for(var i = 0, j = client.length; i < j; i++){
+//			clientList[i].write(data);
+//		}
+//
+////		broadcast(data, client);
+//	});
+//
+//	// 记录错误
+//	client.on('error', function(e){
+//		console.log(e);
+//	});
+//
+//	// 端口连接时将 client 从 clientList 中删除
+//	client.on('end', function(){
+//		clientList.splice(clientList.indexOf(client), 1);
+//	});
+//
+//	// 关闭连接
+////	client.end();
+//});
+//chatServer.listen(9000);
 
 //---------- 使用集群来分发任务 ----------
 /**
@@ -1089,4 +1089,158 @@ chatServer.listen(9000);
 //		})
 //
 //	})
+//});
+
+/**
+ * node-segment 中文分词库
+ * */
+// 载入模块
+var Segment = require('node-segment').Segment;
+
+// 创建实例
+var segment = new Segment();
+
+//// 使用默认的识别模块及字典
+segment.useDefault();
+
+//segment.use('ForeignTokenizer');
+
+console.log(+(new Date()));
+
+// 开始分词
+
+//var slice = segment.doSegment('<p>爱，福雷,呵呵，我的个人网站终于上线了，按照程序员的潜规则，第一个输出就应该是 Hello world。</p>\
+//	\
+//	<p>其实呢，这个网站已经策划好久了，自从我毕业后进入互联网行业，就一直想做一个个人网站，不过无奈当时的各方面能力都不够，所以一直在学习而没有实践。不过一直以来，最头痛的还是设计的问题，那时候的网站大都要找个人来好好设计一下，做得花哨一些，而技术我可以学，也能学会，但是设计就没有保证了。</p>\
+//	<p>后来 Metro Style 出来，看了突然顿悟简单才是美啊，然后网站就大体设计成这样了，除了一些细微的数值调整，界面应该不会什么改变了。总体上从去年 10 月份之后，工作上也不太紧张就开始正式进入编码阶段了。不过进度很缓慢，每天都有新的想法出现，然后就把之前的一些成果给否定了。这种状况持续了有一段时间，还好这是我个人的项目，如果是公司的话，我大概早就不干了吧。其实，这个过程也挺好，让我认识到了，自己的很多的问题，过程中又学习了很多新东西。</p>\
+//	<p>说起来，现在要建立个人网站通常都会使用类似 WordPress 的网站模板。不过，我个人是很讨厌框架、模板一类的东西的。同时，就目前来说我也从来没有经历过一个完整的项目，从架构设计到代码实现再到细节处理。所以，我决定从头开始，这个网站的代码完全是由自己来写，即使借鉴了别人的代码，也绝不是复制粘贴，而是一个一个字母重新敲下来的。不过，目前还是有使用一些非常复杂的 JS 插件，但我保证，以后有时间，一定会尝试自己开发一个。</p>\
+//	\
+//	<p>总之，这个网站目前只具备最基本的功能，可以发表文章，回复功能也没有。不过还有一些之前没有正式开发阶段时，因为好玩写的一些小功能，比如：<a href="http://zw150026.com/palette/" class="link" target="_blank">调色板</a>，还有一路走过来，在前端开发方面学习的总结<a href="http://zw150026.com/document/" class="link" target="_blank">文档</a>，这个文档参考了很多人所写的博客，而且年代久远了，所以都不记得参考了谁的文章。不过，这个前端文档主要还是给我自己看的。如果其它能顺便帮到其别人话，当然很荣幸；如果帮不到别人，那也没办法了，我的水平也是就这样了。</p>\
+//	\
+//	<p>最后，这个网站的主题就是自娱自乐，不过更是希望这个网站能代表我的水平。目前，我的开发计划是以半个月到一个月为一个迭代周期来开发一个功能模块，不过具体时间的话还要看工作忙不忙了；具体的模块功能的话，虽然会有一个计划列表，但是总体上来说我也是一个很随意的人，而且这又是个人项目，所以还是以我的兴趣为主，随时有个想法就尽快把它实现了，呵呵。</p>\
+//	\
+//	<p>Just Coding For Fun。</p>');
+
+var slice = segment.doSegment('加班背后的无奈与原因\
+	\
+在V众投上曾经有一个问题叫：IT研发人员就一定总加班吗？ 从问答来看看来大家对加班这事还是比较无奈和矛盾的：一方面现实让IT人必须加班；另一方面除了少数工作狂人，大家其实并不喜欢这事。\
+\
+而为什么加班极为普遍，其原因很多，比如：\
+\
+人为的行政上原因。这可以进一步划分为两类场景：一类是，在有的公司里，不加班被等价于工作不努力。所以不管需不需要，那怕磨洋工也先加了再说。一类是，在有的公司里，利润和工作时间成比例关系，所以潜在的公司会推动多加班。后一类是恶意促使员工加班，不过指望自省来解决问题是不可能的。\
+商业原因。这说的是，很多时候程序员会直接收到到某个日程，但日程本身不太合理，这样就只能加班来赶。日程本身很多时候是根据产品上市时间这类商业因素定的，而确定产品上市时间时，企划人员可能根本不太清楚开发工作本身究竟需要多少工作量，其中偏差就只能靠程序员的加班来弥补。\
+技术原因。这里的技术说的是估算技术和需求开发技术。有的时候即使是项目组自己做估算，决定日程，但由于需求自身的不清晰，或者估算方法的不恰当，也还会出现无法搞定承诺日程的情形---这也得加班。\
+市场的原因。竞争过于激烈，需要高频率推出各种产品。\
+　　……\
+	\
+不同的原因总是可以通过不同的手段来解决，但也确实都可以通过延长工作时间这统一的手段来解决，程序员作为所有一切的末梢，一旦成为承担所有后果的容器，那就必然总是加班。但关键是这样做是没有底线的，如果企业不为自己设定边界，那就只会导致过劳。认为延长工作时间是唯一解决问题之道，就会进一步认为过劳只是起源于市场竞争的无奈，并因此而心安理得。这是极为错误的，不分析其内在形成原因，而简单的归结于市场竞争是一种托词和失职。\
+	\
+可以不加班么？\
+	\
+近来诺基亚裁员事件唤起了大家对这个公司的关注，并进一步发掘出了许多员工层面的细节，比如工作懈怠等，但反过来看诺基亚全员都死命加班就可以拯救这个公司么？我不这么看。一般来讲大家都认为日本人工作是比较勤奋的，但这种勤奋并未让索尼这样的日企避免陷入困境。\
+	\
+而再反过来看我们可以讲出现成功的产品的公司或团队是因为他们比别人更辛苦么？我觉得不是的，这更多的是由于捕捉到了窗口期的机会并打造了切合时代需要的产品，诚然他们也是辛苦的，但这不是决定性因素。\
+	\
+IT界的一个前辈宋朝弟曾经对我讲工业时代的规则比较牛顿，单维因果，但互联网时代的则比较量子，多维因果。在比较牛顿的时代里，加班对结果会有更多的影响，比如工厂里的工人，只要加班时间足够长就能够生产足够多的产品。但在多维因果的时代里，单纯的努力是没用的。在很多企业里加班更多的是种惯性，或者说是陷入红海后的无奈。再直接讲就是创新越不足，就越需要加班来弥补；工作本身附加值越低，加班越有效果。所以总强调加班的企业需要更多的反思。\
+	\
+当然写了这么多不是说不能加班，而是说要控制加班的程度。企业并不能决定市场上发生什么，所以加班本身无可厚非。但是持续高强度、无限制的加班则是企业必须要规避的。一点就是上面所说的，这通常并不解决问题或者说只解决眼前的问题；另一点则是员工同时具有多重属性，他即需要履行对企业的责任，也需要履行对社会和家庭的责任。而对家庭和社会的责任至少与履行在企业中的责任同样重要，大多时候其实是更加重要。员工本身对企业没有无限的权利所以也不应当无限制的履行责任，这是非常显然的事情。当上述规则无法达成共识并且确立的时候，履行对企业的责任天生就会侵占其余，越在金字塔末梢的员工自主性则越差，发言权越小，越容易成为过劳的主要受害者。\
+	\
+理想状况\
+	\
+理想状况应该是这样：\
+	\
+在长时间轴上，比如一年总的工作时间上有条红线，这条红线相当于企业与个人利益的最佳分割点，他可以在特定条件下伸缩，但伸缩也应该是个预先清楚定义的范围，红线之后是不可碰触区域。在红线之外，即使会丧失企业收入，企业不应该对员工提出要求，员工停止工作也不是不履行责任。\
+这也就意味着超过这条红线之后，公司的问题更应该用其他手段来解决，比如创新，比如效率化等等。\
+	\
+企业家要想获得尊重，那就必须更好的履行自己的责任。把社会责任、创新这类词语挂在墙上风干是没有用的。否则就会让大家生出——怎么都说的是儒家，做事全是法家的感叹，这会导致个人与企业的疏离，最终伤害的也会是整个系统。这也许表现为离职，也许表现为一种被深深隐藏了的消极。');
+
+//console.log( slice );
+console.log(+(new Date()));
+
+//console.log( segment.indexOf(slice, 'WordPress') )
+
+var obj = {}
+	, rs = []
+	, j = slice.length
+	, t
+	, w
+	;
+
+while( j-- ){
+	t = slice[j];
+	w = t.w;
+	if( w in obj ){
+		rs[obj[w]].n++;
+	}
+	else{
+		rs.push({
+			tag: w
+			, p: t.p
+			, n: 1
+		});
+		obj[w] = rs.length -1;
+	}
+}
+//console.log( rs );
+
+rs.sort(function(a, b){
+	return b.n - a.n;
+});
+
+console.log( rs );
+
+var a = 5
+	, i = 0
+	;
+j = rs.length;
+while( i++ < j ){
+
+	t = rs[i];
+	if( t.p === 1048576 || t.p === 8 || t.p === 32 || t.p === 64 || t.p === 128 || t.p === 0 ){
+		console.log(t);
+		a--;
+	}
+
+	if( !a ) break;
+}
+
+a = 5;
+i = 0;
+j = rs.length;
+while( i++ < j ){
+
+	t = rs[i];
+	if( t.p === 4096 ){
+		console.log(t);
+		a--;
+	}
+
+	if( !a ) break;
+}
+
+
+/**
+ * nseg 中文分词
+ * */
+////var dict  = require('nseg/data/dict'),
+////	freq  = require('nseg/data/freq'),
+////	date  = require('nseg/lex/datetime'),
+////	sina  = require('nseg/lex/sina');
+//
+//var opts  = {
+////	dict: dict,
+////	freq: freq,
+////	lexers: [date, sina],
+//};
+//
+//var nseg = require('nseg').normal();
+//
+//nseg('呵呵，我的个人网站终于上线了，按照程序员的潜规则，第一个输出就应该是 Hello world。\
+//其实呢，这个网站已经策划好久了，自从我毕业后进入互联网行业，就一直想做一个个人网站，不过无奈当时的各方面能力都不够，所以一直在学习而没有实践。不过一直以来，最头痛的还是设计的问题，那时候的网站大都要找个人来好好设计一下，做得花哨一些，而技术我可以学，也能学会，但是设计就没有保证了。\
+//后来 Metro Style 出来，看了突然顿悟简单才是美啊，然后网站就大体设计成这样了，除了一些细微的数值调整，界面应该不会什么改变了。总体上从去年 10 月份之后，工作上也不太紧张就开始正式进入编码阶段了。不过进度很缓慢，每天都有新的想法出现，然后就把之前的一些成果给否定了。这种状况持续了有一段时间，还好这是我个人的项目，如果是公司的话，我大概早就不干了吧。其实，这个过程也挺好，让我认识到了，自己的很多的问题，过程中又学习了很多新东西。\
+//说起来，现在要建立个人网站通常都会使用类似 WordPress 的网站模板。不过，我个人是很讨厌框架、模板一类的东西的。同时，就目前来说我也从来没有经历过一个完整的项目，从架构设计到代码实现再到细节处理。所以，我决定从头开始，这个网站的代码完全是由自己来写，即使借鉴了别人的代码，也绝不是复制粘贴，而是一个一个字母重新敲下来的。不过，目前还是有使用一些非常复杂的 JS 插件，但我保证，以后有时间，一定会尝试自己开发一个。\
+//总之，这个网站目前只具备最基本的功能，可以发表文章，回复功能也没有。不过还有一些之前没有正式开发阶段时，因为好玩写的一些小功能，比如：调色板，还有一路走过来，在前端开发方面学习的总结文档，这个文档参考了很多人所写的博客，而且年代久远了，所以都不记得参考了谁的文章。不过，这个前端文档主要还是给我自己看的。如果其它能顺便帮到其别人话，当然很荣幸；如果帮不到别人，那也没办法了，我的水平也是就这样了。\
+//最后，这个网站的主题就是自娱自乐，不过更是希望这个网站能代表我的水平。目前，我的开发计划是以半个月到一个月为一个迭代周期来开发一个功能模块，不过具体时间的话还要看工作忙不忙了；具体的模块功能的话，虽然会有一个计划列表，但是总体上来说我也是一个很随意的人，而且这又是个人项目，所以还是以我的兴趣为主，随时有个想法就尽快把它实现了，呵呵。\
+//Just Coding For Fun。', function (result) {
+//	console.log(result);
 //});
